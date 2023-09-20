@@ -36,16 +36,36 @@
     <ClInclude Include="..\includes\GL\wglew.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="..\root_directory.h">
+      <Filter>Fichiers sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\hello_triangle.cpp">
+    <ClCompile Include="..\camera_class.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\includes\glad\glad.c">
+    <ClCompile Include="..\glad.c">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stb_image.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="..\7.4.camera.fs">
+      <Filter>Fichiers sources</Filter>
+    </None>
+    <None Include="..\7.4.camera.vs">
+      <Filter>Fichiers sources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\resources\textures\awesomeface.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="..\resources\textures\container.jpg">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -102,9 +102,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../includes;../resources</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,13 +140,21 @@
     <ClInclude Include="..\includes\GL\glxew.h" />
     <ClInclude Include="..\includes\GL\wglew.h" />
     <ClInclude Include="..\includes\KHR\khrplatform.h" />
+    <ClInclude Include="..\root_directory.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\hello_triangle.cpp" />
-    <ClCompile Include="..\includes\glad\glad.c" />
+    <ClCompile Include="..\camera_class.cpp" />
+    <ClCompile Include="..\glad.c" />
+    <ClCompile Include="..\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\7.4.camera.fs" />
+    <None Include="..\7.4.camera.vs" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\resources\textures\awesomeface.png" />
+    <Image Include="..\resources\textures\container.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

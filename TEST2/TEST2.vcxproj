@@ -104,16 +104,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../includes;../resources</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../TEST2/Imgui;../TEST2/libs</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>\includes</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
+      <AdditionalLibraryDirectories>libs\glfw\lib-vc2010-64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <ProjectReference>
-      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -133,28 +133,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\includes\glad\glad.h" />
-    <ClInclude Include="..\includes\GLFW\glfw3.h" />
-    <ClInclude Include="..\includes\GLFW\glfw3native.h" />
-    <ClInclude Include="..\includes\GL\glew.h" />
-    <ClInclude Include="..\includes\GL\glxew.h" />
-    <ClInclude Include="..\includes\GL\wglew.h" />
-    <ClInclude Include="..\includes\KHR\khrplatform.h" />
-    <ClInclude Include="..\root_directory.h" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="Imgui\imgui.cpp" />
+    <ClCompile Include="Imgui\imgui_demo.cpp" />
+    <ClCompile Include="Imgui\imgui_draw.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Imgui\imgui_tables.cpp" />
+    <ClCompile Include="Imgui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\camera_class.cpp" />
-    <ClCompile Include="..\glad.c" />
-    <ClCompile Include="..\stb_image.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\7.4.camera.fs" />
-    <None Include="..\7.4.camera.vs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\resources\textures\awesomeface.png" />
     <Image Include="..\resources\textures\container.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Imgui\imconfig.h" />
+    <ClInclude Include="Imgui\imgui.h" />
+    <ClInclude Include="Imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Imgui\imgui_internal.h" />
+    <ClInclude Include="Imgui\imstb_rectpack.h" />
+    <ClInclude Include="Imgui\imstb_textedit.h" />
+    <ClInclude Include="Imgui\imstb_truetype.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

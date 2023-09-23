@@ -13,6 +13,8 @@ int main(int, char**)
     ImGuiEngine imGuiEngine;
     imGuiEngine.Init(window);
 
+    //imGuiEngine.SetVisible(true);
+
     while (!graphicEngine.ShouldClose())
     {
         graphicEngine.Update();

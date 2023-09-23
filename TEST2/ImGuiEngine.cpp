@@ -72,6 +72,14 @@ bool ImGuiEngine::Init(GLFWwindow* _window)
 
 void ImGuiEngine::Update()
 {
+    //processInput(window);
+
+    if (visible == false) {
+        return;
+    }
+
+
+
     auto io = ImGui::GetIO();
 
     // Poll and handle events (inputs, window resize, etc.)
@@ -137,4 +145,24 @@ void ImGuiEngine::Shutdown()
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
+}
+
+void ImGuiEngine::processInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_F1) == GLFW_PRESS) {
+        glfwSetWindowShouldClose(window, true);
+    }
+
+    int nextState = glfwGetKey(window, GLFW_KEY_I);
+    if (lastState_Key_I != nextState && nextState == GLFW_PRESS) {
+        SetVisible(!visible);
+    }
+    lastState_Key_I = nextState;
+}
+
+void ImGuiEngine::SetVisible(bool _visible)
+{
+    if (visible == _visible) {
+        visible == !visible;
+    }
 }

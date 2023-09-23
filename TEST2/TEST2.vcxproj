@@ -146,6 +146,8 @@
     <ClCompile Include="LearnOpenGL\camera_class.cpp" />
     <ClCompile Include="libs\glad.c" />
     <ClCompile Include="libs\stb_image.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -168,6 +170,8 @@
     <ClInclude Include="Imgui\imstb_truetype.h" />
     <ClInclude Include="LearnOpenGL\CameraController.h" />
     <ClInclude Include="libs\stb_image.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -163,6 +163,16 @@ void ImGuiEngine::processInput(GLFWwindow* window)
 void ImGuiEngine::SetVisible(bool _visible)
 {
     if (visible == _visible) {
-        visible == !visible;
+        return;
+    }
+
+    if (visible) {
+        ImGui_ImplGlfw_InstallCallbacks(window);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+
+    }
+    else {
+        ImGui_ImplGlfw_RestoreCallbacks(window);
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }
 }

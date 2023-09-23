@@ -39,9 +39,6 @@
     <ClInclude Include="..\root_directory.h">
       <Filter>Fichiers sources</Filter>
     </ClInclude>
-    <ClInclude Include="MoteurSystem.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\camera_class.cpp">
@@ -51,12 +48,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="..\stb_image.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Vecteur3D.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="MoteurSystem.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

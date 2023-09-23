@@ -141,14 +141,11 @@
     <ClInclude Include="..\includes\GL\wglew.h" />
     <ClInclude Include="..\includes\KHR\khrplatform.h" />
     <ClInclude Include="..\root_directory.h" />
-    <ClInclude Include="MoteurSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\camera_class.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="..\stb_image.cpp" />
-    <ClCompile Include="MoteurSystem.cpp" />
-    <ClCompile Include="Vecteur3D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\7.4.camera.fs" />

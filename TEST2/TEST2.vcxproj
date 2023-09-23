@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../TEST2/Imgui;../TEST2/libs</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../TEST2/Imgui;../TEST2/libs;../TEST2/;../TEST2/libs/glm;../TEST2/libs/glad;./libs;./libs/KHR</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +143,9 @@
     <ClCompile Include="Imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Imgui\imgui_tables.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="LearnOpenGL\camera_class.cpp" />
+    <ClCompile Include="libs\glad.c" />
+    <ClCompile Include="libs\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -163,6 +166,7 @@
     <ClInclude Include="Imgui\imstb_rectpack.h" />
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
+    <ClInclude Include="libs\stb_image.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

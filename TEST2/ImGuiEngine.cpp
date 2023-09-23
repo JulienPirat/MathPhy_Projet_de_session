@@ -72,7 +72,7 @@ bool ImGuiEngine::Init(GLFWwindow* _window)
 
 void ImGuiEngine::Update()
 {
-    //processInput(window);
+    processInput(window);
 
     if (visible == false) {
         return;

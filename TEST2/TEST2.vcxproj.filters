@@ -103,5 +103,8 @@
     <ClInclude Include="libs\stb_image.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="LearnOpenGL\CameraController.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,26 +9,7 @@ public:
 
 	//Constructeur de la classe
 	Particle();
-	Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass);
-
-	//Contient la position de la particule dans le monde
-	Vector3D position;
-	//Contient la vitesse de la particule dans le monde
-	Vector3D velocity;
-	/**
-	* Contient l'accélération de la particule dans le monde
-	* Cette valeur peut servir à appliquer une force constante sur la particule tel que la gravité
-	*/
-	Vector3D acceleration;
-
-	//Résistance au déplacement. Retire de l'energie à notre déplacement
-	double damping;
-
-	//Masse inverse de notre particule
-	double inverseMass;
-
-	//Contients la somme des force qui sera appliqué a la prochaine frame
-	Vector3D forceAccum;
+	Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Vector3D color);
 
 	//Méthode pour remettre à 0 le cumul des forces de chaque frame
 	void clearAccumulator();
@@ -40,6 +21,44 @@ public:
 	void Integrate(double duration);
 
 	//void PositionUpdate(double* time);
+
+	//Getters
+	Vector3D getPosition() const;
+	Vector3D getVelocity() const;
+	Vector3D getAcceleration() const;
+	double getDamping() const;
+	double getInverseMass() const;
+	Vector3D getColor() const;
+
+	//Setters
+	void setPosition(Vector3D pos);
+	void setVelocity(Vector3D vel);
+	void setAcceleration(Vector3D acc);
+	void setDamping(double damp);
+	void setInverseMass(double mass);
+	void setColor(Vector3D col);
+	
+	private:
+		//Position de la particule
+		Vector3D position;
+
+		//Vitesse de la particule
+		Vector3D velocity;
+
+		//Accélération de la particule
+		Vector3D acceleration;
+
+		//Damping de la particule
+		double damping;
+
+		//Inverse de la masse de la particule
+		double inverseMass;
+
+		//Force accumulée par la particule
+		Vector3D forceAccum;
+
+		//Couleur de la particule
+		Vector3D color;
 };
 
 

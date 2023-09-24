@@ -10,12 +10,13 @@ Particle::Particle() {
 	clearAccumulator();
 }
 
-Particle::Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass) {
+Particle::Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Vector3D color) {
 	position = pos;
 	velocity = vel;
 	acceleration = acc;
 	damping = damp;
 	inverseMass = 1 / mass;
+	this->color = color;
 	clearAccumulator();
 }
 
@@ -59,3 +60,65 @@ void Particle::Integrate(double duration)
 	//Remise à 0 des forces pour la prochaine frame
 	clearAccumulator();
 }
+
+#pragma region Getters/Setters
+Vector3D Particle::getPosition() const
+{
+	return position;
+}
+
+Vector3D Particle::getVelocity() const
+{
+	return velocity;
+}
+
+Vector3D Particle::getAcceleration() const
+{
+	return acceleration;
+}
+
+double Particle::getDamping() const
+{
+	return damping;
+}
+
+double Particle::getInverseMass() const
+{
+	return inverseMass;
+}
+
+Vector3D Particle::getColor() const
+{
+	return color;
+}
+
+void Particle::setPosition(Vector3D pos)
+{
+	position = pos;
+}
+
+void Particle::setVelocity(Vector3D vel)
+{
+	velocity = vel;
+}
+
+void Particle::setAcceleration(Vector3D acc)
+{
+	acceleration = acc;
+}
+
+void Particle::setDamping(double damp)
+{
+	damping = damp;
+}
+
+void Particle::setInverseMass(double mass)
+{
+	inverseMass = 1 / mass;
+}
+
+void Particle::setColor(Vector3D col)
+{
+	color = col;
+}
+#pragma endregion

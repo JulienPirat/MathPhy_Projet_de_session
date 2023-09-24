@@ -1,6 +1,6 @@
 #include "TEST2/GraphicEngine.h"
 #include "TEST2/ImGuiEngine.h"
-#include <LearnOpenGL/CameraController.h>
+#include <PhysicEngine.h>
 
 // Main code
 int main(int, char**)
@@ -14,27 +14,25 @@ int main(int, char**)
     ImGuiEngine imGuiEngine;
     imGuiEngine.Init(window);
 
-    CameraController cameraController;
-    cameraController.Init(window);
+    PhysicEngine physicEngine;
+    physicEngine.Init();
 
     imGuiEngine.SetVisible(true);
 
     while (!graphicEngine.ShouldClose())
     {
+        physicEngine.Update();
+
         graphicEngine.Update();
 
         imGuiEngine.Update();
 
-        graphicEngine.Render();
-
-        cameraController.Update();
+        graphicEngine.Render(physicEngine.GetParticles());
 
         imGuiEngine.Render();
 
         graphicEngine.SwapBuffers();
     }
-
-    cameraController.Shutdown();
 
     imGuiEngine.Shutdown();
 

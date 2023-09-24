@@ -1,0 +1,15 @@
+Phase 1 : 
+
+Lors de la phase 1 
+J'ai pris en mais le projet exemple d'OpenGL
+J'ai réalisé la classe Vector (pour cette dernière j'ai rajouté ls opérateur += afin de simplifier le code)
+Ainsi que la classe Particule à partir du Livre de Ian Millington.
+J'ai repris le code que j'ai dû comprendre et adapter aux bibliothèques C++ dont nous disposions.
+Une fois ma partie terminée j'ai assisté Bastien pour débugger les erreurs qu'il restait sur le code.
+
+Problémes rencontrés :
+J'ai eu du mal à comprendre comment lancer la démonstration mais en passant a Visual Studio 2022 au lieu de 2019 le projet à fini par marcher.
+Je n'avait pas bien compris le paramétrage du damping, pensant que plus la valeur était proche de 0 moins on avait d'amortissement mais c'était l'inverse.
+
+Sources :
+Ian Millington, Game Physics Engine Development, https://uqac.on.worldcat.org/oclc/706803531

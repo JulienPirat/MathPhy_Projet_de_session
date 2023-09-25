@@ -15,7 +15,7 @@ public:
 
 	void Update();
 
-	void Render(std::list<Particle>& const particles);
+	void Render(std::list<Particle*> const &particles);
 
 	void SwapBuffers();
 

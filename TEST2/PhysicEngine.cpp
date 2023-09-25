@@ -3,20 +3,28 @@
 
 void PhysicEngine::Init()
 {
-	particles = new std::list<Particle>();
+	particles = std::list<Particle*>();
 
-	//fill the list with 10 particles with random properties
+	srand(time(NULL));
+
 	for (int i = 0; i < 10; i++)
 	{
-		Particle p = Particle(
-			Vector3D(rand() % 10, rand() % 10, rand() % 10), 
-			Vector3D(rand() % 10, rand() % 10, rand() % 10), 
-			Vector3D(rand() % 10, rand() % 10, rand() % 10), 
-			(rand() % 10) * 1.0,
-			(rand() % 10) * 1.0,
-			Vector3D(rand() % 10, rand() % 10, rand() % 10)
+		Particle* p = new Particle(
+			Vector3D(0, 0, 0),
+			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)),
+			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)),
+			((double)rand() / (double)RAND_MAX),
+			((double)rand() / (double)RAND_MAX),
+			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX))
 		);
-		particles->push_back(p);
+
+		std::cout << "Particle " << i << " : "
+			<< p->getPosition().x << " " << p->getPosition().y << " " << p->getPosition().z << std::endl
+			<< p->getVelocity().x << " " << p->getVelocity().y << " " << p->getVelocity().z << std::endl
+			<< p->getAcceleration().x << " " << p->getAcceleration().y << " " << p->getAcceleration().z << std::endl;
+
+
+		particles.push_back(p);
 	}
 
 	lastTime = glfwGetTime();
@@ -29,18 +37,23 @@ void PhysicEngine::Update()
 	float deltaT = currentFrame - lastTime;
 
 	//update the particles
-	for (std::list<Particle>::iterator it = particles->begin(); it != particles->end(); ++it)
+	for (auto p : particles)
 	{
-		it->Integrate(deltaT);
+		p->Integrate(deltaT);
 	}
 }
 
 void PhysicEngine::Shutdown()
 {
-		delete particles;
+	for (auto& p : particles)
+	{
+		delete p;
+	}
+
+	particles.clear();
 }
 
-std::list<Particle>& PhysicEngine::GetParticles() const
+std::list<Particle*> PhysicEngine::GetParticles() const
 {
-	return *particles;
+	return particles;
 }

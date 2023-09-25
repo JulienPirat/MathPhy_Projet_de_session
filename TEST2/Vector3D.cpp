@@ -76,5 +76,8 @@ Vector3D Vector3D::produitVectoriel(const Vector3D& autre) const {
 }
 
 Vector3D Vector3D::addScaledVector(const Vector3D& autre, double scale) {
-	return Vector3D(x + autre.x * scale, y + autre.y * scale, z + autre.z * scale);
+	x = x + autre.x * scale;
+	y = y + autre.y * scale;
+	z = z + autre.z * scale;
+	return Vector3D(x, y, z);
 }

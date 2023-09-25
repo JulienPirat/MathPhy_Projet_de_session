@@ -10,10 +10,10 @@ class PhysicEngine
 
 		void Shutdown();
 
-		std::list<Particle>& GetParticles() const;
+		std::list<Particle*> GetParticles() const;
 
 	private:
-		std::list<Particle>* particles;
+		std::list<Particle*> particles;
 
 		float lastTime = 0.0f;	// time between current frame and last frame
 };

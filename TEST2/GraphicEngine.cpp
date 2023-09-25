@@ -139,8 +139,6 @@ GLFWwindow* GraphicEngine::Init()
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
 
-
-
     /////////param openGL
 
     glGenVertexArrays(1, &VAO);
@@ -231,7 +229,7 @@ void GraphicEngine::Update()
     glfwPollEvents();
 }
 
-void GraphicEngine::Render(std::list<Particle>& const particles)
+void GraphicEngine::Render(std::list<Particle*> const &particles)
 {
     // render loop
     // -----------
@@ -281,6 +279,20 @@ void GraphicEngine::Render(std::list<Particle>& const particles)
         glDrawArrays(GL_TRIANGLES, 0, 36); //////////////Dessine les lignes | 36 = nbTriangles
     }
 
+    //draw particles as point of radius 50
+    glPointSize(50.0f);
+    glBegin(GL_POINTS);
+    for (auto p : particles)
+    {
+		glColor3f(p->getColor().x, p->getColor().y, p->getColor().z);
+		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
+	}
+    glEnd();
+}
+
+void DrawParticleAsSphere(Particle* p) 
+{
+    gluSphere()
 }
 
 void GraphicEngine::SwapBuffers()

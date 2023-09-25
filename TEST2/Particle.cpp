@@ -55,7 +55,7 @@ void Particle::Integrate(double duration)
 	velocity.addScaledVector(resultingAcc, duration);
 
 	// Résistance Imposée
-	velocity = velocity * pow(damping, duration);
+	velocity = velocity * powf(damping, duration);
 
 	//Remise à 0 des forces pour la prochaine frame
 	clearAccumulator();

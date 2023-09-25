@@ -11,7 +11,11 @@ void PhysicEngine::Init()
 	{
 		Particle* p = new Particle(
 			Vector3D(0, 0, 0),
-			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)),
+			Vector3D(
+				((double)(rand() % 2) / (double)RAND_MAX) - 1, 
+				((double)(rand() % 2) / (double)RAND_MAX) - 1, 
+				((double)(rand() % 2) / (double)RAND_MAX) - 1
+			),
 			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)),
 			((double)rand() / (double)RAND_MAX),
 			((double)rand() / (double)RAND_MAX),
@@ -22,7 +26,6 @@ void PhysicEngine::Init()
 			<< p->getPosition().x << " " << p->getPosition().y << " " << p->getPosition().z << std::endl
 			<< p->getVelocity().x << " " << p->getVelocity().y << " " << p->getVelocity().z << std::endl
 			<< p->getAcceleration().x << " " << p->getAcceleration().y << " " << p->getAcceleration().z << std::endl;
-
 
 		particles.push_back(p);
 	}

@@ -21,6 +21,10 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
 
+const float minPointScale = 0.1;
+const float maxPointScale = 0.7;
+const float maxDistance = 100.0;
+
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
@@ -276,23 +280,29 @@ void GraphicEngine::Render(std::list<Particle*> const &particles)
         model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
         ourShader->setMat4("model", model);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36); //////////////Dessine les lignes | 36 = nbTriangles
+        //glDrawArrays(GL_TRIANGLES, 0, 36); //////////////Dessine les lignes | 36 = nbTriangles
     }
 
     //draw particles as point of radius 50
-    glPointSize(50.0f);
-    glBegin(GL_POINTS);
+    
+    
     for (auto p : particles)
-    {
+    { 
+        glm::vec3 u_cameraPos = camera.Position;
+        glm::vec3 point = glm::vec3(p->getPosition().x, p->getPosition().y, p->getPosition().z);
+
+        float cameraDist = glm::distance(point, u_cameraPos);
+        float pointScale = 1.0 - (cameraDist / maxDistance);
+        pointScale = glm::max(pointScale, minPointScale);
+        pointScale = glm::min(pointScale, maxPointScale);
+
+        glPointSize(50.0f * pointScale);
+
+        glBegin(GL_POINTS);
 		glColor3f(p->getColor().x, p->getColor().y, p->getColor().z);
 		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
+        glEnd();
 	}
-    glEnd();
-}
-
-void DrawParticleAsSphere(Particle* p) 
-{
-    gluSphere()
 }
 
 void GraphicEngine::SwapBuffers()

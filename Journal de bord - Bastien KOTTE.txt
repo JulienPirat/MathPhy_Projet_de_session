@@ -1,0 +1,11 @@
+Phase 1 :
+
+Intégration des particules dans le moteur graphique avec GLFW et OpenGL
+
+J'ai rencontré le problème suivant : le controleur de la caméra recréait la scène créé par le moteur graphique, j'ai donc du bouger le code de contrôle de la caméra dans le moteur graphique.
+
+
+Sources :
+https://github.com/JoeyDeVries/LearnOpenGL
+https://registry.khronos.org/OpenGL-Refpages/gl4/
+https://stackoverflow.com/

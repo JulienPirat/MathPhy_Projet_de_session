@@ -279,8 +279,6 @@ void GraphicEngine::Render(std::list<Particle*> const &particles)
         float angle = 20.0f * i;
         model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
         ourShader->setMat4("model", model);
-
-        //glDrawArrays(GL_TRIANGLES, 0, 36); //////////////Dessine les lignes | 36 = nbTriangles
     }
 
     //draw particles as point of radius 50

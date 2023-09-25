@@ -1,0 +1,17 @@
+Phase 1 : 
+
+j'ai repris le code exemple d'OpenGL qui est sur un GitHub, puis j'ai essayé de créer un autre projet C++ pour obtenir un projet de test qui sépare tout les projets de test pour obtenir un exemple.
+Après plusieurs tests, j'ai finalement réussi à obtenir un projet avec un triangle en 2D.
+Par la suite, j'ai réussi à ajouter ImGui au projet. Ensuite, j'ai voulu créer des objets GraphicEngine et ImGuiEngine comme expliqué en cours.
+J'ai malheureusement eu énormément de problèmes à tout séparer.
+La solution que j'ai trouvée a été de reprendre à zéro le projet en suivant les capsules vidéo du cours.
+
+J'ai finalement réussi à avoir un projet de base fonctionnel avec 2 objets GraphicEngine et ImGuiEngine.
+
+Problèmes rencontrés :
+J'ai eu beaucoup de mal à configurer le projet avec les différentes bibliothèques et les éditeurs de liens à ajouter.
+
+Sources :
+Vidéos du cours
+https://github.com/JoeyDeVries/LearnOpenGL
+https://github.com/ocornut/imgui/tree/master

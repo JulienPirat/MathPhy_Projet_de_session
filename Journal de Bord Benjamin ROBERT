@@ -1,7 +1,7 @@
 Phase 1 : 
 
 Lors de la phase 1 
-J'ai pris en mais le projet exemple d'OpenGL
+J'ai pris en main le projet exemple d'OpenGL
 J'ai réalisé la classe Vector (pour cette dernière j'ai rajouté ls opérateur += afin de simplifier le code)
 Ainsi que la classe Particule à partir du Livre de Ian Millington.
 J'ai repris le code que j'ai dû comprendre et adapter aux bibliothèques C++ dont nous disposions.

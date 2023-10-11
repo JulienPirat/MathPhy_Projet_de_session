@@ -134,8 +134,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp" />
-    <ClCompile Include="ContactGenerator.cpp" />
-    <ClCompile Include="ContactResolver.cpp" />
     <ClCompile Include="GraphicEngine.cpp" />
     <ClCompile Include="ImGuiEngine.cpp" />
     <ClCompile Include="Imgui\imgui.cpp" />
@@ -150,10 +148,16 @@
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleBuoyancy.cpp" />
+    <ClCompile Include="ParticleCable.cpp" />
+    <ClCompile Include="ParticleContact.cpp" />
+    <ClCompile Include="ParticleContactGenerator.cpp" />
+    <ClCompile Include="ParticleContactResolver.cpp" />
     <ClCompile Include="ParticleDrag.cpp" />
     <ClCompile Include="ParticleForceGenerator.cpp" />
     <ClCompile Include="ParticleForceRegistry.cpp" />
     <ClCompile Include="ParticleGravity.cpp" />
+    <ClCompile Include="ParticleLink.cpp" />
+    <ClCompile Include="ParticleRod.cpp" />
     <ClCompile Include="ParticleSpring.cpp" />
     <ClCompile Include="PhysicEngine.cpp" />
     <ClCompile Include="Vector3D.cpp" />
@@ -166,8 +170,6 @@
     <Image Include="..\resources\textures\container.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContactGenerator.h" />
-    <ClInclude Include="ContactResolver.h" />
     <ClInclude Include="GraphicEngine.h" />
     <ClInclude Include="ImGuiEngine.h" />
     <ClInclude Include="Imgui\imconfig.h" />
@@ -183,10 +185,16 @@
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleBuoyancy.h" />
+    <ClInclude Include="ParticleCable.h" />
+    <ClInclude Include="ParticleContact.h" />
+    <ClInclude Include="ParticleContactGenerator.h" />
+    <ClInclude Include="ParticleContactResolver.h" />
     <ClInclude Include="ParticleDrag.h" />
     <ClInclude Include="ParticleForceGenerator.h" />
     <ClInclude Include="ParticleForceRegistry.h" />
     <ClInclude Include="ParticleGravity.h" />
+    <ClInclude Include="ParticleLink.h" />
+    <ClInclude Include="ParticleRod.h" />
     <ClInclude Include="ParticleSpring.h" />
     <ClInclude Include="PhysicEngine.h" />
     <ClInclude Include="Vector3D.h" />

@@ -114,9 +114,6 @@
     <ClCompile Include="ParticleRod.cpp">
       <Filter>Fichiers sources\ParticleLink</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSpring.cpp">
-      <Filter>Fichiers sources\ParticleLink</Filter>
-    </ClCompile>
     <ClCompile Include="ParticleGravity.cpp">
       <Filter>Fichiers sources\ForceGenerator</Filter>
     </ClCompile>
@@ -126,13 +123,16 @@
     <ClCompile Include="ParticleContactGenerator.cpp">
       <Filter>Fichiers sources\ContactGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleAnchoredSpring.cpp">
-      <Filter>Fichiers sources\ContactGenerator</Filter>
+    <ClCompile Include="ParticleDrag.cpp">
+      <Filter>Fichiers sources\ForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpring.cpp">
+      <Filter>Fichiers sources\ForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleBuoyancy.cpp">
-      <Filter>Fichiers sources\ContactGenerator</Filter>
+      <Filter>Fichiers sources\ForceGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleDrag.cpp">
+    <ClCompile Include="ParticleAnchoredSpring.cpp">
       <Filter>Fichiers sources\ForceGenerator</Filter>
     </ClCompile>
   </ItemGroup>

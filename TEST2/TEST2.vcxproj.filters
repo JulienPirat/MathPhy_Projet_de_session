@@ -135,6 +135,15 @@
     <ClCompile Include="ParticleAnchoredSpring.cpp">
       <Filter>Fichiers sources\ForceGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleContactNaïve.cpp">
+      <Filter>Fichiers sources\ContactGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResting.cpp">
+      <Filter>Fichiers sources\ContactGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactWall.cpp">
+      <Filter>Fichiers sources\ContactGenerator</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -231,6 +240,15 @@
     </ClInclude>
     <ClInclude Include="ParticleForceRegistry.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactNaïve.h">
+      <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResting.h">
+      <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactWall.h">
+      <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

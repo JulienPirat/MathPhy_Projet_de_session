@@ -2,7 +2,7 @@
 
 void ParticleContact::resolve(float duration)
 {
-	resolveVelocity();
+	resolveVelocity(duration);
 	resolveInterpenetration();
 }
 

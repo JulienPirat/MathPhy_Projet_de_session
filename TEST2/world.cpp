@@ -19,7 +19,7 @@ int World::Run()
     while (!graphics.ShouldClose())
     {
 		currentTime = glfwGetTime();
-		deltaT = lastTime - currentTime;
+		deltaT = currentTime - lastTime;
 		lastTime = currentTime;
 
 		this->Update(deltaT);
@@ -44,6 +44,8 @@ int World::Init()
 	physics.Init();
 
 	imGui.SetVisible(true);
+
+	return 0;
 }
 
 void World::Update(float deltaTime)

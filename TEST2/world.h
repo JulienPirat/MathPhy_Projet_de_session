@@ -7,9 +7,6 @@
 class World
 {
 public:
-	World();
-	~World();
-
 	void AddParticle(Particle* particle);
 	int Run();
 

@@ -25,7 +25,7 @@ public :
 
 private:
 	//Handle impulse for the collision
-	void resolveVelocity();
+	void resolveVelocity(float deltaT);
 
 	//Handle interpenetration for the collision
 	void resolveInterpenetration();

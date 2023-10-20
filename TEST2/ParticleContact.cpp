@@ -13,7 +13,7 @@ float ParticleContact::calculateSeparatingVelocity()
 	return relativeVelocity * contactNormal;
 }
 
-void ParticleContact::resolveVelocity()
+void ParticleContact::resolveVelocity(float deltaT)
 {
 	// Find the velocity in the direction of the contact.
 	float separatingVelocity = calculateSeparatingVelocity();
@@ -32,7 +32,7 @@ void ParticleContact::resolveVelocity()
 	// Check the velocity build-up due to acceleration only.
 	Vector3D accCausedVelocity = particle[0]->getAcceleration();
 	if (particle[1]) accCausedVelocity -= particle[1]->getAcceleration();
-	float accCausedSepVelocity = accCausedVelocity * contactNormal * duration;
+	float accCausedSepVelocity = accCausedVelocity * contactNormal * deltaT;
 
 	// If we’ve got a closing velocity due to acceleration build-up,
 	// remove it from the new separating velocity.

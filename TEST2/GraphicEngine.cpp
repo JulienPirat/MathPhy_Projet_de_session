@@ -74,7 +74,7 @@ GLFWwindow* GraphicEngine::Init()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1); // Enable vsync
+    glfwSwapInterval(0); // Disable vsync
     
 
     //////////////////////////////////////////////////////////////////////////
@@ -233,7 +233,7 @@ void GraphicEngine::Update()
     glfwPollEvents();
 }
 
-void GraphicEngine::Render(std::list<Particle*> const &particles)
+void GraphicEngine::Render(std::vector<Particle*> const &particles)
 {
     // render loop
     // -----------

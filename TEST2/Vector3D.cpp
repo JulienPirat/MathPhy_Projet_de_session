@@ -59,6 +59,11 @@ void Vector3D::operator/=(double scalaire) {
 	std::cout << "ERR : Division par 0 impossible" << std::endl;
 }
 
+double Vector3D::operator*(const Vector3D& other) const
+{
+	return x * other.x + y * other.y + z * other.z;
+}
+
 void Vector3D::afficher() const {
 	std::cout << "(" << x << ", " << y << ", " << z << ")" << std::endl;
 }

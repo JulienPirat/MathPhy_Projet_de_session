@@ -16,7 +16,7 @@ void PhysicEngine::Update(float deltaTime)
 	}
 
 	//Check Particules collisions
-	GestionCollisions();
+	GestionCollisions(deltaTime);
 }
 
 void PhysicEngine::Shutdown()
@@ -29,15 +29,15 @@ void PhysicEngine::Shutdown()
 	particles.clear();
 }
 
-void PhysicEngine::GestionCollisions()
+void PhysicEngine::GestionCollisions(float deltaTime)
 {
 	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
 	//On récup toutes les particules du jeu
 	GCNaive->particle = this->particles;
 	//Boite de collision de toutes les particules
-	GCNaive->radius = 1.0f;
+	GCNaive->radius = 0.5f;
 	//
-	GCNaive->Init();
+	GCNaive->Init(deltaTime);
 
 	
 }

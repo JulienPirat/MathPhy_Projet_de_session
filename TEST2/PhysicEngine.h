@@ -15,7 +15,7 @@ class PhysicEngine
 
 		void Shutdown();
 
-		void GestionCollisions();
+		void GestionCollisions(float deltaTime);
 
 	private:
 		std::vector<Particle*>& particles;

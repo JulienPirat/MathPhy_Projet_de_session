@@ -1,5 +1,5 @@
 #include "ParticleContactNaïve.h"
-void ParticleContactNaïve::Init()
+void ParticleContactNaïve::Init(float deltaTime)
 {
     for (auto ParticleA : particle) {
         for (auto ParticleB : particle) {
@@ -9,14 +9,22 @@ void ParticleContactNaïve::Init()
                 float distance = sqrt((dx * dx) + (dy * dy));
 
                 if (distance < radius * 2) {
-                    float restitution = (radius * 2 - distance)/(radius*2); //pas sur de la formule
+                    float restitution = (ParticleA->getDamping() + ParticleB->getDamping()) / 2;
                     float penetration = radius*2-((radius * 2) - distance);
-                    //Vector3D normalContact = ParticleA->getVelocity();
+                    Vector3D normalContact = ParticleA->getPosition() - ParticleB->getPosition();
+                    normalContact.norme();
                     std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<
                         " | Position PB : x: " << ParticleB->getPosition().x << " ,y :" << ParticleB->getPosition().y <<
                         " | Restitution : "<< restitution << " | Penetration : " << penetration << std::endl;
-                    
-                    //ParticleContact PContact = new ParticleContact();
+
+                    normalContact.afficher();
+                    ParticleContact PContact;
+                    PContact.contactNormal = normalContact;
+                    PContact.penetration = penetration;
+                    PContact.restitution = restitution;
+                    PContact.particle[0] = ParticleA;
+                    PContact.particle[1] = ParticleB;
+                    PContact.resolve(deltaTime);
                 }
             }
         }

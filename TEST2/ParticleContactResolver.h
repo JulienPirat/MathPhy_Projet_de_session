@@ -18,5 +18,7 @@ public:
 	//iterate on each contact according to their separatingVelocity
 	//Stop when all contacts are solved or when max iterations is reached
 	void resolveContacts(ParticleContact* contactArray, unsigned int numContact, float duration);
+
+	void setIterations(unsigned iterations) { iteration = iterations; };
 };
 

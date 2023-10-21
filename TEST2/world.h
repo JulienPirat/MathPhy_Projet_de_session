@@ -3,6 +3,8 @@
 #include <PhysicEngine.h>
 #include <ImGuiEngine.h>
 #include <vector>
+#include <ParticleContactResolver.h>
+#include <ParticleContactGenerator.h>
 
 class World
 {
@@ -14,6 +16,8 @@ private :
 	GraphicEngine graphics;
 	PhysicEngine physics = PhysicEngine(particles);
 	ImGuiEngine imGui;
+
+	ParticleContactResolver contactResolver = ParticleContactResolver(10);
 
 	std::vector<Particle*> particles = std::vector<Particle*>();
 

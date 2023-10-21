@@ -17,6 +17,13 @@ void PhysicEngine::Update(float deltaTime)
 
 	//Check Particules collisions
 	GestionCollisions(deltaTime);
+
+	// Generate contacts.
+	unsigned usedContacts = generateContacts();
+
+	// And process them.
+	resolver.setIterations(usedContacts * 2);
+	resolver.resolveContacts(contacts, usedContacts, deltaTime);
 }
 
 void PhysicEngine::Shutdown()
@@ -40,4 +47,23 @@ void PhysicEngine::GestionCollisions(float deltaTime)
 	GCNaive->Init(deltaTime);
 
 	
+}
+
+unsigned PhysicEngine::generateContacts()
+{
+	unsigned limit = maxContacts;
+	ParticleContact* nextContact = contacts;
+	ContactGenRegistration* reg = firstContactGen;
+	while (reg)
+	{
+		unsigned used = reg->gen->addContact(nextContact, limit);
+		limit -= used;
+		nextContact += used;
+		// We’ve run out of contacts to fill. This means we’re missing
+		// contacts.
+		if (limit <= 0) break;
+		reg = reg->next;
+	}
+	// Return the number of contacts used.
+	return maxContacts - limit;
 }

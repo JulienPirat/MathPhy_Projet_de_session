@@ -2,6 +2,7 @@
 #include <list>
 #include <Particle.h>
 #include <vector>
+#include <ParticleContactResolver.h>
 
 class PhysicEngine
 {
@@ -19,5 +20,26 @@ class PhysicEngine
 
 	private:
 		std::vector<Particle*>& particles;
+
+		struct ContactGenRegistration
+		{
+			ParticleContactGenerator* gen;
+			ContactGenRegistration* next;
+		};
+
+		//Holds the list of contact generators.
+		ContactGenRegistration* firstContactGen;
+
+		//Holds the list of contacts.
+		ParticleContact* contacts;
+
+		//max number of contacts
+		unsigned maxContacts;
+
+		//generate contacts
+		unsigned generateContacts();
+
+		//contact resolver
+		ParticleContactResolver resolver;
 };
 

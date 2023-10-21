@@ -2,6 +2,7 @@
 #include <list>
 #include <Particle.h>
 #include <LearnOpenGL\shader_m.h>
+#include <vector>
 
 struct GLFWwindow;
 
@@ -15,7 +16,7 @@ public:
 
 	void Update();
 
-	void Render(std::list<Particle*> const &particles);
+    void Render(std::vector<Particle*> const& particles);
 
 	void SwapBuffers();
 

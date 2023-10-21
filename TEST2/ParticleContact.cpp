@@ -2,7 +2,7 @@
 
 void ParticleContact::resolve(float duration)
 {
-	resolveVelocity();
+	resolveVelocity(duration);
 	resolveInterpenetration();
 }
 
@@ -10,11 +10,10 @@ float ParticleContact::calculateSeparatingVelocity()
 {
 	Vector3D relativeVelocity = particle[0]->getVelocity();
 	if (particle[1]) relativeVelocity -= particle[1]->getVelocity();
-	//return relativeVelocity * contactNormal;
-	return -1.0f;
+	return relativeVelocity * contactNormal;
 }
 
-void ParticleContact::resolveVelocity()
+void ParticleContact::resolveVelocity(float deltaT)
 {
 	// Find the velocity in the direction of the contact.
 	float separatingVelocity = calculateSeparatingVelocity();
@@ -33,11 +32,10 @@ void ParticleContact::resolveVelocity()
 	// Check the velocity build-up due to acceleration only.
 	Vector3D accCausedVelocity = particle[0]->getAcceleration();
 	if (particle[1]) accCausedVelocity -= particle[1]->getAcceleration();
-	//float accCausedSepVelocity = accCausedVelocity * contactNormal * duration;
+	float accCausedSepVelocity = accCausedVelocity * contactNormal * deltaT;
 
 	// If we’ve got a closing velocity due to acceleration build-up,
 	// remove it from the new separating velocity.
-	/*
 	if (accCausedSepVelocity < 0)
 	{
 		newSepVelocity += restitution * accCausedSepVelocity;
@@ -45,7 +43,6 @@ void ParticleContact::resolveVelocity()
 		// there to remove.
 		if (newSepVelocity < 0) newSepVelocity = 0;
 	}
-	*/
 	float deltaVelocity = newSepVelocity - separatingVelocity;
 
 	// We apply the change in velocity to each object in proportion to

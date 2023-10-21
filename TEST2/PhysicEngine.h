@@ -1,22 +1,21 @@
 #pragma once
 #include <list>
 #include <Particle.h>
+#include <vector>
+
 class PhysicEngine
 {
 	public:
+		PhysicEngine(std::vector<Particle*>& listParticles) : particles(listParticles) {};
+		PhysicEngine();
+
 		void Init();
 
-		void Update();
+		void Update(float deltaTime);
 
 		void Shutdown();
 
-		void GestionCollisions();
-
-		std::list<Particle*> GetParticles() const;
-
 	private:
-		std::list<Particle*> particles;
-
-		float lastTime = 0.0f;	// time between current frame and last frame
+		std::vector<Particle*>& particles;
 };
 

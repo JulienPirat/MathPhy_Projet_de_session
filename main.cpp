@@ -1,42 +1,41 @@
 #include "TEST2/GraphicEngine.h"
 #include "TEST2/ImGuiEngine.h"
 #include <PhysicEngine.h>
+#include <world.h>
 
 // Main code
 int main(int, char**)
 {
-    GraphicEngine graphicEngine;
-    GLFWwindow* window = graphicEngine.Init();
+    World w = World();
 
-    if (window == nullptr)
-        return 1;
+	#pragma region InitParticles
+	srand(time(NULL));
 
-    ImGuiEngine imGuiEngine;
-    imGuiEngine.Init(window);
+	for (int i = 0; i < 10; i++)
+	{
+		Particle* p = new Particle(
+			Vector3D(0, 0, 0),
+			Vector3D(
+				((double)(rand() % 2) / (double)RAND_MAX) - 1,
+				((double)(rand() % 2) / (double)RAND_MAX) - 1,
+				((double)(rand() % 2) / (double)RAND_MAX) - 1
+			),
+			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)),
+			((double)rand() / (double)RAND_MAX),
+			((double)rand() / (double)RAND_MAX),
+			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX))
+		);
 
-    PhysicEngine physicEngine;
-    physicEngine.Init();
+		std::cout << "Particle " << i << " : "
+			<< p->getPosition().x << " " << p->getPosition().y << " " << p->getPosition().z << std::endl
+			<< p->getVelocity().x << " " << p->getVelocity().y << " " << p->getVelocity().z << std::endl
+			<< p->getAcceleration().x << " " << p->getAcceleration().y << " " << p->getAcceleration().z << std::endl;
 
-    imGuiEngine.SetVisible(true);
+		w.AddParticle(p);
+	}
+	#pragma endregion
 
-    while (!graphicEngine.ShouldClose())
-    {
-        physicEngine.Update();
+    auto exitCode = w.Run();
 
-        graphicEngine.Update();
-
-        imGuiEngine.Update();
-
-        graphicEngine.Render(physicEngine.GetParticles());
-
-        imGuiEngine.Render();
-
-        graphicEngine.SwapBuffers();
-    }
-
-    imGuiEngine.Shutdown();
-
-    graphicEngine.Shutdown();
-
-    return 0;
+    return exitCode;
 }

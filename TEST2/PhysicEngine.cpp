@@ -1,5 +1,6 @@
 #include "PhysicEngine.h"
 #include <GLFW\glfw3.h>
+#include <ParticleContactNaïve.h>
 
 void PhysicEngine::Init()
 {
@@ -21,12 +22,12 @@ void PhysicEngine::Init()
 			((double)rand() / (double)RAND_MAX),
 			Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX))
 		);
-
+		/*
 		std::cout << "Particle " << i << " : "
 			<< p->getPosition().x << " " << p->getPosition().y << " " << p->getPosition().z << std::endl
 			<< p->getVelocity().x << " " << p->getVelocity().y << " " << p->getVelocity().z << std::endl
 			<< p->getAcceleration().x << " " << p->getAcceleration().y << " " << p->getAcceleration().z << std::endl;
-
+*/
 		particles.push_back(p);
 	}
 
@@ -44,6 +45,8 @@ void PhysicEngine::Update()
 	{
 		p->Integrate(deltaT);
 	}
+	GestionCollisions();
+	
 }
 
 void PhysicEngine::Shutdown()
@@ -54,6 +57,15 @@ void PhysicEngine::Shutdown()
 	}
 
 	particles.clear();
+}
+
+void PhysicEngine::GestionCollisions()
+{
+	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
+	GCNaive->particle = GetParticles();
+	GCNaive->radius = 5.0f;
+	GCNaive->Init();
+
 }
 
 std::list<Particle*> PhysicEngine::GetParticles() const

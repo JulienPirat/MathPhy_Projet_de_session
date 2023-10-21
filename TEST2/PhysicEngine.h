@@ -10,6 +10,8 @@ class PhysicEngine
 
 		void Shutdown();
 
+		void GestionCollisions();
+
 		std::list<Particle*> GetParticles() const;
 
 	private:

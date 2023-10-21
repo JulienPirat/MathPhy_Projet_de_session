@@ -294,13 +294,14 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         pointScale = glm::max(pointScale, minPointScale);
         pointScale = glm::min(pointScale, maxPointScale);
 
-        glPointSize(50.0f * pointScale);
-
+        glPointSize(100.0f * pointScale);
+        
         glBegin(GL_POINTS);
-		glColor3f(p->getColor().x, p->getColor().y, p->getColor().z);
+        glColor3d(255,0,0);
 		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
         glEnd();
 	}
+
 }
 
 void GraphicEngine::SwapBuffers()

@@ -23,15 +23,6 @@ void ParticleContactNaïve::Init()
     }
 }
 
-/*
-ParticleContactNaïve::ParticleContactNaïve(std::vector<Particle*> _particle, float _radius)
-{
-    this->particle = _particle;
-    this->radius = _radius;
-
-    //TODO CHECK Interpenetration
-}
-*/
 unsigned int ParticleContactNaïve::addContact(ParticleContact* contact, unsigned int limit) const
 {
     return 0;

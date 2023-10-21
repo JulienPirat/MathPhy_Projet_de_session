@@ -48,5 +48,11 @@ public:
 
     // Méthode pour ajouter un vecteur redimensioné
     Vector3D addScaledVector(const Vector3D& autre, double scale);
+
+    // Calcul de la magnitude du vecteur
+    float magnitude() const;
+
+    //Normalize vector
+    void normalize();
 };
 

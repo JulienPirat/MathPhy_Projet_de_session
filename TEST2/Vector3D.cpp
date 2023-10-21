@@ -86,3 +86,17 @@ Vector3D Vector3D::addScaledVector(const Vector3D& autre, double scale) {
 	z = z + autre.z * scale;
 	return Vector3D(x, y, z);
 }
+
+float Vector3D::magnitude() const
+{
+	return std::sqrt(x * x + y * y + z * z);
+}
+
+void Vector3D::normalize()
+{
+	float l = magnitude();
+	if (l > 0)
+	{
+		(*this) *= ((float)1) / l;
+	}
+}

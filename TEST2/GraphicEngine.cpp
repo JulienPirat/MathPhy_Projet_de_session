@@ -155,7 +155,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         float cameraDist = glm::distance(point, u_cameraPos);
         float pointScale = 1.0 - (cameraDist / maxDistance);
         pointScale = glm::max(pointScale, minPointScale);
-        pointScale = glm::min(pointScale, maxPointScale);
+        pointScale = glm::min(pointScale, maxPointScale);\
 
         glPointSize(100.0f * pointScale);
         

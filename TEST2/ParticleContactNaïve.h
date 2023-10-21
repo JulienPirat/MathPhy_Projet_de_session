@@ -16,7 +16,7 @@ public :
 	float radius;
 	
 	//Particles qui pourraient collisioner ensemble
-	std::list<Particle*> particle;
+	std::vector<Particle*> particle;
 
 	//take a pointer to an array of contacts and the number of contact left to be generated;
 	unsigned int addContact(ParticleContact* contact, unsigned int limit) const;

@@ -15,6 +15,8 @@ class PhysicEngine
 
 		void Shutdown();
 
+		void GestionCollisions();
+
 	private:
 		std::vector<Particle*>& particles;
 };

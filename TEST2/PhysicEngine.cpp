@@ -1,4 +1,5 @@
 #include "PhysicEngine.h"
+#include <ParticleContactNaïve.h>
 
 void PhysicEngine::Init()
 {
@@ -7,11 +8,15 @@ void PhysicEngine::Init()
 
 void PhysicEngine::Update(float deltaTime)
 {
-	//update the particles
+
+	//update the positions particles
 	for (auto p : particles)
 	{
 		p->Integrate(deltaTime);
 	}
+
+	//Check Particules collisions
+	GestionCollisions();
 }
 
 void PhysicEngine::Shutdown()
@@ -22,4 +27,17 @@ void PhysicEngine::Shutdown()
 	}
 
 	particles.clear();
+}
+
+void PhysicEngine::GestionCollisions()
+{
+	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
+	//On récup toutes les particules du jeu
+	GCNaive->particle = this->particles;
+	//Boite de collision de toutes les particules
+	GCNaive->radius = 1.0f;
+	//
+	GCNaive->Init();
+
+	
 }

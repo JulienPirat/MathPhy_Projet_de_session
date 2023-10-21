@@ -10,7 +10,7 @@ class ParticleContactNaïve : public ParticleContactGenerator
 public :
 	//ParticleContactNaïve(std::vector<Particle*> _particle, float _radius = 5);
 
-	void Init();
+	void Init(float deltaTime);
 
 	//Radius de la particule
 	float radius;

@@ -10,9 +10,28 @@ class World
 {
 public:
 	void AddParticle(Particle* particle);
+	void GenBasicCollision();
+	void GenBasicParticule(float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az);
 	int Run();
 
+	// Méthode statique pour obtenir l'instance unique du singleton.
+	static World& GetInstance() {
+		static World instance; // Crée une instance unique lors du premier appel.
+		return instance;
+	}
+
 private :
+
+	// Le constructeur est rendu privé pour empêcher les créations d'instances en dehors de la classe.
+	World() {
+		// Initialisation du singleton, si nécessaire.
+	}
+
+	// Le destructeur peut être ajouté pour effectuer le nettoyage si nécessaire.
+	~World() {
+		// Nettoyage, si nécessaire.
+	}
+
 	GraphicEngine graphics;
 	PhysicEngine physics = PhysicEngine(particles);
 	ImGuiEngine imGui;
@@ -24,5 +43,8 @@ private :
 	int Init();
 	void Update(float deltaTime);
 	void Shutdown();
+
+	World(const World&) = delete;
+	World& operator=(const World&) = delete;
 };
 

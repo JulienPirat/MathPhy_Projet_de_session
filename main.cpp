@@ -62,6 +62,16 @@ int main(int, char**)
 	);
 	w.AddParticle(&p2);
 
+	Particle p3 = Particle(
+		Vector3D(5, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		1, //Damping
+		0.2, //Inverse Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+	);
+	w.AddParticle(&p3);
+
 	#pragma endregion
 
     auto exitCode = w.Run();

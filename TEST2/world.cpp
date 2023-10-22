@@ -6,6 +6,32 @@ void World::AddParticle(Particle* particle)
 	this->particles.push_back(particle);
 }
 
+void World::GenBasicCollision() {
+
+	//Créer deux particules
+	Particle* p1 = new Particle(
+		Vector3D(10, 0, 0), //Position
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping
+		1, //Inverse Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+	);
+	AddParticle(p1);
+
+	Particle* p2 = new Particle(
+		Vector3D(-10, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping
+		1, //Inverse Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+	);
+	AddParticle(p2);
+
+
+}
+
 int World::Run()
 {
 	auto res = this->Init();

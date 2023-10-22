@@ -10,6 +10,7 @@ class World
 {
 public:
 	void AddParticle(Particle* particle);
+	void GenBasicCollision();
 	int Run();
 
 private :

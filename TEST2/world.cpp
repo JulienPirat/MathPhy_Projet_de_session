@@ -28,7 +28,19 @@ void World::GenBasicCollision() {
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2);
+}
 
+void  World::GenBasicParticule(float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az) {
+
+	Particle* p3 = new Particle(
+		Vector3D(x, y, z), //Position
+		Vector3D(vx, vy, vz),//Velocité
+		Vector3D(ax, ay, az), //Accélération
+		0.999f, //Damping
+		1, //Inverse Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+	);
+	AddParticle(p3);
 
 }
 

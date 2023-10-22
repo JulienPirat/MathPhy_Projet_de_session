@@ -3,6 +3,7 @@
 #include <Particle.h>
 #include <vector>
 #include <ParticleContactResolver.h>
+#include <ParticleContactGenerator.h>
 
 class PhysicEngine
 {
@@ -18,8 +19,11 @@ class PhysicEngine
 
 		void GestionCollisions(float deltaTime);
 
+
+
 	private:
 		std::vector<Particle*>& particles;
+
 
 		struct ContactGenRegistration
 		{
@@ -29,6 +33,7 @@ class PhysicEngine
 
 		//Holds the list of contact generators.
 		ContactGenRegistration* firstContactGen;
+		
 
 		//Holds the list of contacts.
 		ParticleContact* contacts;

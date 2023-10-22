@@ -12,6 +12,7 @@ protected:
 
 public: 
 	//Creates a new contact resolver with the number of max iterations
+	ParticleContactResolver() { iteration = 1; };
 	ParticleContactResolver(unsigned iterations) : iteration(iterations) {};
 
 	//take an array of contact

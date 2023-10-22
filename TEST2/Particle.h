@@ -22,6 +22,8 @@ public:
 
 	//void PositionUpdate(double* time);
 
+	bool isResting = false;
+
 	//Getters
 	Vector3D getPosition() const;
 	Vector3D getVelocity() const;

@@ -24,7 +24,12 @@ void ParticleContactNaïve::Init(float deltaTime)
                     PContact.restitution = restitution;
                     PContact.particle[0] = ParticleA;
                     PContact.particle[1] = ParticleB;
-                    PContact.resolve(deltaTime);
+                    //PContact.resolve(deltaTime);
+
+                   if (!PContact.particle[0]->isResting) {
+                        PContact.resolve(deltaTime);
+                   }
+                    
                 }
             }
         }

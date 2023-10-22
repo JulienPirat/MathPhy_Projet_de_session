@@ -1,5 +1,6 @@
 #include "PhysicEngine.h"
 #include <ParticleContactNaïve.h>
+#include <ParticleContactResting.h>
 
 void PhysicEngine::Init()
 {
@@ -13,6 +14,7 @@ void PhysicEngine::Update(float deltaTime)
 	for (auto p : particles)
 	{
 		p->Integrate(deltaTime);
+		p->isResting = false;
 	}
 
 	//Check Particules collisions
@@ -38,6 +40,15 @@ void PhysicEngine::Shutdown()
 
 void PhysicEngine::GestionCollisions(float deltaTime)
 {
+	
+	ParticleContactResting* GCResting = new ParticleContactResting();
+	//On récup toutes les particules du jeu
+	GCResting->particle = this->particles;
+	//Boite de collision de toutes les particules
+	GCResting->radius = 0.5f;
+	//
+	GCResting->Init(deltaTime);
+	
 	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
 	//On récup toutes les particules du jeu
 	GCNaive->particle = this->particles;
@@ -45,8 +56,6 @@ void PhysicEngine::GestionCollisions(float deltaTime)
 	GCNaive->radius = 0.5f;
 	//
 	GCNaive->Init(deltaTime);
-
-	
 }
 
 unsigned PhysicEngine::generateContacts()

@@ -9,11 +9,17 @@
 class World
 {
 public:
+
+	///Methodes
+
+	//Generation de tests
 	void AddParticle(Particle* particle);
 	void GenBasicCollision();
 	void GenBasicParticule(float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az);
 	void GenContactResting();
 	void GenWallCollision();
+
+	//Lancement de la simulation
 	int Run();
 
 	// Méthode statique pour obtenir l'instance unique du singleton.
@@ -24,15 +30,14 @@ public:
 
 private :
 
-	// Le constructeur est rendu privé pour empêcher les créations d'instances en dehors de la classe.
-	World() {
-		// Initialisation du singleton, si nécessaire.
-	}
+	///Contructeur / Destructeur / Opérateurs
+	World() {}
+	~World() {}
 
-	// Le destructeur peut être ajouté pour effectuer le nettoyage si nécessaire.
-	~World() {
-		// Nettoyage, si nécessaire.
-	}
+	World(const World&) = delete;
+	World& operator=(const World&) = delete;
+
+	///Attributs
 
 	GraphicEngine graphics;
 	PhysicEngine physics = PhysicEngine(particles);
@@ -42,11 +47,10 @@ private :
 
 	std::vector<Particle*> particles = std::vector<Particle*>();
 
+	///Methodes
+
 	int Init();
 	void Update(float deltaTime);
 	void Shutdown();
-
-	World(const World&) = delete;
-	World& operator=(const World&) = delete;
 };
 

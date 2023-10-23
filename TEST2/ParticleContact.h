@@ -4,6 +4,9 @@
 class ParticleContact
 {
 public :
+
+	///Attributes
+
 	//The 2 particles in contact
 	Particle* particle[2];
 
@@ -16,6 +19,8 @@ public :
 
 	//Normal of the contact
 	Vector3D contactNormal;
+
+	///Methodes
 
 	//Resolve the velocity and interpenetration
 	void resolve(float duration);

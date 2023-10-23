@@ -4,6 +4,9 @@
 class ParticleContactResolver
 {
 protected:
+
+	///Attributes
+
 	//number of allowed iterations
 	unsigned int iteration;
 
@@ -11,6 +14,9 @@ protected:
 	unsigned iterationsUsed;
 
 public: 
+
+	///Methodes
+
 	//Creates a new contact resolver with the number of max iterations
 	ParticleContactResolver() { iteration = 1; };
 	ParticleContactResolver(unsigned iterations) : iteration(iterations) {};

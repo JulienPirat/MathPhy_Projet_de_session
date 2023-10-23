@@ -190,12 +190,6 @@
     <ClInclude Include="libs\stb_image.h">
       <Filter>Fichiers d%27en-tête\lib</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleAnchoredSpring.h">
-      <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleBuoyancy.h">
-      <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
-    </ClInclude>
     <ClInclude Include="ParticleContactGenerator.h">
       <Filter>Fichiers d%27en-tête\ConctactGenerator</Filter>
     </ClInclude>
@@ -212,9 +206,6 @@
       <Filter>Fichiers d%27en-tête\ParticleLink</Filter>
     </ClInclude>
     <ClInclude Include="ParticleForceGenerator.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleGravity.h">
       <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleDrag.h">
@@ -255,6 +246,15 @@
     </ClInclude>
     <ClInclude Include="world.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGravity.h">
+      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleBuoyancy.h">
+      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleAnchoredSpring.h">
+      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

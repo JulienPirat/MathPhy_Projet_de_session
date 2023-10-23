@@ -7,6 +7,9 @@
 class ParticleForceRegistry
 {
 private:
+
+	///Attributes
+
 	struct ParticleForceEntry {
 		Particle* particle;
 		ParticleForceGenerator* forceGenerator;
@@ -16,7 +19,11 @@ private:
 	Registry m_registery;
 
 public:
+
+	///Methodes
+
 	//Registry Accessor
 	void UpdateForce(float duration);
+
 };
 

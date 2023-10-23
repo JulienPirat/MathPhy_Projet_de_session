@@ -4,6 +4,9 @@
 class ParticleForceGenerator
 {
 public: 
+
+	///Methodes
+
 	virtual void UpdateForce(Particle* particle, float duration) = 0;
 };
 

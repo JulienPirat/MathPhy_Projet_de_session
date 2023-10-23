@@ -11,6 +11,8 @@ public:
 	Particle();
 	Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Vector3D color);
 
+	///Methodes
+
 	//Méthode pour remettre à 0 le cumul des forces de chaque frame
 	void clearAccumulator();
 
@@ -21,8 +23,6 @@ public:
 	void Integrate(double duration);
 
 	//void PositionUpdate(double* time);
-
-	bool isResting = false;
 
 	//Getters
 	Vector3D getPosition() const;
@@ -39,6 +39,10 @@ public:
 	void setDamping(double damp);
 	void setInverseMass(double mass);
 	void setColor(Vector3D col);
+
+	///Attributes
+
+	bool isResting = false;
 	
 	private:
 		//Position de la particule

@@ -15,3 +15,9 @@ Sources :
 Vidéos du cours
 https://github.com/JoeyDeVries/LearnOpenGL
 https://github.com/ocornut/imgui/tree/master
+
+Phase 2 :
+
+Ajout de la détection de l'interpénétration ainsi que le lien avec la resolution de contact.
+Encore du travail sur la ground collision car la collision tremble.
+Ajout de tests pour les démonstration et la visualisation des particules.

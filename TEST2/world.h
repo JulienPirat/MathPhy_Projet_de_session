@@ -12,6 +12,8 @@ public:
 	void AddParticle(Particle* particle);
 	void GenBasicCollision();
 	void GenBasicParticule(float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az);
+	void GenContactResting();
+	void GenWallCollision();
 	int Run();
 
 	// Méthode statique pour obtenir l'instance unique du singleton.

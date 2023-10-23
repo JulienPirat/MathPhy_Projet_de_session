@@ -121,9 +121,19 @@ void ImGuiEngine::Update()
         }
 
         ImGui::Text("Part 2 :");
-        if (ImGui::Button("Generate Collision")) {
+        if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();
             w.GenBasicCollision();
+        }
+
+        if (ImGui::Button("Generate Wall Collision")) {
+            World& w = World::GetInstance();
+            w.GenWallCollision();
+        }
+
+        if (ImGui::Button("Generate Contact Resting")) {
+            World& w = World::GetInstance();
+            w.GenContactResting();
         }
         
         /*

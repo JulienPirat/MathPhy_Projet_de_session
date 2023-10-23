@@ -8,7 +8,7 @@ private:
 
 	/// Attributs
 
-	Vector3D m_gravity;
+	Vector3D m_gravity = Vector3D(0,-10,0);
 
 public:
 

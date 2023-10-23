@@ -13,11 +13,11 @@ void ParticleContactNaïve::Init(float deltaTime)
                     float penetration = radius*2-((radius * 2) - distance);
                     Vector3D normalContact = ParticleA->getPosition() - ParticleB->getPosition();
                     normalContact.norme();
-                    std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<
-                        " | Position PB : x: " << ParticleB->getPosition().x << " ,y :" << ParticleB->getPosition().y <<
-                        " | Restitution : "<< restitution << " | Penetration : " << penetration << std::endl;
+                    //std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<
+                    //    " | Position PB : x: " << ParticleB->getPosition().x << " ,y :" << ParticleB->getPosition().y <<
+                    //    " | Restitution : "<< restitution << " | Penetration : " << penetration << std::endl;
 
-                    normalContact.afficher();
+                    //normalContact.afficher();
                     ParticleContact PContact;
                     PContact.contactNormal = normalContact;
                     PContact.penetration = penetration;

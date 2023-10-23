@@ -22,7 +22,7 @@ Particle randomGenerateParticle() {
 // Main code
 int main(int, char**)
 {
-    World w = World();
+    World& w = World::GetInstance();
 
 	#pragma region InitParticles
 	srand(time(NULL));

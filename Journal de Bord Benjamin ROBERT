@@ -11,5 +11,19 @@ Problémes rencontrés :
 J'ai eu du mal à comprendre comment lancer la démonstration mais en passant a Visual Studio 2022 au lieu de 2019 le projet à fini par marcher.
 Je n'avait pas bien compris le paramétrage du damping, pensant que plus la valeur était proche de 0 moins on avait d'amortissement mais c'était l'inverse.
 
+Phase 2 :
+
+Pendant la phase 2
+J'ai rempli fait les .h de chacunes des classes de toutes les forces
+J'ai fait une grande partie du particle Contact
+J'ai cherché des moyen de changer la couleur des particules sans succès
+J'ai implémenté l'utilisation des boutons d'IMGUI afin de pouvoir rajouter des paticules dans notre world
+
+Problèmes rencontrés :
+Beaucoup de choses sont obscures pour moi quand à OpenGL
+J'ai aussi eu du mal à comprendre comment faire en sorte que IMGUI accède a des méthodes se trouvant dans le world sans faire de dépendance circulaire
+, ce qui s'est résolu avec un Singleton
+J'ai passé enormément d'heures sur le projet et il m'en aurait fallut encore plus mais je ne disposait pas d'assez de temps avec les autres projets en parallèle.
+
 Sources :
 Ian Millington, Game Physics Engine Development, https://uqac.on.worldcat.org/oclc/706803531

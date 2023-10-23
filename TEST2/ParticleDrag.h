@@ -4,13 +4,9 @@
 class ParticleDrag: public ParticleForceGenerator
 {
 private:
-	//Other particle
-	Particle* m_other;
-
-	//Spring constant
-	float m_k;
-
-	float m_restLength;
+	//drag coefficient
+	float m_k1;
+	float m_k2;
 
 public:
 	//apply Hooke's law based on particles positions

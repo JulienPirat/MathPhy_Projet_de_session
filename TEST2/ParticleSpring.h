@@ -4,6 +4,9 @@
 class ParticleSpring : public ParticleForceGenerator
 {
 private:
+
+	///Attributes
+
 	//Other particle
 	Particle* m_other;
 
@@ -13,6 +16,9 @@ private:
 	float m_restLength;
 
 public:
+
+	///Methodes
+
 	//apply simplified drag based on particle velocity
 	void UpdateForce(Particle* particle, float duration);
 };

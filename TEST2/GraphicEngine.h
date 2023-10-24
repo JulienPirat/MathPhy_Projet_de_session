@@ -10,6 +10,8 @@ class GraphicEngine
 {
 public:
 
+	///Methodes
+
 	GLFWwindow* Init();
 
 	bool ShouldClose() const;
@@ -23,6 +25,9 @@ public:
 	void Shutdown();
 
 private:
+
+	///Attributs
+
 	GLFWwindow* window = nullptr;
 
     unsigned int texture1, texture2;

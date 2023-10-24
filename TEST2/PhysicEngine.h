@@ -9,8 +9,13 @@
 class PhysicEngine
 {
 	public:
+
+		///Constructeur
+
 		PhysicEngine(std::vector<Particle*>& listParticles) : particles(listParticles) {};
 		PhysicEngine();
+
+		///Methodes
 
 		void Init();
 
@@ -25,6 +30,12 @@ class PhysicEngine
 		void putDragToParticle();
 
 	private:
+
+		//generate contacts
+		unsigned generateContacts();
+
+		///Attributs
+
 		std::vector<Particle*>& particles;
 
 		ParticleForceRegistry forceRegistry_Particle;
@@ -43,9 +54,6 @@ class PhysicEngine
 
 		//max number of contacts
 		unsigned maxContacts;
-
-		//generate contacts
-		unsigned generateContacts();
 
 		//contact resolver
 		ParticleContactResolver resolver;

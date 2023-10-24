@@ -1,6 +1,7 @@
 #include "PhysicEngine.h"
 #include <ParticleContactNaïve.h>
 #include <ParticleContactResting.h>
+#include <ParticleGravity.h>
 
 void PhysicEngine::Init()
 {
@@ -16,6 +17,10 @@ void PhysicEngine::Update(float deltaTime)
 		p->Integrate(deltaTime);
 		p->isResting = false;
 	}
+
+	// Accumulation des forces
+	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
+	forceRegistry_Particle.UpdateForce(deltaTime);
 
 	//Check Particules collisions
 	GestionCollisions(deltaTime);
@@ -56,6 +61,13 @@ void PhysicEngine::GestionCollisions(float deltaTime)
 	GCNaive->radius = 0.5f;
 	//
 	GCNaive->Init(deltaTime);
+}
+
+void PhysicEngine::putGravityToParticle()
+{
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p, new ParticleGravity());
+	}
 }
 
 unsigned PhysicEngine::generateContacts()

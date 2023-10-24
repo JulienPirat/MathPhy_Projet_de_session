@@ -6,7 +6,7 @@
 
 class ParticleForceRegistry
 {
-private:
+protected:
 
 	///Attributes
 
@@ -23,16 +23,30 @@ public:
 
 	///Methodes
 
-	//Register a force generator to a particle
-	void Add(Particle* particle, ParticleForceGenerator* forceGenerator);
+	/**
+	* Registers the given force generator to apply to the
+	* given particle.
+	*/
+	void add(Particle* particle, ParticleForceGenerator* fg);
 
-	//Remove a force generator from a particle
-	void Remove(Particle* particle, ParticleForceGenerator* forceGenerator);
+	/**
+	* Removes the given registered pair from the registry.
+	* If the pair is not registered, this method will have
+	* no effect.
+	*/
+	void remove(Particle* particle, ParticleForceGenerator* fg);
 
-	//Clear the registry
-	void Clear();
+	/**
+	* Clears all registrations from the registry. This will
+	* not delete the particles or the force generators
+	* themselves, just the records of their connection.
+	*/
+	void clear();
 
-	//Registry Accessor
+	/**
+	* Calls all the force generators to update the forces of
+	* their corresponding particles.
+	*/
 	void UpdateForce(float duration);
 
 };

@@ -3,12 +3,16 @@
 
 class ParticleRod : public ParticleLink
 {
+public:
+
+	///Attributs
+
 	//a contact will be generated if the distance between particles is not equals to length
 	float length;
 
-	/**
-	* Returns the current length of the cable.
-	*/
+	///Methodes
+
+	//Returns the current length of the cable.
 	float currentLength() const;
 
 	//Fill ParticleContact with information from particles and contact generator

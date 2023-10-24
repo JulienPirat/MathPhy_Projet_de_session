@@ -3,6 +3,7 @@
 #include <ParticleContactResting.h>
 #include <ParticleGravity.h>
 #include <ParticleDrag.h>
+#include <ParticleAnchoredSpring.h>
 
 void PhysicEngine::Init()
 {
@@ -35,12 +36,18 @@ void PhysicEngine::Update(float deltaTime)
 
 void PhysicEngine::Shutdown()
 {
+	ClearParticles();
+}
+
+void PhysicEngine::ClearParticles() {
+
 	for (auto& p : particles)
 	{
 		delete p;
 	}
 
 	particles.clear();
+
 }
 
 void PhysicEngine::GestionCollisions(float deltaTime)
@@ -77,20 +84,25 @@ void PhysicEngine::putDragToParticle()
 	}
 }
 
+void PhysicEngine::putAnchoredSpringToParticle() {
+	Vector3D* VOrigine = new Vector3D(0,0,0);
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p, new ParticleAnchoredSpring(*VOrigine, 0.01f, 0.1f));
+	}
+}
+
 unsigned PhysicEngine::generateContacts()
 {
 	unsigned limit = maxContacts;
 	ParticleContact* nextContact = contacts;
-	ContactGenRegistration* reg = firstContactGen;
-	while (reg)
+	for (auto reg : contactRegistry)
 	{
-		unsigned used = reg->gen->addContact(nextContact, limit);
+		unsigned used = reg->addContact(nextContact, limit);
 		limit -= used;
 		nextContact += used;
 		// We’ve run out of contacts to fill. This means we’re missing
 		// contacts.
 		if (limit <= 0) break;
-		reg = reg->next;
 	}
 	// Return the number of contacts used.
 	return maxContacts - limit;

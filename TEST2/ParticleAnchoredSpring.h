@@ -16,6 +16,14 @@ private:
 
 public:
 
+	///Constructeur
+
+	ParticleAnchoredSpring(Vector3D anchor, float k, float restLength) {
+		m_k = k;
+		m_restLength = restLength;
+		m_anchor = anchor;
+	}
+
 	///Methodes
 
 	//apply simplified drag based on particle velocity

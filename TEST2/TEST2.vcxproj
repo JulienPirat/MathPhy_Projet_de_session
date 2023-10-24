@@ -152,6 +152,7 @@
     <ClCompile Include="ParticleContact.cpp" />
     <ClCompile Include="ParticleContactGenerator.cpp" />
     <ClCompile Include="ParticleContactNaïve.cpp" />
+    <ClCompile Include="ParticleContactRegistry.cpp" />
     <ClCompile Include="ParticleContactResolver.cpp" />
     <ClCompile Include="ParticleContactResting.cpp" />
     <ClCompile Include="ParticleContactWall.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="ParticleContact.h" />
     <ClInclude Include="ParticleContactGenerator.h" />
     <ClInclude Include="ParticleContactNaïve.h" />
+    <ClInclude Include="ParticleContactRegistry.h" />
     <ClInclude Include="ParticleContactResolver.h" />
     <ClInclude Include="ParticleContactResting.h" />
     <ClInclude Include="ParticleContactWall.h" />

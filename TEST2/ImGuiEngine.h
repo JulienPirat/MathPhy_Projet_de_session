@@ -5,6 +5,9 @@ struct GLFWwindow;
 class ImGuiEngine
 {
 private:
+
+	///Attributs
+
 	GLFWwindow* window = nullptr;
 
 	bool show_demo_window = true;
@@ -15,6 +18,9 @@ private:
 	int lastState_Key_I = 0;
 
 public:
+
+	///Methodes
+
 	bool Init(GLFWwindow* _window);
 
 	void Update();

@@ -20,7 +20,7 @@ class PhysicEngine
 
 		void GestionCollisions(float deltaTime);
 
-
+		void putGravityToParticle();
 
 	private:
 		std::vector<Particle*>& particles;

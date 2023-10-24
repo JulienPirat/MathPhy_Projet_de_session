@@ -99,6 +99,11 @@ void World::GenWallCollision() {
 	AddParticle(p3);
 }
 
+void World::PutGravityForceGenerator()
+{
+	physics.putGravityToParticle();
+}
+
 int World::Run()
 {
 	auto res = this->Init();

@@ -117,7 +117,12 @@ void ImGuiEngine::Update()
         ImGui::Text("Part 1 :");
         if (ImGui::Button("Spawn Particle")) {
             World& w = World::GetInstance();
-            w.GenBasicParticule(0,0,0,0,0,0,0, -9.81f,0);
+            w.GenBasicParticule(0,0,0,0,0,0,0, 0,0);
+        }
+
+        if (ImGui::Button("Put Physique to Particle")) {
+            World& w = World::GetInstance();
+            w.PutGravityForceGenerator();
         }
 
         ImGui::Text("Part 2 :");

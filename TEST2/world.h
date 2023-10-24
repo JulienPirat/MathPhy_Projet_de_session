@@ -19,6 +19,9 @@ public:
 	void GenContactResting();
 	void GenWallCollision();
 
+	//Ajoute des forceGenerator au partiule.
+	void PutGravityForceGenerator();
+
 	//Lancement de la simulation
 	int Run();
 

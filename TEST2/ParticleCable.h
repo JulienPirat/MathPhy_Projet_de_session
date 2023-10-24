@@ -4,6 +4,9 @@
 class ParticleCable : public ParticleLink
 {
 	protected:
+
+		///Attributs
+
 		//a contact will be generated if the distance between the particles is larger than maxLength
 		float maxLength;
 
@@ -11,7 +14,11 @@ class ParticleCable : public ParticleLink
 		float restitution;
 
 	public:
+
+		///Methodes
+
 		//Fill information contact with informations from particles and contact generator
 		unsigned int addContact(ParticleContact* contact, unsigned int limit) const;
+
 };
 

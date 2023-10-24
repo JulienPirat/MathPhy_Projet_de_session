@@ -25,13 +25,13 @@ void ParticleForceRegistry::remove(Particle* particle, ParticleForceGenerator* f
 	for (; i != m_registery.end(); i++) {
 		if (i->particle == particle && i->forceGenerator == fg) {
 			m_registery.erase(i);
-			return; // Sortie de la boucle une fois que l'entrée a été supprimée.
+			return; // Sortie de la boucle une fois que l'entrÃ©e a Ã©tÃ© supprimÃ©e.
 		}
 	}
 }
 
 /// <summary>
-/// Supprime toutes les entrées du registre liées à leur système de génération de force.
+/// Supprime toutes les entrÃ©es du registre liÃ©es Ã  leur systÃ¨me de gÃ©nÃ©ration de force.
 /// </summary>
 void ParticleForceRegistry::clear()
 {
@@ -39,7 +39,7 @@ void ParticleForceRegistry::clear()
 }
 
 /// <summary>
-/// Toutes les particules enregistrées avec un forceGenerator sont appelées
+/// Toutes les particules enregistrÃ©es avec un forceGenerator sont appelÃ©es
 /// pour update la force.
 /// </summary>
 /// <param name="duration">DeltaTime</param>

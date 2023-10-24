@@ -1,12 +1,16 @@
 #pragma once
 #include <ParticleForceGenerator.h>
 
-class ParticleDrag : public ParticleForceGenerator
+class ParticleSpring : public ParticleForceGenerator
 {
 private:
-	//drag coefficient
-	float m_k1;
-	float m_k2;
+	//Other particle
+	Particle* m_other;
+
+	//Spring constant
+	float springConstant;
+
+	float m_restLength;
 
 public:
 	//apply simplified drag based on particle velocity

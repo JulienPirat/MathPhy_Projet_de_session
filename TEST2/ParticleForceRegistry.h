@@ -10,12 +10,13 @@ protected:
 
 	///Attributes
 
-	struct ParticleForceEntry {
+	struct ParticleForceRegistration 
+	{
 		Particle* particle;
 		ParticleForceGenerator* forceGenerator;
 	};
 
-	using Registry = std::vector<ParticleForceEntry>;
+	using Registry = std::vector<ParticleForceRegistration>;
 	Registry m_registery;
 
 public:

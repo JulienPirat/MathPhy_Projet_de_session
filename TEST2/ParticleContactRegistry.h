@@ -9,7 +9,7 @@ public :
 	///Attributes
 
 	//Holds the list of contact generators.
-	std::vector<ParticleContactGenerator*> contactRegistry;
+	std::vector<ParticleContact> Contacts;
 
 	///Methodes
 

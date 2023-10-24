@@ -33,7 +33,7 @@ void ParticleContactResting::Init(float deltaTime)
     }
 }
 
-unsigned int ParticleContactResting::addContact(ParticleContact* contact, unsigned int limit) const
+unsigned int ParticleContactResting::addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const
 {
 
     if (contact->particle[0]->getVelocity().x == 0 && contact->particle[0]->getVelocity().z == 0) {

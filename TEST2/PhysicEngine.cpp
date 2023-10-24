@@ -20,7 +20,6 @@ void PhysicEngine::Update(float deltaTime)
 	}
 
 	// Accumulation des forces
-	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
 	forceRegistry_Particle.UpdateForce(deltaTime);
 
 	//Check Particules collisions

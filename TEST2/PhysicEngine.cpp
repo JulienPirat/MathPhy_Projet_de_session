@@ -2,6 +2,7 @@
 #include <ParticleContactNaïve.h>
 #include <ParticleContactResting.h>
 #include <ParticleGravity.h>
+#include <ParticleDrag.h>
 
 void PhysicEngine::Init()
 {
@@ -67,6 +68,13 @@ void PhysicEngine::putGravityToParticle()
 {
 	for (auto p : this->particles) {
 		forceRegistry_Particle.add(p, new ParticleGravity());
+	}
+}
+
+void PhysicEngine::putDragToParticle()
+{
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p, new ParticleDrag());
 	}
 }
 

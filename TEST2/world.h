@@ -19,8 +19,12 @@ public:
 	void GenContactResting();
 	void GenWallCollision();
 
-	//Ajoute des forceGenerator au partiule.
+	//Ajoute des forceGenerator aux partiules.
 	void PutGravityForceGenerator();
+
+
+	//Ajoute des forces de frottement aux particules.
+	void PutDragForceGenerator();
 
 	//Lancement de la simulation
 	int Run();

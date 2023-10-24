@@ -125,6 +125,11 @@ void ImGuiEngine::Update()
             w.PutGravityForceGenerator();
         }
 
+        if (ImGui::Button("Put Drag to Particle")) {
+            World& w = World::GetInstance();
+            w.PutDragForceGenerator();
+        }
+
         ImGui::Text("Part 2 :");
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();

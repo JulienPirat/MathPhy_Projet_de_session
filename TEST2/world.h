@@ -26,6 +26,9 @@ public:
 	//Ajoute des forces de frottement aux particules.
 	void PutDragForceGenerator();
 
+	//Ajoute une force de ressort ancré a l'origine aux particles
+	void PutAnchoredSpringForceGenerator();
+
 	//Lancement de la simulation
 	int Run();
 

@@ -29,6 +29,8 @@ class PhysicEngine
 
 		void putDragToParticle();
 
+		void putAnchoredSpringToParticle();
+
 	private:
 
 		//generate contacts

@@ -130,6 +130,11 @@ void ImGuiEngine::Update()
             w.PutDragForceGenerator();
         }
 
+        if (ImGui::Button("Put Origin Anchored Spring to Particle")) {
+            World& w = World::GetInstance();
+            w.PutAnchoredSpringForceGenerator();
+        }
+
         ImGui::Text("Part 2 :");
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();

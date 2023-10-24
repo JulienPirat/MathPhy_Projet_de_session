@@ -109,6 +109,11 @@ void World::PutDragForceGenerator()
 	physics.putDragToParticle();
 }
 
+void World::PutAnchoredSpringForceGenerator()
+{
+	physics.putAnchoredSpringToParticle();
+}
+
 int World::Run()
 {
 	auto res = this->Init();

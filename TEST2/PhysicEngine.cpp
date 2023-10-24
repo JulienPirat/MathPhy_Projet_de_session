@@ -3,6 +3,7 @@
 #include <ParticleContactResting.h>
 #include <ParticleGravity.h>
 #include <ParticleDrag.h>
+#include <ParticleAnchoredSpring.h>
 
 void PhysicEngine::Init()
 {
@@ -75,6 +76,13 @@ void PhysicEngine::putDragToParticle()
 {
 	for (auto p : this->particles) {
 		forceRegistry_Particle.add(p, new ParticleDrag());
+	}
+}
+
+void PhysicEngine::putAnchoredSpringToParticle() {
+	Vector3D* VOrigine = new Vector3D(0,0,0);
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p, new ParticleAnchoredSpring(*VOrigine, 0.01f, 0.1f));
 	}
 }
 

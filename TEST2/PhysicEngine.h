@@ -23,6 +23,8 @@ class PhysicEngine
 
 		void Shutdown();
 
+		void ClearParticles();
+
 		void GestionCollisions(float deltaTime);
 
 		void putGravityToParticle();
@@ -42,6 +44,7 @@ class PhysicEngine
 
 		ParticleForceRegistry forceRegistry_Particle;
 
+		/*
 		struct ContactGenRegistration
 		{
 			ParticleContactGenerator* gen;
@@ -50,6 +53,10 @@ class PhysicEngine
 
 		//Holds the list of contact generators.
 		ContactGenRegistration* firstContactGen;
+		*/
+
+		//Holds the list of contact generators.
+		std::vector<ParticleContactGenerator*> contactRegistry;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

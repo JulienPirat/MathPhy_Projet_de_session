@@ -6,6 +6,10 @@ void World::AddParticle(Particle* particle)
 	this->particles.push_back(particle);
 }
 
+void World::DeleteAllParticle() {
+	physics.ClearParticles();
+}
+
 void World::GenBasicCollision() {
 
 	//Créer deux particules

@@ -14,6 +14,7 @@ public:
 
 	//Generation de tests
 	void AddParticle(Particle* particle);
+	void DeleteAllParticle();
 	void GenBasicCollision();
 	void GenBasicParticule(float x, float y, float z, float vx, float vy, float vz, float ax, float ay, float az);
 	void GenContactResting();

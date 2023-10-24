@@ -37,12 +37,18 @@ void PhysicEngine::Update(float deltaTime)
 
 void PhysicEngine::Shutdown()
 {
+	ClearParticles();
+}
+
+void PhysicEngine::ClearParticles() {
+
 	for (auto& p : particles)
 	{
 		delete p;
 	}
 
 	particles.clear();
+
 }
 
 void PhysicEngine::GestionCollisions(float deltaTime)
@@ -90,16 +96,14 @@ unsigned PhysicEngine::generateContacts()
 {
 	unsigned limit = maxContacts;
 	ParticleContact* nextContact = contacts;
-	ContactGenRegistration* reg = firstContactGen;
-	while (reg)
+	for (auto reg : contactRegistry)
 	{
-		unsigned used = reg->gen->addContact(nextContact, limit);
+		unsigned used = reg->addContact(nextContact, limit);
 		limit -= used;
 		nextContact += used;
 		// We’ve run out of contacts to fill. This means we’re missing
 		// contacts.
 		if (limit <= 0) break;
-		reg = reg->next;
 	}
 	// Return the number of contacts used.
 	return maxContacts - limit;

@@ -120,6 +120,11 @@ void ImGuiEngine::Update()
             w.GenBasicParticule(0,0,0,0,0,0,0, 0,0);
         }
 
+        if (ImGui::Button("Delete All Particle")) {
+            World& w = World::GetInstance();
+            w.DeleteAllParticle();
+        }
+
         if (ImGui::Button("Put Physique to Particle")) {
             World& w = World::GetInstance();
             w.PutGravityForceGenerator();

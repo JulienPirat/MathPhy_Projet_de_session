@@ -4,6 +4,7 @@
 #include <vector>
 #include <ParticleContactResolver.h>
 #include <ParticleContactGenerator.h>
+#include <ParticleForceRegistry.h>
 
 class PhysicEngine
 {
@@ -24,6 +25,7 @@ class PhysicEngine
 	private:
 		std::vector<Particle*>& particles;
 
+		ParticleForceRegistry forceRegistry_Particle;
 
 		struct ContactGenRegistration
 		{
@@ -34,7 +36,6 @@ class PhysicEngine
 		//Holds the list of contact generators.
 		ContactGenRegistration* firstContactGen;
 		
-
 		//Holds the list of contacts.
 		ParticleContact* contacts;
 

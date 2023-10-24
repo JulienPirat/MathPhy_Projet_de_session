@@ -22,6 +22,8 @@ class PhysicEngine
 
 		void putGravityToParticle();
 
+		void putDragToParticle();
+
 	private:
 		std::vector<Particle*>& particles;
 

@@ -104,6 +104,11 @@ void World::PutGravityForceGenerator()
 	physics.putGravityToParticle();
 }
 
+void World::PutDragForceGenerator()
+{
+	physics.putDragToParticle();
+}
+
 int World::Run()
 {
 	auto res = this->Init();

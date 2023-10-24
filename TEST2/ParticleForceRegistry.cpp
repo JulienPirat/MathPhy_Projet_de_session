@@ -7,10 +7,7 @@
 /// <param name="fg">ParticleForceGenerator</param>
 void ParticleForceRegistry::add(Particle* particle, ParticleForceGenerator* fg)
 {
-	ParticleForceEntry newParticleForceEntry = ParticleForceEntry();
-	newParticleForceEntry.forceGenerator = fg;
-	newParticleForceEntry.particle = particle;
-	m_registery.push_back(newParticleForceEntry);
+	m_registery.push_back({particle, fg});
 }
 
 /// <summary>

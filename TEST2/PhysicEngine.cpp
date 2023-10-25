@@ -97,11 +97,11 @@ void PhysicEngine::CallAllContactGenerator()
 {
 	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
 	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
-		bcontactgen->addContact(contactRegistry, 3);
+		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}
 
 	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
-		acontactgen->addContact(contactRegistry, 3);
+		acontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}
 }
 

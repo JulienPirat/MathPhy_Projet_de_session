@@ -30,7 +30,7 @@ unsigned int ParticleContactNaïve::addContact(ParticleContactRegistry* ContactRe
 
                     // Ajoute le contact dans le registre des contacts
                     ContactRegistry->Contacts.push_back(PContact);
-                    limit++;
+                    limit--;
                 }
             }
         }

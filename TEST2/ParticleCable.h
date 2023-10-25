@@ -18,7 +18,7 @@ class ParticleCable : public ParticleLink
 		///Methodes
 
 		//Fill information contact with informations from particles and contact generator
-		unsigned int addContact(ParticleContact* contact, unsigned int limit) const;
+		unsigned int addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const;
 
 };
 

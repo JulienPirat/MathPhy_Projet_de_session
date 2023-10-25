@@ -17,6 +17,6 @@ public:
 
 	//Fill ParticleContact with information from particles and contact generator
 	//Contact is different wether the distance is shorter or greater than the length
-	unsigned int addContact(ParticleContact* contact, unsigned int limit)const;
+	unsigned int addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit)const;
 };
 

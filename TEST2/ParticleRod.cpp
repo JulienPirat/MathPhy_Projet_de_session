@@ -6,7 +6,7 @@ float ParticleRod::currentLength() const
 	return relativePos.magnitude();
 }
 
-unsigned int ParticleRod::addContact(ParticleContact* contact, unsigned int limit) const
+unsigned int ParticleRod::addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const
 {
 	//Find the length of the rod
 	float current = currentLength();
@@ -17,9 +17,11 @@ unsigned int ParticleRod::addContact(ParticleContact* contact, unsigned int limi
 		return 0;
 	}
 
+	ParticleContact contact;
+
 	//Otherwise return the contact
-	contact->particle[0] = particle[0];
-	contact->particle[1] = particle[1];
+	contact.particle[0] = particle[0];
+	contact.particle[1] = particle[1];
 
 	//Calculate the normal
 	Vector3D normal = particle[1]->getPosition() - particle[0]->getPosition();
@@ -28,17 +30,18 @@ unsigned int ParticleRod::addContact(ParticleContact* contact, unsigned int limi
 	//The contact normal depends on the length of the rod
 	if (current > length)
 	{
-		contact->contactNormal = normal;
-		contact->penetration = current - length;
+		contact.contactNormal = normal;
+		contact.penetration = current - length;
 	}
 	else
 	{
-		contact->contactNormal = normal * -1;
-		contact->penetration = length - current;
+		contact.contactNormal = normal * -1;
+		contact.penetration = length - current;
 	}
 
 	//Always use zero restitution
-	contact->restitution = 0;
+	contact.restitution = 0;
+	ContactRegistry->Contacts.push_back(contact);
 
-	return 1;
+	return limit--;
 }

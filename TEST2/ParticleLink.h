@@ -18,7 +18,7 @@ class ParticleLink : public	ParticleContactGenerator
 		float currentLength() const;
 
 		//Take a pointer to an array of contacts and the number of contact left to be generated
-		unsigned int addContact(ParticleContact* contact, unsigned int limit) const = 0;
+		unsigned int addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const = 0;
 
 };
 

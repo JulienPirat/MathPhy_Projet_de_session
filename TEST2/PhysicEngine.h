@@ -5,6 +5,7 @@
 #include <ParticleContactResolver.h>
 #include <ParticleContactGenerator.h>
 #include <ParticleForceRegistry.h>
+#include <ParticleContactRegistry.h>
 
 class PhysicEngine
 {
@@ -58,7 +59,7 @@ class PhysicEngine
 		*/
 
 		//Holds the list of contact generators.
-		std::vector<ParticleContactGenerator*> contactRegistry;
+		ParticleContactRegistry* contactRegistry;
 
 		//Contact Generator Lists
 		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;

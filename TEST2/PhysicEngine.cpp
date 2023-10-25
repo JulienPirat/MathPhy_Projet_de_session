@@ -21,6 +21,7 @@ void PhysicEngine::Update(float deltaTime)
 	}
 
 	// Accumulation des forces
+	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
 	forceRegistry_Particle.UpdateForce(deltaTime);
 
 	//Check Particules collisions
@@ -52,7 +53,7 @@ void PhysicEngine::ClearParticles() {
 
 void PhysicEngine::GestionCollisions(float deltaTime)
 {
-	
+	/*
 	ParticleContactResting* GCResting = new ParticleContactResting();
 	//On récup toutes les particules du jeu
 	GCResting->particle = this->particles;
@@ -68,6 +69,7 @@ void PhysicEngine::GestionCollisions(float deltaTime)
 	GCNaive->radius = 0.5f;
 	//
 	GCNaive->Init(deltaTime);
+	*/
 }
 
 void PhysicEngine::putGravityToParticle()
@@ -93,7 +95,14 @@ void PhysicEngine::putAnchoredSpringToParticle() {
 
 void PhysicEngine::CallAllContactGenerator()
 {
-	//
+	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
+	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
+		bcontactgen->addContact(contactRegistry, 3);
+	}
+
+	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
+		acontactgen->addContact(contactRegistry, 3);
+	}
 }
 
 unsigned PhysicEngine::generateContacts()

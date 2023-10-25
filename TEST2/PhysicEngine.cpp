@@ -7,7 +7,12 @@
 
 void PhysicEngine::Init()
 {
-	//Nothing to do here since we've moved the initialization of particles into world
+	//Initialisation of Basics Contact Generator
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve());
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting());
+
+	//Nota bene : Additionnal Contact Generator is filled by the user
+
 }
 
 void PhysicEngine::Update(float deltaTime)
@@ -24,15 +29,19 @@ void PhysicEngine::Update(float deltaTime)
 	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
 	forceRegistry_Particle.UpdateForce(deltaTime);
 
-	//Check Particules collisions
-	GestionCollisions(deltaTime);
+	//Check Particules collisions & fill contact list
+	CallAllContactGenerator();
+
+	//Resolve Contacts
+	resolver.setIterations(limitIterContactResolver); //HARD CODE BENJ CHANGE LA VALEUR
+	resolver.resolveContacts(contactRegistry, usedContacts, deltaTime);
 
 	// Generate contacts.
-	unsigned usedContacts = generateContacts();
+	//unsigned usedContacts = generateContacts();
 
 	// And process them.
-	resolver.setIterations(usedContacts * 2);
-	resolver.resolveContacts(contacts, usedContacts, deltaTime);
+	//resolver.setIterations(usedContacts * 2);
+	//resolver.resolveContacts(contacts, usedContacts, deltaTime);
 }
 
 void PhysicEngine::Shutdown()
@@ -49,27 +58,6 @@ void PhysicEngine::ClearParticles() {
 
 	particles.clear();
 
-}
-
-void PhysicEngine::GestionCollisions(float deltaTime)
-{
-	/*
-	ParticleContactResting* GCResting = new ParticleContactResting();
-	//On récup toutes les particules du jeu
-	GCResting->particle = this->particles;
-	//Boite de collision de toutes les particules
-	GCResting->radius = 0.5f;
-	//
-	GCResting->Init(deltaTime);
-	
-	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
-	//On récup toutes les particules du jeu
-	GCNaive->particle = this->particles;
-	//Boite de collision de toutes les particules
-	GCNaive->radius = 0.5f;
-	//
-	GCNaive->Init(deltaTime);
-	*/
 }
 
 void PhysicEngine::putGravityToParticle()
@@ -100,24 +88,8 @@ void PhysicEngine::CallAllContactGenerator()
 		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}
 
+	//On appelle le addContact sur le générateurs de contact additionnels (Cable, Rod, ...)
 	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
 		acontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}
-}
-
-unsigned PhysicEngine::generateContacts()
-{
-	unsigned limit = maxContacts;
-	ParticleContact* nextContact = contacts;
-	for (auto reg : contactRegistry)
-	{
-		unsigned used = reg->addContact(nextContact, limit);
-		limit -= used;
-		nextContact += used;
-		// We’ve run out of contacts to fill. This means we’re missing
-		// contacts.
-		if (limit <= 0) break;
-	}
-	// Return the number of contacts used.
-	return maxContacts - limit;
 }

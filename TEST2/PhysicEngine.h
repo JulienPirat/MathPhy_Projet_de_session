@@ -26,8 +26,6 @@ class PhysicEngine
 
 		void ClearParticles();
 
-		void GestionCollisions(float deltaTime);
-
 		void putGravityToParticle();
 
 		void putDragToParticle();
@@ -38,34 +36,21 @@ class PhysicEngine
 
 	private:
 
-		//generate contacts
-		unsigned generateContacts();
-
 		///Attributs
 
 		std::vector<Particle*>& particles;
 
 		ParticleForceRegistry forceRegistry_Particle;
 
-		/*
-		struct ContactGenRegistration
-		{
-			ParticleContactGenerator* gen;
-			ContactGenRegistration* next;
-		};
-
 		//Holds the list of contact generators.
-		ContactGenRegistration* firstContactGen;
-		*/
-
-		//Holds the list of contact generators.
-		ParticleContactRegistry* contactRegistry;
+		ParticleContactRegistry* contactRegistry = new ParticleContactRegistry();
 
 		//Contact Generator Lists
 		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;
 		std::vector<ParticleContactGenerator*> AdditionnalContactGeneratorRegistry;
 
-		unsigned int limitIterContactGenerator = 10;
+		unsigned int limitIterContactGenerator = 100;
+		unsigned int limitIterContactResolver = 100;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

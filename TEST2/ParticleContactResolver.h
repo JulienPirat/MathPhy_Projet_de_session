@@ -1,5 +1,6 @@
 #pragma once
 #include <ParticleContact.h>
+#include <ParticleContactRegistry.h>
 
 class ParticleContactResolver
 {

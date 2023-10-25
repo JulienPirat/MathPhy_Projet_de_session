@@ -1,5 +1,4 @@
 #include "ParticleContactResolver.h"
-#include <ParticleContactRegistry.h>
 
 void ParticleContactResolver::resolveContacts(ParticleContactRegistry* ContactRegistry, unsigned int numContact, float duration)
 {

@@ -1,6 +1,7 @@
 #include "ParticleContactResolver.h"
+#include <ParticleContactRegistry.h>
 
-void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, unsigned int numContact, float duration)
+void ParticleContactResolver::resolveContacts(ParticleContactRegistry* ContactRegistry, unsigned int numContact, float duration)
 {
 	iterationsUsed = 0;
 	while (iterationsUsed < iteration)
@@ -10,8 +11,8 @@ void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, uns
 		unsigned int maxIndex = numContact;
 		for (unsigned int i = 0; i < numContact; i++)
 		{
-			float sepVel = contactArray[i].calculateSeparatingVelocity();
-			if (sepVel < max && (sepVel < 0 || contactArray[i].penetration > 0))
+			float sepVel = ContactRegistry->Contacts[i].calculateSeparatingVelocity();
+			if (sepVel < max && (sepVel < 0 || ContactRegistry->Contacts[i].penetration > 0))
 			{
 				max = sepVel;
 				maxIndex = i;
@@ -19,7 +20,7 @@ void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, uns
 		}
 
 		//Resolve this contact
-		contactArray[maxIndex].resolve(duration);
+		ContactRegistry->Contacts[maxIndex].resolve(duration);
 
 		iterationsUsed++;
 	}

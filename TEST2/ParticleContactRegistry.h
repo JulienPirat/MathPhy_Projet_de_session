@@ -12,9 +12,6 @@ public :
 	std::vector<ParticleContact> Contacts;
 
 	///Methodes
-	
-	//Detection des contacts
-	void DetectContact(std::vector<Particle*>& particles);
 
 	//Suppression du registre des contacts pour la prochaine frame
 	void ClearContactRegistry();

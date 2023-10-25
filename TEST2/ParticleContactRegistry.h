@@ -12,7 +12,7 @@ public :
 	std::vector<ParticleContact> Contacts;
 
 	///Methodes
-
+	
 	//Detection des contacts
 	void DetectContact(std::vector<Particle*>& particles);
 

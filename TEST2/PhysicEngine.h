@@ -33,6 +33,8 @@ class PhysicEngine
 
 		void putAnchoredSpringToParticle();
 
+		void CallAllContactGenerator();
+
 	private:
 
 		//generate contacts
@@ -57,6 +59,10 @@ class PhysicEngine
 
 		//Holds the list of contact generators.
 		std::vector<ParticleContactGenerator*> contactRegistry;
+
+		//Contact Generator Lists
+		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;
+		std::vector<ParticleContactGenerator*> AdditionnalContactGeneratorRegistry;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

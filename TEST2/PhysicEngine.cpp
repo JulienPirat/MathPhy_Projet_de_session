@@ -91,6 +91,11 @@ void PhysicEngine::putAnchoredSpringToParticle() {
 	}
 }
 
+void PhysicEngine::CallAllContactGenerator()
+{
+	//
+}
+
 unsigned PhysicEngine::generateContacts()
 {
 	unsigned limit = maxContacts;

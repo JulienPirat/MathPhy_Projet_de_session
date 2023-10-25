@@ -1,6 +1,6 @@
 #include "ParticleContactResting.h"
 
-void ParticleContactResting::Init(float deltaTime)
+unsigned int ParticleContactResting::addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const
 {
     for (auto ParticleA : particle) {
         for (auto ParticleB : particle) {
@@ -20,28 +20,22 @@ void ParticleContactResting::Init(float deltaTime)
                     //    " | Restitution : " << restitution << " | Penetration : " << penetration << std::endl;
 
                     //normalContact.afficher();
-                    ParticleContact* PContact = new ParticleContact();
-                    PContact->contactNormal = normalContact;
-                    PContact->penetration = penetration;
-                    PContact->restitution = restitution;
-                    PContact->particle[0] = ParticleA;
-                    PContact->particle[1] = ParticleB;
-                    addContact(PContact, 1);
+                    
+                    if (ParticleB->getInverseMass() == 0) {
+                        if (ParticleA->getVelocity().x == 0 && ParticleA->getVelocity().z == 0) {
+                            if (ParticleA->getVelocity().y >= -10 && ParticleA->getVelocity().y < 0) {
+
+                                // Si on collide un sol avec une masse infini
+
+                                ParticleA->setVelocity(Vector3D(0, 0, 0));
+                                //ParticleA->isResting = true; //Pas utilisé
+                            }
+                        }
+                    }
                 }
             }
         }
     }
-}
-
-unsigned int ParticleContactResting::addContact(ParticleContact* contact, unsigned int limit) const
-{
-
-    if (contact->particle[0]->getVelocity().x == 0 && contact->particle[0]->getVelocity().z == 0) {
-        if (contact->particle[0]->getVelocity().y >= -10 && contact->particle[0]->getVelocity().y < 0) {
-            contact->particle[0]->setVelocity(Vector3D(0,0,0));
-            contact->particle[0]->isResting = true;
-        }
-    }
     
-    return 0;
+    return limit;
 }

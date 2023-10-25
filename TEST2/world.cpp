@@ -118,6 +118,11 @@ void World::PutAnchoredSpringForceGenerator()
 	physics.putAnchoredSpringToParticle();
 }
 
+void World::PutBuoyancyForceGenerator()
+{
+	physics.putBuoyancyToParticle();
+}
+
 int World::Run()
 {
 	auto res = this->Init();

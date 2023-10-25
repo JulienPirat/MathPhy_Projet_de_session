@@ -13,6 +13,12 @@ private:
 
 public:
 
+	///Constructeur
+
+	ParticleDrag() {
+	
+	}
+
 	///Methodes
 
 	//apply Hooke's law based on particles positions

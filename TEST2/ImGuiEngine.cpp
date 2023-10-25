@@ -125,19 +125,24 @@ void ImGuiEngine::Update()
             w.DeleteAllParticle();
         }
 
-        if (ImGui::Button("Put Physique to Particle")) {
+        if (ImGui::Button("Gravity to Particle")) {
             World& w = World::GetInstance();
             w.PutGravityForceGenerator();
         }
 
-        if (ImGui::Button("Put Drag to Particle")) {
+        if (ImGui::Button("Drag to Particle")) {
             World& w = World::GetInstance();
             w.PutDragForceGenerator();
         }
 
-        if (ImGui::Button("Put Origin Anchored Spring to Particle")) {
+        if (ImGui::Button("Origin Anchored Spring to Particle")) {
             World& w = World::GetInstance();
             w.PutAnchoredSpringForceGenerator();
+        }
+
+        if (ImGui::Button("Buoyancy to Particle")) {
+            World& w = World::GetInstance();
+            w.PutBuoyancyForceGenerator();
         }
 
         ImGui::Text("Part 2 :");

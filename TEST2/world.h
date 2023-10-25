@@ -30,6 +30,9 @@ public:
 	//Ajoute une force de ressort ancré a l'origine aux particles
 	void PutAnchoredSpringForceGenerator();
 
+	//Ajoute une force de flottement
+	void PutBuoyancyForceGenerator();
+
 	//Lancement de la simulation
 	int Run();
 

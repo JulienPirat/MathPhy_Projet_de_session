@@ -4,6 +4,7 @@
 #include <ParticleGravity.h>
 #include <ParticleDrag.h>
 #include <ParticleAnchoredSpring.h>
+#include <ParticleBuoyancy.h>
 
 void PhysicEngine::Init()
 {
@@ -31,8 +32,16 @@ void PhysicEngine::Update(float deltaTime)
 
 	//Resolve Contacts
 	if (contactRegistry->Contacts.size() > 0) {
-		resolver.setIterations(contactRegistry->Contacts.size()-1);
-		resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size() - 1, deltaTime);
+		if (limitIterContactResolver < contactRegistry->Contacts.size() - 1) {
+			//If we have more than "limitIterContactResolver" contacts to resolve we only solve "limitIterContactResolver" of them
+			resolver.setIterations(limitIterContactResolver);
+			resolver.resolveContacts(contactRegistry, limitIterContactResolver, deltaTime);
+		}
+		else {
+			//We can resolve all contact this frame
+			resolver.setIterations(contactRegistry->Contacts.size() - 1);
+			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size() - 1, deltaTime);
+		}
 	}
 
 	// Generate contacts.
@@ -77,6 +86,19 @@ void PhysicEngine::putAnchoredSpringToParticle() {
 	Vector3D* VOrigine = new Vector3D(0,0,0);
 	for (auto p : this->particles) {
 		forceRegistry_Particle.add(p, new ParticleAnchoredSpring(*VOrigine, 0.01f, 0.1f));
+	}
+}
+
+void PhysicEngine::putBuoyancyToParticle() {
+
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p,
+			new ParticleBuoyancy(
+				-30.f, //MaxDepth
+				33.51f, //Particle volume V = 4/3 pi r3 and r=2
+				-1.0f, //WaterHeight
+				2.f //Water density (1000kg per m3)
+			));
 	}
 }
 

@@ -49,8 +49,8 @@ class PhysicEngine
 		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;
 		std::vector<ParticleContactGenerator*> AdditionnalContactGeneratorRegistry;
 
-		unsigned int limitIterContactGenerator = 100;
-		unsigned int limitIterContactResolver = 100;
+		unsigned int limitIterContactGenerator = 4;
+		unsigned int limitIterContactResolver = 5;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

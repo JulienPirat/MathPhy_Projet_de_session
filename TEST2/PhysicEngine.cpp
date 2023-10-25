@@ -7,9 +7,6 @@
 
 void PhysicEngine::Init()
 {
-	//Initialisation of Basics Contact Generator
-	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve());
-	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting());
 
 	//Nota bene : Additionnal Contact Generator is filled by the user
 
@@ -33,8 +30,10 @@ void PhysicEngine::Update(float deltaTime)
 	CallAllContactGenerator();
 
 	//Resolve Contacts
-	resolver.setIterations(limitIterContactResolver); //HARD CODE BENJ CHANGE LA VALEUR
-	resolver.resolveContacts(contactRegistry, usedContacts, deltaTime);
+	if (contactRegistry->Contacts.size() > 0) {
+		resolver.setIterations(contactRegistry->Contacts.size()-1);
+		resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size() - 1, deltaTime);
+	}
 
 	// Generate contacts.
 	//unsigned usedContacts = generateContacts();
@@ -83,7 +82,15 @@ void PhysicEngine::putAnchoredSpringToParticle() {
 
 void PhysicEngine::CallAllContactGenerator()
 {
+	//Clear Basics for this frame
+	BasicsContactGeneratorRegistry.clear();
+
 	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
+
+	//Initialisation of Basics Contact Generator
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(2, particles));
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
+
 	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
 		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}

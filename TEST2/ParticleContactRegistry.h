@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <ParticleContactGenerator.h>
+#include <ParticleContact.h>
 
 class ParticleContactRegistry
 {

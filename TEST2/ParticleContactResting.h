@@ -6,6 +6,13 @@ class ParticleContactResting : public ParticleContactGenerator
 {
 public:
 
+	///Constructeur
+
+	ParticleContactResting(float rad, std::vector<Particle*> part) {
+		radius = rad;
+		particle = part;
+	}
+
 	///Atributs
 
 	//Radius du mur

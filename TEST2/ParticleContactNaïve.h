@@ -9,6 +9,13 @@ class ParticleContactNaïve : public ParticleContactGenerator
 
 public :
 
+	///Constructeur
+
+	ParticleContactNaïve(float rad, std::vector<Particle*> part) { 
+		radius = rad; 
+		particle = part;
+	}
+
 	///Attributs
 
 	//Radius de la particule

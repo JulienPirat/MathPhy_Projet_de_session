@@ -16,8 +16,6 @@ public:
 
 	///Methode
 
-	void Init(float deltaTime);
-
 	//take a pointer to an array of contacts and the number of contact left to be generated;
 	unsigned int addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const;
 };

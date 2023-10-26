@@ -94,15 +94,16 @@ GLFWwindow* GraphicEngine::Init()
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
-
-    glDisable(GL_BLEND);
-    glDisable(GL_DITHER);
+    glEnable(GL_BLEND);
+    glEnable(GL_DITHER);
+    
     glDisable(GL_FOG);
     glDisable(GL_LIGHTING);
     glDisable(GL_TEXTURE_1D);
     glDisable(GL_TEXTURE_2D);
     glDisable(GL_TEXTURE_3D);
-    glShadeModel(GL_FLAT);
+    
+    glShadeModel(GL_SMOOTH);
 
     // build and compile our shader zprogram
     // ------------------------------------
@@ -168,8 +169,8 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
 
         glPointSize(100.0f * pointScale);
         
+        ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
         glBegin(GL_POINTS);
-        glColor3d(255,0,0);
 		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
         glEnd();
 	}
@@ -251,11 +252,57 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 void GraphicEngine::RenderCube()
 {
     //render a cube at the origin using buffers and shaders
+    ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     glBegin(GL_QUADS);
-    glColor3d(INT_MAX, 0, 0);
-    glVertex3f(-1.0f, -1.0f, 1.0f);
-    glVertex3f(1.0f, -1.0f, 1.0f);
-    glVertex3f(1.0f, 1.0f, 1.0f);
-    glVertex3f(-1.0f, 1.0f, 1.0f);
+    //front face
+    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom left
+    glVertex3f(1.0f, -1.0f, 1.0f); //bottom right
+    glVertex3f(1.0f, 1.0f, 1.0f); //top right
+    glVertex3f(-1.0f, 1.0f, 1.0f); //top left
+    glEnd();
+
+    //back face
+    ourShader->setVec3("objectColor", .4f, .2f, 0.31f);
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
+    glVertex3f(1.0f, -1.0f, -1.0f); //bottom right
+    glVertex3f(1.0f, 1.0f, -1.0f); //top right
+    glVertex3f(-1.0f, 1.0f, -1.0f); //top left
+    glEnd();
+
+    //left face
+    ourShader->setVec3("objectColor", .6f, .7f, 0.1f);
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
+    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom right
+    glVertex3f(-1.0f, 1.0f, 1.0f); //top right
+    glVertex3f(-1.0f, 1.0f, -1.0f); //top left
+    glEnd();
+
+    //right face
+    ourShader->setVec3("objectColor", .3f, 0.2f, 0.7f);
+    glBegin(GL_QUADS);
+    glVertex3f(1.0f, -1.0f, -1.0f); //bottom left
+    glVertex3f(1.0f, -1.0f, 1.0f); //bottom right
+    glVertex3f(1.0f, 1.0f, 1.0f); //top right
+    glVertex3f(1.0f, 1.0f, -1.0f); //top left
+    glEnd();
+
+    //top face
+    ourShader->setVec3("objectColor", .8f, 0.4f, 0.6f);
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, 1.0f, -1.0f); //bottom left
+    glVertex3f(-1.0f, 1.0f, 1.0f); //bottom right
+    glVertex3f(1.0f, 1.0f, 1.0f); //top right
+    glVertex3f(1.0f, 1.0f, -1.0f); //top left
+    glEnd();
+
+    //bottom face
+    ourShader->setVec3("objectColor", 1.0f, 1.0f, 0.9f);
+    glBegin(GL_QUADS);
+    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
+    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom right
+    glVertex3f(1.0f, -1.0f, 1.0f); //top right
+    glVertex3f(1.0f, -1.0f, -1.0f); //top left
     glEnd();
 }

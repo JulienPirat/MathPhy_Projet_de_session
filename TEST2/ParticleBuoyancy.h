@@ -5,6 +5,7 @@ class ParticleBuoyancy : public ParticleForceGenerator
 {
 private:
 
+
 	///Attributes
 
 	//Particle properties
@@ -16,6 +17,15 @@ private:
 	float liquidDensity;
 
 public:
+
+	///Constructeur
+
+	ParticleBuoyancy(float maxDepth, float volume, float waterHeight, float liquidDens) {
+		m_maxDepth = maxDepth;
+		m_volume = volume;
+		m_waterHeight = waterHeight;
+		liquidDensity = liquidDens;
+	}
 
 	///Methodes
 

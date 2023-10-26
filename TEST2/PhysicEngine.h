@@ -5,6 +5,7 @@
 #include <ParticleContactResolver.h>
 #include <ParticleContactGenerator.h>
 #include <ParticleForceRegistry.h>
+#include <ParticleContactRegistry.h>
 
 class PhysicEngine
 {
@@ -25,18 +26,19 @@ class PhysicEngine
 
 		void ClearParticles();
 
-		void GestionCollisions(float deltaTime);
-
 		void putGravityToParticle();
 
 		void putDragToParticle();
 
 		void putAnchoredSpringToParticle();
 
-	private:
+		void putBuoyancyToParticle();
 
-		//generate contacts
-		unsigned generateContacts();
+		void AddCableExample(Particle* part1, Particle* part2);
+
+		void CallAllContactGenerator();
+
+	private:
 
 		///Attributs
 
@@ -44,19 +46,15 @@ class PhysicEngine
 
 		ParticleForceRegistry forceRegistry_Particle;
 
-		/*
-		struct ContactGenRegistration
-		{
-			ParticleContactGenerator* gen;
-			ContactGenRegistration* next;
-		};
-
 		//Holds the list of contact generators.
-		ContactGenRegistration* firstContactGen;
-		*/
+		ParticleContactRegistry* contactRegistry = new ParticleContactRegistry();
 
-		//Holds the list of contact generators.
-		std::vector<ParticleContactGenerator*> contactRegistry;
+		//Contact Generator Lists
+		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;
+		std::vector<ParticleContactGenerator*> AdditionnalContactGeneratorRegistry;
+
+		unsigned int limitIterContactGenerator = 100;
+		unsigned int limitIterContactResolver = 10;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

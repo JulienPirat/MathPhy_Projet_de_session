@@ -1,5 +1,6 @@
 #pragma once
 #include <ParticleContact.h>
+#include <ParticleContactRegistry.h>
 
 class ParticleContactResolver
 {
@@ -11,7 +12,7 @@ protected:
 	unsigned int iteration;
 
 	//Track the number of iterations used
-	unsigned iterationsUsed;
+	unsigned int iterationsUsed;
 
 public: 
 
@@ -24,7 +25,7 @@ public:
 	//take an array of contact
 	//iterate on each contact according to their separatingVelocity
 	//Stop when all contacts are solved or when max iterations is reached
-	void resolveContacts(ParticleContact* contactArray, unsigned int numContact, float duration);
+	void resolveContacts(ParticleContactRegistry* ContactRegistry, unsigned int numContact, float duration);
 
 	void setIterations(unsigned iterations) { iteration = iterations; };
 };

@@ -4,10 +4,14 @@
 #include <ParticleGravity.h>
 #include <ParticleDrag.h>
 #include <ParticleAnchoredSpring.h>
+#include <ParticleBuoyancy.h>
+#include <ParticleCable.h>
 
 void PhysicEngine::Init()
 {
-	//Nothing to do here since we've moved the initialization of particles into world
+
+	//Nota bene : Additionnal Contact Generator is filled by the user
+
 }
 
 void PhysicEngine::Update(float deltaTime)
@@ -24,15 +28,29 @@ void PhysicEngine::Update(float deltaTime)
 	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
 	forceRegistry_Particle.UpdateForce(deltaTime);
 
-	//Check Particules collisions
-	GestionCollisions(deltaTime);
+	//Check Particules collisions & fill contact list
+	CallAllContactGenerator();
+
+	//Resolve Contacts
+	if (contactRegistry->Contacts.size() > 0) {
+		if (limitIterContactResolver < contactRegistry->Contacts.size() - 1) {
+			//If we have more than "limitIterContactResolver" contacts to resolve we only solve "limitIterContactResolver" of them
+			resolver.setIterations(limitIterContactResolver);
+			resolver.resolveContacts(contactRegistry, limitIterContactResolver, deltaTime);
+		}
+		else {
+			//We can resolve all contact this frame
+			resolver.setIterations(contactRegistry->Contacts.size());
+			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size(), deltaTime);
+		}
+	}
 
 	// Generate contacts.
-	unsigned usedContacts = generateContacts();
+	//unsigned usedContacts = generateContacts();
 
 	// And process them.
-	resolver.setIterations(usedContacts * 2);
-	resolver.resolveContacts(contacts, usedContacts, deltaTime);
+	//resolver.setIterations(usedContacts * 2);
+	//resolver.resolveContacts(contacts, usedContacts, deltaTime);
 }
 
 void PhysicEngine::Shutdown()
@@ -51,26 +69,6 @@ void PhysicEngine::ClearParticles() {
 
 }
 
-void PhysicEngine::GestionCollisions(float deltaTime)
-{
-	
-	ParticleContactResting* GCResting = new ParticleContactResting();
-	//On récup toutes les particules du jeu
-	GCResting->particle = this->particles;
-	//Boite de collision de toutes les particules
-	GCResting->radius = 0.5f;
-	//
-	GCResting->Init(deltaTime);
-	
-	ParticleContactNaïve* GCNaive = new ParticleContactNaïve();
-	//On récup toutes les particules du jeu
-	GCNaive->particle = this->particles;
-	//Boite de collision de toutes les particules
-	GCNaive->radius = 0.5f;
-	//
-	GCNaive->Init(deltaTime);
-}
-
 void PhysicEngine::putGravityToParticle()
 {
 	for (auto p : this->particles) {
@@ -81,7 +79,7 @@ void PhysicEngine::putGravityToParticle()
 void PhysicEngine::putDragToParticle()
 {
 	for (auto p : this->particles) {
-		forceRegistry_Particle.add(p, new ParticleDrag());
+		forceRegistry_Particle.add(p, new ParticleDrag(100.f, 100.f));
 	}
 }
 
@@ -92,19 +90,41 @@ void PhysicEngine::putAnchoredSpringToParticle() {
 	}
 }
 
-unsigned PhysicEngine::generateContacts()
-{
-	unsigned limit = maxContacts;
-	ParticleContact* nextContact = contacts;
-	for (auto reg : contactRegistry)
-	{
-		unsigned used = reg->addContact(nextContact, limit);
-		limit -= used;
-		nextContact += used;
-		// We’ve run out of contacts to fill. This means we’re missing
-		// contacts.
-		if (limit <= 0) break;
+void PhysicEngine::putBuoyancyToParticle() {
+
+	for (auto p : this->particles) {
+		forceRegistry_Particle.add(p,
+			new ParticleBuoyancy(
+				-30.f, //MaxDepth
+				33.51f, //Particle volume V = 4/3 pi r3 and r=2
+				-1.0f, //WaterHeight
+				2.f //Water density (1000kg per m3)
+			));
 	}
-	// Return the number of contacts used.
-	return maxContacts - limit;
+}
+
+void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
+	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(3,-2, part1, part2));
+	forceRegistry_Particle.add(part1, new ParticleGravity());
+}
+
+void PhysicEngine::CallAllContactGenerator()
+{
+	//Clear Basics for this frame
+	BasicsContactGeneratorRegistry.clear();
+
+	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
+
+	//Initialisation of Basics Contact Generator
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(2, particles));
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
+
+	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
+		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
+	}
+
+	//On appelle le addContact sur le générateurs de contact additionnels (Cable, Rod, ...)
+	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
+		acontactgen->addContact(contactRegistry, limitIterContactGenerator);
+	}
 }

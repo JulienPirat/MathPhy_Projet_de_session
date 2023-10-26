@@ -1,17 +1,17 @@
 #include "ParticleContactResolver.h"
 
-void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, unsigned int numContact, float duration)
+void ParticleContactResolver::resolveContacts(ParticleContactRegistry* ContactRegistry, unsigned int numContact, float duration)
 {
 	iterationsUsed = 0;
 	while (iterationsUsed < iteration)
 	{
 		//Find the contact with the largest closing velocity
 		float max = 0;
-		unsigned int maxIndex = numContact;
+		unsigned int maxIndex = 0; // numContact; BENJ FIX MIGHT BE CONFIRM
 		for (unsigned int i = 0; i < numContact; i++)
 		{
-			float sepVel = contactArray[i].calculateSeparatingVelocity();
-			if (sepVel < max && (sepVel < 0 || contactArray[i].penetration > 0))
+			float sepVel = ContactRegistry->Contacts[i].calculateSeparatingVelocity();
+			if (sepVel < max && (sepVel < 0 || ContactRegistry->Contacts[i].penetration > 0))
 			{
 				max = sepVel;
 				maxIndex = i;
@@ -19,7 +19,7 @@ void ParticleContactResolver::resolveContacts(ParticleContact* contactArray, uns
 		}
 
 		//Resolve this contact
-		contactArray[maxIndex].resolve(duration);
+		ContactRegistry->Contacts[maxIndex].resolve(duration);
 
 		iterationsUsed++;
 	}

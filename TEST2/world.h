@@ -36,6 +36,9 @@ public:
 	//Ajouter un exemple de cable
 	void AddCableExample();
 
+	//Ajouter un exemple de rod
+	void AddRodExample();
+
 	//Lancement de la simulation
 	int Run();
 

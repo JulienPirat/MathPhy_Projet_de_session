@@ -56,7 +56,7 @@ GLFWwindow* GraphicEngine::Init()
         return nullptr;
 
     // Create window with graphics context
-    GLFWwindow* _window = glfwCreateWindow(1280, 720, "Dear ImGui GLFW+OpenGL3 example", nullptr, nullptr);
+    GLFWwindow* _window = glfwCreateWindow(1280, 720, "BME - Best Moteur Ever", nullptr, nullptr);
     window = _window;
 
     if (window == nullptr)
@@ -94,6 +94,15 @@ GLFWwindow* GraphicEngine::Init()
     // configure global opengl state
     // -----------------------------
     glEnable(GL_DEPTH_TEST);
+
+    glDisable(GL_BLEND);
+    glDisable(GL_DITHER);
+    glDisable(GL_FOG);
+    glDisable(GL_LIGHTING);
+    glDisable(GL_TEXTURE_1D);
+    glDisable(GL_TEXTURE_2D);
+    glDisable(GL_TEXTURE_3D);
+    glShadeModel(GL_FLAT);
 
     // build and compile our shader zprogram
     // ------------------------------------
@@ -155,7 +164,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         float cameraDist = glm::distance(point, u_cameraPos);
         float pointScale = 1.0 - (cameraDist / maxDistance);
         pointScale = glm::max(pointScale, minPointScale);
-        pointScale = glm::min(pointScale, maxPointScale);\
+        pointScale = glm::min(pointScale, maxPointScale);
 
         glPointSize(100.0f * pointScale);
         
@@ -165,6 +174,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         glEnd();
 	}
 
+    RenderCube();
 }
 
 void GraphicEngine::SwapBuffers()
@@ -181,11 +191,6 @@ void GraphicEngine::Shutdown()
     glfwTerminate();
 
     delete ourShader;
-
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
-    glDeleteVertexArrays(1, &VAO);
-    glDeleteBuffers(1, &VBO);
 }
 
 void processInput(GLFWwindow* window)
@@ -241,4 +246,16 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
+}
+
+void GraphicEngine::RenderCube()
+{
+    //render a cube at the origin using buffers and shaders
+    glBegin(GL_QUADS);
+    glColor3d(INT_MAX, 0, 0);
+    glVertex3f(-1.0f, -1.0f, 1.0f);
+    glVertex3f(1.0f, -1.0f, 1.0f);
+    glVertex3f(1.0f, 1.0f, 1.0f);
+    glVertex3f(-1.0f, 1.0f, 1.0f);
+    glEnd();
 }

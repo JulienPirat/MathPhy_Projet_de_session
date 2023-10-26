@@ -10,6 +10,14 @@ public:
 	//a contact will be generated if the distance between particles is not equals to length
 	float length;
 
+	///Constructeur
+
+	ParticleRod(float len, Particle* part1, Particle* part2) {
+		length = len;
+		particle[0] = part1;
+		particle[1] = part2;
+	}
+
 	///Methodes
 
 	//Returns the current length of the cable.

@@ -26,6 +26,11 @@ unsigned int ParticleCable::addContact(ParticleContactRegistry* ContactRegistry,
 	contact.penetration = length - maxLength;
 	contact.restitution = restitution;
 
+	contact.particle[0]->getPosition().afficher();
+	std::cout << "particle 2 :  ";
+	contact.particle[1]->getPosition().afficher();
+	std::cout << "taille cable : " << length;
+
 	ContactRegistry->Contacts.push_back(contact);
 
 	return limit--;

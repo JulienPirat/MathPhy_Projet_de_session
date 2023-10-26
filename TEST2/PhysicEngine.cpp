@@ -104,19 +104,21 @@ void PhysicEngine::putBuoyancyToParticle() {
 }
 
 void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
-	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(3,-2, part1, part2));
+	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(4,0.5f, part1, part2));
 	forceRegistry_Particle.add(part1, new ParticleGravity());
+
 }
 
 void PhysicEngine::CallAllContactGenerator()
 {
 	//Clear Basics for this frame
 	BasicsContactGeneratorRegistry.clear();
+	contactRegistry->ClearContactRegistry();
 
 	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
 
 	//Initialisation of Basics Contact Generator
-	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(2, particles));
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(0.5f, particles));
 	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
 
 	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {

@@ -33,6 +33,9 @@ public:
 	//Ajoute une force de flottement
 	void PutBuoyancyForceGenerator();
 
+	//Ajouter un exemple de cable
+	void AddCableExample();
+
 	//Lancement de la simulation
 	int Run();
 

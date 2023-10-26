@@ -34,6 +34,8 @@ class PhysicEngine
 
 		void putBuoyancyToParticle();
 
+		void AddCableExample(Particle* part1, Particle* part2);
+
 		void CallAllContactGenerator();
 
 	private:

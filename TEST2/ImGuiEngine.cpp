@@ -145,6 +145,11 @@ void ImGuiEngine::Update()
             w.PutBuoyancyForceGenerator();
         }
 
+        if (ImGui::Button("Cable Test")) {
+            World& w = World::GetInstance();
+            w.AddCableExample();
+        }
+
         ImGui::Text("Part 2 :");
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();

@@ -15,8 +15,9 @@ public:
 
 	///Constructeur
 
-	ParticleDrag() {
-	
+	ParticleDrag(float k1, float k2) {
+		m_k1 = k1;
+		m_k2 = k2;
 	}
 
 	///Methodes

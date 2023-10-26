@@ -5,6 +5,7 @@
 #include <ParticleDrag.h>
 #include <ParticleAnchoredSpring.h>
 #include <ParticleBuoyancy.h>
+#include <ParticleCable.h>
 
 void PhysicEngine::Init()
 {
@@ -39,8 +40,8 @@ void PhysicEngine::Update(float deltaTime)
 		}
 		else {
 			//We can resolve all contact this frame
-			resolver.setIterations(contactRegistry->Contacts.size() - 1);
-			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size() - 1, deltaTime);
+			resolver.setIterations(contactRegistry->Contacts.size());
+			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size(), deltaTime);
 		}
 	}
 
@@ -78,7 +79,7 @@ void PhysicEngine::putGravityToParticle()
 void PhysicEngine::putDragToParticle()
 {
 	for (auto p : this->particles) {
-		forceRegistry_Particle.add(p, new ParticleDrag());
+		forceRegistry_Particle.add(p, new ParticleDrag(100.f, 100.f));
 	}
 }
 
@@ -100,6 +101,11 @@ void PhysicEngine::putBuoyancyToParticle() {
 				2.f //Water density (1000kg per m3)
 			));
 	}
+}
+
+void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
+	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(3,-2, part1, part2));
+	forceRegistry_Particle.add(part1, new ParticleGravity());
 }
 
 void PhysicEngine::CallAllContactGenerator()

@@ -30,7 +30,7 @@ private:
 
 	GLFWwindow* window = nullptr;
 
-    unsigned int texture1, texture2;
-    unsigned int VBO, VAO;
     Shader* ourShader = nullptr;
+
+	void RenderCube();
 };

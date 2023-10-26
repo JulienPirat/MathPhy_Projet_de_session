@@ -6,6 +6,7 @@
 #include <ParticleAnchoredSpring.h>
 #include <ParticleBuoyancy.h>
 #include <ParticleCable.h>
+#include <ParticleRod.h>
 
 void PhysicEngine::Init()
 {
@@ -105,6 +106,12 @@ void PhysicEngine::putBuoyancyToParticle() {
 
 void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
 	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(4,0.5f, part1, part2));
+	//forceRegistry_Particle.add(part1, new ParticleGravity());
+
+}
+
+void PhysicEngine::AddRodExample(Particle* part1, Particle* part2) {
+	AdditionnalContactGeneratorRegistry.push_back(new ParticleRod(3,part1,part2));
 	//forceRegistry_Particle.add(part1, new ParticleGravity());
 
 }

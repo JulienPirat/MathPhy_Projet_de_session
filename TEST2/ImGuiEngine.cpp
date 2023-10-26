@@ -152,7 +152,7 @@ void ImGuiEngine::Update()
 
         if (ImGui::Button("Rod Test")) {
             World& w = World::GetInstance();
-            w.AddCableExample();
+            w.AddRodExample();
         }
 
         ImGui::Text("Part 2 :");

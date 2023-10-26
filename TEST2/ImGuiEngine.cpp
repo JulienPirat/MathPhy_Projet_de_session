@@ -150,6 +150,11 @@ void ImGuiEngine::Update()
             w.AddCableExample();
         }
 
+        if (ImGui::Button("Rod Test")) {
+            World& w = World::GetInstance();
+            w.AddCableExample();
+        }
+
         ImGui::Text("Part 2 :");
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();

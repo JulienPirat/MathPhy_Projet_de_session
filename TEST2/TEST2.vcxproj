@@ -145,6 +145,8 @@
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
     <ClCompile Include="libs\glad.c" />
     <ClCompile Include="libs\stb_image.cpp" />
+    <ClCompile Include="Matrix3.cpp" />
+    <ClCompile Include="Matrix4.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleAnchoredSpring.cpp" />
     <ClCompile Include="ParticleBuoyancy.cpp" />
@@ -164,6 +166,7 @@
     <ClCompile Include="ParticleRod.cpp" />
     <ClCompile Include="ParticleSpring.cpp" />
     <ClCompile Include="PhysicEngine.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
@@ -187,6 +190,8 @@
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
     <ClInclude Include="libs\stb_image.h" />
+    <ClInclude Include="Matrix3.h" />
+    <ClInclude Include="Matrix4.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleAnchoredSpring.h" />
     <ClInclude Include="ParticleBuoyancy.h" />
@@ -206,6 +211,7 @@
     <ClInclude Include="ParticleRod.h" />
     <ClInclude Include="ParticleSpring.h" />
     <ClInclude Include="PhysicEngine.h" />
+    <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Vector3D.h" />
     <ClInclude Include="world.h" />
   </ItemGroup>

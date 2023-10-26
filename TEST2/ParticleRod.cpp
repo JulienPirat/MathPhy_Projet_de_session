@@ -10,7 +10,7 @@ unsigned int ParticleRod::addContact(ParticleContactRegistry* ContactRegistry, u
 {
 	//Find the length of the rod
 	float current = currentLength();
-
+	//std::cout << "taille cable : " << current;
 	//Check if the rod is overextended
 	if (current == length)
 	{

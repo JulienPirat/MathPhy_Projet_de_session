@@ -36,6 +36,8 @@ class PhysicEngine
 
 		void AddCableExample(Particle* part1, Particle* part2);
 
+		void AddRodExample(Particle* part1, Particle* part2);
+
 		void CallAllContactGenerator();
 
 	private:

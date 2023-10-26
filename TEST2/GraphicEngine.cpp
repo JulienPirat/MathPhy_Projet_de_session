@@ -174,7 +174,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         glEnd();
 	}
 
-    RenderCube();
+    //RenderCube();
 }
 
 void GraphicEngine::SwapBuffers()

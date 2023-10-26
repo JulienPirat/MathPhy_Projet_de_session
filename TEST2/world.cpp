@@ -131,17 +131,17 @@ void World::AddCableExample()
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
-		3, //Inverse Masse
+		1, //Inverse Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1spring);
 
 	Particle* p2spring = new Particle(
 		Vector3D(0, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
+		Vector3D(-10, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
-		-1, //Inverse Masse
+		1, //Inverse Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2spring);

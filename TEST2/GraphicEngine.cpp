@@ -12,7 +12,6 @@
 #include "learnopengl/camera.h"
 
 #include <iostream>
-#include <Sphere.h>
 
 
 float clear_color[4] = { 0.45f, 0.55f, 0.60f, 1.00f };
@@ -159,24 +158,17 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
 
     //draw particles as point of radius 50
     for (auto p : particles)
-    { 
-        glm::vec3 u_cameraPos = camera.Position;
-        glm::vec3 point = glm::vec3(p->getPosition().x, p->getPosition().y, p->getPosition().z);
-
-        float cameraDist = glm::distance(point, u_cameraPos);
-        float pointScale = 1.0 - (cameraDist / maxDistance);
-        pointScale = glm::max(pointScale, minPointScale);
-        pointScale = glm::min(pointScale, maxPointScale);
-
-        glPointSize(100.0f * pointScale);
-        
+    {   
         ourShader->setVec3("objectColor", p->getColor().x, p->getColor().y, p->getColor().z);
-        glBegin(GL_POINTS);
-		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
-        glEnd();
+        
+        float x = p->getPosition().x;
+        float y = p->getPosition().y;
+        float z = p->getPosition().z;
+
+        RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
 	}
 
-    RenderCube(Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+    RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
 }
 
 void GraphicEngine::SwapBuffers()
@@ -250,64 +242,72 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
-void GraphicEngine::RenderCube(Vector3D topPosition, Vector3D bottomPosition)
+/*
+* Render a cube
+* @param topPosition the position of the top of the cube from the back face, facing towards positive x
+* @param bottomPosition the position of the bottom of the cube from the front face, facing towards positive x
+*/
+void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Particle* p)
 {
-    float length = topPosition.x - bottomPosition.x;
-    float width = topPosition.y - bottomPosition.y;
-    float height = topPosition.z - bottomPosition.z;
-
     //render a cube at the origin using buffers and shaders
-    ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
-    glBegin(GL_QUADS);
-    //front face
-    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom left
-    glVertex3f(1.0f, -1.0f, 1.0f); //bottom right
-    glVertex3f(1.0f, 1.0f, 1.0f); //top right
-    glVertex3f(-1.0f, 1.0f, 1.0f); //top left
-    glEnd();
-
-    //back face
-    ourShader->setVec3("objectColor", .4f, .2f, 0.31f);
-    glBegin(GL_QUADS);
-    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
-    glVertex3f(1.0f, -1.0f, -1.0f); //bottom right
-    glVertex3f(1.0f, 1.0f, -1.0f); //top right
-    glVertex3f(-1.0f, 1.0f, -1.0f); //top left
-    glEnd();
-
+    
     //left face
-    ourShader->setVec3("objectColor", .6f, .7f, 0.1f);
+    if(p) ourShader->setVec3("objectColor", p->getColor().x + .1f, p->getColor().y - .1f, p->getColor().z - .1f);
+    else ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     glBegin(GL_QUADS);
-    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
-    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom right
-    glVertex3f(-1.0f, 1.0f, 1.0f); //top right
-    glVertex3f(-1.0f, 1.0f, -1.0f); //top left
+    glVertex3f(bottomPosition.x , bottomPosition.y, bottomPosition.z); //bottom left
+    glVertex3f(bottomPosition.x, topPosition.y, bottomPosition.z); //bottom right
+    glVertex3f(bottomPosition.x, topPosition.y, topPosition.z); //top right
+    glVertex3f(bottomPosition.x, bottomPosition.y, topPosition.z); //top left
     glEnd();
 
     //right face
-    ourShader->setVec3("objectColor", .3f, 0.2f, 0.7f);
+    if (p) ourShader->setVec3("objectColor", p->getColor().x - .1f, p->getColor().y - .1f, p->getColor().z + .1f);
+    else ourShader->setVec3("objectColor", .4f, .2f, 0.31f);
     glBegin(GL_QUADS);
-    glVertex3f(1.0f, -1.0f, -1.0f); //bottom left
-    glVertex3f(1.0f, -1.0f, 1.0f); //bottom right
-    glVertex3f(1.0f, 1.0f, 1.0f); //top right
-    glVertex3f(1.0f, 1.0f, -1.0f); //top left
-    glEnd();
-
-    //top face
-    ourShader->setVec3("objectColor", .8f, 0.4f, 0.6f);
-    glBegin(GL_QUADS);
-    glVertex3f(-1.0f, 1.0f, -1.0f); //bottom left
-    glVertex3f(-1.0f, 1.0f, 1.0f); //bottom right
-    glVertex3f(1.0f, 1.0f, 1.0f); //top right
-    glVertex3f(1.0f, 1.0f, -1.0f); //top left
+    glVertex3f(topPosition.x, bottomPosition.y , bottomPosition.z); //bottom left
+    glVertex3f(topPosition.x, topPosition.y, bottomPosition.z); //bottom right
+    glVertex3f(topPosition.x, topPosition.y, topPosition.z); //top right
+    glVertex3f(topPosition.x, bottomPosition.y, topPosition.z); //top left
     glEnd();
 
     //bottom face
-    ourShader->setVec3("objectColor", 1.0f, 1.0f, 0.9f);
+    if (p) ourShader->setVec3("objectColor", p->getColor().x - .1f, p->getColor().y -.1f, p->getColor().z - .1f);
+    else ourShader->setVec3("objectColor", .6f, .7f, 0.1f);
     glBegin(GL_QUADS);
-    glVertex3f(-1.0f, -1.0f, -1.0f); //bottom left
-    glVertex3f(-1.0f, -1.0f, 1.0f); //bottom right
-    glVertex3f(1.0f, -1.0f, 1.0f); //top right
-    glVertex3f(1.0f, -1.0f, -1.0f); //top left
+    glVertex3f(topPosition.x, bottomPosition.y, bottomPosition.z); //bottom left
+    glVertex3f(bottomPosition.x, bottomPosition.y , bottomPosition.z); //bottom right
+    glVertex3f(bottomPosition.x, bottomPosition.y, topPosition.z); //top right
+    glVertex3f(topPosition.x, bottomPosition.y, topPosition.z); //top left
+    glEnd();
+
+    //top face
+    if (p) ourShader->setVec3("objectColor", p->getColor().x +.2f, p->getColor().y + .1f, p->getColor().z + .1f);
+    else ourShader->setVec3("objectColor", .3f, 0.2f, 0.7f);
+    glBegin(GL_QUADS);
+    glVertex3f(bottomPosition.x, topPosition.y, bottomPosition.z); //bottom left
+    glVertex3f(topPosition.x, topPosition.y, bottomPosition.z); //bottom right
+    glVertex3f(topPosition.x, topPosition.y, topPosition.z); //top right
+    glVertex3f(bottomPosition.x, topPosition.y, topPosition.z); //top left
+    glEnd();
+
+    //front face
+    if (p) ourShader->setVec3("objectColor", p->getColor().x + .1f, p->getColor().y + .1f, p->getColor().z - .1f);
+    else ourShader->setVec3("objectColor", .8f, 0.4f, 0.6f);
+    glBegin(GL_QUADS);
+    glVertex3f(bottomPosition.x, bottomPosition.y, topPosition.z); //bottom left
+    glVertex3f(bottomPosition.x, topPosition.y, topPosition.z); //bottom right
+    glVertex3f(topPosition.x, topPosition.y, topPosition.z); //top right
+    glVertex3f(topPosition.x, bottomPosition.y, topPosition.z); //top left
+    glEnd();
+
+    //back face
+    if (p) ourShader->setVec3("objectColor", p->getColor().x + .1f, p->getColor().y - .1f, p->getColor().z + .1f);
+    else ourShader->setVec3("objectColor", 1.0f, 1.0f, 0.9f);
+    glBegin(GL_QUADS);
+    glVertex3f(topPosition.x, bottomPosition.y, bottomPosition.z); //bottom left
+    glVertex3f(topPosition.x, topPosition.y, bottomPosition.z); //bottom right
+    glVertex3f(bottomPosition.x, topPosition.y, bottomPosition.z); //top right
+    glVertex3f(bottomPosition.x, bottomPosition.y, bottomPosition.z); //top left
     glEnd();
 }

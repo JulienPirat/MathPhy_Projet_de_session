@@ -49,6 +49,12 @@
     <Filter Include="Fichiers d%27en-tête\ConctactGenerator\ParticleLink">
       <UniqueIdentifier>{32abbb06-3b3d-4604-a6aa-088230114a8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Matrices">
+      <UniqueIdentifier>{0c209348-e946-4f12-ac9d-250da99e0439}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Matrices">
+      <UniqueIdentifier>{ef50bc96-3ded-40b6-bbdf-711351ac7d1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -149,6 +155,15 @@
     </ClCompile>
     <ClCompile Include="ParticleContactRegistry.cpp">
       <Filter>Fichiers sources\Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix3.cpp">
+      <Filter>Fichiers sources\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4.cpp">
+      <Filter>Fichiers sources\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Fichiers sources\Matrices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +276,15 @@
     </ClInclude>
     <ClInclude Include="ParticleContactRegistry.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3.h">
+      <Filter>Fichiers d%27en-tête\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4.h">
+      <Filter>Fichiers d%27en-tête\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Fichiers d%27en-tête\Matrices</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

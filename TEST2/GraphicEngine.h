@@ -32,5 +32,5 @@ private:
 
     Shader* ourShader = nullptr;
 
-	void RenderCube();
+	void RenderCube(Vector3D topPosition, Vector3D bottomPosition);
 };

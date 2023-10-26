@@ -12,6 +12,7 @@
 #include "learnopengl/camera.h"
 
 #include <iostream>
+#include <Sphere.h>
 
 
 float clear_color[4] = { 0.45f, 0.55f, 0.60f, 1.00f };
@@ -169,13 +170,13 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
 
         glPointSize(100.0f * pointScale);
         
-        ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
+        ourShader->setVec3("objectColor", p->getColor().x, p->getColor().y, p->getColor().z);
         glBegin(GL_POINTS);
 		glVertex3f(p->getPosition().x, p->getPosition().y, p->getPosition().z);
         glEnd();
 	}
 
-    RenderCube();
+    RenderCube(Vector3D(0, 0, 0), Vector3D(1, 1, 1));
 }
 
 void GraphicEngine::SwapBuffers()
@@ -249,8 +250,12 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }
 
-void GraphicEngine::RenderCube()
+void GraphicEngine::RenderCube(Vector3D topPosition, Vector3D bottomPosition)
 {
+    float length = topPosition.x - bottomPosition.x;
+    float width = topPosition.y - bottomPosition.y;
+    float height = topPosition.z - bottomPosition.z;
+
     //render a cube at the origin using buffers and shaders
     ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     glBegin(GL_QUADS);

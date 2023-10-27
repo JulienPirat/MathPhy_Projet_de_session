@@ -12,7 +12,7 @@ unsigned int ParticleContactResting::addContact(ParticleContactRegistry* Contact
 
                 if (distance < radius * 2) {
                     float restitution = (ParticleA->getDamping() + ParticleB->getDamping()) / 2;
-                    float penetration = radius * 2 - ((radius * 2) - distance);
+                    float penetration = ((radius * 2) - distance);
                     Vector3D normalContact = ParticleA->getPosition() - ParticleB->getPosition();
                     normalContact.norme();
                     //std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<
@@ -21,7 +21,7 @@ unsigned int ParticleContactResting::addContact(ParticleContactRegistry* Contact
 
                     //normalContact.afficher();
                     
-                    if (ParticleB->getInverseMass() == 0) {
+                    if (ParticleB->getInverseMass() < 0) {
                         if (ParticleA->getVelocity().x == 0 && ParticleA->getVelocity().z == 0) {
                             if (ParticleA->getVelocity().y >= -10 && ParticleA->getVelocity().y < 0) {
 

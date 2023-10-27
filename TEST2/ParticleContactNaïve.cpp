@@ -11,7 +11,7 @@ unsigned int ParticleContactNaïve::addContact(ParticleContactRegistry* ContactRe
 
                 if (distance < radius * 2) {
                     float restitution = (ParticleA->getDamping() + ParticleB->getDamping()) / 2;
-                    float penetration = radius * 2 - ((radius * 2) - distance);
+                    float penetration = ((radius * 2) - distance);
                     Vector3D normalContact = ParticleA->getPosition() - ParticleB->getPosition();
                     normalContact.norme();
                     //std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<

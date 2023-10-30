@@ -55,5 +55,8 @@ private:
 
 	//Call each frame to calculate the TransformMatrix and normalize the orientation
 	void CalculateDerivedData();
+
+	//Calculate the transform Matrix
+	void CalculateTransformMatrix();
 };
 

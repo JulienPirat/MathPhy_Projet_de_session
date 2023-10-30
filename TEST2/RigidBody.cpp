@@ -10,12 +10,21 @@ void RigidBody::Integrate(float duration)
 
 void RigidBody::AddForce(const Vector3D& force)
 {
-	//TODO
+	m_forceAccum += force;
 }
 
 void RigidBody::AddForceAtPoint(const Vector3D& force, const Vector3D& worldPoint)
 {
-	//TODO	
+	//find distance between worldpoint and position
+	auto distance = worldPoint - position;
+	//find angle between distance and force
+	auto angle = acos(distance.produitScalaire(force) / (distance.magnitude() * force.magnitude()));
+	//calculate torque
+	auto torque = force * sin(angle) * distance.magnitude();
+	//add torque to torque accumulator
+	m_torqueAccum += torque;
+	//add force to force accumulator
+	m_forceAccum += force;
 }
 
 void RigidBody::AddForceAtBodyPoint(const Vector3D& force, const Vector3D& localPoint)

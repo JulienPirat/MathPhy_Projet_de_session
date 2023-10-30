@@ -7,5 +7,5 @@ private:
 
 public:
 	// Apply the gravity force to center of mass of the rigidBody
-	void UpdateForce(RigidBody* rigidBody) override;
+	void UpdateForce(RigidBody* rigidBody);
 };

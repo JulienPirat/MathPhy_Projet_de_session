@@ -22,9 +22,6 @@
     <Filter Include="Fichiers d%27en-tête\ConctactGenerator">
       <UniqueIdentifier>{cdb5f3b7-d0d0-41ad-8ba0-6a7fa8667031}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\ForceGenerator">
-      <UniqueIdentifier>{c0470fbc-5306-4fe1-a5ee-c5c1cad094ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\Engines">
       <UniqueIdentifier>{38fc163f-3e20-4ece-a4c8-559a2777e965}</UniqueIdentifier>
     </Filter>
@@ -39,9 +36,6 @@
     </Filter>
     <Filter Include="Fichiers sources\ParticleLink">
       <UniqueIdentifier>{069c1040-65ff-4a42-96a4-cb270eaf4e84}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\ForceGenerator">
-      <UniqueIdentifier>{cc23785f-1772-409f-b626-19a27eaebc6d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Fichiers sources\ContactGenerator">
       <UniqueIdentifier>{f4aa3ea2-b8b8-4915-9bd4-0d3ed506d8e0}</UniqueIdentifier>
@@ -60,6 +54,18 @@
     </Filter>
     <Filter Include="Fichiers sources\Rigid">
       <UniqueIdentifier>{b4fd42e7-c410-4aeb-bcb7-d59eb4cfe86c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\ParticleForceGenerator">
+      <UniqueIdentifier>{cc23785f-1772-409f-b626-19a27eaebc6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\ParticleForceGenerator">
+      <UniqueIdentifier>{c0470fbc-5306-4fe1-a5ee-c5c1cad094ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\RBForceGenerator">
+      <UniqueIdentifier>{8a9ae77d-bb79-4a83-bb9a-e172ac18a7e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\RBForceGenerator">
+      <UniqueIdentifier>{28883b0e-90a7-4e60-b7f7-9f6a862e318a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -127,25 +133,25 @@
       <Filter>Fichiers sources\ParticleLink</Filter>
     </ClCompile>
     <ClCompile Include="ParticleGravity.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleForceGenerator.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactGenerator.cpp">
       <Filter>Fichiers sources\ContactGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleDrag.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSpring.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleBuoyancy.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleAnchoredSpring.cpp">
-      <Filter>Fichiers sources\ForceGenerator</Filter>
+      <Filter>Fichiers sources\ParticleForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactNaïve.cpp">
       <Filter>Fichiers sources\ContactGenerator</Filter>
@@ -173,6 +179,18 @@
     </ClCompile>
     <ClCompile Include="RigidBody.cpp">
       <Filter>Fichiers sources\Rigid</Filter>
+    </ClCompile>
+    <ClCompile Include="RBGravityForceGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RBGravityForceGenerator.cpp">
+      <Filter>Fichiers sources\RBForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RBSpringForceGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RBSpringForceGenerator.cpp">
+      <Filter>Fichiers sources\RBForceGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -230,7 +248,7 @@
       <Filter>Fichiers d%27en-tête\ConctactGenerator\ParticleLink</Filter>
     </ClInclude>
     <ClInclude Include="ParticleForceGenerator.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
@@ -269,19 +287,19 @@
       <Filter>Fichiers d%27en-tête\Misc</Filter>
     </ClInclude>
     <ClInclude Include="ParticleGravity.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleBuoyancy.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleAnchoredSpring.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleDrag.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSpring.h">
-      <Filter>Fichiers d%27en-tête\ForceGenerator</Filter>
+      <Filter>Fichiers d%27en-tête\ParticleForceGenerator</Filter>
     </ClInclude>
     <ClInclude Include="ParticleContactRegistry.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
@@ -297,6 +315,9 @@
     </ClInclude>
     <ClInclude Include="RigidBody.h">
       <Filter>Fichiers d%27en-tête\Rigid</Filter>
+    </ClInclude>
+    <ClInclude Include="RBForceGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

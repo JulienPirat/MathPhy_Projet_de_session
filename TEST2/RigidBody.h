@@ -4,7 +4,7 @@
 
 class RigidBody
 {
-private :
+public:
 
 	///Attributes
 
@@ -32,7 +32,7 @@ private :
 	//Accumulated torque added by Force Generator
 	Vector3D m_torqueAccum;
 
-public:
+
 
 	///Methodes
 	

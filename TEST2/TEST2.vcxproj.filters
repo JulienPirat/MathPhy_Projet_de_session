@@ -55,6 +55,12 @@
     <Filter Include="Fichiers sources\Matrices">
       <UniqueIdentifier>{ef50bc96-3ded-40b6-bbdf-711351ac7d1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Rigid">
+      <UniqueIdentifier>{e3eabf35-b4bb-4e13-9aa5-28c7522598cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Rigid">
+      <UniqueIdentifier>{b4fd42e7-c410-4aeb-bcb7-d59eb4cfe86c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -164,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="Quaternion.cpp">
       <Filter>Fichiers sources\Matrices</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBody.cpp">
+      <Filter>Fichiers sources\Rigid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -285,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="Quaternion.h">
       <Filter>Fichiers d%27en-tête\Matrices</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBody.h">
+      <Filter>Fichiers d%27en-tête\Rigid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

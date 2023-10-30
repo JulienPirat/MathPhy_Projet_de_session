@@ -8,9 +8,8 @@ public:
 
 	///Constructeur
 
-	ParticleContactResting(float rad, std::vector<Particle*> part) {
+	ParticleContactResting(float rad, std::vector<Particle*>& part) : particle(part) {
 		radius = rad;
-		particle = part;
 	}
 
 	///Atributs
@@ -19,7 +18,7 @@ public:
 	float radius;
 
 	//Particles qui pourraient collisioner avec le sol
-	std::vector<Particle*> particle;
+	std::vector<Particle*>& particle;
 
 	///Methode
 

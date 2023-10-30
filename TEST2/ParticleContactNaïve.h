@@ -11,9 +11,8 @@ public :
 
 	///Constructeur
 
-	ParticleContactNaïve(float rad, std::vector<Particle*> part) { 
-		radius = rad; 
-		particle = part;
+	ParticleContactNaïve(float rad, std::vector<Particle*>& part) : particle(part) { 
+		radius = rad;
 	}
 
 	///Attributs
@@ -22,7 +21,7 @@ public :
 	float radius;
 
 	//Particles qui pourraient collisioner ensemble
-	std::vector<Particle*> particle;
+	std::vector<Particle*>& particle;
 
 	///Methodes
 

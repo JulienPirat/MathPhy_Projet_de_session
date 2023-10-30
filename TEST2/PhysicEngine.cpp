@@ -119,15 +119,19 @@ void PhysicEngine::AddRodExample(Particle* part1, Particle* part2) {
 void PhysicEngine::CallAllContactGenerator()
 {
 	//Clear Basics for this frame
+	for (auto c : BasicsContactGeneratorRegistry)
+	{
+		delete c;
+	}
+	
 	BasicsContactGeneratorRegistry.clear();
 	contactRegistry->ClearContactRegistry();
-
-	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
 
 	//Initialisation of Basics Contact Generator
 	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(0.5f, particles));
 	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
 
+	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
 	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
 		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
 	}

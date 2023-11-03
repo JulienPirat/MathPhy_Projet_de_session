@@ -38,7 +38,7 @@ public:
 	///Constructeurs
 
 	RigidBody();
-	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D color);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col);
 
 	///Methodes
 	

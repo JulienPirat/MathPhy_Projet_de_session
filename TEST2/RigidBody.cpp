@@ -19,7 +19,7 @@ RigidBody::RigidBody()
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D color)
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col)
 {
 	inverseMasse = (1 / mass);
 	linearDamping = linDamp;
@@ -32,6 +32,9 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 	transformMatrix = Matrix4();
 
 	m_angularDamping = angDamp;
+
+
+	color = col;
 
 	ClearAccumulators();
 }

@@ -35,7 +35,7 @@ unsigned int ParticleRod::addContact(ParticleContactRegistry* ContactRegistry, u
 	}
 	else
 	{
-		contact.contactNormal = normal * -1;
+		contact.contactNormal = normal * (-1.);
 		contact.penetration = length - current;
 	}
 

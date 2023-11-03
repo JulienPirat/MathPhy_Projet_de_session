@@ -42,6 +42,18 @@ void Vector3D::operator*=(double scalaire) {
 	z = z * scalaire;
 }
 
+Vector3D Vector3D::operator*(float scalaire) const
+{
+	return Vector3D(x * scalaire, y * scalaire, z * scalaire);
+}
+
+void Vector3D::operator*=(float scalaire)
+{
+	x = x * scalaire;
+	y = y * scalaire;
+	z = z * scalaire;
+}
+
 Vector3D Vector3D::operator/(double scalaire) const {
 	if (scalaire != 0) {
 		return Vector3D(x / scalaire, y / scalaire, z / scalaire);

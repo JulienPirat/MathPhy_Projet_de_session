@@ -19,9 +19,9 @@ RigidBody::RigidBody()
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, double mass, Vector3D color)
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D color)
 {
-	inverseMasse = 1 / mass;
+	inverseMasse = (1 / mass);
 	linearDamping = linDamp;
 	position = pos;
 	velocity = vel;

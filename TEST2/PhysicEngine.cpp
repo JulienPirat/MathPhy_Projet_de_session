@@ -76,7 +76,7 @@ void PhysicEngine::ClearParticles() {
 
 }
 
-void PhysicEngine::ClearRigidBodys()
+void PhysicEngine::ClearRigidBodies()
 {
 	for (auto& rb : rigidbodys)
 	{

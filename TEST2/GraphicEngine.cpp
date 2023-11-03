@@ -122,7 +122,7 @@ void GraphicEngine::Update()
     glfwPollEvents();
 }
 
-void GraphicEngine::Render(std::vector<Particle*> const &particles)
+void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<RigidBody*> const& bodies)
 {
     // render loop
     // -----------
@@ -156,6 +156,8 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
     glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     ourShader->setMat4("model", model);
 
+    RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
+
     //draw particles as point of radius 50
     for (auto p : particles)
     {   
@@ -168,7 +170,11 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
 	}
 
-    RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
+    for (auto b : bodies)
+    {
+        ourShader->setVec3("objectColor", b->color.x, b->color.y, b->color.z);
+		RenderSphere(b->position);
+    }
 }
 
 void GraphicEngine::SwapBuffers()
@@ -311,3 +317,50 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Pa
     glVertex3f(bottomPosition.x, bottomPosition.y, bottomPosition.z); //top left
     glEnd();
 }
+
+void GraphicEngine::RenderSphere(Vector3D position)
+{
+    float radius = .1f;
+    int slices = 10;
+    int stacks = 10;
+    double pi = 3.141;
+    glBegin(GL_TRIANGLES);
+
+    for (int i = 0; i < slices; i++) {
+        for (int j = 0; j < stacks; j++) {
+            float phi1 = i * 2 * pi / slices;
+            float phi2 = (i + 1) * 2 * pi / slices;
+            float theta1 = j * pi / stacks;
+            float theta2 = (j + 1) * pi / stacks;
+
+            // Vertices
+            float x1 = position.x +radius * sin(theta1) * cos(phi1);
+            float y1 = position.y + radius * sin(theta1) * sin(phi1);
+            float z1 = position.z + radius * cos(theta1);
+
+            float x2 = position.x + radius * sin(theta1) * cos(phi2);
+            float y2 = position.y + radius * sin(theta1) * sin(phi2);
+            float z2 = position.z + radius * cos(theta1);
+
+            float x3 = position.x + radius * sin(theta2) * cos(phi1);
+            float y3 = position.y + radius * sin(theta2) * sin(phi1);
+            float z3 = position.z + radius * cos(theta2);
+
+            float x4 = position.x + radius * sin(theta2) * cos(phi2);
+            float y4 = position.y + radius * sin(theta2) * sin(phi2);
+            float z4 = position.z + radius * cos(theta2);
+
+            // Draw triangles
+            glVertex3f(x1, y1, z1);
+            glVertex3f(x2, y2, z2);
+            glVertex3f(x3, y3, z3);
+
+            glVertex3f(x2, y2, z2);
+            glVertex3f(x3, y3, z3);
+            glVertex3f(x4, y4, z4);
+        }
+    }
+
+    glEnd();
+}
+

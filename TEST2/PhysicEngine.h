@@ -15,7 +15,7 @@ class PhysicEngine
 
 		///Constructeur
 
-		PhysicEngine(std::vector<Particle*>& listParticles, std::vector<RigidBody*>& listRigidBody) : particles(listParticles), rigidbodys(listRigidBody) {};
+		PhysicEngine(std::vector<Particle*>& listParticles, std::vector<RigidBody*>& listRigidBody) : particles(listParticles), rigidbodies(listRigidBody) {};
 		PhysicEngine();
 
 		///Methodes
@@ -50,7 +50,7 @@ class PhysicEngine
 
 		///Attributs
 
-		std::vector<RigidBody*>& rigidbodys;
+		std::vector<RigidBody*>& rigidbodies;
 		RBForceRegistry forceRegistry_Rigibody;
 
 		std::vector<Particle*>& particles;

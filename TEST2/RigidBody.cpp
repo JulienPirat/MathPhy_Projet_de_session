@@ -58,7 +58,7 @@ void RigidBody::Integrate(float duration)
 	CalculateDerivedData();
 
 	// Calculate Acceleration based on forces
-	Vector3D resultingAcc = Vector3D(0,0,0);
+	Vector3D resultingAcc = Vector3D(0, 0, 0);
 	resultingAcc.addScaledVector(m_forceAccum, inverseMasse);
 
 	// Caculate Angular acceleration based on forces
@@ -66,11 +66,12 @@ void RigidBody::Integrate(float duration)
 	resultingAcc.addScaledVector(m_torqueAccum, inverseMasse);
 
 
-	// Update Velocity based on Acceleration
-	velocity.addScaledVector(resultingAngAcc, duration);
-
+	
 	//Update Angular Velocity based on Angular Acceleration
-	rotation.addScaledVector(resultingAcc, duration);
+	rotation.addScaledVector(resultingAngAcc, duration);
+
+	// Update Velocity based on Acceleration
+	velocity.addScaledVector(resultingAcc, duration);
 
 
 	// Damping 

@@ -122,7 +122,7 @@ void GraphicEngine::Update()
     glfwPollEvents();
 }
 
-void GraphicEngine::Render(std::vector<Particle*> const &particles)
+void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<RigidBody*> const& bodies)
 {
     // render loop
     // -----------
@@ -156,6 +156,8 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
     glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     ourShader->setMat4("model", model);
 
+    RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
+
     //draw particles as point of radius 50
     for (auto p : particles)
     {   
@@ -168,9 +170,11 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles)
         RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
 	}
 
-    RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
-
-    RenderSphere(Vector3D(5, 5, 5));
+    for (auto b : bodies)
+    {
+        ourShader->setVec3("objectColor", b->color.x, b->color.y, b->color.z);
+		RenderSphere(b->position);
+    }
 }
 
 void GraphicEngine::SwapBuffers()

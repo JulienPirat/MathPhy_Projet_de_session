@@ -28,7 +28,7 @@ class PhysicEngine
 
 		void ClearParticles();
 
-		void ClearRigidBodys();
+		void ClearRigidBodies();
 
 		void putGravityToParticle();
 

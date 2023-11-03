@@ -3,6 +3,7 @@
 #include <Particle.h>
 #include <LearnOpenGL\shader_m.h>
 #include <vector>
+#include <RigidBody.h>
 
 struct GLFWwindow;
 
@@ -18,7 +19,7 @@ public:
 
 	void Update();
 
-    void Render(std::vector<Particle*> const& particles);
+    void Render(std::vector<Particle*> const& particles, std::vector<RigidBody*> const& bodies);
 
 	void SwapBuffers();
 

@@ -12,11 +12,11 @@ void World::DeleteAllParticle() {
 
 void World::AddRigidBody(RigidBody* rb)
 {
-	this->rigidBodys.push_back(rb);
+	this->rigidBodies.push_back(rb);
 }
 
 void World::DeleteAllRigidBody() {
-	physics.ClearRigidBodys();
+	physics.ClearRigidBodies();
 }
 
 void World::GenBasicCollision() {
@@ -250,7 +250,7 @@ void World::Update(float deltaTime)
 
 	imGui.Update();
 
-	graphics.Render(particles);
+	graphics.Render(particles, rigidBodies);
 
 	imGui.Render();
 

@@ -66,14 +66,14 @@ private :
 	///Attributs
 
 	GraphicEngine graphics;
-	PhysicEngine physics = PhysicEngine(particles,rigidBodys);
+	PhysicEngine physics = PhysicEngine(particles,rigidBodies);
 	ImGuiEngine imGui;
 
 	ParticleContactResolver contactResolver = ParticleContactResolver(10);
 
 	std::vector<Particle*> particles = std::vector<Particle*>();
 
-	std::vector<RigidBody*> rigidBodys = std::vector<RigidBody*>();
+	std::vector<RigidBody*> rigidBodies = std::vector<RigidBody*>();
 
 	///Methodes
 

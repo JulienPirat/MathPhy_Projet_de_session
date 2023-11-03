@@ -171,6 +171,17 @@ void ImGuiEngine::Update()
             w.GenContactResting();
         }
         
+        if (ImGui::Button("RigidBody With Gravity")) {
+            World& w = World::GetInstance();
+            w.AddRigidBody();
+        }
+
+        if (ImGui::Button("Delete All RigidBody")) {
+            World& w = World::GetInstance();
+            w.DeleteAllRigidBody();
+        }
+
+
         /*
         if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
             counter++;

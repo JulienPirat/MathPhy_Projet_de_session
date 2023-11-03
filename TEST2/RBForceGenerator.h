@@ -5,5 +5,5 @@ class RBForceGenerator {
 
 public:
 	//Apply forcce to the rigidBody
-	virtual void updateForce(RigidBody* rigidBody) = 0;
+	virtual void UpdateForce(RigidBody* rigidBody) = 0;
 };

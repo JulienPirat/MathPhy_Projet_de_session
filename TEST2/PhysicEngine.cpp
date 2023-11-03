@@ -120,6 +120,13 @@ void PhysicEngine::putBuoyancyToParticle() {
 	}
 }
 
+void PhysicEngine::putGravityToRigidBody()
+{
+	for (auto rb : this->rigidbodys) {
+		forceRegistry_Rigibody.add(rb, new RBGravityForceGenerator());
+	}
+}
+
 void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
 	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(4,0.5f, part1, part2));
 	//forceRegistry_Particle.add(part1, new ParticleGravity());

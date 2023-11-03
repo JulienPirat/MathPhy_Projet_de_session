@@ -6,8 +6,8 @@
 #include <ParticleContactGenerator.h>
 #include <ParticleForceRegistry.h>
 #include <ParticleContactRegistry.h>
-#include <RigidBody.h>
 #include <RBForceRegistry.h>
+#include <RBGravityForceGenerator.h>
 
 class PhysicEngine
 {
@@ -37,6 +37,8 @@ class PhysicEngine
 		void putAnchoredSpringToParticle();
 
 		void putBuoyancyToParticle();
+
+		void putGravityToRigidBody();
 
 		void AddCableExample(Particle* part1, Particle* part2);
 

@@ -23,13 +23,15 @@ public:
 
 	float data[12];
 
-	//Operators
+	///Operators
 
 	//Combinaison of affine transformation
 	Matrix4 operator*(const Matrix4& matrix) const;
 
 	//Transform of a vector
 	Vector3D operator*(const Vector3D& vector) const;
+
+	///Methodes
 
 	//Get the Inverse matrix
 	Matrix4 Inverse();

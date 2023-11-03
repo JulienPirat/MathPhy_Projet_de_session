@@ -1,5 +1,41 @@
 #include "RigidBody.h"
 
+RigidBody::RigidBody()
+{
+	inverseMasse = 1;
+	linearDamping = 0.9f;
+	position = Vector3D();
+	velocity = Vector3D();
+
+	orientation = Quaternion();
+	rotation = Vector3D();
+
+	transformMatrix = Matrix4();
+
+	m_angularDamping = 0.9f;
+
+	color = Vector3D();
+
+	ClearAccumulators();
+}
+
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D color)
+{
+	inverseMasse = (1 / mass);
+	linearDamping = linDamp;
+	position = pos;
+	velocity = vel;
+
+	orientation = Quaternion();
+	rotation = rotat;
+
+	transformMatrix = Matrix4();
+
+	m_angularDamping = angDamp;
+
+	ClearAccumulators();
+}
+
 void RigidBody::Integrate(float duration)
 {
 

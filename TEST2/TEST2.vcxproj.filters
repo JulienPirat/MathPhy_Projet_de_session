@@ -180,14 +180,8 @@
     <ClCompile Include="RigidBody.cpp">
       <Filter>Fichiers sources\Rigid</Filter>
     </ClCompile>
-    <ClCompile Include="RBGravityForceGenerator.h">
-      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
-    </ClCompile>
     <ClCompile Include="RBGravityForceGenerator.cpp">
       <Filter>Fichiers sources\RBForceGenerator</Filter>
-    </ClCompile>
-    <ClCompile Include="RBSpringForceGenerator.h">
-      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
     </ClCompile>
     <ClCompile Include="RBSpringForceGenerator.cpp">
       <Filter>Fichiers sources\RBForceGenerator</Filter>
@@ -324,6 +318,12 @@
     </ClInclude>
     <ClInclude Include="RBForceRegistry.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="RBGravityForceGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="RBSpringForceGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

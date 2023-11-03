@@ -6,8 +6,8 @@
 #include <ParticleContactGenerator.h>
 #include <ParticleForceRegistry.h>
 #include <ParticleContactRegistry.h>
-#include <RigidBody.h>
 #include <RBForceRegistry.h>
+#include <RBGravityForceGenerator.h>
 
 class PhysicEngine
 {

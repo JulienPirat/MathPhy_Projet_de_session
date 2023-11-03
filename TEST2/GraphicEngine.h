@@ -33,6 +33,6 @@ private:
 
     Shader* ourShader = nullptr;
 
-	void RenderCube(Vector3D topPosition, Vector3D bottomPosition, Particle* p);
+	void RenderCube(Vector3D topPosition, Vector3D bottomPosition, RigidBody* b);
 	void RenderSphere(Vector3D position);
 };

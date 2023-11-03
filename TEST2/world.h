@@ -20,6 +20,9 @@ public:
 	void GenContactResting();
 	void GenWallCollision();
 
+	void AddRigidBody(RigidBody* rb);
+	void DeleteAllRigidBody();
+
 	//Ajoute des forceGenerator aux partiules.
 	void PutGravityForceGenerator();
 
@@ -60,12 +63,14 @@ private :
 	///Attributs
 
 	GraphicEngine graphics;
-	PhysicEngine physics = PhysicEngine(particles);
+	PhysicEngine physics = PhysicEngine(particles,rigidBodys);
 	ImGuiEngine imGui;
 
 	ParticleContactResolver contactResolver = ParticleContactResolver(10);
 
 	std::vector<Particle*> particles = std::vector<Particle*>();
+
+	std::vector<RigidBody*> rigidBodys = std::vector<RigidBody*>();
 
 	///Methodes
 

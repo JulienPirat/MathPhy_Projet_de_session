@@ -192,6 +192,9 @@
     <ClCompile Include="RBSpringForceGenerator.cpp">
       <Filter>Fichiers sources\RBForceGenerator</Filter>
     </ClCompile>
+    <ClCompile Include="RBForceRegistry.cpp">
+      <Filter>Fichiers sources\Misc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -318,6 +321,9 @@
     </ClInclude>
     <ClInclude Include="RBForceGenerator.h">
       <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="RBForceRegistry.h">
+      <Filter>Fichiers d%27en-tête\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

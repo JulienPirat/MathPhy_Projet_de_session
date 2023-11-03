@@ -10,6 +10,15 @@ void World::DeleteAllParticle() {
 	physics.ClearParticles();
 }
 
+void World::AddRigidBody(RigidBody* rb)
+{
+	this->rigidBodys.push_back(rb);
+}
+
+void World::DeleteAllRigidBody() {
+	physics.ClearRigidBodys();
+}
+
 void World::GenBasicCollision() {
 
 	//Créer deux particules

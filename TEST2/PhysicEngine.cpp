@@ -25,9 +25,15 @@ void PhysicEngine::Update(float deltaTime)
 		p->isResting = false;
 	}
 
+	//update rigidbodys positions 
+	for (auto rb : rigidbodys) 
+	{
+		rb->Integrate(deltaTime);
+	}
+
 	// Accumulation des forces
-	// POURQUOI <-- ne pas supprimer c'est pour me retrouver
 	forceRegistry_Particle.UpdateForce(deltaTime);
+	forceRegistry_Rigibody.UpdateForce();
 
 	//Check Particules collisions & fill contact list
 	CallAllContactGenerator();
@@ -68,6 +74,16 @@ void PhysicEngine::ClearParticles() {
 
 	particles.clear();
 
+}
+
+void PhysicEngine::ClearRigidBodys()
+{
+	for (auto& rb : rigidbodys)
+	{
+		delete rb;
+	}
+
+	rigidbodys.clear();
 }
 
 void PhysicEngine::putGravityToParticle()

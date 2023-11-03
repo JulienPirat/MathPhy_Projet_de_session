@@ -6,6 +6,8 @@
 #include <ParticleContactGenerator.h>
 #include <ParticleForceRegistry.h>
 #include <ParticleContactRegistry.h>
+#include <RigidBody.h>
+#include <RBForceRegistry.h>
 
 class PhysicEngine
 {
@@ -13,7 +15,7 @@ class PhysicEngine
 
 		///Constructeur
 
-		PhysicEngine(std::vector<Particle*>& listParticles) : particles(listParticles) {};
+		PhysicEngine(std::vector<Particle*>& listParticles, std::vector<RigidBody*>& listRigidBody) : particles(listParticles), rigidbodys(listRigidBody) {};
 		PhysicEngine();
 
 		///Methodes
@@ -25,6 +27,8 @@ class PhysicEngine
 		void Shutdown();
 
 		void ClearParticles();
+
+		void ClearRigidBodys();
 
 		void putGravityToParticle();
 
@@ -44,8 +48,10 @@ class PhysicEngine
 
 		///Attributs
 
-		std::vector<Particle*>& particles;
+		std::vector<RigidBody*>& rigidbodys;
+		RBForceRegistry forceRegistry_Rigibody;
 
+		std::vector<Particle*>& particles;
 		ParticleForceRegistry forceRegistry_Particle;
 
 		//Holds the list of contact generators.

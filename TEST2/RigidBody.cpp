@@ -51,6 +51,9 @@ void RigidBody::Integrate(float duration)
 	//Orientation Update
 	orientation.UpdateByAngularVelocity(rotation, duration);
 
+	//In last recalculate the transform matrix after the integration
+	CalculateDerivedData();
+
 	// Calculate Acceleration based on forces
 	Vector3D resultingAcc = Vector3D(0,0,0);
 	resultingAcc.addScaledVector(m_forceAccum, inverseMasse);
@@ -73,9 +76,6 @@ void RigidBody::Integrate(float duration)
 	// Angular Damping
 	rotation = rotation * powf(m_angularDamping, duration);
 
-
-	//In last recalculate the transform matrix after the integration
-	CalculateDerivedData();
 
 	//Reset All Accumulators
 	ClearAccumulators();

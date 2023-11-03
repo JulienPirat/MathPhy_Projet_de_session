@@ -28,6 +28,10 @@ public:
     Vector3D operator*(double scalaire) const;
     void operator*=(double scalaire);
 
+    //Methode pour multiplier le vecteur par un float
+    Vector3D operator*(float scalaire) const;
+    void operator*=(float scalaire);
+
     // Méthode pour diviser le vecteur par un scalaire
     Vector3D operator/(double scalaire) const;
     void operator/=(double scalaire);

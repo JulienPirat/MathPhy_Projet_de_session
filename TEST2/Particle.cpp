@@ -20,13 +20,6 @@ Particle::Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double
 	clearAccumulator();
 }
 
-/*
-void Particle::PositionUpdate(double* time) {
-	position.addScaledVector(velocity, *time);
-	position.addScaledVector(acceleration, *time * *time * 0.5);
-}
-*/
-
 void Particle::clearAccumulator()
 {
 	forceAccum = Vector3D();

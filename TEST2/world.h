@@ -42,6 +42,9 @@ public:
 	//Ajouter un exemple de rod
 	void AddRodExample();
 
+	//Ajouter un exemple de RigidBody
+	void AddRigidBody();
+
 	//Lancement de la simulation
 	int Run();
 

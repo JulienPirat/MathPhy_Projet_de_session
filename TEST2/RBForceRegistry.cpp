@@ -26,6 +26,6 @@ void RBForceRegistry::UpdateForce()
 {
 	Registry::iterator i = m_registery.begin();
 	for (; i != m_registery.end(); i++) {
-		i->RBforceGenerator->updateForce(i->rigidbody);
+		i->RBforceGenerator->UpdateForce(i->rigidbody);
 	}
 }

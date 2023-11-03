@@ -26,7 +26,7 @@ void PhysicEngine::Update(float deltaTime)
 	}
 
 	//update rigidbodys positions 
-	for (auto rb : rigidbodys) 
+	for (auto rb : rigidbodies)
 	{
 		rb->Integrate(deltaTime);
 	}
@@ -78,12 +78,12 @@ void PhysicEngine::ClearParticles() {
 
 void PhysicEngine::ClearRigidBodies()
 {
-	for (auto& rb : rigidbodys)
+	for (auto& rb : rigidbodies)
 	{
 		delete rb;
 	}
 
-	rigidbodys.clear();
+	rigidbodies.clear();
 }
 
 void PhysicEngine::putGravityToParticle()
@@ -122,7 +122,7 @@ void PhysicEngine::putBuoyancyToParticle() {
 
 void PhysicEngine::putGravityToRigidBody()
 {
-	for (auto rb : this->rigidbodys) {
+	for (auto rb : this->rigidbodies) {
 		forceRegistry_Rigibody.add(rb, new RBGravityForceGenerator());
 	}
 }

@@ -53,21 +53,7 @@ public:
 	void rotateByVector(Vector3D& vector, float scale);
 
 	//Apply the quaternion update the angular velocity
-	void UpdateByAngularVelocity(const Vector3D& rotation, float duration);
+	void UpdateByAngularVelocity(Vector3D& rotation, float duration);
 
-	/*
-	void addScaledVector(const Vector3D& vector, float scale)
-	{
-		Quaternion q(0,
-			vector.x * scale,
-			vector.y * scale,
-			vector.z * scale);
-		q *= *this;
-		r += q.r * ((float)0.5);
-		i += q.i * ((float)0.5);
-		j += q.j * ((float)0.5);
-		k += q.k * ((float)0.5);
-	}
-	*/
 };
 

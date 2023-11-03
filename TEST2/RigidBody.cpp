@@ -2,10 +2,48 @@
 
 void RigidBody::Integrate(float duration)
 {
-	//TODO : Complete
+
+	// Check if duration is valid
+	if (duration < 0.0) {
+		std::cout << "ERREUR DURATION SHOULDN'T BE 0 OR LESS !" << std::endl;
+		return;
+	}
+
+	// Position Update
+	position.addScaledVector(velocity, duration);
+
+	//Orientation Update
+	orientation.UpdateByAngularVelocity(rotation, duration);
+
+	// Calculate Acceleration based on forces
+	Vector3D resultingAcc = Vector3D(0,0,0);
+	resultingAcc.addScaledVector(m_forceAccum, inverseMasse);
+
+	// Caculate Angular acceleration based on forces
+	Vector3D resultingAngAcc = Vector3D(0, 0, 0);
+	resultingAcc.addScaledVector(m_torqueAccum, inverseMasse);
+
+
+	// Update Velocity based on Acceleration
+	velocity.addScaledVector(resultingAngAcc, duration);
+
+	//Update Angular Velocity based on Angular Acceleration
+	rotation.addScaledVector(resultingAcc, duration);
+
+
+	// Damping 
+	velocity = velocity * powf(linearDamping, duration);
+
+	// Angular Damping
+	rotation = rotation * powf(m_angularDamping, duration);
+
 
 	//In last recalculate the transform matrix after the integration
 	CalculateDerivedData();
+
+	//Reset All Accumulators
+	ClearAccumulators();
+
 }
 
 void RigidBody::AddForce(const Vector3D& force)
@@ -33,7 +71,7 @@ void RigidBody::AddForceAtBodyPoint(const Vector3D& force, const Vector3D& local
 	AddForceAtPoint(force, WorldPoint);
 }
 
-void RigidBody::ClearAccumulator()
+void RigidBody::ClearAccumulators()
 {
 	m_forceAccum = Vector3D(0, 0, 0);
 	m_torqueAccum = Vector3D(0, 0, 0);

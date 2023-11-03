@@ -32,6 +32,9 @@ public:
 	//Accumulated torque added by Force Generator
 	Vector3D m_torqueAccum;
 
+	///Constructeurs
+
+	//TODO
 
 
 	///Methodes
@@ -49,7 +52,7 @@ public:
 	void AddForceAtBodyPoint(const Vector3D& force, const Vector3D& localPoint);
 
 	//Called each frame to reset 
-	void ClearAccumulator();
+	void ClearAccumulators();
 
 private:
 

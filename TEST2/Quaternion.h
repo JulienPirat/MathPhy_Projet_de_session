@@ -36,6 +36,12 @@ public:
 
 	///Constructeur
 
+	Quaternion(){
+		data[0] = 0;
+		data[1] = 0;
+		data[2] = 0;
+		data[3] = 0;
+	}
 	Quaternion(float qr, float qi, float qj, float qk) {
 		data[0] = qr;
 		data[1] = qi;

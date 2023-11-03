@@ -32,10 +32,13 @@ public:
 	//Accumulated torque added by Force Generator
 	Vector3D m_torqueAccum;
 
+	//RigiBody Color
+	Vector3D color;
+
 	///Constructeurs
 
-	//TODO
-
+	RigidBody();
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, double mass, Vector3D color);
 
 	///Methodes
 	

@@ -26,7 +26,6 @@ public:
 	//Ajoute des forceGenerator aux partiules.
 	void PutGravityForceGenerator();
 
-
 	//Ajoute des forces de frottement aux particules.
 	void PutDragForceGenerator();
 
@@ -44,6 +43,9 @@ public:
 
 	//Ajouter un exemple de RigidBody
 	void AddRigidBody();
+
+	//Ajouter un exemple de AnchordSpring a 2 RigidBody
+	void AddAnchoredSpringForTwoRigidBody();
 
 	//Lancement de la simulation
 	int Run();

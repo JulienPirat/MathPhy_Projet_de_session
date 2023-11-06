@@ -176,6 +176,11 @@ void ImGuiEngine::Update()
             w.AddRigidBody();
         }
 
+        if (ImGui::Button("Exemple RigidBody With AnchoredSpring")) {
+            World& w = World::GetInstance();
+            w.AddAnchoredSpringForTwoRigidBody();
+        }
+
         if (ImGui::Button("Delete All RigidBody")) {
             World& w = World::GetInstance();
             w.DeleteAllRigidBody();

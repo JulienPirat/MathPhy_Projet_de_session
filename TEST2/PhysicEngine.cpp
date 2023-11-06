@@ -127,6 +127,11 @@ void PhysicEngine::putGravityToRigidBody()
 	}
 }
 
+void PhysicEngine::putSpringForTwoRigidBody(RigidBody* rb1, RigidBody* rb2)
+{
+	forceRegistry_Rigibody.add(rb1, new RBSpringForceGenerator(Vector3D(0.5 ,0 ,0), Vector3D(0.5, 0, 0), 0.5f, 3.0f, rb2));
+}
+
 void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {
 	AdditionnalContactGeneratorRegistry.push_back(new ParticleCable(4,0.5f, part1, part2));
 	//forceRegistry_Particle.add(part1, new ParticleGravity());

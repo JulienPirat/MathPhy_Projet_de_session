@@ -8,6 +8,7 @@
 #include <ParticleContactRegistry.h>
 #include <RBForceRegistry.h>
 #include <RBGravityForceGenerator.h>
+#include <RBSpringForceGenerator.h>
 
 class PhysicEngine
 {
@@ -39,6 +40,8 @@ class PhysicEngine
 		void putBuoyancyToParticle();
 
 		void putGravityToRigidBody();
+
+		void putSpringForTwoRigidBody(RigidBody* rb1, RigidBody* rb2);
 
 		void AddCableExample(Particle* part1, Particle* part2);
 

@@ -58,5 +58,7 @@ public:
 
     //Normalize vector
     void normalize();
+
+    bool operator==(Vector3D other);
 };
 

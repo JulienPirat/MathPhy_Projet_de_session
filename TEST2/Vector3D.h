@@ -16,6 +16,8 @@ public:
     // Constructeur avec des valeurs initiales
     Vector3D(double xVal, double yVal, double zVal);
 
+    Vector3D& operator=(const Vector3D& autre);
+
     // Méthode pour additionner deux vecteurs
     Vector3D operator+(const Vector3D& autre) const;
     void operator+=(const Vector3D& autre);

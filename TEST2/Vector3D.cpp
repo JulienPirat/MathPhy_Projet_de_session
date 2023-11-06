@@ -12,6 +12,14 @@ Vector3D::Vector3D(double xVal, double yVal, double zVal) {
 	z = zVal;
 }
 
+
+Vector3D& Vector3D::operator=(const Vector3D& autre) {
+	x = autre.x;
+	y = autre.y;
+	z = autre.z;
+	return *this;
+}
+
 Vector3D Vector3D::operator+(const Vector3D& autre) const {
 	return Vector3D(x + autre.x, y + autre.y, z + autre.z);
 }

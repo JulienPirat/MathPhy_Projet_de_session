@@ -23,9 +23,17 @@ void RBSpringForceGenerator::UpdateForce(RigidBody* rigidBody)
 		if (m_bodyAnchor.operator==(Vector3D(0, 0, 0)) || m_otherBodyAnchor.operator==(Vector3D(0, 0, 0))) {
 			// Si l'origine du ressort est égale a l'origine du rigidBody
 			rigidBody->AddForce(force);
+			force.x *= -1;
+			force.y *= -1;
+			force.z *= -1;
+			m_otherRigidBody->AddForce(force);
 		}
 		else {
 			rigidBody->AddForceAtBodyPoint(force, m_bodyAnchor);
+			force.x *= -1;
+			force.y *= -1;
+			force.z *= -1;
+			m_otherRigidBody->AddForceAtBodyPoint(force, m_otherBodyAnchor);
 		}
 	}
 }

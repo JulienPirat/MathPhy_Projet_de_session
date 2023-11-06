@@ -63,7 +63,7 @@ void RigidBody::Integrate(float duration)
 
 	// Caculate Angular acceleration based on forces
 	Vector3D resultingAngAcc = Vector3D(0, 0, 0);
-	resultingAcc.addScaledVector(m_torqueAccum, inverseMasse);
+	resultingAngAcc.addScaledVector(m_torqueAccum, inverseMasse);
 
 
 	

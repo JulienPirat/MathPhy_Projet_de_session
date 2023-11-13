@@ -167,6 +167,7 @@
     <ClCompile Include="ParticleSpring.cpp" />
     <ClCompile Include="PhysicEngine.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="RBAnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="RBForceRegistry.cpp" />
     <ClCompile Include="RBGravityForceGenerator.cpp" />
     <ClCompile Include="RBSpringForceGenerator.cpp" />
@@ -216,6 +217,7 @@
     <ClInclude Include="ParticleSpring.h" />
     <ClInclude Include="PhysicEngine.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="RBAnchoredSpringForceGenerator.h" />
     <ClInclude Include="RBForceGenerator.h" />
     <ClInclude Include="RBForceRegistry.h" />
     <ClInclude Include="RBGravityForceGenerator.h" />

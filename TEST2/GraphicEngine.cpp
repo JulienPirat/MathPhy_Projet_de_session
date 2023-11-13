@@ -124,6 +124,80 @@ void GraphicEngine::Update()
 
 void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<RigidBody*> const& bodies)
 {
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+   // ------------------------------------------------------------------
+    float vertices[] = {
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+         0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+         0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
+    };
+    // world space positions of our cubes
+    glm::vec3 cubePositions[] = {
+        glm::vec3(0.0f,  0.0f,  0.0f),
+        glm::vec3(2.0f,  5.0f, -15.0f),
+        glm::vec3(-1.5f, -2.2f, -2.5f),
+        glm::vec3(-3.8f, -2.0f, -12.3f),
+        glm::vec3(2.4f, -0.4f, -3.5f),
+        glm::vec3(-1.7f,  3.0f, -7.5f),
+        glm::vec3(1.3f, -2.0f, -2.5f),
+        glm::vec3(1.5f,  2.0f, -2.5f),
+        glm::vec3(1.5f,  0.2f, -1.5f),
+        glm::vec3(-1.3f,  1.0f, -1.5f)
+    };
+    unsigned int VBO, VAO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // position attribute
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    // texture coord attribute
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
     // render loop
     // -----------
         // per-frame time logic
@@ -151,7 +225,8 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
     // camera/view transformation
     glm::mat4 view = camera.GetViewMatrix();
     ourShader->setMat4("view", view);
-     
+
+
     //Set model ?
     glm::mat4 model = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
     ourShader->setMat4("model", model);
@@ -161,14 +236,53 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
     //draw particles as point of radius 50
     for (auto p : bodies)
     {   
+        //On setup la rotation de notre model avec le quaternion de notre 
+        glm::mat4 model = glm::mat4(
+            p->transformMatrix.data[0], p->transformMatrix.data[1], p->transformMatrix.data[2], p->transformMatrix.data[3],
+            p->transformMatrix.data[4], p->transformMatrix.data[5], p->transformMatrix.data[6], p->transformMatrix.data[7],
+            p->transformMatrix.data[8], p->transformMatrix.data[9], p->transformMatrix.data[10], p->transformMatrix.data[11],
+            0,0,0,1
+        ); 
+        ourShader->setMat4("model", model);
+        //On setup la couleur
         ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
         
         float x = p->position.x;
         float y = p->position.y;
         float z = p->position.z;
 
-        RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
+        //RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
+
+        // calculate the model matrix for each object and pass it to shader before drawing
+        //glm::mat4 model = p->transformMatrix.toMat4();
+        //model = glm::translate(model, p->position.toVec3());
+        //model = glm::rotate<double>(model, p->rotation.x, glm::vec3(1, 0, 0));
+        //ourShader->setMat4("model", model);
+
+        //glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
+
+
+    // render boxes
+    glBindVertexArray(VAO);
+    int i = 0;
+    for (auto p : bodies)
+    {
+        // calculate the model matrix for each object and pass it to shader before drawing
+        glm::mat4 model = glm::mat4(1.0f);
+        //Translate
+        model = glm::translate(model, glm::vec3(p->position.x, p->position.y, p->position.z));
+        //Rotate
+        model = glm::rotate(model, glm::radians((float)p->rotation.x), glm::vec3(1.0f, 0, 0));
+        model = glm::rotate(model, glm::radians((float)p->rotation.z), glm::vec3(0, 1.0f, 0));
+        model = glm::rotate(model, glm::radians((float)p->rotation.y), glm::vec3(0, 0, 1.0f));
+        //Color
+        ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+        //Send matrix
+        ourShader->setMat4("model", model);
+        //Draw
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+    }
 
     for (auto b : particles)
     {

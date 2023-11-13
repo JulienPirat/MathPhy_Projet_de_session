@@ -233,36 +233,6 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
 
     RenderCube(Vector3D(-10, -2, -10), Vector3D(10, -1, 10), nullptr);
 
-    //draw particles as point of radius 50
-    for (auto p : bodies)
-    {   
-        //On setup la rotation de notre model avec le quaternion de notre 
-        glm::mat4 model = glm::mat4(
-            p->transformMatrix.data[0], p->transformMatrix.data[1], p->transformMatrix.data[2], p->transformMatrix.data[3],
-            p->transformMatrix.data[4], p->transformMatrix.data[5], p->transformMatrix.data[6], p->transformMatrix.data[7],
-            p->transformMatrix.data[8], p->transformMatrix.data[9], p->transformMatrix.data[10], p->transformMatrix.data[11],
-            0,0,0,1
-        ); 
-        ourShader->setMat4("model", model);
-        //On setup la couleur
-        ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
-        
-        float x = p->position.x;
-        float y = p->position.y;
-        float z = p->position.z;
-
-        //RenderCube(Vector3D(x - .25f, y - .25f, z - .25f), Vector3D(x + .25f, y + .25f, z +.25f), p);
-
-        // calculate the model matrix for each object and pass it to shader before drawing
-        //glm::mat4 model = p->transformMatrix.toMat4();
-        //model = glm::translate(model, p->position.toVec3());
-        //model = glm::rotate<double>(model, p->rotation.x, glm::vec3(1, 0, 0));
-        //ourShader->setMat4("model", model);
-
-        //glDrawArrays(GL_TRIANGLES, 0, 36);
-	}
-
-
     // render boxes
     glBindVertexArray(VAO);
     int i = 0;

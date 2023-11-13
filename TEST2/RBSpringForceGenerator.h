@@ -11,7 +11,7 @@ private:
 	Vector3D m_otherBodyAnchor;
 
 	// If otherBodyAnchor in other RigidBody
-	RigidBody* m_otherRigidBody = nullptr;
+	RigidBody* m_otherRigidBody;
 
 	// spring parameters
 	float m_k; //Resistance du ressort
@@ -27,7 +27,7 @@ public:
 	/// <param name="k">Resistance du ressort</param>
 	/// <param name="restLength">Taille du ressort</param>
 	/// <param name="otherRigidBody">If otherBodyAnchor in other RigidBody (can be nullptr)</param>
-	RBSpringForceGenerator(Vector3D bodyAnchor, Vector3D otherBodyAnchor, float k, float restLength, RigidBody* otherRigidBody = nullptr) {
+	RBSpringForceGenerator(Vector3D bodyAnchor, Vector3D otherBodyAnchor, float k, float restLength, RigidBody* otherRigidBody) {
 		m_k = k;
 		m_restLenght = restLength;
 		m_bodyAnchor = bodyAnchor;

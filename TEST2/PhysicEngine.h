@@ -9,6 +9,7 @@
 #include <RBForceRegistry.h>
 #include <RBGravityForceGenerator.h>
 #include <RBSpringForceGenerator.h>
+#include <RBAnchoredSpringForceGenerator.h>
 
 class PhysicEngine
 {
@@ -42,6 +43,8 @@ class PhysicEngine
 		void putGravityToRigidBody();
 
 		void putSpringForTwoRigidBody(RigidBody* rb1, RigidBody* rb2);
+
+		void putSpringForRigidBody(RigidBody* rb1, Vector3D WorldPoint);
 
 		void AddCableExample(Particle* part1, Particle* part2);
 

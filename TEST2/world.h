@@ -47,6 +47,9 @@ public:
 	//Ajouter un exemple de AnchordSpring a 2 RigidBody
 	void AddAnchoredSpringForTwoRigidBody();
 
+	//Ajouter un exemple de AnchordSpring a un RigidBody
+	void AddAnchoredSpringForRigidBody();
+
 	//Lancement de la simulation
 	int Run();
 

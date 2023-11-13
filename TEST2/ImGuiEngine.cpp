@@ -170,15 +170,20 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.GenContactResting();
         }
-        
-        if (ImGui::Button("RigidBody With Gravity")) {
+
+        if (ImGui::Button("Exemple 2 RigidBody With Spring")) {
             World& w = World::GetInstance();
-            w.AddRigidBody();
+            w.AddAnchoredSpringForTwoRigidBody();
         }
 
         if (ImGui::Button("Exemple RigidBody With AnchoredSpring")) {
             World& w = World::GetInstance();
-            w.AddAnchoredSpringForTwoRigidBody();
+            w.AddAnchoredSpringForRigidBody();
+        }
+
+        if (ImGui::Button("Add Gravity for all RigidBody")) {
+            World& w = World::GetInstance();
+            w.AddRigidBody();
         }
 
         if (ImGui::Button("Delete All RigidBody")) {

@@ -21,15 +21,15 @@ public:
 	/// Constructeur
 	/// </summary>
 	/// <param name="bodyAnchor">Anchor point in Local coordinate</param>
-	/// <param name="otherBodyAnchor">Other anchor point in other's Local coordinate</param>
+	/// <param name="WorldAnchor">World Anchor Point</param>
 	/// <param name="k">Resistance du ressort</param>
 	/// <param name="restLength">Taille du ressort</param>
 	/// <param name="otherRigidBody">If otherBodyAnchor in other RigidBody (can be nullptr)</param>
-	RBAnchoredSpringForceGenerator(Vector3D bodyAnchor, Vector3D otherBodyAnchor, float k, float restLength) {
+	RBAnchoredSpringForceGenerator(Vector3D bodyAnchor, Vector3D WorldAnchor, float k, float restLength) {
 		m_k = k;
 		m_restLenght = restLength;
 		m_bodyAnchor = bodyAnchor;
-		m_otherBodyAnchor = otherBodyAnchor;
+		m_WorldAnchor = WorldAnchor;
 	}
 
 	// Transform each anchor point in world coordinate,

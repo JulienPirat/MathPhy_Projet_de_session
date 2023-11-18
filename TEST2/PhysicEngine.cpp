@@ -134,7 +134,7 @@ void PhysicEngine::putSpringForTwoRigidBody(RigidBody* rb1, RigidBody* rb2)
 
 void PhysicEngine::putSpringForRigidBody(RigidBody* rb1, Vector3D WorldPoint)
 {
-	forceRegistry_Rigibody.add(rb1, new RBAnchoredSpringForceGenerator(Vector3D(1, 1, 1), WorldPoint, 10.0f, 3.0f));
+	forceRegistry_Rigibody.add(rb1, new RBAnchoredSpringForceGenerator(Vector3D(-5, -5, -5), WorldPoint, 1.0f, 3.0f));
 }
 
 void PhysicEngine::AddCableExample(Particle* part1, Particle* part2) {

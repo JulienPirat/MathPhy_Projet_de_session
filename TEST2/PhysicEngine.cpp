@@ -129,7 +129,7 @@ void PhysicEngine::putGravityToRigidBody()
 
 void PhysicEngine::putSpringForTwoRigidBody(RigidBody* rb1, RigidBody* rb2)
 {
-	forceRegistry_Rigibody.add(rb1, new RBSpringForceGenerator(Vector3D(0.5 ,0 ,0), Vector3D(0, -0.5, 0), 1, 3.8f, rb2));
+	forceRegistry_Rigibody.add(rb1, new RBSpringForceGenerator(Vector3D(-1 ,-1 ,1), Vector3D(1, -1, 1), 1, 50.0f, rb2));
 }
 
 void PhysicEngine::putSpringForRigidBody(RigidBody* rb1, Vector3D WorldPoint)

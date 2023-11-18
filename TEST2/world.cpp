@@ -192,23 +192,23 @@ void World::AddRigidBody()
 void World::AddAnchoredSpringForTwoRigidBody()
 {
 	RigidBody* RB_1 = new RigidBody(
-		Vector3D(-2, 2, 0), //Position
+		Vector3D(-20, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		2, //Inverse Masse
+		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddRigidBody(RB_1);
 
 	RigidBody* RB_2 = new RigidBody(
-		Vector3D(2, 0, 0), //Position
+		Vector3D(20, 20, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		2, //Inverse Masse
+		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddRigidBody(RB_2);
@@ -224,7 +224,7 @@ void World::AddAnchoredSpringForRigidBody()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, //Inverse Masse
+		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
 	);
 	AddRigidBody(RB_1);

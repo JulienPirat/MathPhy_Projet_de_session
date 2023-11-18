@@ -15,3 +15,11 @@ Phase 2 :
 Définition du cable et de la tige. Définition et implémentation du resolver de contact dans le PhysicsEngine.
 
 Je n'ai pas eu de problème a définir cela. Cependant j'ai essayé en vain de faire plusieurs autres fonctionnalités. Tel que l'affichage des couleurs avec OpenGL. J'ai aussi démarré la création de primitives telle que le cube.
+
+Phaase 3 :
+
+Implémentation de AddForce sur le RigidBody, bugfixes, refonte du moteur graphique pour utiliser le vertex shader et le fragment shader, implémentation d'un rendu d'une sphère.
+
+J'ai eu des problèmes à render une sphère car les fonctions OpenGL facilitant sa création était dans une version ultérieure. J'ai donc du refaire le code à la main. J'ai aussi eu des problèmes lorsque j'ai du faire la rotation car notre ancienne façon de faire ne le permettait pas. J'ai donc du changer le code du moteur graphique pour utiliser le vertex shader et le fragment shader afin de permettre une rotation.
+
+J'ai fixé un bug de fuite de mémoire (création de nouveau pointeur de liste à chaque update) et une erreur de LINK.

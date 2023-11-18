@@ -109,21 +109,6 @@ GLFWwindow* GraphicEngine::Init()
     // ------------------------------------
     ourShader = new Shader("LearnOpenGL/7.4.camera.vs", "LearnOpenGL/7.4.camera.fs");
 
-    return window;
-}
-
-bool GraphicEngine::ShouldClose() const
-{
-    return window == nullptr || glfwWindowShouldClose(window);
-}
-
-void GraphicEngine::Update()
-{
-    glfwPollEvents();
-}
-
-void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<RigidBody*> const& bodies)
-{
     // set up vertex data (and buffer(s)) and configure vertex attributes
    // ------------------------------------------------------------------
     float vertices[] = {
@@ -182,7 +167,6 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
         glm::vec3(1.5f,  0.2f, -1.5f),
         glm::vec3(-1.3f,  1.0f, -1.5f)
     };
-    unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
@@ -197,6 +181,22 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
     // texture coord attribute
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
+    return window;
+}
+
+bool GraphicEngine::ShouldClose() const
+{
+    return window == nullptr || glfwWindowShouldClose(window);
+}
+
+void GraphicEngine::Update()
+{
+    glfwPollEvents();
+}
+
+void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<RigidBody*> const& bodies)
+{
 
     // render loop
     // -----------

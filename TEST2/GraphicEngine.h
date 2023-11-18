@@ -35,4 +35,6 @@ private:
 
 	void RenderCube(Vector3D topPosition, Vector3D bottomPosition, RigidBody* b);
 	void RenderSphere(Vector3D position);
+
+	unsigned int VBO, VAO;
 };

@@ -25,5 +25,17 @@ J'ai aussi eu du mal à comprendre comment faire en sorte que IMGUI accède a de
 , ce qui s'est résolu avec un Singleton
 J'ai passé enormément d'heures sur le projet et il m'en aurait fallut encore plus mais je ne disposait pas d'assez de temps avec les autres projets en parallèle.
 
+Phase 3 :
+
+Ajout des Rigidbodies
+Ajout des Matrices 33 et 34 ainsi que les méthodes correspondantes
+AJout de la classe AnchoredSpring
+Aider Bastien a avoir un cube qui tourne
+
+Problèmes rencontrés
+Nous avons du totalement revoir notre manière d'afficher les cubes afin de pouvoir ajouter la rotation
+Nous avons aussi eu des problèmes liés au paramétrage de nos ressorts physiques, notre moteur étant limité il arrive parfois qu'un ressort diverge
+Nous avons de nouveau eu des problèmes de fuite mémoire que nous avons du résoudre
+
 Sources :
 Ian Millington, Game Physics Engine Development, https://uqac.on.worldcat.org/oclc/706803531

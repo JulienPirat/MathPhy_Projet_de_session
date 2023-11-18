@@ -21,3 +21,14 @@ Phase 2 :
 Ajout de la détection de l'interpénétration ainsi que le lien avec la resolution de contact.
 Encore du travail sur la ground collision car la collision tremble.
 Ajout de tests pour les démonstration et la visualisation des particules.
+
+Phase 3 :
+
+Ajout les force Generator pour le rigidBody.
+Test/Démonstration des forces et de la rotation.
+Trouver les limites de nos ressorts.
+Aide Benjamin pour le bug de la fuite mémoire.
+
+Problèmes rencontrés:
+Bug sur les ressorts
+Bug de fuite mémoire

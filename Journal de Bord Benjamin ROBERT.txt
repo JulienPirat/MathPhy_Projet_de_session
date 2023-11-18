@@ -29,6 +29,8 @@ Phase 3 :
 
 Ajout des Rigidbodies
 Ajout des Matrices 33 et 34 ainsi que les méthodes correspondantes
+Ajout des Quaternions
+Ajout de l'integrateur physique
 AJout de la classe AnchoredSpring
 Aider Bastien a avoir un cube qui tourne
 

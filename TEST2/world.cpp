@@ -219,7 +219,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 void World::AddAnchoredSpringForRigidBody()
 {
 	RigidBody* RB_1 = new RigidBody(
-		Vector3D(0, 0, 0), //Position
+		Vector3D(3, 3, 3), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -229,7 +229,7 @@ void World::AddAnchoredSpringForRigidBody()
 	);
 	AddRigidBody(RB_1);
 
-	Vector3D WorldAnchorPoint = Vector3D(0, 0, 2);
+	Vector3D WorldAnchorPoint = Vector3D(3, 5, 4);
 
 	physics.putSpringForRigidBody(RB_1,WorldAnchorPoint);
 }

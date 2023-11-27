@@ -96,8 +96,8 @@ void ImGuiEngine::Update()
     ImGui::NewFrame();
 
     // 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
-    if (show_demo_window)
-        ImGui::ShowDemoWindow(&show_demo_window);
+    //if (show_demo_window)
+    //    ImGui::ShowDemoWindow(&show_demo_window);
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
     {
@@ -105,6 +105,7 @@ void ImGuiEngine::Update()
         static int counter = 0;
 
         ImGui::Begin("Math Phys Tests !");                          // Create a window called "Hello, world!" and append into it.
+        ImGui::SetWindowSize(ImVec2(300, 600), 0);
 
         /*
         ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)

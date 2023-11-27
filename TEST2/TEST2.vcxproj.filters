@@ -67,6 +67,15 @@
     <Filter Include="Fichiers sources\RBForceGenerator">
       <UniqueIdentifier>{28883b0e-90a7-4e60-b7f7-9f6a862e318a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\RBPrimitive">
+      <UniqueIdentifier>{c2fbe467-a399-4fa9-8bda-35465f4fe662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\RBContactGenerator">
+      <UniqueIdentifier>{5c1051da-7d3c-4863-844f-37d6502dfa07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\RBContactGenerator">
+      <UniqueIdentifier>{254b5e93-154f-405a-92b6-f1f07e5b3912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -191,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="RBAnchoredSpringForceGenerator.cpp">
       <Filter>Fichiers sources\RBForceGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="RBContactGenerator.cpp">
+      <Filter>Fichiers sources\RBContactGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -330,6 +342,27 @@
     </ClInclude>
     <ClInclude Include="RBAnchoredSpringForceGenerator.h">
       <Filter>Fichiers d%27en-tête\RBForceGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Fichiers d%27en-tête\RBPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="PSphere.h">
+      <Filter>Fichiers d%27en-tête\RBPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="PBox.h">
+      <Filter>Fichiers d%27en-tête\RBPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="PPlane.h">
+      <Filter>Fichiers d%27en-tête\RBPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="RBContactGenerator.h">
+      <Filter>Fichiers d%27en-tête\RBContactGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="RBContact.h">
+      <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="RBContactRegistry.h">
+      <Filter>Fichiers d%27en-tête\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

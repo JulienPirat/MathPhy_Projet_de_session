@@ -51,13 +51,6 @@ void PhysicEngine::Update(float deltaTime)
 			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size(), deltaTime);
 		}
 	}
-
-	// Generate contacts.
-	//unsigned usedContacts = generateContacts();
-
-	// And process them.
-	//resolver.setIterations(usedContacts * 2);
-	//resolver.resolveContacts(contacts, usedContacts, deltaTime);
 }
 
 void PhysicEngine::Shutdown()

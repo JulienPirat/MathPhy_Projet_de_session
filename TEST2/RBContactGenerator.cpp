@@ -1,4 +1,5 @@
 #include "RBContactGenerator.h"
+#include <PPlane.h>
 
 unsigned ContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContactRegistry* contactRegistry)
 {
@@ -32,5 +33,35 @@ unsigned ContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContact
     newContact.RigidBodies[1] = two->RB;
 
     contactRegistry->contacts->push_back(newContact);
+    return 1;
+}
+
+unsigned ContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
+{
+    float distance = plane->normal * sphere->RB->position - plane->offset;
+    
+    if (distance > 0) 
+    {
+        // We don't have collision
+        return 0;
+    }
+
+    Vector3D normalContact = plane->normal;
+    float interpenatration = -distance; // car la distance est négative
+    Vector3D contactPoint = sphere->RB->position - plane->normal * (distance + sphere->radius);
+	float restitution = (sphere->RB->linearDamping + plane->RB->linearDamping) / 2;
+    float friction = (sphere->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
+
+    RBContact newContact;
+    newContact.contactNormal = normalContact;
+    newContact.contactPoint = contactPoint;
+    newContact.penetration = interpenatration;
+    newContact.restitution = restitution;
+    newContact.friction = friction;
+    newContact.RigidBodies[0] = sphere->RB;
+    newContact.RigidBodies[1] = plane->RB;
+
+    contactRegistry->contacts->push_back(newContact);
+
     return 1;
 }

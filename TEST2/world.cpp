@@ -198,7 +198,8 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1,1,1)
 	);
 	AddRigidBody(RB_1);
 
@@ -209,7 +210,8 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
 
@@ -225,7 +227,8 @@ void World::AddAnchoredSpringForRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_1);
 

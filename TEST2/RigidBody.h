@@ -1,6 +1,7 @@
 #pragma once
 #include <Quaternion.h>
 #include <Matrix4.h>
+#include <Matrix3.h>
 
 class RigidBody
 {
@@ -32,13 +33,16 @@ public:
 	//Accumulated torque added by Force Generator
 	Vector3D m_torqueAccum;
 
+	//Inertie Matrix
+	Matrix3 inverseI;
+
 	//RigiBody Color
 	Vector3D color;
 
 	///Constructeurs
 
 	RigidBody();
-	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Vector3D dim);
 
 	///Methodes
 	
@@ -64,5 +68,8 @@ private:
 
 	//Calculate the transform Matrix
 	void CalculateTransformMatrix();
+
+	//Make inverseInertia for cuboïde
+	Matrix3 MakeInverseInertiaCuboide(Vector3D dim);
 };
 

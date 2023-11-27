@@ -82,6 +82,15 @@ Vector3D Matrix4::TransformDirection(const Vector3D& vector)
 	);
 }
 
+Matrix3 Matrix4::ToMatrix3()
+{
+	return Matrix3(
+		data[0], data[1], data[2], 
+		data[3], data[4], data[5],
+		data[6], data[7], data[8]
+	);
+}
+
 float Matrix4::getDeterminant() const
 {
 	//BENJ NTK

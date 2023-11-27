@@ -1,5 +1,6 @@
 #pragma once
 #include <Quaternion.h>
+#include <Matrix3.h>
 
 /**
 * Holds a transform matrix, consisting of a rotation matrix and
@@ -44,6 +45,9 @@ public:
 
 	//Transform a direction by ignoring the translation
 	Vector3D TransformDirection(const Vector3D& vector);
+
+	//To Matrix3
+	Matrix3 ToMatrix3();
 
 private: 
 

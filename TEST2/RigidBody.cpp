@@ -3,6 +3,7 @@
 RigidBody::RigidBody()
 {
 	inverseMasse = 1;
+	inverseI = MakeInverseInertiaCuboide(Vector3D(1,1,1));
 	linearDamping = 0.9f;
 	position = Vector3D();
 	velocity = Vector3D();
@@ -19,9 +20,10 @@ RigidBody::RigidBody()
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col)
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Vector3D dim)
 {
 	inverseMasse = (1 / mass);
+	inverseI = MakeInverseInertiaCuboide(dim);
 	linearDamping = linDamp;
 	position = pos;
 	velocity = vel;
@@ -61,11 +63,16 @@ void RigidBody::Integrate(float duration)
 	Vector3D resultingAcc = Vector3D(0, 0, 0);
 	resultingAcc.addScaledVector(m_forceAccum, inverseMasse);
 
-	// Caculate Angular acceleration based on forces
-	Vector3D resultingAngAcc = Vector3D(0, 0, 0);
-	resultingAngAcc.addScaledVector(m_torqueAccum, inverseMasse);
+	/// Caculate Angular acceleration based on forces
 
+	//Matrice d'Inertie en fonction de la bonne base
+	//I-1' = MB*I-1*MB-1
+	Matrix3 InverseWorld = (transformMatrix.ToMatrix3()) * inverseI * (transformMatrix.ToMatrix3().Inverse());
 
+	//Calcul de notre acceleration angulaire
+	Vector3D resultingAngAcc = Vector3D(InverseWorld * m_torqueAccum);
+
+	///
 	
 	//Update Angular Velocity based on Angular Acceleration
 	rotation.addScaledVector(resultingAngAcc, duration);
@@ -141,4 +148,14 @@ void RigidBody::CalculateTransformMatrix()
 	transformMatrix.data[9] = 2 * orientation.j * orientation.k + 2 * orientation.r * orientation.i;
 	transformMatrix.data[10] = 1 - 2 * orientation.i * orientation.i - 2 * orientation.j * orientation.j;
 	transformMatrix.data[11] = position.z;
+}
+
+Matrix3 RigidBody::MakeInverseInertiaCuboide(Vector3D dim)
+{
+	Matrix3 I = Matrix3(
+		(0.083) * (1/inverseMasse) * (dim.y * dim.y + dim.z * dim.z), 0, 0,
+		0, (0.083) * (1 / inverseMasse) * (dim.x * dim.x + dim.z * dim.z), 0,
+		0, 0, (0.083) * (1 / inverseMasse) * (dim.x * dim.x + dim.y * dim.y)
+	);
+	return I.Inverse();
 }

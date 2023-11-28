@@ -65,3 +65,36 @@ unsigned ContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBCont
 
     return 1;
 }
+
+unsigned ContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegistry* contactRegistry)
+{
+    auto vertices = box->GetVertices();
+
+    for (auto& vertice : vertices)
+    {
+        auto distance = vertice * plane->normal - plane->offset;
+        if (distance > 0)
+        {
+			// We don't have collision
+			return 0;
+		}
+
+        float restitution = (box->RB->linearDamping + plane->RB->linearDamping) / 2;
+        float friction = (box->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
+
+        auto contactPoint = vertice - plane->normal * (distance + box->halfSize.x); //Pas sur
+
+        RBContact newContact;
+        newContact.contactNormal = plane->normal;
+        newContact.contactPoint = contactPoint;
+        newContact.penetration = distance;
+        newContact.restitution = restitution;
+        newContact.friction = friction;
+        newContact.RigidBodies[0] = box->RB;
+        newContact.RigidBodies[1] = plane->RB;
+        contactRegistry->contacts->push_back(newContact);
+    }
+
+
+    return 1;
+}

@@ -2,6 +2,7 @@
 #include "PSphere.h"
 #include "PPlane.h"
 #include <RBContactRegistry.h>
+#include <PBox.h>
 
 
 class ContactGenerator
@@ -19,4 +20,9 @@ public:
 		PPlane* plane,
 		RBContactRegistry* contactRegistry
 		);
+	unsigned boxAndPlane(
+		PBox* box,
+		PPlane* plane,
+		RBContactRegistry* contactRegistry
+	);
 };

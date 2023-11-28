@@ -76,6 +76,9 @@
     <Filter Include="Fichiers sources\RBContactGenerator">
       <UniqueIdentifier>{254b5e93-154f-405a-92b6-f1f07e5b3912}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\RBPrimitive">
+      <UniqueIdentifier>{1635502a-e3bc-455a-b43c-62ac8051ab63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="RBContactGenerator.cpp">
       <Filter>Fichiers sources\RBContactGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="PBox.cpp">
+      <Filter>Fichiers sources\RBPrimitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

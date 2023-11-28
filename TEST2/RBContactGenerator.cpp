@@ -1,5 +1,4 @@
 #include "RBContactGenerator.h"
-#include <PPlane.h>
 
 unsigned ContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContactRegistry* contactRegistry)
 {

@@ -20,5 +20,10 @@ std::vector<Vector3D> PBox::GetVertices()
 
 	vertices.push_back(Vector3D(halfSize.x, halfSize.y, halfSize.z));
 
+	for (auto& vertice : vertices)
+	{
+		vertice = offset * vertice;
+	}
+
 	return vertices;
 }

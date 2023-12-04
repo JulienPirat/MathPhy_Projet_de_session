@@ -191,7 +191,7 @@ void World::AddRigidBody()
 
 void World::AddAnchoredSpringForTwoRigidBody()
 {
-	RigidBody* RB_1 = new RigidBody(
+	Box* RB_1 = new Box(
 		Vector3D(-20, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
@@ -203,7 +203,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 	);
 	AddRigidBody(RB_1);
 
-	RigidBody* RB_2 = new RigidBody(
+	Box* RB_2 = new Box(
 		Vector3D(20, 20, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
@@ -220,7 +220,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 
 void World::AddAnchoredSpringForRigidBody()
 {
-	RigidBody* RB_1 = new RigidBody(
+	Box* RB_1 = new Box(
 		Vector3D(3, 3, 3), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération

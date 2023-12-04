@@ -1,0 +1,19 @@
+#include "Plane.h"
+
+Plane::Plane() : RigidBody(MakeInverseInertiaPlane(1, 1, 1))
+{
+}
+
+Plane::Plane(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, float x, float y) : RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, MakeInverseInertiaPlane(x,y,mass))
+{
+}
+
+Matrix3 Plane::MakeInverseInertiaPlane(float x, float y, float mass)
+{
+	Matrix3 I = Matrix3(
+		(0.3333) * (mass) * (y * y), 0, 0, //Y = centre a un bord
+		0, (0.3333) * (mass) * (x * x), 0, //X = centre a un bord
+		0, 0, (0.333) * (mass) * (x * x + y * y)
+	);
+	return I.Inverse();
+}

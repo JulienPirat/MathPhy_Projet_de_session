@@ -5,6 +5,9 @@
 #include <vector>
 #include <ParticleContactResolver.h>
 #include <ParticleContactGenerator.h>
+#include <Box.h>
+#include <Plane.h>
+#include <Sphere.h>
 
 class World
 {

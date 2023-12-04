@@ -42,7 +42,8 @@ public:
 	///Constructeurs
 
 	RigidBody();
-	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Vector3D dim);
+	RigidBody(Matrix3 inverseInertia);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia);
 
 	///Methodes
 	
@@ -71,5 +72,8 @@ private:
 
 	//Make inverseInertia for cuboïde
 	Matrix3 MakeInverseInertiaCuboide(Vector3D dim);
+	//Matrix3 MakeInverseInertiaSphere(Vector3D dim);
+	//Matrix3 MakeInverseInertiaPlane(Vector3D dim);
+
 };
 

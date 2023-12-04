@@ -3,7 +3,7 @@
 RigidBody::RigidBody()
 {
 	inverseMasse = 1;
-	inverseI = MakeInverseInertiaCuboide(Vector3D(1,1,1));
+	inverseI = Matrix3();
 	linearDamping = 0.9f;
 	position = Vector3D();
 	velocity = Vector3D();
@@ -20,10 +20,16 @@ RigidBody::RigidBody()
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Vector3D dim)
+RigidBody::RigidBody(Matrix3 inverseInertia)
+{
+	RigidBody();
+	inverseI = inverseInertia;
+}
+
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia)
 {
 	inverseMasse = (1 / mass);
-	inverseI = MakeInverseInertiaCuboide(dim);
+	inverseI = MakeInverseInertiaCuboide(Vector3D(1,1,1));
 	linearDamping = linDamp;
 	position = pos;
 	velocity = vel;
@@ -159,3 +165,25 @@ Matrix3 RigidBody::MakeInverseInertiaCuboide(Vector3D dim)
 	);
 	return I.Inverse();
 }
+
+/*
+Matrix3 RigidBody::MakeInverseInertiaSphere(Vector3D dim)
+{
+	Matrix3 I = Matrix3(
+		(0.4) * (1 / inverseMasse) * (dim.x), 0, 0,
+		0, (0.4) * (1 / inverseMasse) * (dim.x), 0,
+		0, 0, (0.4) * (1 / inverseMasse) * (dim.x)
+	);
+	return I.Inverse();
+}
+
+Matrix3 RigidBody::MakeInverseInertiaPlane(Vector3D dim)
+{
+	Matrix3 I = Matrix3(
+		(0.3333) * (1 / inverseMasse) * (dim.y * dim.y), 0, 0, //Y = centre a un bord
+		0, (0.3333) * (1 / inverseMasse) * (dim.x * dim.x), 0, //X = centre a un bord
+		0, 0, (0.333) * (1 / inverseMasse) * (dim.x * dim.x + dim.y * dim.y)
+	);
+	return I.Inverse();
+}
+*/

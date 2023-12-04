@@ -210,6 +210,15 @@
     <ClCompile Include="PBox.cpp">
       <Filter>Fichiers sources\RBPrimitive</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Fichiers sources\Rigid</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Fichiers sources\Rigid</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Fichiers sources\Rigid</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -369,6 +378,15 @@
     </ClInclude>
     <ClInclude Include="RBContactRegistry.h">
       <Filter>Fichiers d%27en-tête\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Fichiers d%27en-tête\Rigid</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Fichiers d%27en-tête\Rigid</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Fichiers d%27en-tête\Rigid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

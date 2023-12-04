@@ -238,20 +238,49 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
     int i = 0;
     for (auto p : bodies)
     {
-        // calculate the model matrix for each object and pass it to shader before drawing
-        glm::mat4 model = glm::mat4(1.0f);
-        //Translate
-        model = glm::translate(model, glm::vec3(p->position.x, p->position.y, p->position.z));
-        //Rotate
-        model = glm::rotate(model, glm::radians((float)p->rotation.x), glm::vec3(1.0f, 0, 0));
-        model = glm::rotate(model, glm::radians((float)p->rotation.z), glm::vec3(0, 1.0f, 0));
-        model = glm::rotate(model, glm::radians((float)p->rotation.y), glm::vec3(0, 0, 1.0f));
-        //Color
-        ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
-        //Send matrix
-        ourShader->setMat4("model", model);
-        //Draw
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        if (p->shape == cuboide) {
+            ///DrawCuboide
+            // calculate the model matrix for each object and pass it to shader before drawing
+            glm::mat4 model = glm::mat4(1.0f);
+            //Translate
+            model = glm::translate(model, glm::vec3(p->position.x, p->position.y, p->position.z));
+            //Rotate
+            model = glm::rotate(model, glm::radians((float)p->rotation.x), glm::vec3(1.0f, 0, 0));
+            model = glm::rotate(model, glm::radians((float)p->rotation.z), glm::vec3(0, 1.0f, 0));
+            model = glm::rotate(model, glm::radians((float)p->rotation.y), glm::vec3(0, 0, 1.0f));
+            //Scale
+            model = glm::scale(model, glm::vec3(p->dimension.x, p->dimension.y, p->dimension.z));
+            //Color
+            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            //Send matrix
+            ourShader->setMat4("model", model);
+            //Draw
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
+        else if (p->shape == sphere) {
+            ///DrawSphere
+            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            RenderSphere(p->position, p->dimension.x);
+        }
+        else if (p->shape == plane) {
+            ///DrawPlane
+            // calculate the model matrix for each object and pass it to shader before drawing
+            glm::mat4 model = glm::mat4(1.0f);
+            //Translate
+            model = glm::translate(model, glm::vec3(p->position.x, p->position.y, p->position.z));
+            //Rotate
+            model = glm::rotate(model, glm::radians((float)p->rotation.x), glm::vec3(1.0f, 0, 0));
+            model = glm::rotate(model, glm::radians((float)p->rotation.z), glm::vec3(0, 1.0f, 0));
+            model = glm::rotate(model, glm::radians((float)p->rotation.y), glm::vec3(0, 0, 1.0f));
+            //Scale
+            model = glm::scale(model, glm::vec3(p->dimension.x, p->dimension.y, 0.01f));
+            //Color
+            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            //Send matrix
+            ourShader->setMat4("model", model);
+            //Draw
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
     }
 
     for (auto b : particles)
@@ -402,9 +431,9 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 }
 
-void GraphicEngine::RenderSphere(Vector3D position)
+void GraphicEngine::RenderSphere(Vector3D position, float rad)
 {
-    float radius = .1f;
+    float radius = rad;
     int slices = 10;
     int stacks = 10;
     double pi = 3.141;

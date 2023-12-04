@@ -30,4 +30,9 @@ public:
 		PSphere* sphere,
 		RBContactRegistry* contactRegistry
 	);
+	unsigned boxAndBox(
+		PBox* one,
+		PBox* two,
+		RBContactRegistry* contactRegistry
+	);
 };

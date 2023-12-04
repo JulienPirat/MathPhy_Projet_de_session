@@ -160,3 +160,14 @@ unsigned ContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactReg
 
     return 1;
 }
+
+unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* contactRegistry)
+{
+    // Si fait partie des 6 axe principaux c'est un Point-Face sinon c'est un Edge-Edge
+    // 6 Axes Principaux = X,Y,Z de chaque boite et les 9 autres axes = X*y, X*z,X*X ; Y*Y, Y*X,Y*Z ; ect...
+    // En enlevant les doublons on obtient 15 axes
+
+    // Ensuite on fait la projection des boites sur chaque axes et on calcule l'interpénetration.
+    // On garde seulement les axes qui ont une interpénetration la plus petite possible.
+    return 0;
+}

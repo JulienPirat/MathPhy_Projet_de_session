@@ -97,3 +97,66 @@ unsigned ContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegist
 
     return 1;
 }
+
+unsigned ContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactRegistry* contactRegistry)
+{
+    auto SpherePositionInBoxSpace = box->offset * sphere->RB->position;
+    auto distanceX = SpherePositionInBoxSpace.x;
+    if (distanceX > box->halfSize.x)
+    {
+		distanceX = box->halfSize.x;
+	}
+    if (distanceX < -box->halfSize.x)
+    {
+        distanceX = -box->halfSize.x;
+    }
+
+    auto distanceY = SpherePositionInBoxSpace.y;
+    if (distanceY > box->halfSize.y)
+    {
+		distanceY = box->halfSize.y;
+	}
+    if (distanceY < -box->halfSize.y)
+    {
+		distanceY = -box->halfSize.y;
+	}
+
+    auto distanceZ = SpherePositionInBoxSpace.z;
+    if (distanceZ > box->halfSize.z)
+    {
+        distanceZ = box->halfSize.z;
+    }
+    if (distanceZ < -box->halfSize.z)
+    {
+		distanceZ = -box->halfSize.z;
+	}
+
+    auto contactPoint = Vector3D(distanceX, distanceY, distanceZ);
+
+    auto penetration = sphere->radius - (contactPoint - SpherePositionInBoxSpace).norme(); // Pas sur
+
+    if (penetration < 0) 
+    {
+        // We don't have collision
+        return 0;
+    }
+
+    float restitution = (box->RB->linearDamping + sphere->RB->linearDamping) / 2;
+    float friction = (box->RB->m_angularDamping + sphere->RB->m_angularDamping) / 2;
+
+    auto normalContact = SpherePositionInBoxSpace - contactPoint;
+    normalContact.normalize();
+    
+
+    RBContact newContact;
+    newContact.contactNormal = normalContact;
+    newContact.contactPoint = contactPoint;
+    newContact.penetration = penetration;
+    newContact.restitution = restitution;
+    newContact.friction = friction;
+    newContact.RigidBodies[0] = box->RB;
+    newContact.RigidBodies[1] = sphere->RB;
+    contactRegistry->contacts->push_back(newContact);
+
+    return 1;
+}

@@ -3,6 +3,13 @@
 #include <Matrix4.h>
 #include <Matrix3.h>
 
+enum shapeRB {
+	none = 0,
+	cuboide = 1,
+	sphere = 2,
+	plane = 3
+};
+
 class RigidBody
 {
 public:
@@ -39,6 +46,10 @@ public:
 	//RigiBody Color
 	Vector3D color;
 
+	//Shape
+	shapeRB shape = none;
+	Vector3D dimension = Vector3D(1, 1, 1);
+
 	///Constructeurs
 
 	RigidBody();
@@ -69,11 +80,6 @@ private:
 
 	//Calculate the transform Matrix
 	void CalculateTransformMatrix();
-
-	//Make inverseInertia for cuboïde
-	Matrix3 MakeInverseInertiaCuboide(Vector3D dim);
-	//Matrix3 MakeInverseInertiaSphere(Vector3D dim);
-	//Matrix3 MakeInverseInertiaPlane(Vector3D dim);
 
 };
 

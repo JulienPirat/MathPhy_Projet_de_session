@@ -3,7 +3,9 @@
 #include <Particle.h>
 #include <LearnOpenGL\shader_m.h>
 #include <vector>
-#include <RigidBody.h>
+#include <Box.h>
+#include <Sphere.h>
+#include <Plane.h>
 
 struct GLFWwindow;
 
@@ -34,7 +36,7 @@ private:
     Shader* ourShader = nullptr;
 
 	void RenderCube(Vector3D topPosition, Vector3D bottomPosition, RigidBody* b);
-	void RenderSphere(Vector3D position);
+	void RenderSphere(Vector3D position, float rad = 0.1f);
 
 	unsigned int VBO, VAO;
 };

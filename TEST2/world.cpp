@@ -199,7 +199,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
-		Vector3D(1,1,1)
+		Vector3D(1, 2, 2)
 	);
 	AddRigidBody(RB_1);
 
@@ -211,7 +211,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
-		Vector3D(1, 1, 1)
+		Vector3D(1,2,1)
 	);
 	AddRigidBody(RB_2);
 

@@ -25,4 +25,9 @@ public:
 		PPlane* plane,
 		RBContactRegistry* contactRegistry
 	);
+	unsigned boxAndSphere(
+		PBox* box,
+		PSphere* sphere,
+		RBContactRegistry* contactRegistry
+	);
 };

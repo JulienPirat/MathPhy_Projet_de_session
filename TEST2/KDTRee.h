@@ -14,6 +14,16 @@ struct Plane
 {
 	Axis axis;
 	float coordinate;
+
+	Plane() {
+		axis = Axis::X;
+		coordinate = 0;
+	}
+
+	Plane(Axis ax, float coord) {
+		axis = ax;
+		coordinate = coord;
+	}
 };
 
 struct BaseNode { 
@@ -44,6 +54,12 @@ struct PlaneDivision : public BaseNode
 	BaseNode* left;
 	BaseNode* right;
 
+	PlaneDivision() {
+		plane = Plane();
+		left = nullptr;
+		right = nullptr;
+	}
+
 	PlaneDivision(Plane plane, BaseNode* left, BaseNode* right) {
 		this->plane = plane;
 		this->left = left;
@@ -63,6 +79,10 @@ class KDTRee
 {
 	static const int MAX_DEPTH = 10;
 
-	static BaseNode* generateTree(int currentDepth, std::vector<RigidBody*>);
+	static BaseNode* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
+
+	bool cmpX(const RigidBody& a, const RigidBody& b);
+	bool cmpY(const RigidBody& a, const RigidBody& b);
+	bool cmpZ(const RigidBody& a, const RigidBody& b);
 };
 

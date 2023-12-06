@@ -79,6 +79,12 @@
     <Filter Include="Fichiers sources\RBPrimitive">
       <UniqueIdentifier>{1635502a-e3bc-455a-b43c-62ac8051ab63}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\KDTRee">
+      <UniqueIdentifier>{6643ad46-fe7b-414d-8585-5959b045de6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\KDTRee">
+      <UniqueIdentifier>{4a6de05b-3c3a-4190-ae37-1f5c5fda8d2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\main.cpp">
@@ -218,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
       <Filter>Fichiers sources\Rigid</Filter>
+    </ClCompile>
+    <ClCompile Include="KDTRee.cpp">
+      <Filter>Fichiers sources\KDTRee</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -387,6 +396,9 @@
     </ClInclude>
     <ClInclude Include="Sphere.h">
       <Filter>Fichiers d%27en-tête\Rigid</Filter>
+    </ClInclude>
+    <ClInclude Include="KDTRee.h">
+      <Filter>Fichiers d%27en-tête\KDTRee</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

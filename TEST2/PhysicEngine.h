@@ -10,6 +10,9 @@
 #include <RBGravityForceGenerator.h>
 #include <RBSpringForceGenerator.h>
 #include <RBAnchoredSpringForceGenerator.h>
+#include <RBContactRegistry.h>
+#include <RBContactGenerator.h>
+
 
 class PhysicEngine
 {
@@ -52,6 +55,10 @@ class PhysicEngine
 
 		void CallAllContactGenerator();
 
+		void CallRBContactGenerator();
+
+		void AddContactBoxBox(RigidBody* rb1, RigidBody* rb2);
+
 	private:
 
 		///Attributs
@@ -64,6 +71,10 @@ class PhysicEngine
 
 		//Holds the list of contact generators.
 		ParticleContactRegistry* contactRegistry = new ParticleContactRegistry();
+
+		RBContactRegistry* contactRegistry_RigidBody = new RBContactRegistry();
+
+		RBContactGenerator* contactGenerator = new RBContactGenerator();
 
 		//Contact Generator Lists
 		std::vector<ParticleContactGenerator*> BasicsContactGeneratorRegistry;

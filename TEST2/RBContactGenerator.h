@@ -11,7 +11,7 @@ struct Interval {
 	Vector3D Vertice;
 };
 
-class ContactGenerator
+class RBContactGenerator
 {
 
 public:

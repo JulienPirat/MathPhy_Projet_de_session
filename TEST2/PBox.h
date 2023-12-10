@@ -5,6 +5,10 @@
 
 class PBox : public Primitive {
 public:
+
+	//Constructor
+	PBox(RigidBody* RB, Matrix4 offset) : Primitive( RB, offset) {}
+
 	Vector3D halfSize;
 
 	/// <summary>

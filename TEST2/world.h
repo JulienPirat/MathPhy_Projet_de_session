@@ -26,6 +26,8 @@ public:
 	void AddRigidBody(RigidBody* rb);
 	void DeleteAllRigidBody();
 
+	void ContactBoxBox();
+
 	//Ajoute des forceGenerator aux partiules.
 	void PutGravityForceGenerator();
 
@@ -52,6 +54,8 @@ public:
 
 	//Ajouter un exemple de AnchordSpring a un RigidBody
 	void AddAnchoredSpringForRigidBody();
+
+	void GenerateContactBoxBox();
 
 	//Lancement de la simulation
 	int Run();
@@ -82,6 +86,8 @@ private :
 	std::vector<Particle*> particles = std::vector<Particle*>();
 
 	std::vector<RigidBody*> rigidBodies = std::vector<RigidBody*>();
+
+	std::vector<RigidBody*> rigidBodiesTEST = std::vector<RigidBody*>();
 
 	///Methodes
 

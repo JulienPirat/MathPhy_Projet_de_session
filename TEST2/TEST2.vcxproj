@@ -172,6 +172,7 @@
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RBAnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="RBContactGenerator.cpp" />
+    <ClCompile Include="RBContactRegistry.cpp" />
     <ClCompile Include="RBForceRegistry.cpp" />
     <ClCompile Include="RBGravityForceGenerator.cpp" />
     <ClCompile Include="RBSpringForceGenerator.cpp" />

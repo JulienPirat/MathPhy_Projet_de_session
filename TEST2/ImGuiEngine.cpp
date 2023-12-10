@@ -187,11 +187,20 @@ void ImGuiEngine::Update()
             w.AddRigidBody();
         }
 
+        if (ImGui::Button("Contact 2 Box RigidBody")) {
+            World& w = World::GetInstance();
+            w.ContactBoxBox();
+        }
+
+        if (ImGui::Button("GenerateContactBoxBox")) {
+            World& w = World::GetInstance();
+            w.GenerateContactBoxBox();
+        }
+        
         if (ImGui::Button("Delete All RigidBody")) {
             World& w = World::GetInstance();
             w.DeleteAllRigidBody();
         }
-
 
         /*
         if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)

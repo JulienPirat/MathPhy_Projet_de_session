@@ -2,6 +2,7 @@
 #include <Quaternion.h>
 #include <Matrix4.h>
 #include <Matrix3.h>
+class Primitive;
 
 enum shapeRB {
 	none = 0,
@@ -15,6 +16,8 @@ class RigidBody
 public:
 
 	///Attributes
+
+	Primitive* primitive;
 
 	//Identical as Particle
 	float inverseMasse;

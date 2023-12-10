@@ -19,6 +19,36 @@ void World::DeleteAllRigidBody() {
 	physics.ClearRigidBodies();
 }
 
+void World::ContactBoxBox()
+{
+	Box* RB_1 = new Box(
+		Vector3D(1, 0, 0), //Position
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 1, 1)
+	);
+	AddRigidBody(RB_1);
+
+	Box* RB_2 = new Box(
+		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 1, 1)
+	);
+	AddRigidBody(RB_2);
+	
+	rigidBodiesTEST.push_back(RB_1);
+	rigidBodiesTEST.push_back(RB_2);
+}
+
 void World::GenBasicCollision() {
 
 	//Créer deux particules
@@ -235,6 +265,11 @@ void World::AddAnchoredSpringForRigidBody()
 	Vector3D WorldAnchorPoint = Vector3D(3, 5, 4);
 
 	physics.putSpringForRigidBody(RB_1,WorldAnchorPoint);
+}
+
+void World::GenerateContactBoxBox()
+{
+	physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

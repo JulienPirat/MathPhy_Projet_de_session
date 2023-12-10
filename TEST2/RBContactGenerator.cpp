@@ -1,6 +1,6 @@
 #include "RBContactGenerator.h"
 
-unsigned ContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContactRegistry* contactRegistry)
+unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContactRegistry* contactRegistry)
 {
 
     float dx = one->RB->position.x - two->RB->position.x;
@@ -31,11 +31,11 @@ unsigned ContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContact
     newContact.RigidBodies[0] = one->RB;
     newContact.RigidBodies[1] = two->RB;
 
-    contactRegistry->contacts->push_back(newContact);
+    contactRegistry->contacts.push_back(newContact);
     return 1;
 }
 
-unsigned ContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
+unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
     float distance = plane->normal * sphere->RB->position - plane->offset;
     
@@ -60,12 +60,12 @@ unsigned ContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBCont
     newContact.RigidBodies[0] = sphere->RB;
     newContact.RigidBodies[1] = plane->RB;
 
-    contactRegistry->contacts->push_back(newContact);
+    contactRegistry->contacts.push_back(newContact);
 
     return 1;
 }
 
-unsigned ContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegistry* contactRegistry)
+unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegistry* contactRegistry)
 {
     auto vertices = box->GetVertices();
 
@@ -91,14 +91,14 @@ unsigned ContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegist
         newContact.friction = friction;
         newContact.RigidBodies[0] = box->RB;
         newContact.RigidBodies[1] = plane->RB;
-        contactRegistry->contacts->push_back(newContact);
+        contactRegistry->contacts.push_back(newContact);
     }
 
 
     return 1;
 }
 
-unsigned ContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactRegistry* contactRegistry)
+unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactRegistry* contactRegistry)
 {
     auto SpherePositionInBoxSpace = box->offset * sphere->RB->position;
     auto distanceX = SpherePositionInBoxSpace.x;
@@ -156,12 +156,12 @@ unsigned ContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactReg
     newContact.friction = friction;
     newContact.RigidBodies[0] = box->RB;
     newContact.RigidBodies[1] = sphere->RB;
-    contactRegistry->contacts->push_back(newContact);
+    contactRegistry->contacts.push_back(newContact);
 
     return 1;
 }
 
-unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* contactRegistry)
+unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* contactRegistry)
 {
     std::vector<Vector3D> Axes;
 
@@ -239,7 +239,7 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            contactRegistry->contacts->push_back(newContact);
+            contactRegistry->contacts.push_back(newContact);
         }
         else 
         {
@@ -257,7 +257,7 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            contactRegistry->contacts->push_back(newContact);
+            contactRegistry->contacts.push_back(newContact);
         }
 	}
 
@@ -271,7 +271,7 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
     return 1;
 }
 
-Interval ContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)
+Interval RBContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)
 {
     std::vector<Vector3D> vertices = box->GetVertices();
     double dotProduct = axis->produitScalaire(vertices[0]);

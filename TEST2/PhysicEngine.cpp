@@ -7,6 +7,7 @@
 #include <ParticleBuoyancy.h>
 #include <ParticleCable.h>
 #include <ParticleRod.h>
+#include <KDTRee.h>
 
 void PhysicEngine::Init()
 {
@@ -17,6 +18,7 @@ void PhysicEngine::Init()
 
 void PhysicEngine::Update(float deltaTime)
 {
+	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
 
 	//update the positions particles
 	for (auto p : particles)

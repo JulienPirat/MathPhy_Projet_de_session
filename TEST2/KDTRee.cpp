@@ -17,15 +17,15 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         switch (axis) {
         case Axis::X:
             // X
-            std::sort(RBList.begin(), RBList.end(), cmpX);
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x <= b->position.x; });
             break;
         case Axis::Y:
             // Y
-            std::sort(RBList.begin(), RBList.end(), cmpY);
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.y <= b->position.y; });
             break;
         case Axis::Z:
             // Z
-            std::sort(RBList.begin(), RBList.end(), cmpZ);
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.z <= b->position.z; });
             break;
         default:
             // ERROR
@@ -153,17 +153,11 @@ Node* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBo
     }
 }
 
-bool KDTRee::cmpX(const RigidBody& a, const RigidBody& b)
+void KDTRee::deleteTree(Node* base)
 {
-    return a.position.x <= b.position.x;
-}
-
-bool KDTRee::cmpY(const RigidBody& a, const RigidBody& b)
-{
-    return a.position.y <= b.position.y;
-}
-
-bool KDTRee::cmpZ(const RigidBody& a, const RigidBody& b)
-{
-    return a.position.z <= b.position.z;
+    if (base != nullptr) {
+		deleteTree(base->left);
+		deleteTree(base->right);
+		delete base;
+	}
 }

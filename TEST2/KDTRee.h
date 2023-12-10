@@ -41,18 +41,22 @@ struct Node {
 	Node(std::vector<RigidBody*> b) : body(b) {
 
 	}
+
+	~Node() {
+		delete left;
+		delete right;
+	}
 };
 
 class KDTRee
 {
+public:
 	static const int MAX_DEPTH = 10;
 
 	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(Node* base);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
-	Node* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
+	static Node* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
 
-	bool cmpX(const RigidBody& a, const RigidBody& b);
-	bool cmpY(const RigidBody& a, const RigidBody& b);
-	bool cmpZ(const RigidBody& a, const RigidBody& b);
+	static void deleteTree(Node* base);
 };
 

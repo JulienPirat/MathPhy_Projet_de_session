@@ -5,12 +5,12 @@
 // - Current Depth of the tree
 // - List of our rigibodies remains to be dispatch
 // - Next Axis the next axis used to separate the rigidbodies
-BaseNode* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis)
+Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis)
 {
     //Check if we need to create a leaf or a PlaneDivision
     if (currentDepth >= MAX_DEPTH || RBList.size() < 1) {
         //On return une leaf
-        return new Leaf(RBList);
+        return new Node(RBList);
     }
     else {
         //On trie la liste en fonction de l'axe de séparation
@@ -81,12 +81,12 @@ BaseNode* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList,
 
 
         //Generate branches
-        return new PlaneDivision(seperatePlane, generateTree(currentDepth + 1, RBListLeft, newAxis), generateTree(currentDepth + 1, RBListRight, newAxis));
+        return new Node(seperatePlane, generateTree(currentDepth + 1, RBListLeft, newAxis), generateTree(currentDepth + 1, RBListRight, newAxis));
 
     }
 }
 
-std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(BaseNode* base)
+std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(Node* base)
 {
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
@@ -96,7 +96,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(Ba
     return std::vector<std::pair<RigidBody*, RigidBody*>>();
 }
 
-PlaneDivision getNearestPoint(RigidBody* actualpoint) {
+Node getNearestPoint(RigidBody* actualpoint) {
 
 }
 

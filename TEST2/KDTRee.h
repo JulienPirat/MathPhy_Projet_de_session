@@ -26,52 +26,27 @@ struct Plane
 	}
 };
 
-struct BaseNode { 
-	BaseNode() = default; 
-	virtual std::string toString() = 0;
-};
-
-struct Leaf : public BaseNode
-{
-	Leaf(std::vector<RigidBody*> listBodies) {
-		body = listBodies;
-	}
-
+struct Node {
+	Plane plane;
+	Node* left;
+	Node* right;
 	std::vector<RigidBody*> body;
 
-	std::string toString() override {
-		std::string result = "Leaf: ";
-		for (auto& b : body) {
-			//TODO : add body to result
-		}
-		return result;
-	}
-};
-
-struct PlaneDivision : public BaseNode
-{
-	Plane plane;
-	BaseNode* left;
-	BaseNode* right;
-
-	PlaneDivision() {
-		plane = Plane();
+	Node() {
 		left = nullptr;
 		right = nullptr;
 	}
 
-	PlaneDivision(Plane plane, BaseNode* left, BaseNode* right) {
-		this->plane = plane;
-		this->left = left;
-		this->right = right;
+	Node(Plane pl, Node* l, Node* r) {
+		plane = pl;
+		left = l;
+		right = r;
 	}
 
-	std::string toString() override {
-		std::string result = "PlaneDivision: ";
-		//TODO : add plane to result
-		//TODO : add left to result
-		//TODO : add right to result
-		return result;
+	Node(std::vector<RigidBody*> b) {
+		body = b;
+		left = nullptr;
+		right = nullptr;
 	}
 };
 
@@ -79,8 +54,8 @@ class KDTRee
 {
 	static const int MAX_DEPTH = 10;
 
-	static BaseNode* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
 	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(BaseNode* base);
+	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
 
 	bool cmpX(const RigidBody& a, const RigidBody& b);
 	bool cmpY(const RigidBody& a, const RigidBody& b);

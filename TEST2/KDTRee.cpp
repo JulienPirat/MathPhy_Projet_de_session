@@ -91,13 +91,66 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(No
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
 
-    /**/
+   
 
     return std::vector<std::pair<RigidBody*, RigidBody*>>();
 }
 
-Node getNearestPoint(RigidBody* actualpoint) {
+Node* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
 
+    //Check if leaf == dead end
+    if (currentNode->left == nullptr && currentNode->right == nullptr) {
+        //on check la distance absolue de ce nouveau point
+        for (auto rbtocheck : currentNode->body) {
+            float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
+            if (newDistanceBetweenPt < distanceBetweenPt) {
+                distanceBetweenPt = newDistanceBetweenPt;
+                refpoint = rbtocheck;
+            }
+        }
+    }
+    else {
+
+        //L'axe de separation
+        float actualpointaxisval = 0;
+
+        switch (currentNode->plane.axis) {
+        case Axis::X:
+            actualpointaxisval = actualpoint->position.x;
+            break;
+        case Axis::Y:
+            actualpointaxisval = actualpoint->position.y;
+            break;
+        case Axis::Z:
+            actualpointaxisval = actualpoint->position.z;
+            break;
+        }
+
+        bool searchFirstLeft;
+        if (actualpointaxisval <= currentNode->plane.coordinate) {
+            searchFirstLeft = true;
+        }
+        else {
+            searchFirstLeft = false;
+        }
+
+        if (searchFirstLeft == true) {
+            if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
+                getNearestPoint(actualpoint, currentNode->left,refpoint,distanceBetweenPt);
+            }
+            if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
+                getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+            }
+        }
+        else {
+            if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
+                getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+            }
+            if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
+                getNearestPoint(actualpoint, currentNode->left, refpoint, distanceBetweenPt);
+            }
+        }
+    }
 }
 
 bool KDTRee::cmpX(const RigidBody& a, const RigidBody& b)

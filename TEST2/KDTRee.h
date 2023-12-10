@@ -32,21 +32,14 @@ struct Node {
 	Node* right;
 	std::vector<RigidBody*> body;
 
-	Node() {
-		left = nullptr;
-		right = nullptr;
+	Node() = delete;
+
+	Node(Plane pl, Node* l, Node* r) : plane(pl), left(l), right(r) {
+
 	}
 
-	Node(Plane pl, Node* l, Node* r) {
-		plane = pl;
-		left = l;
-		right = r;
-	}
+	Node(std::vector<RigidBody*> b) : body(b) {
 
-	Node(std::vector<RigidBody*> b) {
-		body = b;
-		left = nullptr;
-		right = nullptr;
 	}
 };
 
@@ -56,6 +49,7 @@ class KDTRee
 
 	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(Node* base);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
+	Node* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
 
 	bool cmpX(const RigidBody& a, const RigidBody& b);
 	bool cmpY(const RigidBody& a, const RigidBody& b);

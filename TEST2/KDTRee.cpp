@@ -94,25 +94,25 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     for (auto rb : RBList) {
         RigidBody* outNearestRB = nullptr;
 
-        KDTRee::getNearestPoint(rb, root, outNearestRB, 10000000);
+        RigidBody* rbtemp = KDTRee::getNearestPoint(rb, root, outNearestRB, 10000000);
 
         bool canBeAdd = true;
         for (auto pair: potentialCollisionList) {
-            if (pair.first == outNearestRB && pair.second == rb) {
+            if (pair.first == rbtemp && pair.second == rb) {
                 canBeAdd = false;
                 break;
             }
         }
 
         if (canBeAdd) {
-            potentialCollisionList.push_back(std::pair<RigidBody*, RigidBody*>(rb, outNearestRB));
+            potentialCollisionList.push_back(std::pair<RigidBody*, RigidBody*>(rb, rbtemp));
         }
     }
 
     return potentialCollisionList;
 }
 
-void KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
+RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
 
     //Check if leaf == dead end
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
@@ -124,6 +124,7 @@ void KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBod
                 refpoint = rbtocheck;
             }
         }
+        return refpoint;
     }
     else {
 

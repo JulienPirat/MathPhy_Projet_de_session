@@ -53,7 +53,7 @@ public:
 
 	static std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
-	static void getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
+	static RigidBody* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
 
 	static void deleteTree(Node* base);
 };

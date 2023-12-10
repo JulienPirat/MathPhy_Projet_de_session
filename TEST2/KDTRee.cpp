@@ -91,11 +91,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(Ba
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
 
-    while () {
-        //Si plane
-
-        //
-    }
+    /**/
 
     return std::vector<std::pair<RigidBody*, RigidBody*>>();
 }

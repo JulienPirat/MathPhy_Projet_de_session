@@ -21,11 +21,11 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
             break;
         case Axis::Y:
             // Y
-            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x < b->position.x; });
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.y < b->position.y; });
             break;
         case Axis::Z:
             // Z
-            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x < b->position.x; });
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.z < b->position.z; });
             break;
         default:
             // ERROR

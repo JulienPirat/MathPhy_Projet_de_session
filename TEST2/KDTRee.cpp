@@ -86,6 +86,24 @@ BaseNode* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList,
     }
 }
 
+std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(BaseNode* base)
+{
+    //Notre liste de collisions qui seront a tester
+    std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
+
+    while () {
+        //Si plane
+
+        //
+    }
+
+    return std::vector<std::pair<RigidBody*, RigidBody*>>();
+}
+
+PlaneDivision getNearestPoint(RigidBody* actualpoint) {
+
+}
+
 bool KDTRee::cmpX(const RigidBody& a, const RigidBody& b)
 {
     return a.position.x <= b.position.x;

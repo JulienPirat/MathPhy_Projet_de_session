@@ -80,6 +80,7 @@ class KDTRee
 	static const int MAX_DEPTH = 10;
 
 	static BaseNode* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
+	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions();
 
 	bool cmpX(const RigidBody& a, const RigidBody& b);
 	bool cmpY(const RigidBody& a, const RigidBody& b);

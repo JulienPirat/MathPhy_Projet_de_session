@@ -7,7 +7,7 @@ void ParticleContactResolver::resolveContacts(ParticleContactRegistry* ContactRe
 	{
 		//Find the contact with the largest closing velocity
 		float max = 0;
-		unsigned int maxIndex = 0; // numContact; BENJ FIX MIGHT BE CONFIRM
+		unsigned int maxIndex = 0;
 		for (unsigned int i = 0; i < numContact; i++)
 		{
 			float sepVel = ContactRegistry->Contacts[i].calculateSeparatingVelocity();

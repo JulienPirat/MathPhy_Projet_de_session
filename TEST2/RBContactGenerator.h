@@ -5,6 +5,12 @@
 #include <PBox.h>
 
 
+struct Interval {
+	double min;
+	double max;
+	Vector3D Vertice;
+};
+
 class ContactGenerator
 {
 
@@ -35,4 +41,7 @@ public:
 		PBox* two,
 		RBContactRegistry* contactRegistry
 	);
+
+private:
+	Interval ProjectBoxOnAxis(PBox* box, Vector3D* axis);
 };

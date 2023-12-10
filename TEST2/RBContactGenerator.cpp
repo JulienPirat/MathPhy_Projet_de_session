@@ -188,19 +188,62 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
     Vector3D axeXY = bOneX.produitVectoriel(bTwoY);
     Vector3D axeXZ = bOneX.produitVectoriel(bTwoZ);
 
+    Vector3D axeYX = bOneY.produitVectoriel(bTwoX);
     Vector3D axeYY = bOneY.produitVectoriel(bTwoY);
     Vector3D axeYZ = bOneY.produitVectoriel(bTwoZ);
 
+    Vector3D axeZX = bOneZ.produitVectoriel(bTwoX);
+    Vector3D axeZY = bOneZ.produitVectoriel(bTwoY);
     Vector3D axeZZ = bOneZ.produitVectoriel(bTwoZ);
 
     Axes.push_back(axeXX);
     Axes.push_back(axeXY);
     Axes.push_back(axeXZ);
+
+    Axes.push_back(axeYX);
     Axes.push_back(axeYY);
     Axes.push_back(axeYZ);
+
+    Axes.push_back(axeZX);
+    Axes.push_back(axeZY);
     Axes.push_back(axeZZ);
 
-    // TODO Il manque 3 axes ?!
+    for (Vector3D axe : Axes)
+    {
+		Interval intervalOne = ProjectBoxOnAxis(one, &axe);
+        Interval intervalTwo = ProjectBoxOnAxis(two, &axe);
+
+        if (intervalOne.min > intervalTwo.max || intervalTwo.min > intervalOne.max)
+        {
+			// We don't have collision
+			return 0;
+		}
+
+        float restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
+        float friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
+        float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+        Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+
+        if (axe == bOneX || axe == bOneY || axe == bOneZ ||
+            axe == bTwoX || axe == bTwoY || axe == bTwoZ)
+        {
+            axe.normalize();
+            // Collision Face-Point
+            RBContact newContact;
+            newContact.contactNormal = axe;
+            newContact.contactPoint = contactPoint;
+            newContact.penetration = penetration;
+            newContact.restitution = restitution;
+            newContact.friction = friction;
+            newContact.RigidBodies[0] = one->RB;
+            newContact.RigidBodies[1] = two->RB;
+            contactRegistry->contacts->push_back(newContact);
+        }
+        else 
+        {
+            // Collision Edge-Edge
+        }
+	}
 
 
     // Si fait partie des 6 axe principaux c'est un Point-Face sinon c'est un Edge-Edge
@@ -210,4 +253,28 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
     // Ensuite on fait la projection des boites sur chaque axes et on calcule l'interpénetration.
     // On garde seulement les axes qui ont une interpénetration la plus petite possible.
     return 0;
+}
+
+Interval ContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)
+{
+    std::vector<Vector3D> vertices = box->GetVertices();
+    double dotProduct = axis->produitScalaire(vertices[0]);
+
+    Interval interval;
+    interval.min = dotProduct;
+    interval.max = dotProduct;
+    interval.Vertice = vertices[0];
+
+    for (int i = 1; i < vertices.size(); i++)
+    {
+		dotProduct = axis->produitScalaire(vertices[i]);
+        if (dotProduct < interval.min)
+        {
+            interval.Vertice = vertices[i];
+        }
+        interval.min = std::min(interval.min, dotProduct);
+        interval.max = std::max(interval.max, dotProduct);
+	}
+
+    return interval;
 }

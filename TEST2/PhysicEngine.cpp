@@ -53,6 +53,8 @@ void PhysicEngine::Update(float deltaTime)
 			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size(), deltaTime);
 		}
 	}
+
+	KDTRee::deleteTree(root);
 }
 
 void PhysicEngine::Shutdown()

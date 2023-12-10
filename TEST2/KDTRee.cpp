@@ -17,15 +17,15 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         switch (axis) {
         case Axis::X:
             // X
-            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x <= b->position.x; });
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x < b->position.x; });
             break;
         case Axis::Y:
             // Y
-            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.y <= b->position.y; });
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x < b->position.x; });
             break;
         case Axis::Z:
             // Z
-            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.z <= b->position.z; });
+            std::sort(RBList.begin(), RBList.end(), [](RigidBody* a, RigidBody* b) {return a->position.x < b->position.x; });
             break;
         default:
             // ERROR
@@ -73,7 +73,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         }
 
         //Seperate list
-        Plane seperatePlane = Plane(newAxis, mediane);
+        PlaneDiv seperatePlane = PlaneDiv(newAxis, mediane);
 
         std::size_t const half_size = RBList.size();
         std::vector<RigidBody*> RBListRight(RBList.begin(), RBList.begin() + half_size);
@@ -112,7 +112,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     return potentialCollisionList;
 }
 
-Node* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
+void KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
 
     //Check if leaf == dead end
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
@@ -167,13 +167,18 @@ Node* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBo
             }
         }
     }
+
 }
 
 void KDTRee::deleteTree(Node* base)
 {
     if (base != nullptr) {
-		deleteTree(base->left);
-		deleteTree(base->right);
+        if (base->left != nullptr) {
+            deleteTree(base->left);
+        }
+        if (base->right != nullptr) {
+            deleteTree(base->right);
+        }
 		delete base;
 	}
 }

@@ -10,31 +10,31 @@ enum Axis
 	Z = 2,
 };
 
-struct Plane
+struct PlaneDiv
 {
 	Axis axis;
 	float coordinate;
 
-	Plane() {
+	PlaneDiv() {
 		axis = Axis::X;
 		coordinate = 0;
 	}
 
-	Plane(Axis ax, float coord) {
+	PlaneDiv(Axis ax, float coord) {
 		axis = ax;
 		coordinate = coord;
 	}
 };
 
 struct Node {
-	Plane plane;
-	Node* left;
-	Node* right;
+	PlaneDiv plane;
+	Node* left = nullptr;
+	Node* right = nullptr;
 	std::vector<RigidBody*> body;
 
 	Node() = delete;
 
-	Node(Plane pl, Node* l, Node* r) : plane(pl), left(l), right(r) {
+	Node(PlaneDiv pl, Node* l, Node* r) : plane(pl), left(l), right(r) {
 
 	}
 
@@ -43,8 +43,6 @@ struct Node {
 	}
 
 	~Node() {
-		delete left;
-		delete right;
 	}
 };
 
@@ -55,7 +53,7 @@ public:
 
 	static std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
-	static Node* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
+	static void getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
 
 	static void deleteTree(Node* base);
 };

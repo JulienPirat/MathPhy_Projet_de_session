@@ -48,6 +48,11 @@ struct Node {
 		left = nullptr;
 		right = nullptr;
 	}
+
+	~Node() {
+		delete left;
+		delete right;
+	}
 };
 
 class KDTRee
@@ -56,9 +61,6 @@ class KDTRee
 
 	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(Node* base);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
-
-	bool cmpX(const RigidBody& a, const RigidBody& b);
-	bool cmpY(const RigidBody& a, const RigidBody& b);
-	bool cmpZ(const RigidBody& a, const RigidBody& b);
+	static void deleteTree(Node* base);
 };
 

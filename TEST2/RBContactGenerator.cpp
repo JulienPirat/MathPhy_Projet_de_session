@@ -163,6 +163,46 @@ unsigned ContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactReg
 
 unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* contactRegistry)
 {
+    std::vector<Vector3D> Axes;
+
+    Vector3D bOneX = one->offset * Vector3D(1, 0, 0);   // boite 1 : X 
+    Vector3D bOneY = one->offset * Vector3D(0, 1, 0);   // boite 1 : Y
+    Vector3D bOneZ = one->offset * Vector3D(0, 0, 1);   // boite 1 : Z
+
+    Vector3D bTwoX = two->offset * Vector3D(1, 0, 0);   // boite 2 : X
+    Vector3D bTwoY = two->offset * Vector3D(0, 1, 0);   // boite 2 : Y
+    Vector3D bTwoZ = two->offset * Vector3D(0, 0, 1);   // boite 2 : Z
+
+    // On récupère les axes principaux des boites
+    Axes.push_back(bOneX);
+    Axes.push_back(bOneY);
+    Axes.push_back(bOneZ);
+
+    Axes.push_back(bTwoX);
+    Axes.push_back(bTwoY);
+    Axes.push_back(bTwoZ);
+
+    // On récupère les 9 autres axes
+
+    Vector3D axeXX = bOneX.produitVectoriel(bTwoX);
+    Vector3D axeXY = bOneX.produitVectoriel(bTwoY);
+    Vector3D axeXZ = bOneX.produitVectoriel(bTwoZ);
+
+    Vector3D axeYY = bOneY.produitVectoriel(bTwoY);
+    Vector3D axeYZ = bOneY.produitVectoriel(bTwoZ);
+
+    Vector3D axeZZ = bOneZ.produitVectoriel(bTwoZ);
+
+    Axes.push_back(axeXX);
+    Axes.push_back(axeXY);
+    Axes.push_back(axeXZ);
+    Axes.push_back(axeYY);
+    Axes.push_back(axeYZ);
+    Axes.push_back(axeZZ);
+
+    // TODO Il manque 3 axes ?!
+
+
     // Si fait partie des 6 axe principaux c'est un Point-Face sinon c'est un Edge-Edge
     // 6 Axes Principaux = X,Y,Z de chaque boite et les 9 autres axes = X*y, X*z,X*X ; Y*Y, Y*X,Y*Z ; ect...
     // En enlevant les doublons on obtient 15 axes

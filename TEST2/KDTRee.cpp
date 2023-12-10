@@ -86,14 +86,30 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
     }
 }
 
-std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(Node* base)
+std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root)
 {
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
 
-   
+    for (auto rb : RBList) {
+        RigidBody* outNearestRB = nullptr;
 
-    return std::vector<std::pair<RigidBody*, RigidBody*>>();
+        KDTRee::getNearestPoint(rb, root, outNearestRB, 10000000);
+
+        bool canBeAdd = true;
+        for (auto pair: potentialCollisionList) {
+            if (pair.first == outNearestRB && pair.second == rb) {
+                canBeAdd = false;
+                break;
+            }
+        }
+
+        if (canBeAdd) {
+            potentialCollisionList.push_back(std::pair<RigidBody*, RigidBody*>(rb, outNearestRB));
+        }
+    }
+
+    return potentialCollisionList;
 }
 
 Node* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {

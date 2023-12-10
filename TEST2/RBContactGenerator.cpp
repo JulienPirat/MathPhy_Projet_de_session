@@ -221,14 +221,16 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
 
         float restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
         float friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
-        float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-        Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+        
 
         if (axe == bOneX || axe == bOneY || axe == bOneZ ||
             axe == bTwoX || axe == bTwoY || axe == bTwoZ)
         {
-            axe.normalize();
             // Collision Face-Point
+            float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+            axe.normalize();
+            
             RBContact newContact;
             newContact.contactNormal = axe;
             newContact.contactPoint = contactPoint;
@@ -242,6 +244,20 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
         else 
         {
             // Collision Edge-Edge
+
+            float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+            axe.normalize();
+
+            RBContact newContact;
+            newContact.contactNormal = axe;
+            newContact.contactPoint = contactPoint;
+            newContact.penetration = penetration;
+            newContact.restitution = restitution;
+            newContact.friction = friction;
+            newContact.RigidBodies[0] = one->RB;
+            newContact.RigidBodies[1] = two->RB;
+            contactRegistry->contacts->push_back(newContact);
         }
 	}
 
@@ -252,7 +268,7 @@ unsigned ContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* co
 
     // Ensuite on fait la projection des boites sur chaque axes et on calcule l'interpénetration.
     // On garde seulement les axes qui ont une interpénetration la plus petite possible.
-    return 0;
+    return 1;
 }
 
 Interval ContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)

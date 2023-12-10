@@ -19,6 +19,7 @@ void PhysicEngine::Init()
 void PhysicEngine::Update(float deltaTime)
 {
 	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
+	std::vector<std::pair<RigidBody*,RigidBody*>> potentialCollision = KDTRee::getPotentialCollisions(rigidbodies, root);
 
 	//update the positions particles
 	for (auto p : particles)

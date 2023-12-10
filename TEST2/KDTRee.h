@@ -53,7 +53,7 @@ class KDTRee
 public:
 	static const int MAX_DEPTH = 10;
 
-	std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root);
+	static std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
 	static Node* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt);
 

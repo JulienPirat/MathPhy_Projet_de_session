@@ -116,6 +116,13 @@ void ImGuiEngine::Update()
         */
 
         ImGui::Text("Part 1 :");
+        if (ImGui::Button("Demo KDTree")) {
+            World& w = World::GetInstance();
+            w.AddDemoKDTree();
+        }
+
+        /*
+        ImGui::Text("Part 1 :");
         if (ImGui::Button("Spawn Particle")) {
             World& w = World::GetInstance();
             w.GenBasicParticule(0,0,0,0,0,0,0, 0,0);
@@ -190,7 +197,7 @@ void ImGuiEngine::Update()
         if (ImGui::Button("Delete All RigidBody")) {
             World& w = World::GetInstance();
             w.DeleteAllRigidBody();
-        }
+        }*/
 
 
         /*

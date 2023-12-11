@@ -91,10 +91,10 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
 
-    RigidBody* outNearestRB = nullptr;
-    float currentDistanceBtw = 10000000;
 
     for (auto rb : RBList) {
+        RigidBody* outNearestRB = nullptr;
+        float currentDistanceBtw = 10000000;
 
         RigidBody* rbtemp = KDTRee::getNearestPoint(rb, root, outNearestRB, &currentDistanceBtw);
 

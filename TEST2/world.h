@@ -46,6 +46,8 @@ public:
 	//Ajouter un exemple de rod
 	void AddRodExample();
 
+	void AddDemoKDTree();
+
 	//Ajouter un exemple de RigidBody
 	void AddRigidBody();
 

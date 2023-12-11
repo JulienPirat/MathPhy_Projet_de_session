@@ -214,6 +214,57 @@ void World::AddRodExample()
 	physics.AddRodExample(p1spring, p2spring);
 }
 
+void World::AddDemoKDTree()
+{
+	Box* RB_1 = new Box(
+		Vector3D(11, 11, 11), //Position
+		Vector3D(0, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 2, 2)
+	);
+	AddRigidBody(RB_1);
+
+	Box* RB_3 = new Box(
+		Vector3D(10, 10, 10), //Position
+		Vector3D(0, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 2, 2)
+	);
+	AddRigidBody(RB_3);
+
+	Box* RB_2 = new Box(
+		Vector3D(-10, -10, -10), //Position
+		Vector3D(0, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 2, 1)
+	);
+	AddRigidBody(RB_2);
+
+	Box* RB_4 = new Box(
+		Vector3D(-11, -11, -11), //Position
+		Vector3D(0, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 2, 1)
+	);
+	AddRigidBody(RB_4);
+}
+
 void World::AddRigidBody()
 {
 	physics.putGravityToRigidBody();

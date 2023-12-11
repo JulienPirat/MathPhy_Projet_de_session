@@ -144,6 +144,7 @@
     <ClCompile Include="Imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Imgui\imgui_tables.cpp" />
     <ClCompile Include="Imgui\imgui_widgets.cpp" />
+    <ClCompile Include="KDTRee.cpp" />
     <ClCompile Include="libs\glad.c" />
     <ClCompile Include="libs\stb_image.cpp" />
     <ClCompile Include="Matrix3.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Imgui\imstb_rectpack.h" />
     <ClInclude Include="Imgui\imstb_textedit.h" />
     <ClInclude Include="Imgui\imstb_truetype.h" />
+    <ClInclude Include="KDTRee.h" />
     <ClInclude Include="libs\stb_image.h" />
     <ClInclude Include="Matrix3.h" />
     <ClInclude Include="Matrix4.h" />

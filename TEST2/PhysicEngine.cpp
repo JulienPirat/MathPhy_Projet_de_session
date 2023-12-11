@@ -7,6 +7,7 @@
 #include <ParticleBuoyancy.h>
 #include <ParticleCable.h>
 #include <ParticleRod.h>
+#include <KDTRee.h>
 
 void PhysicEngine::Init()
 {
@@ -17,6 +18,9 @@ void PhysicEngine::Init()
 
 void PhysicEngine::Update(float deltaTime)
 {
+	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
+	std::vector<std::pair<RigidBody*,RigidBody*>> potentialCollision = KDTRee::getPotentialCollisions(rigidbodies, root);
+	std::cout << potentialCollision.size() << std::endl;
 
 	//update the positions particles
 	for (auto p : particles)
@@ -55,6 +59,8 @@ void PhysicEngine::Update(float deltaTime)
 			resolver.resolveContacts(contactRegistry, contactRegistry->Contacts.size(), deltaTime);
 		}
 	}
+
+	KDTRee::deleteTree(root);
 }
 
 void PhysicEngine::Shutdown()

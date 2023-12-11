@@ -8,7 +8,7 @@
 Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis)
 {
     //Check if we need to create a leaf or a PlaneDivision
-    if (currentDepth >= MAX_DEPTH || RBList.size() < 1) {
+    if (currentDepth >= MAX_DEPTH || RBList.size() <= 1) {
         //On return une leaf
         return new Node(RBList);
     }

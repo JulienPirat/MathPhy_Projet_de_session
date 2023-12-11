@@ -172,6 +172,7 @@
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RBAnchoredSpringForceGenerator.cpp" />
+    <ClCompile Include="RBContact.cpp" />
     <ClCompile Include="RBContactGenerator.cpp" />
     <ClCompile Include="RBContactRegistry.cpp" />
     <ClCompile Include="RBContactResolver.cpp" />

@@ -46,7 +46,7 @@ void PhysicEngine::Update(float deltaTime)
 	//Check Particules collisions & fill contact list
 	CallAllContactGenerator();
 
-	//Resolve Contacts
+	//Resolve Particles Contacts
 	if (contactRegistry->Contacts.size() > 0) {
 		if (limitIterContactResolver < contactRegistry->Contacts.size() - 1) {
 			//If we have more than "limitIterContactResolver" contacts to resolve we only solve "limitIterContactResolver" of them
@@ -60,7 +60,64 @@ void PhysicEngine::Update(float deltaTime)
 		}
 	}
 
+	//Resolve RB Contacts
+	if (contactRegistry_RigidBody->contacts.size() > 0) {
+		if (RBlimitIterContactResolver < contactRegistry_RigidBody->contacts.size() - 1) {
+			//If we have more than "limitIterContactResolver" contacts to resolve we only solve "limitIterContactResolver" of them
+			RBresolver.setIterations(RBlimitIterContactResolver);
+			RBresolver.resolveContacts(contactRegistry_RigidBody, RBlimitIterContactResolver, deltaTime);
+		}
+		else {
+			//We can resolve all contact this frame
+			RBresolver.setIterations(contactRegistry_RigidBody->contacts.size());
+			RBresolver.resolveContacts(contactRegistry_RigidBody, contactRegistry_RigidBody->contacts.size(), deltaTime);
+		}
+	}
+
+
 	KDTRee::deleteTree(root);
+}
+
+void PhysicEngine::CallAllContactGenerator()
+{
+	//Clear Basics for this frame
+	for (auto c : BasicsContactGeneratorRegistry)
+	{
+		delete c;
+	}
+
+	BasicsContactGeneratorRegistry.clear();
+	contactRegistry->ClearContactRegistry();
+
+	//Initialisation of Basics Contact Generator
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(0.5f, particles));
+	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
+
+	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
+	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
+		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
+	}
+
+	//On appelle le addContact sur le générateurs de contact additionnels (Cable, Rod, ...)
+	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
+		acontactgen->addContact(contactRegistry, limitIterContactGenerator);
+	}
+}
+
+void PhysicEngine::CallRBContactGenerator()
+{
+	contactRegistry_RigidBody->ClearContactRegistry();
+}
+
+void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
+{
+	PBox* box1 = new PBox(rb1, rb1->transformMatrix);
+	PBox* box2 = new PBox(rb2, rb2->transformMatrix);
+	box1->halfSize = Vector3D(0.5, 0.5, 0.5);
+	box2->halfSize = Vector3D(0.5, 0.5, 0.5);
+	rb1->primitive = box1;
+	rb2->primitive = box2;
+	contactGenerator->boxAndBox(box1, box2, contactRegistry_RigidBody);
 }
 
 void PhysicEngine::Shutdown()
@@ -150,46 +207,4 @@ void PhysicEngine::AddRodExample(Particle* part1, Particle* part2) {
 	AdditionnalContactGeneratorRegistry.push_back(new ParticleRod(3,part1,part2));
 	//forceRegistry_Particle.add(part1, new ParticleGravity());
 
-}
-
-void PhysicEngine::CallAllContactGenerator()
-{
-	//Clear Basics for this frame
-	for (auto c : BasicsContactGeneratorRegistry)
-	{
-		delete c;
-	}
-	
-	BasicsContactGeneratorRegistry.clear();
-	contactRegistry->ClearContactRegistry();
-
-	//Initialisation of Basics Contact Generator
-	BasicsContactGeneratorRegistry.push_back(new ParticleContactNaïve(0.5f, particles));
-	BasicsContactGeneratorRegistry.push_back(new ParticleContactResting(2, particles));
-
-	//On appelle le addContact sur le générateurs de contact basiques (Naive, Wall, Resting, ...)
-	for (auto* bcontactgen : BasicsContactGeneratorRegistry) {
-		bcontactgen->addContact(contactRegistry, limitIterContactGenerator);
-	}
-
-	//On appelle le addContact sur le générateurs de contact additionnels (Cable, Rod, ...)
-	for (auto* acontactgen : AdditionnalContactGeneratorRegistry) {
-		acontactgen->addContact(contactRegistry, limitIterContactGenerator);
-	}
-}
-
-void PhysicEngine::CallRBContactGenerator()
-{
-	contactRegistry_RigidBody->ClearContactRegistry();
-}
-
-void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
-{
-	PBox* box1 = new PBox(rb1, rb1->transformMatrix);
-	PBox* box2 = new PBox(rb2, rb2->transformMatrix);
-	box1->halfSize = Vector3D(0.5, 0.5, 0.5);
-	box2->halfSize = Vector3D(0.5, 0.5, 0.5);
-	rb1->primitive = box1;
-	rb2->primitive = box2;
-	contactGenerator->boxAndBox(box1,box2, contactRegistry_RigidBody);
 }

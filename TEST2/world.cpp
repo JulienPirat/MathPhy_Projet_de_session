@@ -44,7 +44,7 @@ void World::ContactBoxBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
-	
+
 	rigidBodiesTEST.push_back(RB_1);
 	rigidBodiesTEST.push_back(RB_2);
 }

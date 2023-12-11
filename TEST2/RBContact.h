@@ -24,4 +24,11 @@ public:
 
 	//Friction of the contact
 	float friction;
+
+	void resolveInterpenetration(float duration);
+
+	void AddImpulse(float duration);
+
+	//Return the closing velocity
+	float calculateClosingVelocity();
 };

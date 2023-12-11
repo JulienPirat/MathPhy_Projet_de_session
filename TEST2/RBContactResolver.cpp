@@ -6,22 +6,45 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 	iterationsUsed = 0;
 	while (iterationsUsed < iteration)
 	{
-		//Find the contact with the largest closing velocity
-		float max = 0;
-		unsigned int maxIndex = 0; // numContact; BENJ FIX MIGHT BE CONFIRM
-		for (unsigned int i = 0; i < numContact; i++)
+		//Résoudre en premier le contact qui a l'interpénétration la plus grande
+		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
+		// Ensuite , résoudre le contact qui a la plus grande interpénétration
+		// Updater la pénétration de chaque contact car ils ont peut-être bougé
+		// Page 367
+
+		/// Résoudre l'interpénétration
+		float maxInterpenetration = 0;
+		RBContact* contactToResolveInterpenatration = nullptr;
+
+		for (RBContact contact : ContactRegistry->contacts)
 		{
-			//float sepVel = ContactRegistry->contacts[i].calculateSeparatingVelocity();
-			if (sepVel < max && (sepVel < 0 || ContactRegistry->contacts[i].penetration > 0))
+			if (contact.penetration > maxInterpenetration) 
 			{
-				max = sepVel;
-				maxIndex = i;
+				maxInterpenetration = contact.penetration;
+				contactToResolveInterpenatration = &contact;
 			}
 		}
 
-		//Resolve this contact
-		ContactRegistry->Contacts[maxIndex].resolve(duration);
+		if (contactToResolveInterpenatration != nullptr)
+		{
+			contactToResolveInterpenatration->resolveInterpenetration(duration);
+		}
 
+
+		/// Ajouter l'impulsion
+		float maxClosingVelocity = ContactRegistry->contacts[0].calculateClosingVelocity();
+		RBContact* contactApplyImpulse = &ContactRegistry->contacts[0];
+
+		for (RBContact contact : ContactRegistry->contacts)
+		{
+			if (contact.calculateClosingVelocity() < maxClosingVelocity)
+			{
+				maxClosingVelocity = contact.calculateClosingVelocity();
+				contactApplyImpulse = &contact;
+			}
+		}
+
+		contactApplyImpulse->AddImpulse(duration);
 		iterationsUsed++;
 	}
 	*/

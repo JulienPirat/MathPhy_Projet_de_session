@@ -13,7 +13,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         return new Node(RBList);
     }
     else {
-        //On trie la liste en fonction de l'axe de séparation
+        //On trie la liste en fonction de l'axe de sï¿½paration
         switch (axis) {
         case Axis::X:
             // X
@@ -32,7 +32,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
             break;
         }
 
-        //Calcul de la médiane
+        //Calcul de la mï¿½diane
         float mediane = 0;
         Vector3D positionMediane;
 
@@ -50,7 +50,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         //Definir nouvel Axis
         Axis newAxis;
 
-        //Definir la médiane
+        //Definir la mï¿½diane
         switch (axis) {
         case Axis::X:
             // X
@@ -160,21 +160,71 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             searchFirstLeft = false;
         }
 
+        RigidBody* rbRight = nullptr;
+        RigidBody* rbLeft = nullptr;
+
         if (searchFirstLeft == true) {
             if (actualpointaxisval - *currentDistanceBtw <= currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->left,refpoint, currentDistanceBtw);
+                rbLeft = getNearestPoint(actualpoint, currentNode->left,refpoint, currentDistanceBtw);
             }
             if (actualpointaxisval + *currentDistanceBtw > currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
+                 rbRight = getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
             }
         }
         else {
             if (actualpointaxisval + *currentDistanceBtw > currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
+                rbRight = getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
             }
             if (actualpointaxisval - *currentDistanceBtw <= currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->left, refpoint, currentDistanceBtw);
+                rbLeft = getNearestPoint(actualpoint, currentNode->left, refpoint, currentDistanceBtw);
             }
+        }
+
+        switch (currentNode->plane.axis)
+        {
+        case Axis::X:
+            if (rbLeft != nullptr && rbRight != nullptr) {
+                if (abs(actualpoint->position.x - rbLeft->position.x) < abs(actualpoint->position.x - rbRight->position.x)) {
+                    return rbLeft;
+                }
+                else {
+                    return rbRight;
+                }
+            }
+            else if (rbLeft != nullptr) {
+                return rbLeft;
+            }
+            else if (rbRight != nullptr) {
+                return rbRight;
+            }
+            break;
+        case Axis::Y:
+            if (rbLeft != nullptr && rbRight != nullptr) {
+                if (abs(actualpoint->position.y - rbLeft->position.y) < abs(actualpoint->position.y - rbRight->position.y)) {
+					return rbLeft;
+				}
+                else {
+					return rbRight;
+				}
+			}
+            else if (rbLeft != nullptr) {
+				return rbLeft;
+			}
+            else if (rbRight != nullptr) {
+				return rbRight;
+			}
+            break;
+        case Axis::Z:
+            if (rbLeft != nullptr && rbRight != nullptr) {
+				if (abs(actualpoint->position.z - rbLeft->position.z) < abs(actualpoint->position.z - rbRight->position.z)) {}
+            }
+            else if (rbLeft != nullptr) {
+                return rbLeft;
+            }
+            else if (rbRight != nullptr) {
+                return rbRight;
+			}
+            break;
         }
     }
 

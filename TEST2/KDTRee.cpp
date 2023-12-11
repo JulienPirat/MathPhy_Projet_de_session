@@ -128,7 +128,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             {
                 float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
                 if (newDistanceBetweenPt < *currentDistanceBtw) {
-                    currentDistanceBtw = &newDistanceBetweenPt;
+                    *currentDistanceBtw = newDistanceBetweenPt;
                     reftosend = rbtocheck;
                 }
             }

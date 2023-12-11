@@ -173,6 +173,7 @@
     <ClCompile Include="RBAnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="RBContactGenerator.cpp" />
     <ClCompile Include="RBContactRegistry.cpp" />
+    <ClCompile Include="RBContactResolver.cpp" />
     <ClCompile Include="RBForceRegistry.cpp" />
     <ClCompile Include="RBGravityForceGenerator.cpp" />
     <ClCompile Include="RBSpringForceGenerator.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="RBAnchoredSpringForceGenerator.h" />
     <ClInclude Include="RBContact.h" />
     <ClInclude Include="RBContactGenerator.h" />
+    <ClInclude Include="RBContactResolver.h" />
     <ClInclude Include="RBForceGenerator.h" />
     <ClInclude Include="RBForceRegistry.h" />
     <ClInclude Include="RBGravityForceGenerator.h" />

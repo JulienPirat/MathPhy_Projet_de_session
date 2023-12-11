@@ -219,8 +219,11 @@
     <ClCompile Include="Sphere.cpp">
       <Filter>Fichiers sources\Rigid</Filter>
     </ClCompile>
+    <ClCompile Include="RBContactResolver.cpp">
+      <Filter>Fichiers sources\Misc</Filter>
+    </ClCompile>
     <ClCompile Include="RBContactRegistry.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Misc</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -390,6 +393,9 @@
     </ClInclude>
     <ClInclude Include="Sphere.h">
       <Filter>Fichiers d%27en-tête\Rigid</Filter>
+    </ClInclude>
+    <ClInclude Include="RBContactResolver.h">
+      <Filter>Fichiers d%27en-tête\Misc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -113,6 +113,8 @@ void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 {
 	PBox* box1 = new PBox(rb1, rb1->transformMatrix);
 	PBox* box2 = new PBox(rb2, rb2->transformMatrix);
+	//Définir que c'est une box au moment de la collision
+	// Créer la primitive a la création du RB
 	rb1->primitive = box1;
 	rb2->primitive = box2;
 	contactGenerator->boxAndBox(box1, box2, contactRegistry_RigidBody);

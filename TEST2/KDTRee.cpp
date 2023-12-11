@@ -75,7 +75,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         //Seperate list
         PlaneDiv seperatePlane = PlaneDiv(newAxis, mediane);
 
-        std::size_t const half_size = RBList.size();
+        std::size_t const half_size = RBList.size() / 2;
         std::vector<RigidBody*> RBListRight(RBList.begin(), RBList.begin() + half_size);
         std::vector<RigidBody*> RBListLeft(RBList.begin() + half_size, RBList.end());
 

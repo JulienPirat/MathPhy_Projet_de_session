@@ -98,11 +98,14 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
 
         bool canBeAdd = true;
         for (auto pair: potentialCollisionList) {
-            if (pair.first == rbtemp && pair.second == rb) {
+            if ((pair.first == rbtemp && pair.second == rb)) {
                 canBeAdd = false;
                 break;
             }
         }
+
+        //On check si les deux rigidbodies sont bien non nuls
+        canBeAdd = canBeAdd && rbtemp != nullptr && rb != nullptr;
 
         if (canBeAdd) {
             potentialCollisionList.push_back(std::pair<RigidBody*, RigidBody*>(rb, rbtemp));
@@ -119,10 +122,13 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
         //on check la distance absolue de ce nouveau point
         RigidBody* reftosend = nullptr;
         for (auto rbtocheck : currentNode->body) {
-            float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
-            if (newDistanceBetweenPt < distanceBetweenPt) {
-                distanceBetweenPt = newDistanceBetweenPt;
-                if(rbtocheck != actualpoint)  reftosend = rbtocheck;
+            if (rbtocheck != actualpoint)
+            {
+                float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
+                if (newDistanceBetweenPt < distanceBetweenPt) {
+                    distanceBetweenPt = newDistanceBetweenPt;
+                    reftosend = rbtocheck;
+                }
             }
         }
         return reftosend;

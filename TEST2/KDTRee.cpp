@@ -201,7 +201,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
         case Axis::Y:
             if (rbLeft != nullptr && rbRight != nullptr) {
                 if (abs(actualpoint->position.y - rbLeft->position.y) < abs(actualpoint->position.y - rbRight->position.y)) {
-					return rbLeft;
+                    return rbLeft;
 				}
                 else {
 					return rbRight;
@@ -216,7 +216,12 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             break;
         case Axis::Z:
             if (rbLeft != nullptr && rbRight != nullptr) {
-				if (abs(actualpoint->position.z - rbLeft->position.z) < abs(actualpoint->position.z - rbRight->position.z)) {}
+				if (abs(actualpoint->position.z - rbLeft->position.z) < abs(actualpoint->position.z - rbRight->position.z)) {
+                    return rbLeft;
+                }
+                else {
+                    return rbRight;
+                }
             }
             else if (rbLeft != nullptr) {
                 return rbLeft;

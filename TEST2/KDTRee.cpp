@@ -13,7 +13,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         return new Node(RBList);
     }
     else {
-        //On trie la liste en fonction de l'axe de s�paration
+        //On trie la liste en fonction de l'axe de separation
         switch (axis) {
         case Axis::X:
             // X
@@ -123,7 +123,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
         //on check la distance absolue de ce nouveau point
         RigidBody* reftosend = nullptr;
-        for (auto rbtocheck : currentNode->body) {
+        for (RigidBody* rbtocheck : currentNode->body) {
             if (rbtocheck != actualpoint)
             {
                 float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();

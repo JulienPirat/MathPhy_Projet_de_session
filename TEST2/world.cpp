@@ -187,7 +187,7 @@ void World::AddRodExample()
 void World::AddDemoKDTree()
 {
 	Box* RB_1 = new Box(
-		Vector3D(10, 0, 0), //Position
+		Vector3D(11, 11, 11), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -199,7 +199,7 @@ void World::AddDemoKDTree()
 	AddRigidBody(RB_1);
 
 	Box* RB_3 = new Box(
-		Vector3D(12, 0, 0), //Position
+		Vector3D(10, 10, 10), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -211,7 +211,7 @@ void World::AddDemoKDTree()
 	AddRigidBody(RB_3);
 
 	Box* RB_2 = new Box(
-		Vector3D(-10, 0, 0), //Position
+		Vector3D(-10, -10, -10), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -223,7 +223,7 @@ void World::AddDemoKDTree()
 	AddRigidBody(RB_2);
 
 	Box* RB_4 = new Box(
-		Vector3D(-12, 0, 0), //Position
+		Vector3D(-11, -11, -11), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire

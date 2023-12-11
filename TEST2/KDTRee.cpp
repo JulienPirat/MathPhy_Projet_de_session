@@ -117,14 +117,15 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
     //Check if leaf == dead end
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
         //on check la distance absolue de ce nouveau point
+        RigidBody* reftosend = nullptr;
         for (auto rbtocheck : currentNode->body) {
             float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
             if (newDistanceBetweenPt < distanceBetweenPt) {
                 distanceBetweenPt = newDistanceBetweenPt;
-                refpoint = rbtocheck;
+                reftosend = rbtocheck;
             }
         }
-        return refpoint;
+        return reftosend;
     }
     else {
 
@@ -153,18 +154,18 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
 
         if (searchFirstLeft == true) {
             if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
-                getNearestPoint(actualpoint, currentNode->left,refpoint,distanceBetweenPt);
+                return getNearestPoint(actualpoint, currentNode->left,refpoint,distanceBetweenPt);
             }
             if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
-                getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+                return getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
             }
         }
         else {
             if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
-                getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+                return getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
             }
             if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
-                getNearestPoint(actualpoint, currentNode->left, refpoint, distanceBetweenPt);
+                return getNearestPoint(actualpoint, currentNode->left, refpoint, distanceBetweenPt);
             }
         }
     }

@@ -9,7 +9,7 @@ public:
 	//Constructor
 	PBox(RigidBody* RB, Matrix4 offset) : Primitive( RB, offset) {}
 
-	Vector3D halfSize;
+	Vector3D halfSize = RB->dimension/2;
 
 	/// <summary>
 	/// Return the vertices of the box

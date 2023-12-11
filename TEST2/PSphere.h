@@ -8,6 +8,6 @@ public:
 	
 	PSphere(float radius, RigidBody* RB, Matrix4 offset) : Primitive(RB, offset), radius(radius) {};
 
-	float radius;
+	float radius = RB->dimension.x;
 
 };

@@ -91,10 +91,12 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     //Notre liste de collisions qui seront a tester
     std::vector < std::pair<RigidBody*, RigidBody*>> potentialCollisionList;
 
-    for (auto rb : RBList) {
-        RigidBody* outNearestRB = nullptr;
+    RigidBody* outNearestRB = nullptr;
+    float currentDistanceBtw = 10000000;
 
-        RigidBody* rbtemp = KDTRee::getNearestPoint(rb, root, outNearestRB, 10000000);
+    for (auto rb : RBList) {
+
+        RigidBody* rbtemp = KDTRee::getNearestPoint(rb, root, outNearestRB, &currentDistanceBtw);
 
         bool canBeAdd = true;
         for (auto pair: potentialCollisionList) {
@@ -115,7 +117,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     return potentialCollisionList;
 }
 
-RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float distanceBetweenPt) {
+RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float* currentDistanceBtw) {
 
     //Check if leaf == dead end
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
@@ -125,8 +127,8 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             if (rbtocheck != actualpoint)
             {
                 float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
-                if (newDistanceBetweenPt < distanceBetweenPt) {
-                    distanceBetweenPt = newDistanceBetweenPt;
+                if (newDistanceBetweenPt < *currentDistanceBtw) {
+                    currentDistanceBtw = &newDistanceBetweenPt;
                     reftosend = rbtocheck;
                 }
             }
@@ -159,19 +161,19 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
         }
 
         if (searchFirstLeft == true) {
-            if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->left,refpoint,distanceBetweenPt);
+            if (actualpointaxisval - *currentDistanceBtw <= currentNode->plane.coordinate) {
+                return getNearestPoint(actualpoint, currentNode->left,refpoint, currentDistanceBtw);
             }
-            if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+            if (actualpointaxisval + *currentDistanceBtw > currentNode->plane.coordinate) {
+                return getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
             }
         }
         else {
-            if (actualpointaxisval + distanceBetweenPt > currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->right, refpoint, distanceBetweenPt);
+            if (actualpointaxisval + *currentDistanceBtw > currentNode->plane.coordinate) {
+                return getNearestPoint(actualpoint, currentNode->right, refpoint, currentDistanceBtw);
             }
-            if (actualpointaxisval - distanceBetweenPt <= currentNode->plane.coordinate) {
-                return getNearestPoint(actualpoint, currentNode->left, refpoint, distanceBetweenPt);
+            if (actualpointaxisval - *currentDistanceBtw <= currentNode->plane.coordinate) {
+                return getNearestPoint(actualpoint, currentNode->left, refpoint, currentDistanceBtw);
             }
         }
     }

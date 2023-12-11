@@ -123,7 +123,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
         //on check la distance absolue de ce nouveau point
         RigidBody* reftosend = nullptr;
-        for (auto rbtocheck : currentNode->body) {
+        for (RigidBody* rbtocheck : currentNode->body) {
             if (rbtocheck != actualpoint)
             {
                 float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
@@ -216,7 +216,12 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             break;
         case Axis::Z:
             if (rbLeft != nullptr && rbRight != nullptr) {
-				if (abs(actualpoint->position.z - rbLeft->position.z) < abs(actualpoint->position.z - rbRight->position.z)) {}
+				if (abs(actualpoint->position.z - rbLeft->position.z) < abs(actualpoint->position.z - rbRight->position.z)) {
+                    return rbLeft;
+                }
+                else {
+                    return rbRight;
+                }
             }
             else if (rbLeft != nullptr) {
                 return rbLeft;

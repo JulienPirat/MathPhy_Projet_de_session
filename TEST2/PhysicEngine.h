@@ -12,6 +12,7 @@
 #include <RBAnchoredSpringForceGenerator.h>
 #include <RBContactRegistry.h>
 #include <RBContactGenerator.h>
+#include <RBContactResolver.h>
 
 
 class PhysicEngine
@@ -82,6 +83,8 @@ class PhysicEngine
 
 		unsigned int limitIterContactGenerator = 100;
 		unsigned int limitIterContactResolver = 10;
+
+		unsigned int RBlimitIterContactResolver = 10;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;
@@ -91,5 +94,8 @@ class PhysicEngine
 
 		//contact resolver
 		ParticleContactResolver resolver;
+
+		//RB contact resolver
+		RBContactResolver RBresolver;
 };
 

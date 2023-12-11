@@ -225,6 +225,9 @@
     <ClCompile Include="RBContactRegistry.cpp">
       <Filter>Fichiers sources\Misc</Filter>
     </ClCompile>
+    <ClCompile Include="RBContact.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

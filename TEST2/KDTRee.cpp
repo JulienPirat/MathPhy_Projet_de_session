@@ -13,7 +13,7 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         return new Node(RBList);
     }
     else {
-        //On trie la liste en fonction de l'axe de s�paration
+        //On trie la liste en fonction de l'axe de separation
         switch (axis) {
         case Axis::X:
             // X

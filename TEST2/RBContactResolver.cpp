@@ -2,6 +2,7 @@
 
 void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration)
 {
+	/*
 	iterationsUsed = 0;
 	while (iterationsUsed < iteration)
 	{
@@ -23,4 +24,5 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 		iterationsUsed++;
 	}
+	*/
 }

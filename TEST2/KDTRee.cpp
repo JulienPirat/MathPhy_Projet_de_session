@@ -238,7 +238,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
             }
         }
     }
-
+    return nullptr;
 }
 
 void KDTRee::deleteTree(Node* base)

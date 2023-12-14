@@ -17,6 +17,9 @@ RigidBody::RigidBody()
 
 	color = Vector3D();
 
+	shape = cuboide;
+	dimension = Vector3D(1, 1, 1);
+
 	ClearAccumulators();
 }
 
@@ -24,6 +27,9 @@ RigidBody::RigidBody(Matrix3 inverseInertia)
 {
 	RigidBody();
 	inverseI = inverseInertia;
+
+	shape = cuboide;
+	dimension = Vector3D(1, 1, 1);
 }
 
 RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia)
@@ -41,10 +47,19 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 
 	m_angularDamping = angDamp;
 
+	shape = cuboide;
+	dimension = Vector3D(1, 1, 1);
 
 	color = col;
 
 	ClearAccumulators();
+}
+
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions)
+	: RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, inverseInertia)
+{
+	this->shape = shape;
+	this->dimension = dimensions;
 }
 
 void RigidBody::Integrate(float duration)

@@ -18,9 +18,13 @@ void PhysicEngine::Init()
 
 void PhysicEngine::Update(float deltaTime)
 {
+	//Narrow Phase
 	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
 	std::vector<std::pair<RigidBody*,RigidBody*>> potentialCollision = KDTRee::getPotentialCollisions(rigidbodies, root);
 	//std::cout << potentialCollision.size() << std::endl;
+
+	//Broad Phase
+	BroadPhase(potentialCollision);
 
 	//update the positions particles
 	for (auto p : particles)
@@ -76,6 +80,24 @@ void PhysicEngine::Update(float deltaTime)
 
 
 	KDTRee::deleteTree(root);
+}
+
+void PhysicEngine::BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision) {
+	for (auto potCol : potentialCollision) {
+		//On check quel genre de collision on va avoir besoin de rajouter
+		if (potCol.first && potCol.second) {
+
+			shapeRB SRB1 = potCol.first->shape; //Shape Rigidbody 1
+			shapeRB SRB2 = potCol.second->shape; //Shape Rigidbody 2
+
+			if(SRB1 == cuboide && SRB2 == cuboide){
+				//RBContactGenerator::boxAndBox(potCol.first->primitive, potCol.second, contactRegistry_RigidBody);
+			}
+			else if(SRB1 == sphere && SRB2 == sphere){
+
+			}
+		}
+	}
 }
 
 void PhysicEngine::CallAllContactGenerator()

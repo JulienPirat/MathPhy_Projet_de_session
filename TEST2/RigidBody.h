@@ -16,7 +16,6 @@ class RigidBody
 public:
 
 	///Attributes
-
 	Primitive* primitive;
 
 	//Identical as Particle
@@ -58,6 +57,7 @@ public:
 	RigidBody();
 	RigidBody(Matrix3 inverseInertia);
 	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions);
 
 	///Methodes
 	

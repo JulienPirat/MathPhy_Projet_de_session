@@ -63,6 +63,9 @@ public:
 	//Set the matrix base on a quaternion
 	void setOrientation(const Quaternion& q);
 
+	//Overload the operator * between double and Matrix3
+	friend Matrix3 operator*(const double& a, const Matrix3& m);
+
 private :
 
 	void MakeInverse(const Matrix3& m);

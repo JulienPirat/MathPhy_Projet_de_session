@@ -90,3 +90,12 @@ void Matrix3::MakeTranspose(const Matrix3& m)
 	data[7] = m.data[5];
 	data[8] = m.data[8];
 }
+
+Matrix3 operator*(const double& a, const Matrix3& m)
+{
+	return Matrix3(
+		a * m.data[0], a * m.data[1], a * m.data[2],
+		a * m.data[3], a * m.data[4], a * m.data[5],
+		a * m.data[6], a * m.data[7], a * m.data[8]
+	);é
+}

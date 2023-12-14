@@ -6,7 +6,7 @@ class PSphere : public Primitive {
 
 public:
 	
-	PSphere(float radius, RigidBody* RB, Matrix4 offset) : Primitive(RB, offset), radius(radius) {};
+	PSphere(float radius, RigidBody* RB, Matrix4 offset) : Primitive(RB, offset) {};
 
 	float radius = RB->dimension.x;
 

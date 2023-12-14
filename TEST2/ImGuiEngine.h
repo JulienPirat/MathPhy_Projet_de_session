@@ -10,8 +10,7 @@ private:
 
 	GLFWwindow* window = nullptr;
 
-	bool show_demo_window = true;
-	bool show_another_window = false;
+	bool show_collision_window = false;
 
 	bool visible = true;
 

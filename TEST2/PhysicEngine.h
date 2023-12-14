@@ -60,6 +60,8 @@ class PhysicEngine
 
 		void AddContactBoxBox(RigidBody* rb1, RigidBody* rb2);
 
+		void AddContactBoxSphere(RigidBody* rb1, RigidBody* rb2);
+
 		void BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision);
 
 	private:

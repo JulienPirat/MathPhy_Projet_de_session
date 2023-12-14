@@ -142,6 +142,17 @@ void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 	contactGenerator->boxAndBox(box1, box2, contactRegistry_RigidBody);
 }
 
+void PhysicEngine::AddContactBoxSphere(RigidBody* rb1Sphere, RigidBody* rb2Box)
+{
+	PSphere* sphere = new PSphere(rb1Sphere, rb1Sphere->transformMatrix);
+	PBox* box = new PBox(rb2Box, rb2Box->transformMatrix);
+	//Définir que c'est une box au moment de la collision
+	// Créer la primitive a la création du RB
+	rb1Sphere->primitive = sphere;
+	rb2Box->primitive = box;
+	contactGenerator->boxAndSphere(box, sphere, contactRegistry_RigidBody);
+}
+
 void PhysicEngine::Shutdown()
 {
 	ClearParticles();

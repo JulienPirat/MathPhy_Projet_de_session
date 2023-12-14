@@ -28,6 +28,11 @@ public:
 
 	void ContactBoxBox();
 
+	//Ajoute des rigidbody et test les collisions Sphere a Box
+	void ContactSphereBox();
+
+	void GenerateContactSphereBox();
+
 	//Ajoute des forceGenerator aux partiules.
 	void PutGravityForceGenerator();
 

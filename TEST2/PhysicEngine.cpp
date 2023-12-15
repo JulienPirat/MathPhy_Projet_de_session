@@ -44,7 +44,7 @@ void PhysicEngine::Update(float deltaTime)
 	forceRegistry_Rigibody.UpdateForce();
 
 	// Check RigidBodies collisions
-	//CallRBContactGenerator();
+	CallRBContactGenerator();
 
 
 	//Check Particules collisions & fill contact list
@@ -192,8 +192,8 @@ void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 
 void PhysicEngine::AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere)
 {
-	PSphere* sphere = new PSphere(rb1Sphere, rb1Sphere->transformMatrix, rb1Sphere->dimension.x);
-	PBox* box = new PBox(rb2Box, rb2Box->transformMatrix, rb2Box->dimension);
+	PSphere* sphere = new PSphere(rbSphere, rbSphere->transformMatrix, rbSphere->dimension.x);
+	PBox* box = new PBox(rbBox, rbBox->transformMatrix, rbBox->dimension);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
 	rbSphere->primitive = sphere;
@@ -203,8 +203,8 @@ void PhysicEngine::AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere)
 
 void PhysicEngine::AddContactSphereSphere(RigidBody* rb1Sphere, RigidBody* rb2Sphere)
 {
-	PSphere* sphere1 = new PSphere(rb1Sphere, rb1Sphere->transformMatrix);
-	PSphere* sphere2 = new PSphere(rb2Sphere, rb2Sphere->transformMatrix);
+	PSphere* sphere1 = new PSphere(rb1Sphere, rb1Sphere->transformMatrix, rb1Sphere->dimension.x);
+	PSphere* sphere2 = new PSphere(rb2Sphere, rb2Sphere->transformMatrix, rb2Sphere->dimension.x);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
 	rb1Sphere->primitive = sphere1;

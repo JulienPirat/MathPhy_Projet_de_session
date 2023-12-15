@@ -142,15 +142,26 @@ void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 	contactGenerator->boxAndBox(box1, box2, contactRegistry_RigidBody);
 }
 
-void PhysicEngine::AddContactBoxSphere(RigidBody* rb1Sphere, RigidBody* rb2Box)
+void PhysicEngine::AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere)
 {
-	PSphere* sphere = new PSphere(rb1Sphere, rb1Sphere->transformMatrix);
-	PBox* box = new PBox(rb2Box, rb2Box->transformMatrix);
+	PSphere* sphere = new PSphere(rbSphere, rbSphere->transformMatrix);
+	PBox* box = new PBox(rbBox, rbBox->transformMatrix);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
-	rb1Sphere->primitive = sphere;
-	rb2Box->primitive = box;
+	rbSphere->primitive = sphere;
+	rbBox->primitive = box;
 	contactGenerator->boxAndSphere(box, sphere, contactRegistry_RigidBody);
+}
+
+void PhysicEngine::AddContactSphereSphere(RigidBody* rb1Sphere, RigidBody* rb2Sphere)
+{
+	PSphere* sphere1 = new PSphere(rb1Sphere, rb1Sphere->transformMatrix);
+	PSphere* sphere2 = new PSphere(rb2Sphere, rb2Sphere->transformMatrix);
+	//Définir que c'est une box au moment de la collision
+	// Créer la primitive a la création du RB
+	rb1Sphere->primitive = sphere1;
+	rb2Sphere->primitive = sphere2;
+	contactGenerator->sphereAndSphere(sphere1, sphere2, contactRegistry_RigidBody);
 }
 
 void PhysicEngine::Shutdown()

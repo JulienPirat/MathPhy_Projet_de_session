@@ -58,9 +58,11 @@ class PhysicEngine
 
 		void CallRBContactGenerator();
 
-		void AddContactBoxBox(RigidBody* rb1, RigidBody* rb2);
+		void AddContactBoxBox(RigidBody* rb1Box, RigidBody* rb2);
 
-		void AddContactBoxSphere(RigidBody* rb1, RigidBody* rb2);
+		void AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere);
+
+		void AddContactSphereSphere(RigidBody* rb1Sphere, RigidBody* rb2Sphere);
 
 		void BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision);
 

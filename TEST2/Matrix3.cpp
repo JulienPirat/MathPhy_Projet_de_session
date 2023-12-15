@@ -97,5 +97,5 @@ Matrix3 operator*(const double& a, const Matrix3& m)
 		a * m.data[0], a * m.data[1], a * m.data[2],
 		a * m.data[3], a * m.data[4], a * m.data[5],
 		a * m.data[6], a * m.data[7], a * m.data[8]
-	);é
+	);
 }

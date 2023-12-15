@@ -31,6 +31,8 @@ public:
 	//Ajoute des rigidbody et test les collisions Sphere a Box
 	void ContactSphereBox();
 
+	void ContactSphereSphere();
+
 	void GenerateContactSphereBox();
 
 	//Ajoute des forceGenerator aux partiules.
@@ -62,7 +64,14 @@ public:
 	//Ajouter un exemple de AnchordSpring a un RigidBody
 	void AddAnchoredSpringForRigidBody();
 
+	//Génération de contact entre Box et Box
 	void GenerateContactBoxBox();
+
+	//Génération de contact entre Box et Sphere
+	void GenerateContactBoxSphere();
+
+	//Génération de contact entre Sphere et Sphere
+	void GenerateContactSphereSphere();
 
 	//Lancement de la simulation
 	int Run();

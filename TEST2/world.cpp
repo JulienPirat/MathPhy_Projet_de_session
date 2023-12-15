@@ -53,7 +53,7 @@ void World::ContactBoxBox()
 
 void World::ContactSphereBox()
 {
-	Box* RB_1 = new Box(
+	Sphere* RB_1 = new Sphere(
 		Vector3D(1, 0, 0), //Position
 		Vector3D(-1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
@@ -61,7 +61,7 @@ void World::ContactSphereBox()
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
-		Vector3D(1, 1, 1)
+		.5f //Rayon
 	);
 	AddRigidBody(RB_1);
 
@@ -74,6 +74,38 @@ void World::ContactSphereBox()
 		1, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
+	);
+	AddRigidBody(RB_2);
+
+	rigidBodiesTEST.clear();
+
+	rigidBodiesTEST.push_back(RB_1);
+	rigidBodiesTEST.push_back(RB_2);
+}
+
+void World::ContactSphereSphere()
+{
+	Sphere* RB_1 = new Sphere(
+		Vector3D(1, 0, 0), //Position
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		.5f //Rayon
+	);
+	AddRigidBody(RB_1);
+
+	Sphere* RB_2 = new Sphere(
+		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		.5f
 	);
 	AddRigidBody(RB_2);
 
@@ -360,6 +392,16 @@ void World::AddAnchoredSpringForRigidBody()
 void World::GenerateContactBoxBox()
 {
 	physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
+}
+
+void World::GenerateContactBoxSphere()
+{
+	physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
+}
+
+void World::GenerateContactSphereSphere()
+{
+	physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

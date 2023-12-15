@@ -194,6 +194,8 @@ void ImGuiEngine::Update()
 
     if (show_collision_window)
     {
+        ImGui::Begin("Collision Window", &show_collision_window);
+
         if (ImGui::Button("Contact 2 Box RigidBody")) {
             World& w = World::GetInstance();
             w.ContactBoxBox();
@@ -204,10 +206,27 @@ void ImGuiEngine::Update()
             w.GenerateContactBoxBox();
         }
 
-        if (ImGui::Button("Contact 2 Box RigidBody")) {
+        if (ImGui::Button("Contact Sphere and Box RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereBox();
         }
+
+        if (ImGui::Button("GenerateContactBoxSphere")) {
+			World& w = World::GetInstance();
+			w.GenerateContactBoxSphere();
+		}
+
+        if (ImGui::Button("Contact Sphere and sphere RigidBody")) {
+            World& w = World::GetInstance();
+            w.ContactSphereSphere();
+        }
+
+        if (ImGui::Button("GenerateContactSphereSphere")) {
+            World& w = World::GetInstance();
+            w.GenerateContactSphereSphere();
+        }
+
+        ImGui::End();
     }
 
     // Rendering

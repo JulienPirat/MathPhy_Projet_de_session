@@ -2,9 +2,11 @@
 
 void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration)
 {
-	
 	iterationsUsed = 0;
-	while (iterationsUsed < iteration)
+
+	bool shouldStop = iterationsUsed < maxIteration;
+
+	while (!shouldStop)
 	{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
 		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
@@ -16,36 +18,65 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		float maxInterpenetration = 0;
 		RBContact* contactToResolveInterpenatration = nullptr;
 
-		for (RBContact contact : ContactRegistry->contacts)
+		if(!ContactRegistry->contacts.empty())
 		{
-			if (contact.penetration > maxInterpenetration) 
+			for (RBContact contact : ContactRegistry->contacts)
 			{
-				maxInterpenetration = contact.penetration;
-				contactToResolveInterpenatration = &contact;
+				if (contact.penetration > maxInterpenetration)
+				{
+					maxInterpenetration = contact.penetration;
+					contactToResolveInterpenatration = &contact;
+				}
 			}
+		}
+		else
+		{
+			shouldStop = true;
 		}
 
 		if (contactToResolveInterpenatration != nullptr)
 		{
 			contactToResolveInterpenatration->resolveInterpenetration(duration);
+			ContactRegistry->RemoveContact(contactToResolveInterpenatration);
 		}
 
+		iterationsUsed++;
 
+		shouldStop |= iterationsUsed >= maxIteration;
+	}
+
+	iterationsUsed = 0;
+
+	while (!shouldStop)
+	{
 		/// Ajouter l'impulsion
 		float maxClosingVelocity = ContactRegistry->contacts[0].calculateClosingVelocity();
 		RBContact* contactApplyImpulse = &ContactRegistry->contacts[0];
 
-		for (RBContact contact : ContactRegistry->contacts)
+		if (!ContactRegistry->contacts.empty())
 		{
-			if (contact.calculateClosingVelocity() < maxClosingVelocity)
+			for (RBContact contact : ContactRegistry->contacts)
 			{
-				maxClosingVelocity = contact.calculateClosingVelocity();
-				contactApplyImpulse = &contact;
+				if (contact.calculateClosingVelocity() < maxClosingVelocity)
+				{
+					maxClosingVelocity = contact.calculateClosingVelocity();
+					contactApplyImpulse = &contact;
+				}
 			}
 		}
+		else {
+			shouldStop = true;
+		}
 
-		contactApplyImpulse->AddImpulse(duration);
+		if(contactApplyImpulse != nullptr) 
+		{
+			contactApplyImpulse->AddImpulse(duration);
+			ContactRegistry->RemoveContact(contactApplyImpulse);
+		}
+
 		iterationsUsed++;
+
+		shouldStop |= iterationsUsed >= maxIteration;
 	}
 	
 }

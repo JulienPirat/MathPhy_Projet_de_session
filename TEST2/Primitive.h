@@ -1,6 +1,7 @@
 #pragma once
-#include <RigidBody.h>
 #include <Matrix4.h>
+
+class RigidBody;
 
 class Primitive {
 

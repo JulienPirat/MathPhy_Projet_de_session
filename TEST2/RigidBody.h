@@ -2,7 +2,9 @@
 #include <Quaternion.h>
 #include <Matrix4.h>
 #include <Matrix3.h>
-class Primitive;
+#include <PBox.h>
+#include <PPlane.h>
+#include <PSphere.h>
 
 enum shapeRB {
 	none = 0,

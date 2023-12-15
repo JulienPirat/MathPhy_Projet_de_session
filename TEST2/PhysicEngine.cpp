@@ -44,7 +44,7 @@ void PhysicEngine::Update(float deltaTime)
 	forceRegistry_Rigibody.UpdateForce();
 
 	// Check RigidBodies collisions
-	//CallRBContactGenerator();
+	CallRBContactGenerator();
 
 
 	//Check Particules collisions & fill contact list
@@ -90,11 +90,59 @@ void PhysicEngine::BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> pot
 			shapeRB SRB1 = potCol.first->shape; //Shape Rigidbody 1
 			shapeRB SRB2 = potCol.second->shape; //Shape Rigidbody 2
 
-			if(SRB1 == cuboide && SRB2 == cuboide){
-				//RBContactGenerator::boxAndBox(potCol.first->primitive, potCol.second, contactRegistry_RigidBody);
-			}
-			else if(SRB1 == sphere && SRB2 == sphere){
-
+			switch (SRB1)
+			{
+			case cuboide:
+				//SRB1 CUBE
+				switch (SRB2) {
+				case cuboide:
+					RBContactGenerator::boxAndBox((PBox*)potCol.first->primitive, (PBox*)potCol.second->primitive, contactRegistry_RigidBody);
+					break;
+				case sphere:
+					RBContactGenerator::boxAndSphere((PBox*)potCol.first->primitive, (PSphere*)potCol.second->primitive, contactRegistry_RigidBody);
+					break;
+				case plane:
+					RBContactGenerator::boxAndPlane((PBox*)potCol.first->primitive, (PPlane*)potCol.second->primitive, contactRegistry_RigidBody);
+					break;
+				default:
+					break;
+				}
+				break;
+			case sphere:
+				//SRB1 SPHERE
+				switch (SRB2) {
+				case cuboide:
+					RBContactGenerator::boxAndSphere((PBox*)potCol.second->primitive, (PSphere*)potCol.first->primitive, contactRegistry_RigidBody);
+					break;
+				case sphere:
+					RBContactGenerator::sphereAndSphere((PSphere*)potCol.first->primitive, (PSphere*)potCol.second->primitive, contactRegistry_RigidBody);
+					break;
+				case plane:
+					RBContactGenerator::sphereAndPlane((PSphere*)potCol.first->primitive, (PPlane*)potCol.second->primitive, contactRegistry_RigidBody);
+					break;
+				default:
+					break;
+				}
+				break;
+			case plane:
+				//SRB1 PLANE
+				switch (SRB2) {
+				case cuboide:
+					RBContactGenerator::boxAndPlane((PBox*)potCol.second->primitive, (PPlane*)potCol.first->primitive, contactRegistry_RigidBody);
+					break;
+				case sphere:
+					RBContactGenerator::sphereAndPlane((PSphere*)potCol.second->primitive, (PPlane*)potCol.first->primitive, contactRegistry_RigidBody);
+					break;
+				case plane:
+					//Should exist ???
+					break;
+				default:
+					break;
+				}
+				break;
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -133,8 +181,8 @@ void PhysicEngine::CallRBContactGenerator()
 
 void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 {
-	PBox* box1 = new PBox(rb1, rb1->transformMatrix);
-	PBox* box2 = new PBox(rb2, rb2->transformMatrix);
+	PBox* box1 = new PBox(rb1, rb1->transformMatrix, rb1->dimension);
+	PBox* box2 = new PBox(rb2, rb2->transformMatrix, rb2->dimension);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
 	rb1->primitive = box1;
@@ -144,8 +192,8 @@ void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 
 void PhysicEngine::AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere)
 {
-	PSphere* sphere = new PSphere(rbSphere, rbSphere->transformMatrix);
-	PBox* box = new PBox(rbBox, rbBox->transformMatrix);
+	PSphere* sphere = new PSphere(rbSphere, rbSphere->transformMatrix, rbSphere->dimension.x);
+	PBox* box = new PBox(rbBox, rbBox->transformMatrix, rbBox->dimension);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
 	rbSphere->primitive = sphere;
@@ -155,8 +203,8 @@ void PhysicEngine::AddContactBoxSphere(RigidBody* rbBox, RigidBody* rbSphere)
 
 void PhysicEngine::AddContactSphereSphere(RigidBody* rb1Sphere, RigidBody* rb2Sphere)
 {
-	PSphere* sphere1 = new PSphere(rb1Sphere, rb1Sphere->transformMatrix);
-	PSphere* sphere2 = new PSphere(rb2Sphere, rb2Sphere->transformMatrix);
+	PSphere* sphere1 = new PSphere(rb1Sphere, rb1Sphere->transformMatrix, rb1Sphere->dimension.x);
+	PSphere* sphere2 = new PSphere(rb2Sphere, rb2Sphere->transformMatrix, rb2Sphere->dimension.x);
 	//Définir que c'est une box au moment de la collision
 	// Créer la primitive a la création du RB
 	rb1Sphere->primitive = sphere1;

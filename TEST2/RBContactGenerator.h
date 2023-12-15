@@ -15,33 +15,33 @@ class RBContactGenerator
 {
 
 public:
-	unsigned sphereAndSphere(
+	static unsigned sphereAndSphere(
 		PSphere* one,
 		PSphere* two,
 		RBContactRegistry* contactRegistry
 		);
 
-	unsigned sphereAndPlane(
+	static unsigned sphereAndPlane(
 		PSphere* sphere,
 		PPlane* plane,
 		RBContactRegistry* contactRegistry
 		);
-	unsigned boxAndPlane(
+	static unsigned boxAndPlane(
 		PBox* box,
 		PPlane* plane,
 		RBContactRegistry* contactRegistry
 	);
-	unsigned boxAndSphere(
+	static unsigned boxAndSphere(
 		PBox* box,
 		PSphere* sphere,
 		RBContactRegistry* contactRegistry
 	);
-	unsigned boxAndBox(
+	static unsigned boxAndBox(
 		PBox* one,
 		PBox* two,
 		RBContactRegistry* contactRegistry
 	);
 
 private:
-	Interval ProjectBoxOnAxis(PBox* box, Vector3D* axis);
+	static Interval ProjectBoxOnAxis(PBox* box, Vector3D* axis);
 };

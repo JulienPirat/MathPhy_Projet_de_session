@@ -85,7 +85,7 @@ void World::ContactSphereBox()
 
 void World::GenerateContactSphereBox()
 {
-	physics.AddCon
+	physics.AddContactBoxSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 void World::GenBasicCollision() {

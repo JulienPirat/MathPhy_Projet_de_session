@@ -1,13 +1,17 @@
 #pragma once
 
 #include "Primitive.h"
+class RigidBody;
 
 class PSphere : public Primitive {
 
 public:
 	
-	PSphere(float radius, RigidBody* RB, Matrix4 offset) : Primitive(RB, offset) {};
+	PSphere(RigidBody* RB, Matrix4 offset, float rad) : Primitive(RB, offset) {
+		//RB->dimension.x
+		radius = rad;
+	};
 
-	float radius = RB->dimension.x;
+	float radius;
 
 };

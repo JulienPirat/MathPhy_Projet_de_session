@@ -1,5 +1,6 @@
 #include "RigidBody.h"
 
+
 RigidBody::RigidBody()
 {
 	inverseMasse = 1;
@@ -19,6 +20,7 @@ RigidBody::RigidBody()
 
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
+	primitive = new PBox(this, this->transformMatrix, dimension);
 
 	ClearAccumulators();
 }
@@ -49,17 +51,31 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
+	primitive = new PBox(this, this->transformMatrix, dimension / 2);
 
 	color = col;
 
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions)
-	: RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, inverseInertia)
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions): RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, inverseInertia)
 {
 	this->shape = shape;
 	this->dimension = dimensions;
+	switch (shape) {
+	case cuboide:
+		primitive = new PBox(this, this->transformMatrix, dimension / 2);
+		break;
+	case sphere:
+		primitive = new PSphere(this, this->transformMatrix, dimension.x);
+		break;
+	case plane:
+		//*primitive = (Primitive)PPlane(this, this->transformMatrix);
+		//TO DO PLANE CONSTRUCTOR
+		break;
+	default:
+		break;
+	}
 }
 
 void RigidBody::Integrate(float duration)

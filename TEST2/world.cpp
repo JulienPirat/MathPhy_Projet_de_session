@@ -44,11 +44,6 @@ void World::ContactBoxBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
-
-	//rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactBoxPlane()
@@ -77,11 +72,6 @@ void World::ContactBoxPlane()
 		1
 	);
 	AddRigidBody(RB_2);
-
-	//rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactSpherePlane()
@@ -110,11 +100,6 @@ void World::ContactSpherePlane()
 		1
 	);
 	AddRigidBody(RB_2);
-
-	//rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactSphereBox()
@@ -142,11 +127,6 @@ void World::ContactSphereBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
-
-	//rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactSphereSphere()
@@ -174,11 +154,6 @@ void World::ContactSphereSphere()
 		.5f
 	);
 	AddRigidBody(RB_2);
-
-	//rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::GenerateContactSphereBox()

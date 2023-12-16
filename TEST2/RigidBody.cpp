@@ -101,7 +101,7 @@ void RigidBody::CreatePrimitive() {
 		break;
 	case plane:
 		CalculateTransformMatrix();
-		//*primitive = (Primitive)PPlane(this, this->transformMatrix, dimension.x, dimension.y);
+		primitive = new PPlane(this->rotation, this, this->transformMatrix, dimension.x, dimension.y);
 		break;
 	default:
 		break;

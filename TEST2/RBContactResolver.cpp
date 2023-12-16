@@ -44,7 +44,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, floa
 		RigidBody* TempRB1 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[0];
 		RigidBody* TempRB2 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[1];
 
-		ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
+		ContactRegistry->RemoveAllContactsFromTwoRigidBodies(TempRB1, TempRB2);
 
 				shapeRB SRB1 = TempRB1->shape; //Shape Rigidbody 1
 				shapeRB SRB2 = TempRB2->shape; //Shape Rigidbody 2

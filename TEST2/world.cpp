@@ -132,8 +132,8 @@ void World::ContactSphereBox()
 void World::ContactSphereSphere()
 {
 	Sphere* RB_1 = new Sphere(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(2, 0, 0), //Position
+		Vector3D(-1, 0, 1.5),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
@@ -144,12 +144,12 @@ void World::ContactSphereSphere()
 	AddRigidBody(RB_1);
 
 	Sphere* RB_2 = new Sphere(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
+		Vector3D(-2, 0, 0), //Position
+		Vector3D(1, 0, 1.5),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, // Masse
+		10, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
 		.5f
 	);

@@ -8,5 +8,6 @@ void RBContactRegistry::ClearContactRegistry()
 void RBContactRegistry::RemoveContact(RBContact rbc)
 {
 	auto it = std::remove_if(contacts.begin(), contacts.end(), [&rbc](RBContact rbOther) { return rbc == rbOther; });
-	contacts.erase(it);
+	if(it != contacts.end())
+		contacts.erase(it, contacts.end());
 }

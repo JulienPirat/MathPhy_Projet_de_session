@@ -110,19 +110,19 @@ void World::ContactSphereBox()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, // Masse
+		1000, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
-		.5f //Rayon
+		1 //Rayon
 	);
 	AddRigidBody(RB_1);
 
 	Box* RB_2 = new Box(
-		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(-10, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, // Masse
+		1000, // Masse
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
@@ -154,11 +154,6 @@ void World::ContactSphereSphere()
 		.5f
 	);
 	AddRigidBody(RB_2);
-}
-
-void World::GenerateContactSphereBox()
-{
-	physics.AddContactBoxSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 void World::GenBasicCollision() {
@@ -428,21 +423,6 @@ void World::AddAnchoredSpringForRigidBody()
 	Vector3D WorldAnchorPoint = Vector3D(3, 5, 4);
 
 	physics.putSpringForRigidBody(RB_1,WorldAnchorPoint);
-}
-
-void World::GenerateContactBoxBox()
-{
-	//physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
-}
-
-void World::GenerateContactBoxSphere()
-{
-	//physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
-}
-
-void World::GenerateContactSphereSphere()
-{
-	//physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

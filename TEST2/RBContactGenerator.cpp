@@ -100,7 +100,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
 
 unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactRegistry* contactRegistry)
 {
-    auto SpherePositionInBoxSpace = box->offset * sphere->RB->position;
+    auto SpherePositionInBoxSpace = sphere->RB->position - box->RB->position;
     auto distanceX = SpherePositionInBoxSpace.x;
     if (distanceX > box->halfSize.x)
     {
@@ -133,9 +133,9 @@ unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactR
 
     auto contactPoint = Vector3D(distanceX, distanceY, distanceZ);
 
-    auto penetration = sphere->radius - (contactPoint - SpherePositionInBoxSpace).norme(); // Pas sur
+    auto penetration = (SpherePositionInBoxSpace - contactPoint).norme() - sphere->radius;
 
-    if (penetration <= 0) 
+    if (penetration > 0) 
     {
         // We don't have collision
         return 0;

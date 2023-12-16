@@ -6,8 +6,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 	//bool shouldStop = iterationsUsed < maxIteration;
 
-	//while (iterationsUsed < maxIteration)
-	//{
+	while (iterationsUsed < maxIteration)
+	{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
 		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
 		// Ensuite , résoudre le contact qui a la plus grande interpénétration
@@ -17,7 +17,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		/// Résoudre l'interpénétration
 		float maxInterpenetration = 0;
 		RBContact* contactToResolveInterpenatration = nullptr;
-
+		int indexContactToResolve = 0;
+		int indexI = 0;
 		if (!ContactRegistry->contacts.empty())
 		{
 			for (RBContact contact : ContactRegistry->contacts)
@@ -26,7 +27,9 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 				{
 					maxInterpenetration = contact.penetration;
 					contactToResolveInterpenatration = &contact;
+					indexContactToResolve = indexI;
 				}
+				indexI++;
 			}
 		}
 		else
@@ -37,9 +40,11 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		if (contactToResolveInterpenatration != nullptr)
 		{
 			Vector3D cp = Vector3D(0, 0, 0);
-			contactToResolveInterpenatration->resolveInterpenetration(duration);
-			contactToResolveInterpenatration->AddImpulse(duration);
-
+			//contactToResolveInterpenatration->resolveInterpenetration(duration);
+			//contactToResolveInterpenatration->AddImpulse(duration);
+			ContactRegistry->contacts[indexContactToResolve].resolveInterpenetration(duration);
+			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
+			ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
 			/*
 			for (auto c : ContactRegistry->contacts)
 			{
@@ -71,7 +76,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					ContactRegistry->RemoveContact(c);
 				}
 			}
-			//ContactRegistry->RemoveContact(contactToResolveInterpenatration);
+			ContactRegistry->RemoveContact(contactToResolveInterpenatration);
 			*/
 		}
 
@@ -119,5 +124,5 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 			//shouldStop |= iterationsUsed >= maxIteration;
 		
-	//}
+	}
 }

@@ -15,5 +15,5 @@ public:
 	float halfsizeY;
 
 	// décalage du plan par rapport à l'origine
-	float offset; // Déjà dans Primitive ?
+	float offsetP = 0.0f; // Déjà dans Primitive ?
 };

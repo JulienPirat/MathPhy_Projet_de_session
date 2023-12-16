@@ -290,6 +290,15 @@ void ImGuiEngine::Update()
         }
         ImGui::Spacing();
 
+        ImGui::Text("RigidBody General:");
+        ImGui::Spacing();
+
+        if (ImGui::Button("Delete All RigidBody")) {
+            World& w = World::GetInstance();
+            w.DeleteAllRigidBody();
+        }
+        ImGui::Spacing();
+
         ImGui::Text("Collision RB:");
         ImGui::Spacing();
 

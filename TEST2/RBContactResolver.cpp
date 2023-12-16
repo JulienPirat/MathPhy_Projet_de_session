@@ -1,9 +1,9 @@
 #include "RBContactResolver.h"
 #include <RBContactGenerator.h>
 
-void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration)
+void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, float duration)
 {
-
+	iterationsUsed = 0;
 
 	while (iterationsUsed < maxIteration)
 	{
@@ -40,19 +40,14 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			//ContactRegistry->contacts.erase(ContactRegistry->contacts.begin()+indexContactToResolve);
 		
 
-		std::vector<RBContact> ContactRestants = ContactRegistry->contacts;
+		//std::vector<RBContact> ContactRestants = ContactRegistry->contacts;
+		RigidBody* TempRB1 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[0];
+		RigidBody* TempRB2 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[1];
 
 		ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
 
-		//RigidBody* TempRB1 = ContactRestants[indexContactToResolve].RigidBodies[0];
-		//RigidBody* TempRB2 = ContactRestants[indexContactToResolve].RigidBodies[1];
-
-		for (auto potCol : ContactRestants) {
-			//On check quel genre de collision on va avoir besoin de rajouter
-			if (potCol.RigidBodies[0] && potCol.RigidBodies[1]) {
-
-				shapeRB SRB1 = potCol.RigidBodies[0]->shape; //Shape Rigidbody 1
-				shapeRB SRB2 = potCol.RigidBodies[1]->shape; //Shape Rigidbody 2
+				shapeRB SRB1 = TempRB1->shape; //Shape Rigidbody 1
+				shapeRB SRB2 = TempRB2->shape; //Shape Rigidbody 2
 
 				switch (SRB1)
 				{
@@ -60,13 +55,13 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					//SRB1 CUBE
 					switch (SRB2) {
 					case cuboide:
-						RBContactGenerator::boxAndBox((PBox*)potCol.RigidBodies[0]->primitive, (PBox*)potCol.RigidBodies[1]->primitive, ContactRegistry);
+						RBContactGenerator::boxAndBox((PBox*)TempRB1->primitive, (PBox*)TempRB2->primitive, ContactRegistry);
 						break;
 					case sphere:
-						RBContactGenerator::boxAndSphere((PBox*)potCol.RigidBodies[0]->primitive, (PSphere*)potCol.RigidBodies[1]->primitive, ContactRegistry);
+						RBContactGenerator::boxAndSphere((PBox*)TempRB1->primitive, (PSphere*)TempRB2->primitive, ContactRegistry);
 						break;
 					case plane:
-						RBContactGenerator::boxAndPlane((PBox*)potCol.RigidBodies[0]->primitive, (PPlane*)potCol.RigidBodies[1]->primitive, ContactRegistry);
+						RBContactGenerator::boxAndPlane((PBox*)TempRB1->primitive, (PPlane*)TempRB2->primitive, ContactRegistry);
 						break;
 					default:
 						break;
@@ -76,13 +71,13 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					//SRB1 SPHERE
 					switch (SRB2) {
 					case cuboide:
-						RBContactGenerator::boxAndSphere((PBox*)potCol.RigidBodies[1]->primitive, (PSphere*)potCol.RigidBodies[0]->primitive, ContactRegistry);
+						RBContactGenerator::boxAndSphere((PBox*)TempRB2->primitive, (PSphere*)TempRB1->primitive, ContactRegistry);
 						break;
 					case sphere:
-						RBContactGenerator::sphereAndSphere((PSphere*)potCol.RigidBodies[0]->primitive, (PSphere*)potCol.RigidBodies[1]->primitive, ContactRegistry);
+						RBContactGenerator::sphereAndSphere((PSphere*)TempRB1->primitive, (PSphere*)TempRB2->primitive, ContactRegistry);
 						break;
 					case plane:
-						RBContactGenerator::sphereAndPlane((PSphere*)potCol.RigidBodies[0]->primitive, (PPlane*)potCol.RigidBodies[1]->primitive, ContactRegistry);
+						RBContactGenerator::sphereAndPlane((PSphere*)TempRB1->primitive, (PPlane*)TempRB2->primitive, ContactRegistry);
 						break;
 					default:
 						break;
@@ -92,10 +87,10 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					//SRB1 PLANE
 					switch (SRB2) {
 					case cuboide:
-						RBContactGenerator::boxAndPlane((PBox*)potCol.RigidBodies[1]->primitive, (PPlane*)potCol.RigidBodies[0]->primitive, ContactRegistry);
+						RBContactGenerator::boxAndPlane((PBox*)TempRB2->primitive, (PPlane*)TempRB1->primitive, ContactRegistry);
 						break;
 					case sphere:
-						RBContactGenerator::sphereAndPlane((PSphere*)potCol.RigidBodies[1]->primitive, (PPlane*)potCol.RigidBodies[0]->primitive, ContactRegistry);
+						RBContactGenerator::sphereAndPlane((PSphere*)TempRB2->primitive, (PPlane*)TempRB1->primitive, ContactRegistry);
 						break;
 					case plane:
 						//Should exist ???
@@ -108,9 +103,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 				default:
 					break;
 				}
-			}
-
-		}
+			
 		}
 		//resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
 		iterationsUsed++;

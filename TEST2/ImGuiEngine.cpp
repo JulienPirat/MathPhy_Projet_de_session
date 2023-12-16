@@ -96,6 +96,7 @@ void ImGuiEngine::Update()
     ImGui::NewFrame();
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
+    if(window_to_show == 0)
     {
         static float f = 0.0f;
         static int counter = 0;
@@ -103,23 +104,53 @@ void ImGuiEngine::Update()
         ImGui::Begin("Math Phys Tests !");                          // Create a window called "Hello, world!" and append into it.
         ImGui::SetWindowSize(ImVec2(300, 600), 0);
 
+
         ImGui::Text("Part 1 :");
-        if (ImGui::Button("Demo KDTree")) {
-            World& w = World::GetInstance();
-            w.AddDemoKDTree();
+        if (ImGui::Button("Particule Simulation")) {
+            window_to_show = 1;
         }
 
-        
-        ImGui::Text("Part 1 :");
+        ImGui::Text("Part 2 :");
+        if (ImGui::Button("Particule Colliders")) {
+            window_to_show = 2;
+        }
+
+        ImGui::Text("Part 3 :");
+        if (ImGui::Button("RigidBody Forces")) {
+            window_to_show = 3;
+        }
+
+        ImGui::Text("Part 4 :");
+        if (ImGui::Button("RigidBody Colliders")) {
+            window_to_show = 4;
+        }
+
+        ImGui::End();
+    }
+
+    if (window_to_show == 1)
+    {
+        ImGui::Begin("Part 1");
+        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+
+        ImGui::Text("Particules General:");
+
         if (ImGui::Button("Spawn Particle")) {
             World& w = World::GetInstance();
-            w.GenBasicParticule(0,0,0,0,0,0,0, 0,0);
+            w.GenBasicParticule(0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
 
         if (ImGui::Button("Delete All Particle")) {
             World& w = World::GetInstance();
             w.DeleteAllParticle();
         }
+
+        ImGui::Text("Particules General Forces:");
+
 
         if (ImGui::Button("Gravity to Particle")) {
             World& w = World::GetInstance();
@@ -130,6 +161,8 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.PutDragForceGenerator();
         }
+
+        ImGui::Text("Particules Specific Forces:");
 
         if (ImGui::Button("Origin Anchored Spring to Particle")) {
             World& w = World::GetInstance();
@@ -151,7 +184,19 @@ void ImGuiEngine::Update()
             w.AddRodExample();
         }
 
-        ImGui::Text("Part 2 :");
+        ImGui::End();
+    }
+
+    if (window_to_show == 2)
+    {
+        ImGui::Begin("Part 2");
+        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+
+        ImGui::Text("Particules Collision:");
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();
             w.GenBasicCollision();
@@ -167,34 +212,59 @@ void ImGuiEngine::Update()
             w.GenContactResting();
         }
 
-        if (ImGui::Button("Exemple 2 RigidBody With Spring")) {
-            World& w = World::GetInstance();
-            w.AddAnchoredSpringForTwoRigidBody();
+        ImGui::End();
+    }
+
+    if (window_to_show == 3)
+    {
+        ImGui::Begin("Part 3");
+        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
         }
 
-        if (ImGui::Button("Exemple RigidBody With AnchoredSpring")) {
-            World& w = World::GetInstance();
-            w.AddAnchoredSpringForRigidBody();
-        }
+        ImGui::Text("RigidBody General:");
 
-        if (ImGui::Button("Add Gravity for all RigidBody")) {
-            World& w = World::GetInstance();
-            w.AddRigidBody();
-        }
-        
         if (ImGui::Button("Delete All RigidBody")) {
             World& w = World::GetInstance();
             w.DeleteAllRigidBody();
         }
 
-        ImGui::Checkbox("Show collision window", &show_collision_window);
+        ImGui::Text("RigidBody Forces:");
+
+        if (ImGui::Button("Spring with RB")) {
+            World& w = World::GetInstance();
+            w.AddAnchoredSpringForTwoRigidBody();
+        }
+
+        if (ImGui::Button("AnchoredSpring with RB")) {
+            World& w = World::GetInstance();
+            w.AddAnchoredSpringForRigidBody();
+        }
+
+        if (ImGui::Button("Gravity on All RB")) {
+            World& w = World::GetInstance();
+            w.AddRigidBody();
+        }
 
         ImGui::End();
     }
 
-    if (show_collision_window)
+    if (window_to_show == 4)
     {
-        ImGui::Begin("Collision Window", &show_collision_window);
+        ImGui::Begin("Part 4");
+        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+
+        ImGui::Text("Tableau de bord:");
+
+        ImGui::Text("- Nb Collisions:" + World::GetInstance().GetNBCollisionKDTree());
+
+        ImGui::Text("Collision RB:");
 
         if (ImGui::Button("Contact 2 Box RigidBody")) {
             World& w = World::GetInstance();

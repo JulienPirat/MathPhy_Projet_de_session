@@ -82,6 +82,10 @@ public:
 		return instance;
 	}
 
+	//Sharable
+
+	int GetNBCollisionKDTree();
+
 private :
 
 	///Contructeur / Destructeur / Opérateurs
@@ -110,5 +114,6 @@ private :
 	int Init();
 	void Update(float deltaTime);
 	void Shutdown();
+
 };
 

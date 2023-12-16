@@ -21,6 +21,7 @@ void PhysicEngine::Update(float deltaTime)
 	//Narrow Phase
 	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
 	std::vector<std::pair<RigidBody*,RigidBody*>> potentialCollision = KDTRee::getPotentialCollisions(rigidbodies, root);
+	NBCollision = potentialCollision.size();
 	//std::cout << potentialCollision.size() << std::endl;
 
 	//Broad Phase

@@ -105,30 +105,36 @@ void ImGuiEngine::Update()
         ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
 
-        ImGui::Text("Tableau de bord:");
+        ImGui::Text("DashBoard:");
+        ImGui::Spacing();
 
         ImGui::Text("- Nb RigidBodies: %i", World::GetInstance().GetNBRB());
         ImGui::Text("- Nb Collisions: %i", World::GetInstance().GetNBCollisionKDTree());
+        ImGui::Spacing();
 
         ImGui::Text("Part 1 :");
         if (ImGui::Button("Particule Simulation")) {
             window_to_show = 1;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Part 2 :");
         if (ImGui::Button("Particule Colliders")) {
             window_to_show = 2;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Part 3 :");
         if (ImGui::Button("RigidBody Forces")) {
             window_to_show = 3;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Part 4 :");
         if (ImGui::Button("RigidBody Colliders")) {
             window_to_show = 4;
         }
+        ImGui::Spacing();
 
         ImGui::End();
     }
@@ -137,13 +143,15 @@ void ImGuiEngine::Update()
     {
         ImGui::Begin("Part 1");
         ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Particules General:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Spawn Particle")) {
             World& w = World::GetInstance();
@@ -154,8 +162,10 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.DeleteAllParticle();
         }
+        ImGui::Spacing();
 
         ImGui::Text("Particules General Forces:");
+        ImGui::Spacing();
 
 
         if (ImGui::Button("Gravity to Particle")) {
@@ -167,8 +177,10 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.PutDragForceGenerator();
         }
+        ImGui::Spacing();
 
         ImGui::Text("Particules Specific Forces:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Origin Anchored Spring to Particle")) {
             World& w = World::GetInstance();
@@ -197,13 +209,16 @@ void ImGuiEngine::Update()
     {
         ImGui::Begin("Part 2");
         ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Particules Collision:");
+        ImGui::Spacing();
+
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();
             w.GenBasicCollision();
@@ -218,6 +233,7 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.GenContactResting();
         }
+        ImGui::Spacing();
 
         ImGui::End();
     }
@@ -226,18 +242,21 @@ void ImGuiEngine::Update()
     {
         ImGui::Begin("Part 3");
         ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
+        ImGui::Spacing();
 
         ImGui::Text("RigidBody General:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Delete All RigidBody")) {
             World& w = World::GetInstance();
             w.DeleteAllRigidBody();
         }
+        ImGui::Spacing();
 
         ImGui::Text("RigidBody Forces:");
 
@@ -255,6 +274,7 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.AddRigidBody();
         }
+        ImGui::Spacing();
 
         ImGui::End();
     }
@@ -263,13 +283,15 @@ void ImGuiEngine::Update()
     {
         ImGui::Begin("Part 4");
         ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
+        ImGui::Spacing();
 
         ImGui::Text("Collision RB:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Contact 2 Box RigidBody")) {
             World& w = World::GetInstance();

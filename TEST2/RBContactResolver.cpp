@@ -37,7 +37,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			
 
 			ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
-
+			/*
 			for (auto potCol : potentialCollision) {
 				//On check quel genre de collision on va avoir besoin de rajouter
 				if (potCol.first && potCol.second) {
@@ -101,6 +101,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					}
 				}
 			}
+			*/
 			//resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
 
 		}

@@ -19,6 +19,8 @@ void RBContact::resolveInterpenetration(float duration)
 	auto LinearMoveRB1 = -penetration * RigidBodies[1]->inverseMasse * (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
 	RigidBodies[0]->position = RigidBodies[0]->position + contactNormal * LinearMoveRB0;
 	RigidBodies[1]->position = RigidBodies[1]->position + contactNormal * LinearMoveRB1;
+	RigidBodies[0]->velocity = Vector3D(0, 0, 0);
+	RigidBodies[1]->velocity = Vector3D(0, 0, 0);
 }
 
 void RBContact::AddImpulse(float duration)

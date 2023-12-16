@@ -66,6 +66,10 @@ class PhysicEngine
 
 		void BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision);
 
+		//Sharable
+		int NBCollision = 0;
+		int GetNBRB();
+
 	private:
 
 		///Attributs
@@ -103,5 +107,6 @@ class PhysicEngine
 
 		//RB contact resolver
 		RBContactResolver RBresolver;
+
 };
 

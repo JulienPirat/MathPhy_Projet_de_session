@@ -466,3 +466,13 @@ void World::Shutdown()
     imGui.Shutdown();
     graphics.Shutdown();
 }
+
+int World::GetNBCollisionKDTree()
+{
+	return physics.NBCollision;
+}
+
+int World::GetNBRB()
+{
+	return physics.GetNBRB();
+}

@@ -96,30 +96,77 @@ void ImGuiEngine::Update()
     ImGui::NewFrame();
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
+    //if(window_to_show == 0)
     {
         static float f = 0.0f;
         static int counter = 0;
 
         ImGui::Begin("Math Phys Tests !");                          // Create a window called "Hello, world!" and append into it.
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+
+
+        ImGui::Text("DashBoard:");
+        ImGui::Spacing();
+
+        ImGui::Text("- Nb RigidBodies: %i", World::GetInstance().GetNBRB());
+        ImGui::Text("- Nb Collisions: %i", World::GetInstance().GetNBCollisionKDTree());
+        ImGui::Spacing();
 
         ImGui::Text("Part 1 :");
-        if (ImGui::Button("Demo KDTree")) {
-            World& w = World::GetInstance();
-            w.AddDemoKDTree();
+        if (ImGui::Button("Particule Simulation")) {
+            window_to_show = 1;
         }
+        ImGui::Spacing();
 
-        
-        ImGui::Text("Part 1 :");
+        ImGui::Text("Part 2 :");
+        if (ImGui::Button("Particule Colliders")) {
+            window_to_show = 2;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("Part 3 :");
+        if (ImGui::Button("RigidBody Forces")) {
+            window_to_show = 3;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("Part 4 :");
+        if (ImGui::Button("RigidBody Colliders")) {
+            window_to_show = 4;
+        }
+        ImGui::Spacing();
+
+        ImGui::End();
+    }
+
+    if (window_to_show == 1)
+    {
+        ImGui::Begin("Part 1");
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("Particules General:");
+        ImGui::Spacing();
+
         if (ImGui::Button("Spawn Particle")) {
             World& w = World::GetInstance();
-            w.GenBasicParticule(0,0,0,0,0,0,0, 0,0);
+            w.GenBasicParticule(0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
 
         if (ImGui::Button("Delete All Particle")) {
             World& w = World::GetInstance();
             w.DeleteAllParticle();
         }
+        ImGui::Spacing();
+
+        ImGui::Text("Particules General Forces:");
+        ImGui::Spacing();
+
 
         if (ImGui::Button("Gravity to Particle")) {
             World& w = World::GetInstance();
@@ -130,6 +177,10 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.PutDragForceGenerator();
         }
+        ImGui::Spacing();
+
+        ImGui::Text("Particules Specific Forces:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Origin Anchored Spring to Particle")) {
             World& w = World::GetInstance();
@@ -151,7 +202,23 @@ void ImGuiEngine::Update()
             w.AddRodExample();
         }
 
-        ImGui::Text("Part 2 :");
+        ImGui::End();
+    }
+
+    if (window_to_show == 2)
+    {
+        ImGui::Begin("Part 2");
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("Particules Collision:");
+        ImGui::Spacing();
+
         if (ImGui::Button("Generate Particle Collision")) {
             World& w = World::GetInstance();
             w.GenBasicCollision();
@@ -166,35 +233,65 @@ void ImGuiEngine::Update()
             World& w = World::GetInstance();
             w.GenContactResting();
         }
-
-        if (ImGui::Button("Exemple 2 RigidBody With Spring")) {
-            World& w = World::GetInstance();
-            w.AddAnchoredSpringForTwoRigidBody();
-        }
-
-        if (ImGui::Button("Exemple RigidBody With AnchoredSpring")) {
-            World& w = World::GetInstance();
-            w.AddAnchoredSpringForRigidBody();
-        }
-
-        if (ImGui::Button("Add Gravity for all RigidBody")) {
-            World& w = World::GetInstance();
-            w.AddRigidBody();
-        }
-        
-        if (ImGui::Button("Delete All RigidBody")) {
-            World& w = World::GetInstance();
-            w.DeleteAllRigidBody();
-        }
-
-        ImGui::Checkbox("Show collision window", &show_collision_window);
+        ImGui::Spacing();
 
         ImGui::End();
     }
 
-    if (show_collision_window)
+    if (window_to_show == 3)
     {
-        ImGui::Begin("Collision Window", &show_collision_window);
+        ImGui::Begin("Part 3");
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("RigidBody General:");
+        ImGui::Spacing();
+
+        if (ImGui::Button("Delete All RigidBody")) {
+            World& w = World::GetInstance();
+            w.DeleteAllRigidBody();
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("RigidBody Forces:");
+
+        if (ImGui::Button("Spring with RB")) {
+            World& w = World::GetInstance();
+            w.AddAnchoredSpringForTwoRigidBody();
+        }
+
+        if (ImGui::Button("AnchoredSpring with RB")) {
+            World& w = World::GetInstance();
+            w.AddAnchoredSpringForRigidBody();
+        }
+
+        if (ImGui::Button("Gravity on All RB")) {
+            World& w = World::GetInstance();
+            w.AddRigidBody();
+        }
+        ImGui::Spacing();
+
+        ImGui::End();
+    }
+
+    if (window_to_show == 4)
+    {
+        ImGui::Begin("Part 4");
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+
+        if (ImGui::Button("Menu")) {
+            window_to_show = 0;
+        }
+        ImGui::Spacing();
+
+        ImGui::Text("Collision RB:");
+        ImGui::Spacing();
 
         if (ImGui::Button("Contact 2 Box RigidBody")) {
             World& w = World::GetInstance();

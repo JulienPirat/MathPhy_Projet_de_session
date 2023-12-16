@@ -18,6 +18,8 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
     normalContact.norme();
 
     double interpenetration = one->radius + two->radius - distance;
+    if(interpenetration < 0.001)
+        return 0;
     Vector3D contactPoint = one->RB->position + normalContact * one->radius; //Pas sur
     double restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
     double friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;

@@ -17,10 +17,11 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		double maxInterpenetration = 0;
 		int indexContactToResolve = 0;
 		int indexI = 0;
-		RBContact& contactToResolveInterpenatration = ContactRegistry->contacts[0];
+		
 
 		if (!ContactRegistry->contacts.empty())
 		{
+			RBContact& contactToResolveInterpenatration = ContactRegistry->contacts[0];
 			for (const RBContact& contact : ContactRegistry->contacts)
 			{
 				if (contact.penetration > maxInterpenetration)
@@ -37,7 +38,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
 			iterationsUsed++;
 			//ContactRegistry->contacts.erase(ContactRegistry->contacts.begin()+indexContactToResolve);
-		}
+		
 
 		std::vector<RBContact> ContactRestants = ContactRegistry->contacts;
 
@@ -108,9 +109,11 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					break;
 				}
 			}
+
+		}
 		}
 		//resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
-
+		iterationsUsed++;
 	}
 	/*
 	for (auto c : ContactRegistry->contacts)
@@ -172,6 +175,6 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		// TODO : Remove Contact
 		//ContactRegistry->RemoveContact(contactApplyImpulse);
 	}*/
-	iterationsUsed++;
+
 	
 }

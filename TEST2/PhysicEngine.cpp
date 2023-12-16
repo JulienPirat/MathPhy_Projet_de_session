@@ -75,7 +75,7 @@ void PhysicEngine::Update(double deltaTime)
 		else {
 			//We can resolve all contact this frame
 			RBresolver.setIterations(contactRegistry_RigidBody->contacts.size());
-			RBresolver.resolveContacts(contactRegistry_RigidBody, contactRegistry_RigidBody->contacts.size(), deltaTime);
+			RBresolver.resolveContacts(contactRegistry_RigidBody, RBlimitIterContactResolver, deltaTime);
 			RBresolver.iterationsUsed = 0;
 		}
 		// Check RigidBodies collisions

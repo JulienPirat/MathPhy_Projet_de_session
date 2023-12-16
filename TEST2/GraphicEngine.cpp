@@ -273,7 +273,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             model = glm::rotate(model, glm::radians((float)p->rotation.z), glm::vec3(0, 1.0f, 0));
             model = glm::rotate(model, glm::radians((float)p->rotation.y), glm::vec3(0, 0, 1.0f));
             //Scale
-            model = glm::scale(model, glm::vec3(p->dimension.x, p->dimension.y, 0.01f));
+            model = glm::scale(model, glm::vec3(p->dimension.x, 0.01f, p->dimension.y));
             //Color
             ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
             //Send matrix

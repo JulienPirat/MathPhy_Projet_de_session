@@ -182,6 +182,7 @@ void PhysicEngine::CallRBContactGenerator()
 
 void PhysicEngine::AddContactBoxBox(RigidBody* rb1, RigidBody* rb2)
 {
+
 	PBox* box1 = new PBox(rb1, rb1->transformMatrix, rb1->dimension);
 	PBox* box2 = new PBox(rb2, rb2->transformMatrix, rb2->dimension);
 	//Définir que c'est une box au moment de la collision

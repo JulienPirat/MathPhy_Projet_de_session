@@ -166,6 +166,7 @@ void RigidBody::CalculateDerivedData()
 {
 	//Calculate the transform matrix for the body
 	CalculateTransformMatrix();
+	this->primitive->offset = transformMatrix;
 	
 }
 

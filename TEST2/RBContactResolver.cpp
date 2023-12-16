@@ -31,8 +31,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			Vector3D cp = Vector3D(0, 0, 0);
 			ContactRegistry->contacts[indexContactToResolve].resolveInterpenetration(duration);
 			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
-			//ContactRegistry->contacts.erase(indexContactToResolve);
-			ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
+			ContactRegistry->contacts.erase(ContactRegistry->contacts.begin()+indexContactToResolve);
+			//ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
 		}
 			/*
 			for (auto c : ContactRegistry->contacts)

@@ -32,5 +32,8 @@ public:
 	//Return the closing velocity
 	float calculateClosingVelocity();
 
-	bool operator==(const RBContact& rbc) const;
+	friend bool operator==(const RBContact& l, const RBContact& r) {
+		return (l.RigidBodies[0] == r.RigidBodies[0] && l.RigidBodies[1] == r.RigidBodies[1]) 
+			|| (l.RigidBodies[1] == r.RigidBodies[0] && l.RigidBodies[0] == r.RigidBodies[1]);
+	}
 };

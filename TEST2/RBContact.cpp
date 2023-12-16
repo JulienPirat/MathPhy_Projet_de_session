@@ -54,11 +54,3 @@ float RBContact::calculateClosingVelocity()
 	Vector3D relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity;
 	return relativeVelocity * contactNormal;
 }
-
-bool RBContact::operator==(const RBContact& rbc) const
-{
-	if (rbc.RigidBodies[0] == this->RigidBodies[0] && rbc.RigidBodies[1] == this->RigidBodies[1]) {
-		return true;
-	}
-	return false;
-}

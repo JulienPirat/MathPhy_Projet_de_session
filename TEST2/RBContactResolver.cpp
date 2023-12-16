@@ -6,8 +6,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 	//bool shouldStop = iterationsUsed < maxIteration;
 
-	while (iterationsUsed < maxIteration)
-	{
+	//while (iterationsUsed < maxIteration)
+	//{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
 		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
 		// Ensuite , résoudre le contact qui a la plus grande interpénétration
@@ -40,7 +40,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			contactToResolveInterpenatration->resolveInterpenetration(duration);
 			contactToResolveInterpenatration->AddImpulse(duration);
 
-			
+			/*
 			for (auto c : ContactRegistry->contacts)
 			{
 				cp = Vector3D(0, 0, 0);
@@ -72,6 +72,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 				}
 			}
 			//ContactRegistry->RemoveContact(contactToResolveInterpenatration);
+			*/
 		}
 
 		//iterationsUsed++;
@@ -118,5 +119,5 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 			//shouldStop |= iterationsUsed >= maxIteration;
 		
-	}
+	//}
 }

@@ -34,11 +34,13 @@ public:
     Vector3D operator*(float scalaire) const;
     void operator*=(float scalaire);
 
+    float operator*(const Vector3D& other) const;
+
     // Méthode pour diviser le vecteur par un scalaire
     Vector3D operator/(double scalaire) const;
     void operator/=(double scalaire);
 
-    double operator*(const Vector3D& other) const;
+    
 
     // Méthode pour afficher le vecteur
     void afficher() const;

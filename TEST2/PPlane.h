@@ -7,13 +7,13 @@ public:
 	PPlane(Vector3D normal, RigidBody* RB, Matrix4 offset, double HalfX, double HalfY) : Primitive(RB, offset), normal(normal), halfsizeX(HalfX), halfsizeY(HalfY){
 	}
 
-	// vecteur perpendiculaire ‡ la surface du plan
+	// vecteur perpendiculaire √† la surface du plan
 	Vector3D normal;
 
 	//Halfsize
 	double halfsizeX;
 	double halfsizeY;
 
-	// dÈcalage du plan par rapport ‡ l'origine
-	double offset; // DÈj‡ dans Primitive ?
+	// d√©calage du plan par rapport √† l'origine
+	double offsetP = 0; // D√©j√† dans Primitive ?
 };

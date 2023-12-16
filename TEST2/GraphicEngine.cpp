@@ -259,10 +259,15 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
         }
         else if (p->shape == sphere) {
             ///DrawSphere
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::scale(model, glm::vec3(1, 1, 1));
             ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
             RenderSphere(p->position, p->dimension.x);
         }
-        else if (p->shape == plane) {
+    }
+    for (auto p : bodies)
+    {
+        if (p->shape == plane) {
             ///DrawPlane
             // calculate the model matrix for each object and pass it to shader before drawing
             glm::mat4 model = glm::mat4(1.0f);

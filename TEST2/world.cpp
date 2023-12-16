@@ -23,9 +23,9 @@ void World::ContactBoxBox()
 {
 	Box* RB_1 = new Box(
 		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(-1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -35,9 +35,9 @@ void World::ContactBoxBox()
 
 	Box* RB_2 = new Box(
 		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -49,10 +49,10 @@ void World::ContactBoxBox()
 void World::ContactBoxPlane()
 {
 	Box* RB_1 = new Box(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 2, 0), //Position
+		Vector3D(0, -1, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -61,10 +61,10 @@ void World::ContactBoxPlane()
 	AddRigidBody(RB_1);
 
 	Plane* RB_2 = new Plane(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0), //Position
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -77,10 +77,10 @@ void World::ContactBoxPlane()
 void World::ContactSpherePlane()
 {
 	Sphere* RB_1 = new Sphere(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 2, 0), //Position
+		Vector3D(0, -1, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -89,10 +89,10 @@ void World::ContactSpherePlane()
 	AddRigidBody(RB_1);
 
 	Plane* RB_2 = new Plane(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0), //Position
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -106,9 +106,9 @@ void World::ContactSphereBox()
 {
 	Sphere* RB_1 = new Sphere(
 		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(-1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -117,10 +117,10 @@ void World::ContactSphereBox()
 	AddRigidBody(RB_1);
 
 	Box* RB_2 = new Box(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(-10, 0, 0), //Position
+		Vector3D(1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -133,9 +133,9 @@ void World::ContactSphereSphere()
 {
 	Sphere* RB_1 = new Sphere(
 		Vector3D(2, 0, 0), //Position
-		Vector3D(-1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(-1, 0, 1.5),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -145,9 +145,9 @@ void World::ContactSphereSphere()
 
 	Sphere* RB_2 = new Sphere(
 		Vector3D(-2, 0, 0), //Position
-		Vector3D(1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(1, 0, 1.5),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		10, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -156,18 +156,13 @@ void World::ContactSphereSphere()
 	AddRigidBody(RB_2);
 }
 
-void World::GenerateContactSphereBox()
-{
-	physics.AddContactBoxSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
-}
-
 void World::GenBasicCollision() {
 
-	//Créer deux particules
+	//CrÃ©er deux particules
 	Particle* p1 = new Particle(
 		Vector3D(10, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(-1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -176,8 +171,8 @@ void World::GenBasicCollision() {
 
 	Particle* p2 = new Particle(
 		Vector3D(-10, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -189,8 +184,8 @@ void  World::GenBasicParticule(float x, float y, float z, float vx, float vy, fl
 
 	Particle* p3 = new Particle(
 		Vector3D(x, y, z), //Position
-		Vector3D(vx, vy, vz),//Velocité
-		Vector3D(ax, ay, az), //Accélération
+		Vector3D(vx, vy, vz),//VelocitÃ©
+		Vector3D(ax, ay, az), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -202,8 +197,8 @@ void  World::GenBasicParticule(float x, float y, float z, float vx, float vy, fl
 void World::GenContactResting() {
 	Particle* p1 = new Particle(
 		Vector3D(0, 100, 0), //Position
-		Vector3D(0, -10, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, -10, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -212,8 +207,8 @@ void World::GenContactResting() {
 
 	Particle* p2 = new Particle(
 		Vector3D(0, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -222,11 +217,11 @@ void World::GenContactResting() {
 }
 
 void World::GenWallCollision() {
-	//Créer trois particules
+	//CrÃ©er trois particules
 	Particle* p1 = new Particle(
 		Vector3D(10, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -235,8 +230,8 @@ void World::GenWallCollision() {
 
 	Particle* p2 = new Particle(
 		Vector3D(-10, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -245,8 +240,8 @@ void World::GenWallCollision() {
 
 	Particle* p3 = new Particle(
 		Vector3D(5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		1, //Damping
 		0.2, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -276,11 +271,11 @@ void World::PutBuoyancyForceGenerator()
 
 void World::AddCableExample()
 {
-	//Créer trois particules
+	//CrÃ©er trois particules
 	Particle* p1spring = new Particle(
 		Vector3D(3, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -289,8 +284,8 @@ void World::AddCableExample()
 
 	Particle* p2spring = new Particle(
 		Vector3D(0, 0, 0), //Position
-		Vector3D(-10, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(-10, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -302,11 +297,11 @@ void World::AddCableExample()
 
 void World::AddRodExample()
 {
-	//Créer trois particules
+	//CrÃ©er trois particules
 	Particle* p1spring = new Particle(
 		Vector3D(3, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(-1, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -315,8 +310,8 @@ void World::AddRodExample()
 
 	Particle* p2spring = new Particle(
 		Vector3D(0, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -330,9 +325,9 @@ void World::AddDemoKDTree()
 {
 	Box* RB_1 = new Box(
 		Vector3D(11, 11, 11), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -342,9 +337,9 @@ void World::AddDemoKDTree()
 
 	Box* RB_3 = new Box(
 		Vector3D(10, 10, 10), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -354,9 +349,9 @@ void World::AddDemoKDTree()
 
 	Box* RB_2 = new Box(
 		Vector3D(-10, -10, -10), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -366,9 +361,9 @@ void World::AddDemoKDTree()
 
 	Box* RB_4 = new Box(
 		Vector3D(-11, -11, -11), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -386,9 +381,9 @@ void World::AddAnchoredSpringForTwoRigidBody()
 {
 	Box* RB_1 = new Box(
 		Vector3D(-20, 0, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -398,9 +393,9 @@ void World::AddAnchoredSpringForTwoRigidBody()
 
 	Box* RB_2 = new Box(
 		Vector3D(20, 20, 0), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -415,9 +410,9 @@ void World::AddAnchoredSpringForRigidBody()
 {
 	Box* RB_1 = new Box(
 		Vector3D(3, 3, 3), //Position
-		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
-		0.999f, //Damping Linéaire
+		Vector3D(0, 0, 0),//VelocitÃ©
+		Vector3D(0, 0, 0), //AccÃ©lÃ©ration
+		0.999f, //Damping LinÃ©aire
 		0.999f, //Damping Angulaire
 		1, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
@@ -428,21 +423,6 @@ void World::AddAnchoredSpringForRigidBody()
 	Vector3D WorldAnchorPoint = Vector3D(3, 5, 4);
 
 	physics.putSpringForRigidBody(RB_1,WorldAnchorPoint);
-}
-
-void World::GenerateContactBoxBox()
-{
-	//physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
-}
-
-void World::GenerateContactBoxSphere()
-{
-	//physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
-}
-
-void World::GenerateContactSphereSphere()
-{
-	//physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

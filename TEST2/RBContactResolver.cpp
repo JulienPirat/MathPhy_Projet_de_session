@@ -7,13 +7,13 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 	while (iterationsUsed < maxIteration)
 	{
-		//Résoudre en premier le contact qui a l'interpénétration la plus grande
-		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
-		// Ensuite , résoudre le contact qui a la plus grande interpénétration
-		// Updater la pénétration de chaque contact car ils ont peut-être bougé
+		//RÃ©soudre en premier le contact qui a l'interpÃ©nÃ©tration la plus grande
+		// Avoir une liste de contacts triÃ©s par ordre d'interpÃ©nÃ©tration du plus grand au plus petit
+		// Ensuite , rÃ©soudre le contact qui a la plus grande interpÃ©nÃ©tration
+		// Updater la pÃ©nÃ©tration de chaque contact car ils ont peut-Ãªtre bougÃ©
 		// Page 367
 
-		/// Résoudre l'interpénétration
+		/// RÃ©soudre l'interpÃ©nÃ©tration
 		double maxInterpenetration = 0;
 		int indexContactToResolve = 0;
 		int indexI = 0;
@@ -37,8 +37,10 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			contactToResolveInterpenatration.AddImpulse(duration);
 			//ContactRegistry->contacts.erase(ContactRegistry->contacts.begin()+indexContactToResolve);
 
+
 			ContactRegistry->RemoveAllContactsFromTwoRigidBodies(contactToResolveInterpenatration.RigidBodies[0], contactToResolveInterpenatration.RigidBodies[1]);
 
+/*
 			for (auto potCol : potentialCollision) {
 				//On check quel genre de collision on va avoir besoin de rajouter
 				if (potCol.first && potCol.second) {
@@ -102,6 +104,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					}
 				}
 			}
+			*/
 			//resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
 
 		}

@@ -37,7 +37,7 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
 
 unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
-    double distance = plane->normal * sphere->RB->position - plane->offset;
+    double distance = plane->normal * sphere->RB->position - plane->offsetP;
     
     if (distance > 0) 
     {
@@ -46,7 +46,7 @@ unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBCo
     }
 
     Vector3D normalContact = plane->normal;
-    double interpenatration = -distance; // car la distance est négative
+    double interpenatration = -distance; // car la distance est nÃ©gative
     Vector3D contactPoint = sphere->RB->position - plane->normal * (distance + sphere->radius);
     double restitution = (sphere->RB->linearDamping + plane->RB->linearDamping) / 2;
     double friction = (sphere->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
@@ -71,7 +71,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
 
     for (auto& vertice : vertices)
     {
-        auto distance = vertice * plane->normal - plane->offset;
+        auto distance = vertice * plane->normal - plane->offsetP;
         if (distance > 0)
         {
 			// We don't have collision
@@ -100,7 +100,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
 
 unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactRegistry* contactRegistry)
 {
-    auto SpherePositionInBoxSpace = box->offset * sphere->RB->position;
+    auto SpherePositionInBoxSpace = sphere->RB->position - box->RB->position;
     auto distanceX = SpherePositionInBoxSpace.x;
     if (distanceX > box->halfSize.x)
     {
@@ -133,9 +133,9 @@ unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactR
 
     auto contactPoint = Vector3D(distanceX, distanceY, distanceZ);
 
-    auto penetration = sphere->radius - (contactPoint - SpherePositionInBoxSpace).norme(); // Pas sur
+    auto penetration = (SpherePositionInBoxSpace - contactPoint).norme() - sphere->radius;
 
-    if (penetration <= 0) 
+    if (penetration > 0) 
     {
         // We don't have collision
         return 0;
@@ -173,7 +173,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Vector3D bTwoY = (two->offset * Vector3D(0, 1, 0));   // boite 2 : Y
     Vector3D bTwoZ = (two->offset * Vector3D(0, 0, 1));   // boite 2 : Z
 
-    // On récupère les axes principaux des boites
+    // On rÃ©cupÃ¨re les axes principaux des boites
     Axes.push_back(bOneX);
     Axes.push_back(bOneY);
     Axes.push_back(bOneZ);
@@ -182,7 +182,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Axes.push_back(bTwoY);
     Axes.push_back(bTwoZ);
 
-    // On récupère les 9 autres axes
+    // On rÃ©cupÃ¨re les 9 autres axes
 
     Vector3D axeXX = bOneX.produitVectoriel(bTwoX);
     Vector3D axeXY = bOneX.produitVectoriel(bTwoY);
@@ -268,8 +268,8 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     // 6 Axes Principaux = X,Y,Z de chaque boite et les 9 autres axes = X*y, X*z,X*X ; Y*Y, Y*X,Y*Z ; ect...
     // En enlevant les doublons on obtient 15 axes
 
-    // Ensuite on fait la projection des boites sur chaque axes et on calcule l'interpénetration.
-    // On garde seulement les axes qui ont une interpénetration la plus petite possible.
+    // Ensuite on fait la projection des boites sur chaque axes et on calcule l'interpÃ©netration.
+    // On garde seulement les axes qui ont une interpÃ©netration la plus petite possible.
     return 1;
 }
 

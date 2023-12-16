@@ -50,18 +50,6 @@ void Vector3D::operator*=(double scalaire) {
 	z = z * scalaire;
 }
 
-Vector3D Vector3D::operator*(float scalaire) const
-{
-	return Vector3D(x * scalaire, y * scalaire, z * scalaire);
-}
-
-void Vector3D::operator*=(float scalaire)
-{
-	x = x * scalaire;
-	y = y * scalaire;
-	z = z * scalaire;
-}
-
 Vector3D Vector3D::operator/(double scalaire) const {
 	if (scalaire != 0) {
 		return Vector3D(x / scalaire, y / scalaire, z / scalaire);
@@ -79,7 +67,7 @@ void Vector3D::operator/=(double scalaire) {
 	std::cout << "ERR : Division par 0 impossible" << std::endl;
 }
 
-float Vector3D::operator*(const Vector3D& other) const
+double Vector3D::operator*(const Vector3D& other) const
 {
 	return x * other.x + y * other.y + z * other.z;
 }
@@ -107,16 +95,16 @@ Vector3D Vector3D::addScaledVector(const Vector3D& autre, double scale) {
 	return Vector3D(x, y, z);
 }
 
-float Vector3D::magnitude() const
+double Vector3D::magnitude() const
 {
 	return std::sqrt(x * x + y * y + z * z);
 }
 
 void Vector3D::normalize()
 {
-	float l = magnitude();
+	double l = magnitude();
 	if (l > 0)
 	{
-		(*this) *= ((float)1) / l;
+		(*this) *= (1 / l);
 	}
 }

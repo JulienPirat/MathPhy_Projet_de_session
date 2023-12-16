@@ -3,10 +3,10 @@
 unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBContactRegistry* contactRegistry)
 {
 
-    float dx = one->RB->position.x - two->RB->position.x;
-    float dy = one->RB->position.y - two->RB->position.y;
-    float dz = one->RB->position.z - two->RB->position.z;
-    float distance = sqrt(dx*dx + dy*dy + dz*dz);
+    double dx = one->RB->position.x - two->RB->position.x;
+    double dy = one->RB->position.y - two->RB->position.y;
+    double dz = one->RB->position.z - two->RB->position.z;
+    double distance = sqrt(dx*dx + dy*dy + dz*dz);
 
     if(distance > one->radius + two->radius)
 	{
@@ -17,10 +17,10 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
     Vector3D normalContact = one->RB->position - two->RB->position;
     normalContact.norme();
 
-    float interpenetration = one->radius + two->radius - distance;
+    double interpenetration = one->radius + two->radius - distance;
     Vector3D contactPoint = one->RB->position + normalContact * one->radius; //Pas sur
-    float restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
-    float friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
+    double restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
+    double friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
 
     RBContact newContact;
     newContact.contactNormal = normalContact;
@@ -37,7 +37,7 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
 
 unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
-    float distance = plane->normal * sphere->RB->position - plane->offset;
+    double distance = plane->normal * sphere->RB->position - plane->offset;
     
     if (distance > 0) 
     {
@@ -46,10 +46,10 @@ unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBCo
     }
 
     Vector3D normalContact = plane->normal;
-    float interpenatration = -distance; // car la distance est négative
+    double interpenatration = -distance; // car la distance est négative
     Vector3D contactPoint = sphere->RB->position - plane->normal * (distance + sphere->radius);
-	float restitution = (sphere->RB->linearDamping + plane->RB->linearDamping) / 2;
-    float friction = (sphere->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
+    double restitution = (sphere->RB->linearDamping + plane->RB->linearDamping) / 2;
+    double friction = (sphere->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
 
     RBContact newContact;
     newContact.contactNormal = normalContact;
@@ -219,15 +219,15 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
 			return 0;
 		}
 
-        float restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
-        float friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
+        double restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
+        double friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
         
 
         if (axe == bOneX || axe == bOneY || axe == bOneZ ||
             axe == bTwoX || axe == bTwoY || axe == bTwoZ)
         {
             // Collision Face-Point
-            float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
             Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
             axe.normalize();
             
@@ -239,14 +239,14 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            if(!penetration <= 0)
+            if(penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
         }
         else 
         {
             // Collision Edge-Edge
 
-            float penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
             Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
             axe.normalize();
 
@@ -258,7 +258,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            if (!penetration <= 0)
+            if (penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
         }
 	}

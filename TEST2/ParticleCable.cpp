@@ -3,7 +3,7 @@
 unsigned int ParticleCable::addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const
 {
 	//Find the length of the cable
-	float length = currentLength();
+	double length = currentLength();
 
 	//Check if the cable is overextended
 	if (length < maxLength)

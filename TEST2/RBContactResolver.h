@@ -18,8 +18,8 @@ public:
 	///Methodes
 
 	//Creates a new contact resolver with the number of max iterations
-	RBContactResolver() { maxIteration = 50; };
-	RBContactResolver(unsigned iterations) : maxIteration(iterations) {};
+	RBContactResolver() { maxIteration = 50; iterationsUsed = 0; };
+	RBContactResolver(unsigned iterations) : maxIteration(iterations) { iterationsUsed = 0; };
 
 	void resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration, std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision);
 

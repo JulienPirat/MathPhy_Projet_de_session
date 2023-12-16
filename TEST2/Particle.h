@@ -1,15 +1,17 @@
 #pragma once
 #include "Vector3D.h"
+#include <RigidBody.h>
 /**
 * L'objet le plus simple pouvant être simulé dans un jeu.
 */
+
 class Particle
 {
 public:
 
 	//Constructeur de la classe
 	Particle();
-	Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Vector3D color);
+	Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Color color);
 
 	///Methodes
 
@@ -30,7 +32,7 @@ public:
 	Vector3D getAcceleration() const;
 	double getDamping() const;
 	double getInverseMass() const;
-	Vector3D getColor() const;
+	Color getColor() const;
 
 	//Setters
 	void setPosition(Vector3D pos);
@@ -38,7 +40,7 @@ public:
 	void setAcceleration(Vector3D acc);
 	void setDamping(double damp);
 	void setInverseMass(double mass);
-	void setColor(Vector3D col);
+	void setColor(Color col);
 
 	///Attributes
 
@@ -64,7 +66,7 @@ public:
 		Vector3D forceAccum;
 
 		//Couleur de la particule
-		Vector3D color;
+		Color color;
 };
 
 

@@ -28,7 +28,7 @@ void World::ContactBoxBox()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_1);
@@ -40,7 +40,7 @@ void World::ContactBoxBox()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
@@ -55,7 +55,7 @@ void World::ContactBoxPlane()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_1);
@@ -67,7 +67,7 @@ void World::ContactBoxPlane()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		1,
 		1
 	);
@@ -83,7 +83,7 @@ void World::ContactSpherePlane()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		1
 	);
 	AddRigidBody(RB_1);
@@ -95,7 +95,7 @@ void World::ContactSpherePlane()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		1,
 		1
 	);
@@ -111,7 +111,7 @@ void World::ContactSphereBox()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		.5f //Rayon
 	);
 	AddRigidBody(RB_1);
@@ -123,7 +123,7 @@ void World::ContactSphereBox()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
@@ -138,7 +138,7 @@ void World::ContactSphereSphere()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		.5f //Rayon
 	);
 	AddRigidBody(RB_1);
@@ -150,7 +150,7 @@ void World::ContactSphereSphere()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		10, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		.5f
 	);
 	AddRigidBody(RB_2);
@@ -170,7 +170,7 @@ void World::GenBasicCollision() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1);
 
@@ -180,7 +180,7 @@ void World::GenBasicCollision() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2);
 }
@@ -193,7 +193,7 @@ void  World::GenBasicParticule(float x, float y, float z, float vx, float vy, fl
 		Vector3D(ax, ay, az), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p3);
 
@@ -206,7 +206,7 @@ void World::GenContactResting() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1);
 
@@ -216,7 +216,7 @@ void World::GenContactResting() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		-1000, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2);
 }
@@ -229,7 +229,7 @@ void World::GenWallCollision() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		-1000, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1);
 
@@ -239,7 +239,7 @@ void World::GenWallCollision() {
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		-1000, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2);
 
@@ -249,7 +249,7 @@ void World::GenWallCollision() {
 		Vector3D(0, 0, 0), //Accélération
 		1, //Damping
 		0.2, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p3);
 }
@@ -283,7 +283,7 @@ void World::AddCableExample()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1spring);
 
@@ -293,7 +293,7 @@ void World::AddCableExample()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2spring);
 
@@ -309,7 +309,7 @@ void World::AddRodExample()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p1spring);
 
@@ -319,7 +319,7 @@ void World::AddRodExample()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping
 		1, //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
 	);
 	AddParticle(p2spring);
 
@@ -335,7 +335,7 @@ void World::AddDemoKDTree()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 2, 2)
 	);
 	AddRigidBody(RB_1);
@@ -347,7 +347,7 @@ void World::AddDemoKDTree()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 2, 2)
 	);
 	AddRigidBody(RB_3);
@@ -359,7 +359,7 @@ void World::AddDemoKDTree()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 2, 1)
 	);
 	AddRigidBody(RB_2);
@@ -371,7 +371,7 @@ void World::AddDemoKDTree()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 2, 1)
 	);
 	AddRigidBody(RB_4);
@@ -391,7 +391,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 2, 2)
 	);
 	AddRigidBody(RB_1);
@@ -403,7 +403,7 @@ void World::AddAnchoredSpringForTwoRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1,2,1)
 	);
 	AddRigidBody(RB_2);
@@ -420,7 +420,7 @@ void World::AddAnchoredSpringForRigidBody()
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_1);
@@ -451,9 +451,9 @@ int World::Run()
 
 	if (res == 1) return res;
 
-	float lastTime = glfwGetTime();
-	float currentTime = 0;
-	float deltaT = 0;
+	double lastTime = glfwGetTime();
+	double currentTime = 0;
+	double deltaT = 0;
 
     while (!graphics.ShouldClose())
     {
@@ -487,7 +487,7 @@ int World::Init()
 	return 0;
 }
 
-void World::Update(float deltaTime)
+void World::Update(double deltaTime)
 {
 	physics.Update(deltaTime);
 

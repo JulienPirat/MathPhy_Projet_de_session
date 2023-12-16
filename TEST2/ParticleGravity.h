@@ -15,6 +15,6 @@ public:
 	///Methodes
 
 	//Rappel Force = particle->GetMass() * m_gravity
-	void UpdateForce(Particle* particle, float duration);
+	void UpdateForce(Particle* particle, double duration);
 };
 

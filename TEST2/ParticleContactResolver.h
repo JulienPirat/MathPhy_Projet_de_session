@@ -12,7 +12,7 @@ protected:
 	unsigned int iteration;
 
 	//Track the number of iterations used
-	unsigned int iterationsUsed;
+	unsigned int iterationsUsed = 0;
 
 public: 
 

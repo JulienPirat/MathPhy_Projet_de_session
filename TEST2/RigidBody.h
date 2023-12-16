@@ -13,6 +13,15 @@ enum shapeRB {
 	plane = 3
 };
 
+struct Color {
+	float r;
+	float g;
+	float b;
+
+	Color() : r(1.0f), g(1.0f), b(1.0f) {}
+	Color(float r, float g, float b) : r(r), g(g), b(b) {}
+};
+
 class RigidBody
 {
 public:
@@ -48,7 +57,7 @@ public:
 	Matrix3 inverseI;
 
 	//RigiBody Color
-	Vector3D color;
+	Color color;
 
 	//Shape
 	shapeRB shape = none;
@@ -58,8 +67,8 @@ public:
 
 	RigidBody();
 	RigidBody(Matrix3 inverseInertia);
-	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia);
-	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Color col, Matrix3 inverseInertia);
+	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Color col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions);
 
 	void CreatePrimitive();
 

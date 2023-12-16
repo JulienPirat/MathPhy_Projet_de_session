@@ -1,9 +1,9 @@
 #include "ParticleDrag.h"
 
-void ParticleDrag::UpdateForce(Particle* particle, float duration)
+void ParticleDrag::UpdateForce(Particle* particle, double duration)
 {
 	//Calculate the total drag coefficient
-	float dragCoeff = particle->getVelocity().magnitude();
+	double dragCoeff = particle->getVelocity().magnitude();
 	dragCoeff = m_k1 * dragCoeff + m_k2 * dragCoeff * dragCoeff;
 
 	//Calculate the final force and apply it

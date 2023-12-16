@@ -7,23 +7,26 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 	while (iterationsUsed < maxIteration)
 	{
-		//Résoudre en premier le contact qui a l'interpénétration la plus grande
-		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
-		// Ensuite , résoudre le contact qui a la plus grande interpénétration
-		// Updater la pénétration de chaque contact car ils ont peut-être bougé
+		//RÃ©soudre en premier le contact qui a l'interpÃ©nÃ©tration la plus grande
+		// Avoir une liste de contacts triÃ©s par ordre d'interpÃ©nÃ©tration du plus grand au plus petit
+		// Ensuite , rÃ©soudre le contact qui a la plus grande interpÃ©nÃ©tration
+		// Updater la pÃ©nÃ©tration de chaque contact car ils ont peut-Ãªtre bougÃ©
 		// Page 367
 
-		/// Résoudre l'interpénétration
-		float maxInterpenetration = 0;
+		/// RÃ©soudre l'interpÃ©nÃ©tration
+		double maxInterpenetration = 0;
 		int indexContactToResolve = 0;
 		int indexI = 0;
+		RBContact& contactToResolveInterpenatration = ContactRegistry->contacts[0];
+
 		if (!ContactRegistry->contacts.empty())
 		{
-			for (RBContact contact : ContactRegistry->contacts)
+			for (const RBContact& contact : ContactRegistry->contacts)
 			{
 				if (contact.penetration > maxInterpenetration)
 				{
 					maxInterpenetration = contact.penetration;
+					contactToResolveInterpenatration = contact;
 					indexContactToResolve = indexI;
 				}
 				indexI++;

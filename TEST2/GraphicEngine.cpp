@@ -21,9 +21,9 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 void processInput(GLFWwindow* window);
 
-const float minPointScale = 0.1;
-const float maxPointScale = 0.7;
-const float maxDistance = 100.0;
+const float minPointScale = 0.1f;
+const float maxPointScale = 0.7f;
+const float maxDistance = 100.0f;
 
 // settings
 const unsigned int SCR_WIDTH = 800;
@@ -251,7 +251,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             //Scale
             model = glm::scale(model, glm::vec3(p->dimension.x, p->dimension.y, p->dimension.z));
             //Color
-            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
             //Send matrix
             ourShader->setMat4("model", model);
             //Draw
@@ -261,8 +261,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             ///DrawSphere
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::scale(model, glm::vec3(1, 1, 1));
-
-            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
             RenderSphere(p->position, p->dimension.x);
         }
     }
@@ -281,7 +280,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             //Scale
             model = glm::scale(model, glm::vec3(p->dimension.x, 0.01f, p->dimension.y));
             //Color
-            ourShader->setVec3("objectColor", p->color.x, p->color.y, p->color.z);
+            ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
             //Send matrix
             ourShader->setMat4("model", model);
             //Draw
@@ -291,7 +290,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
 
     for (auto b : particles)
     {
-        ourShader->setVec3("objectColor", b->getColor().x, b->getColor().y, b->getColor().z);
+        ourShader->setVec3("objectColor", b->getColor().r, b->getColor().g, b->getColor().b);
 		RenderSphere(b->getPosition());
     }
 }
@@ -377,7 +376,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     //render a cube at the origin using buffers and shaders
     
     //left face
-    if(b) ourShader->setVec3("objectColor", b->color.x + .1f, b->color.y - .1f, b->color.z - .1f);
+    if(b) ourShader->setVec3("objectColor", b->color.r + .1f, b->color.g - .1f, b->color.b - .1f);
     else ourShader->setVec3("objectColor", 1.0f, 0.5f, 0.31f);
     glBegin(GL_QUADS);
     glVertex3f(bottomPosition.x , bottomPosition.y, bottomPosition.z); //bottom left
@@ -387,7 +386,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 
     //right face
-    if (b) ourShader->setVec3("objectColor", b->color.x - .1f, b->color.y - .1f, b->color.z + .1f);
+    if (b) ourShader->setVec3("objectColor", b->color.r - .1f, b->color.g - .1f, b->color.b + .1f);
     else ourShader->setVec3("objectColor", .4f, .2f, 0.31f);
     glBegin(GL_QUADS);
     glVertex3f(topPosition.x, bottomPosition.y , bottomPosition.z); //bottom left
@@ -397,7 +396,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 
     //bottom face
-    if (b) ourShader->setVec3("objectColor", b->color.x - .1f, b->color.y -.1f, b->color.z - .1f);
+    if (b) ourShader->setVec3("objectColor", b->color.r - .1f, b->color.g -.1f, b->color.b - .1f);
     else ourShader->setVec3("objectColor", .6f, .7f, 0.1f);
     glBegin(GL_QUADS);
     glVertex3f(topPosition.x, bottomPosition.y, bottomPosition.z); //bottom left
@@ -407,7 +406,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 
     //top face
-    if (b) ourShader->setVec3("objectColor", b->color.x +.2f, b->color.y + .1f, b->color.z + .1f);
+    if (b) ourShader->setVec3("objectColor", b->color.r +.2f, b->color.g + .1f, b->color.b + .1f);
     else ourShader->setVec3("objectColor", .3f, 0.2f, 0.7f);
     glBegin(GL_QUADS);
     glVertex3f(bottomPosition.x, topPosition.y, bottomPosition.z); //bottom left
@@ -417,7 +416,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 
     //front face
-    if (b) ourShader->setVec3("objectColor", b->color.x + .1f, b->color.y + .1f, b->color.z - .1f);
+    if (b) ourShader->setVec3("objectColor", b->color.r + .1f, b->color.g + .1f, b->color.b - .1f);
     else ourShader->setVec3("objectColor", .8f, 0.4f, 0.6f);
     glBegin(GL_QUADS);
     glVertex3f(bottomPosition.x, bottomPosition.y, topPosition.z); //bottom left
@@ -427,7 +426,7 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 
     //back face
-    if (b) ourShader->setVec3("objectColor", b->color.x + .1f, b->color.y - .1f, b->color.z + .1f);
+    if (b) ourShader->setVec3("objectColor", b->color.r + .1f, b->color.g - .1f, b->color.b + .1f);
     else ourShader->setVec3("objectColor", 1.0f, 1.0f, 0.9f);
     glBegin(GL_QUADS);
     glVertex3f(topPosition.x, bottomPosition.y, bottomPosition.z); //bottom left
@@ -437,9 +436,9 @@ void GraphicEngine::RenderCube(Vector3D bottomPosition, Vector3D topPosition, Ri
     glEnd();
 }
 
-void GraphicEngine::RenderSphere(Vector3D position, float rad)
+void GraphicEngine::RenderSphere(Vector3D position, double rad)
 {
-    float radius = rad;
+    double radius = rad;
     int slices = 10;
     int stacks = 10;
     double pi = 3.141;
@@ -447,27 +446,27 @@ void GraphicEngine::RenderSphere(Vector3D position, float rad)
 
     for (int i = 0; i < slices; i++) {
         for (int j = 0; j < stacks; j++) {
-            float phi1 = i * 2 * pi / slices;
-            float phi2 = (i + 1) * 2 * pi / slices;
-            float theta1 = j * pi / stacks;
-            float theta2 = (j + 1) * pi / stacks;
+            double phi1 = i * 2 * pi / slices;
+            double phi2 = (i + 1) * 2 * pi / slices;
+            double theta1 = j * pi / stacks;
+            double theta2 = (j + 1) * pi / stacks;
 
             // Vertices
-            float x1 = position.x +radius * sin(theta1) * cos(phi1);
-            float y1 = position.y + radius * sin(theta1) * sin(phi1);
-            float z1 = position.z + radius * cos(theta1);
+            double x1 = position.x +radius * sin(theta1) * cos(phi1);
+            double y1 = position.y + radius * sin(theta1) * sin(phi1);
+            double z1 = position.z + radius * cos(theta1);
 
-            float x2 = position.x + radius * sin(theta1) * cos(phi2);
-            float y2 = position.y + radius * sin(theta1) * sin(phi2);
-            float z2 = position.z + radius * cos(theta1);
+            double x2 = position.x + radius * sin(theta1) * cos(phi2);
+            double y2 = position.y + radius * sin(theta1) * sin(phi2);
+            double z2 = position.z + radius * cos(theta1);
 
-            float x3 = position.x + radius * sin(theta2) * cos(phi1);
-            float y3 = position.y + radius * sin(theta2) * sin(phi1);
-            float z3 = position.z + radius * cos(theta2);
+            double x3 = position.x + radius * sin(theta2) * cos(phi1);
+            double y3 = position.y + radius * sin(theta2) * sin(phi1);
+            double z3 = position.z + radius * cos(theta2);
 
-            float x4 = position.x + radius * sin(theta2) * cos(phi2);
-            float y4 = position.y + radius * sin(theta2) * sin(phi2);
-            float z4 = position.z + radius * cos(theta2);
+            double x4 = position.x + radius * sin(theta2) * cos(phi2);
+            double y4 = position.y + radius * sin(theta2) * sin(phi2);
+            double z4 = position.z + radius * cos(theta2);
 
             // Draw triangles
             glVertex3f(x1, y1, z1);

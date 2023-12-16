@@ -1,23 +1,23 @@
 #include "ParticleContact.h"
 
-void ParticleContact::resolve(float duration)
+void ParticleContact::resolve(double duration)
 {
 	resolveVelocity(duration);
 	resolveInterpenetration();
 }
 
-float ParticleContact::calculateSeparatingVelocity()
+double ParticleContact::calculateSeparatingVelocity()
 {
 	Vector3D relativeVelocity = particle[0]->getVelocity();
 	if (particle[1]) relativeVelocity -= particle[1]->getVelocity();
 	return relativeVelocity * contactNormal;
 }
 
-void ParticleContact::resolveVelocity(float deltaT)
+void ParticleContact::resolveVelocity(double deltaT)
 {
 	auto relativeVelocity = particle[0]->getVelocity() - particle[1]->getVelocity();
 
-	float k = restitution + 1;
+	double k = restitution + 1;
 	k = relativeVelocity * k * contactNormal;
 	k = k / (particle[0]->getInverseMass() + particle[1]->getInverseMass());
 
@@ -35,7 +35,7 @@ void ParticleContact::resolveInterpenetration()
 
 	// The movement of each object is based on its inverse mass, so
 	// total that.
-	float totalInverseMass = particle[0]->getInverseMass();
+	double totalInverseMass = particle[0]->getInverseMass();
 	if (particle[1]) {
 		totalInverseMass += particle[1]->getInverseMass();
 	}

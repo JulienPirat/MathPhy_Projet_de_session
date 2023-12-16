@@ -33,13 +33,13 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
         }
 
         //Calcul de la m�diane
-        float mediane = 0;
+        double mediane = 0;
         Vector3D positionMediane;
 
         if (RBList.size() % 2 == 0)
         {
             //Nombre d'elements pairs on prends donc la moyenne des elements au centre
-            int i = RBList.size() / 2;
+            size_t i = RBList.size() / 2;
             positionMediane = (RBList.at(i - 1)->position + RBList.at(i)->position) / 2;
         }
         else {
@@ -68,7 +68,8 @@ Node* KDTRee::generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axi
             newAxis = Axis::X;
             break;
         default:
-            // ERROR
+            newAxis = Axis::X;
+            throw std::invalid_argument("Axis was neither X, Y nor Z. How did you do that ?\nKDTree.cpp, line 72. Good luck !");
             break;
         }
 
@@ -94,7 +95,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
 
     for (auto rb : RBList) {
         RigidBody* outNearestRB = nullptr;
-        float currentDistanceBtw = 10000000;
+        double currentDistanceBtw = 10000000;
 
         RigidBody* rbtemp = KDTRee::getNearestPoint(rb, root, outNearestRB, &currentDistanceBtw);
 
@@ -117,7 +118,7 @@ std::vector<std::pair<RigidBody*, RigidBody*>> KDTRee::getPotentialCollisions(st
     return potentialCollisionList;
 }
 
-RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float* currentDistanceBtw) {
+RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, double* currentDistanceBtw) {
 
     //Check if leaf == dead end
     if (currentNode->left == nullptr && currentNode->right == nullptr) {
@@ -126,7 +127,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
         for (RigidBody* rbtocheck : currentNode->body) {
             if (rbtocheck != actualpoint)
             {
-                float newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
+                double newDistanceBetweenPt = (actualpoint->position - rbtocheck->position).magnitude();
                 if (newDistanceBetweenPt < *currentDistanceBtw) {
                     *currentDistanceBtw = newDistanceBetweenPt;
                     reftosend = rbtocheck;
@@ -138,7 +139,7 @@ RigidBody* KDTRee::getNearestPoint(RigidBody* actualpoint, Node* currentNode, Ri
     else {
 
         //L'axe de separation
-        float actualpointaxisval = 0;
+        double actualpointaxisval = 0;
 
         switch (currentNode->plane.axis) {
         case Axis::X:

@@ -8,16 +8,16 @@ class ParticleCable : public ParticleLink
 		///Attributs
 
 		//a contact will be generated if the distance between the particles is larger than maxLength
-		float maxLength;
+		double maxLength;
 
 		//bounciness of the cable
-		float restitution;
+		double restitution;
 
 	public:
 
 		///COntructeurs
 
-		ParticleCable(float mLength, float rest, Particle* p1, Particle* p2){
+		ParticleCable(double mLength, double rest, Particle* p1, Particle* p2){
 			maxLength = mLength;
 			restitution = rest;
 			particle[0] = p1;

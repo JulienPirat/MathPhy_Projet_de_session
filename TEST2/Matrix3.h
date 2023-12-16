@@ -16,7 +16,7 @@ public:
 
 	///Attributes
 
-	float data[9];
+	double data[9];
 
 	///Constructeur
 
@@ -32,7 +32,7 @@ public:
 		data[8] = 0;
 	}
 
-	Matrix3(float d1, float d2, float d3, float d4, float d5, float d6, float d7, float d8, float d9) {
+	Matrix3(double d1, double d2, double d3, double d4, double d5, double d6, double d7, double d8, double d9) {
 		data[0] = d1;
 		data[1] = d2;
 		data[2] = d3;

@@ -1,6 +1,6 @@
 #include "ParticleRod.h"
 
-float ParticleRod::currentLength() const
+double ParticleRod::currentLength() const
 {
 	Vector3D relativePos = particle[0]->getPosition() - particle[1]->getPosition();
 	return relativePos.magnitude();
@@ -9,7 +9,7 @@ float ParticleRod::currentLength() const
 unsigned int ParticleRod::addContact(ParticleContactRegistry* ContactRegistry, unsigned int limit) const
 {
 	//Find the length of the rod
-	float current = currentLength();
+	double current = currentLength();
 	//std::cout << "taille cable : " << current;
 	//Check if the rod is overextended
 	if (current == length)

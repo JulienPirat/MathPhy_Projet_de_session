@@ -30,11 +30,7 @@ public:
     Vector3D operator*(double scalaire) const;
     void operator*=(double scalaire);
 
-    //Methode pour multiplier le vecteur par un float
-    Vector3D operator*(float scalaire) const;
-    void operator*=(float scalaire);
-
-    float operator*(const Vector3D& other) const;
+    double operator*(const Vector3D& other) const;
 
     // Méthode pour diviser le vecteur par un scalaire
     Vector3D operator/(double scalaire) const;
@@ -58,7 +54,7 @@ public:
     Vector3D addScaledVector(const Vector3D& autre, double scale);
 
     // Calcul de la magnitude du vecteur
-    float magnitude() const;
+    double magnitude() const;
 
     //Normalize vector
     void normalize();

@@ -55,18 +55,18 @@ void Matrix3::setOrientation(const Quaternion& q)
 void Matrix3::MakeInverse(const Matrix3& m)
 {
 	//BENJ NTK
-	float t4 = m.data[0] * m.data[4];
-	float t6 = m.data[0] * m.data[5];
-	float t8 = m.data[1] * m.data[3];
-	float t10 = m.data[2] * m.data[3];
-	float t12 = m.data[1] * m.data[6];
-	float t14 = m.data[2] * m.data[6];
+	double t4 = m.data[0] * m.data[4];
+	double t6 = m.data[0] * m.data[5];
+	double t8 = m.data[1] * m.data[3];
+	double t10 = m.data[2] * m.data[3];
+	double t12 = m.data[1] * m.data[6];
+	double t14 = m.data[2] * m.data[6];
 	// Calculate the determinant.
-	float t16 = (t4 * m.data[8] - t6 * m.data[7] - t8 * m.data[8] +
+	double t16 = (t4 * m.data[8] - t6 * m.data[7] - t8 * m.data[8] +
 		t10 * m.data[7] + t12 * m.data[5] - t14 * m.data[4]);
 	// Make sure the determinant is non-zero.
 	if (t16 == (float)0.0f) return;
-	float t17 = 1 / t16;
+	double t17 = 1 / t16;
 	data[0] = (m.data[4] * m.data[8] - m.data[5] * m.data[7]) * t17;
 	data[1] = -(m.data[1] * m.data[8] - m.data[2] * m.data[7]) * t17;
 	data[2] = (m.data[1] * m.data[5] - m.data[2] * m.data[4]) * t17;

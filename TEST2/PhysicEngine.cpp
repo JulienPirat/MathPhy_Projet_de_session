@@ -16,7 +16,7 @@ void PhysicEngine::Init()
 
 }
 
-void PhysicEngine::Update(float deltaTime)
+void PhysicEngine::Update(double deltaTime)
 {
 	//Narrow Phase
 	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
@@ -265,7 +265,7 @@ void PhysicEngine::putDragToParticle()
 void PhysicEngine::putAnchoredSpringToParticle() {
 	Vector3D* VOrigine = new Vector3D(0,0,0);
 	for (auto p : this->particles) {
-		forceRegistry_Particle.add(p, new ParticleAnchoredSpring(*VOrigine, 0.01f, 0.1f));
+		forceRegistry_Particle.add(p, new ParticleAnchoredSpring(*VOrigine, 0.01, 0.1));
 	}
 }
 

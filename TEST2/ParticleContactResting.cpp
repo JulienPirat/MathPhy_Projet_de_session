@@ -6,13 +6,13 @@ unsigned int ParticleContactResting::addContact(ParticleContactRegistry* Contact
         for (auto ParticleB : particle) {
             if (ParticleA != ParticleB) {
 
-                float dx = ParticleA->getPosition().x - ParticleB->getPosition().x;
-                float dy = ParticleA->getPosition().y - ParticleB->getPosition().y;
-                float distance = sqrt((dx * dx) + (dy * dy));
+                double dx = ParticleA->getPosition().x - ParticleB->getPosition().x;
+                double dy = ParticleA->getPosition().y - ParticleB->getPosition().y;
+                double distance = sqrt((dx * dx) + (dy * dy));
 
                 if (distance < radius * 2) {
-                    float restitution = (ParticleA->getDamping() + ParticleB->getDamping()) / 2;
-                    float penetration = ((radius * 2) - distance);
+                    double restitution = (ParticleA->getDamping() + ParticleB->getDamping()) / 2;
+                    double penetration = ((radius * 2) - distance);
                     Vector3D normalContact = ParticleA->getPosition() - ParticleB->getPosition();
                     normalContact.norme();
                     //std::cout << "Collision ! Distance : " << distance << " | Position PA : x: " << ParticleA->getPosition().x << " ,y :" << ParticleA->getPosition().y <<

@@ -12,10 +12,10 @@ public :
 
 	//Value between 0 - 1
 	//Defining the elasticness of the collision
-	float restitution;
+	double restitution;
 
 	//Distance of penetration of the contact
-	float penetration;
+	double penetration;
 
 	//Normal of the contact
 	Vector3D contactNormal;
@@ -23,14 +23,14 @@ public :
 	///Methodes
 
 	//Resolve the velocity and interpenetration
-	void resolve(float duration);
+	void resolve(double duration);
 
 	//Return the separation velocity of the particles
-	float calculateSeparatingVelocity();
+	double calculateSeparatingVelocity();
 
 private:
 	//Handle impulse for the collision
-	void resolveVelocity(float deltaT);
+	void resolveVelocity(double deltaT);
 
 	//Handle interpenetration for the collision
 	void resolveInterpenetration();

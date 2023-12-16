@@ -46,11 +46,12 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 	rotation = rotat;
 
 	transformMatrix = Matrix4();
-
+	
 	m_angularDamping = angDamp;
 
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
+	CalculateTransformMatrix();
 	primitive = new PBox(this, this->transformMatrix, dimension / 2);
 
 	color = col;

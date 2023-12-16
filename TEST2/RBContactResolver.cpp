@@ -4,9 +4,9 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 {
 	iterationsUsed = 0;
 
-	bool shouldStop = iterationsUsed < maxIteration;
+	//bool shouldStop = iterationsUsed < maxIteration;
 
-	while (!shouldStop)
+	while (iterationsUsed < maxIteration)
 	{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
 		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
@@ -31,7 +31,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		}
 		else
 		{
-			shouldStop = true;
+			//shouldStop = true;
 		}
 
 		if (contactToResolveInterpenatration != nullptr)
@@ -40,17 +40,17 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			ContactRegistry->RemoveContact(contactToResolveInterpenatration);
 		}
 
-		iterationsUsed++;
+		//iterationsUsed++;
 
-		shouldStop |= iterationsUsed >= maxIteration;
-	}
+		//shouldStop |= iterationsUsed >= maxIteration;
+	//}
 
 	// Updater les contacts
 
-	iterationsUsed = 0;
+	//iterationsUsed = 0;
 
-	while (!shouldStop)
-	{
+	//while (!shouldStop)
+	//{
 		/// Ajouter l'impulsion
 		float maxClosingVelocity = ContactRegistry->contacts[0].calculateClosingVelocity();
 		RBContact* contactApplyImpulse = &ContactRegistry->contacts[0];
@@ -67,7 +67,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			}
 		}
 		else {
-			shouldStop = true;
+			//shouldStop = true;
 		}
 
 		if(contactApplyImpulse != nullptr) 
@@ -78,7 +78,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 		iterationsUsed++;
 
-		shouldStop |= iterationsUsed >= maxIteration;
+		//shouldStop |= iterationsUsed >= maxIteration;
 	}
 	
 }

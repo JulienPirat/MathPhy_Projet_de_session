@@ -43,8 +43,7 @@ void PhysicEngine::Update(float deltaTime)
 	forceRegistry_Particle.UpdateForce(deltaTime);
 	forceRegistry_Rigibody.UpdateForce();
 
-	// Check RigidBodies collisions
-	CallRBContactGenerator();
+	
 
 
 	//Check Particules collisions & fill contact list
@@ -76,6 +75,8 @@ void PhysicEngine::Update(float deltaTime)
 			RBresolver.setIterations(contactRegistry_RigidBody->contacts.size());
 			RBresolver.resolveContacts(contactRegistry_RigidBody, contactRegistry_RigidBody->contacts.size(), deltaTime);
 		}
+		// Check RigidBodies collisions
+		CallRBContactGenerator();
 	}
 
 

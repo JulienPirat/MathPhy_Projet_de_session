@@ -239,7 +239,8 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            contactRegistry->contacts.push_back(newContact);
+            if(!penetration <= 0)
+                contactRegistry->contacts.push_back(newContact);
         }
         else 
         {
@@ -257,7 +258,8 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            contactRegistry->contacts.push_back(newContact);
+            if (!penetration <= 0)
+                contactRegistry->contacts.push_back(newContact);
         }
 	}
 

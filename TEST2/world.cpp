@@ -471,3 +471,8 @@ int World::GetNBCollisionKDTree()
 {
 	return physics.NBCollision;
 }
+
+int World::GetNBRB()
+{
+	return physics.GetNBRB();
+}

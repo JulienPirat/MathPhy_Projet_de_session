@@ -150,6 +150,11 @@ void PhysicEngine::BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> pot
 	}
 }
 
+int PhysicEngine::GetNBRB()
+{
+	return rigidbodies.size();
+}
+
 void PhysicEngine::CallAllContactGenerator()
 {
 	//Clear Basics for this frame

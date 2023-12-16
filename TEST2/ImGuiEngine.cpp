@@ -96,14 +96,19 @@ void ImGuiEngine::Update()
     ImGui::NewFrame();
 
     // 2. Show a simple window that we create ourselves. We use a Begin/End pair to create a named window.
-    if(window_to_show == 0)
+    //if(window_to_show == 0)
     {
         static float f = 0.0f;
         static int counter = 0;
 
         ImGui::Begin("Math Phys Tests !");                          // Create a window called "Hello, world!" and append into it.
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
+
+        ImGui::Text("Tableau de bord:");
+
+        ImGui::Text("- Nb RigidBodies: %i", World::GetInstance().GetNBRB());
+        ImGui::Text("- Nb Collisions: %i", World::GetInstance().GetNBCollisionKDTree());
 
         ImGui::Text("Part 1 :");
         if (ImGui::Button("Particule Simulation")) {
@@ -131,7 +136,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 1)
     {
         ImGui::Begin("Part 1");
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -190,7 +196,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 2)
     {
         ImGui::Begin("Part 2");
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -218,7 +225,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 3)
     {
         ImGui::Begin("Part 3");
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -254,15 +262,12 @@ void ImGuiEngine::Update()
     if (window_to_show == 4)
     {
         ImGui::Begin("Part 4");
-        ImGui::SetWindowSize(ImVec2(300, 600), 0);
+        ImGui::SetWindowPos(ImVec2(60, 370), 0);
+        ImGui::SetWindowSize(ImVec2(300, 300), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
-
-        ImGui::Text("Tableau de bord:");
-
-        ImGui::Text("- Nb Collisions:" + World::GetInstance().GetNBCollisionKDTree());
 
         ImGui::Text("Collision RB:");
 

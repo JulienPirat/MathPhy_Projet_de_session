@@ -85,6 +85,7 @@ public:
 	//Sharable
 
 	int GetNBCollisionKDTree();
+	int GetNBRB();
 
 private :
 

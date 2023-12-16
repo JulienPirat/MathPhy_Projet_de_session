@@ -68,6 +68,7 @@ class PhysicEngine
 
 		//Sharable
 		int NBCollision = 0;
+		int GetNBRB();
 
 	private:
 

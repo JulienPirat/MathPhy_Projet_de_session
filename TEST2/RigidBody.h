@@ -61,6 +61,8 @@ public:
 	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia);
 	RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions);
 
+	void CreatePrimitive();
+
 	///Methodes
 	
 	//Integrate the rigidbody by modifying position, orientation and velocity;

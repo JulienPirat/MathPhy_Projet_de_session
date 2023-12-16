@@ -45,6 +45,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		shouldStop |= iterationsUsed >= maxIteration;
 	}
 
+	// Updater les contacts
+
 	iterationsUsed = 0;
 
 	while (!shouldStop)

@@ -15,6 +15,10 @@ void RBContact::resolveInterpenetration(float duration)
 
 	//	TODO :	Resolve the interpenetration problems with the contacts.
 	
+	auto LinearMoveRB0 = penetration * RigidBodies[0]->inverseMasse * (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
+	auto LinearMoveRB1 = -penetration * RigidBodies[1]->inverseMasse * (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
+	RigidBodies[0]->position = RigidBodies[0]->position + contactNormal * LinearMoveRB0;
+	RigidBodies[1]->position = RigidBodies[1]->position + contactNormal * LinearMoveRB1;
 }
 
 void RBContact::AddImpulse(float duration)

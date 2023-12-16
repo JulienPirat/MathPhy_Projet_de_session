@@ -21,7 +21,7 @@ public:
 	RBContactResolver() { maxIteration = 50; };
 	RBContactResolver(unsigned iterations) : maxIteration(iterations) {};
 
-	void resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration);
+	void resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration, std::vector<std::pair<RigidBody*, RigidBody*>> potentialCollision);
 
 	void setIterations(unsigned iterations) { maxIteration = iterations; };
 };

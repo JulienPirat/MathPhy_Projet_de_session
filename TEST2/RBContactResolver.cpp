@@ -6,8 +6,8 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 	//bool shouldStop = iterationsUsed < maxIteration;
 
-	while (iterationsUsed < maxIteration)
-	{
+	//while (iterationsUsed < maxIteration)
+	//{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
 		// Avoir une liste de contacts triés par ordre d'interpénétration du plus grand au plus petit
 		// Ensuite , résoudre le contact qui a la plus grande interpénétration
@@ -18,7 +18,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		float maxInterpenetration = 0;
 		RBContact* contactToResolveInterpenatration = nullptr;
 
-		if(!ContactRegistry->contacts.empty())
+		if (!ContactRegistry->contacts.empty())
 		{
 			for (RBContact contact : ContactRegistry->contacts)
 			{
@@ -38,38 +38,40 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		{
 			Vector3D cp = Vector3D(0, 0, 0);
 			contactToResolveInterpenatration->resolveInterpenetration(duration);
+
+			/*
 			for (auto c : ContactRegistry->contacts)
 			{
 				cp = Vector3D(0, 0, 0);
 				if (c.RigidBodies[0] == contactToResolveInterpenatration->RigidBodies[0]) {
-					
+
 					cp = c.RigidBodies[0]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[0]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration -= cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if (c.RigidBodies[0] == contactToResolveInterpenatration->RigidBodies[1]) {
 					cp = c.RigidBodies[1]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[1]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration -= cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if(c.RigidBodies[1] == contactToResolveInterpenatration->RigidBodies[0])
 				{
 					cp = c.RigidBodies[0]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[0]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration += cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if (c.RigidBodies[1] == contactToResolveInterpenatration->RigidBodies[1]) {
 					cp = c.RigidBodies[1]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[1]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration += cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 			}
 		//	ContactRegistry->RemoveContact(contactToResolveInterpenatration);
-		}
+		}*/
 
 		//iterationsUsed++;
 
@@ -83,6 +85,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 	//while (!shouldStop)
 	//{
 		/// Ajouter l'impulsion
+			/*
 		float maxClosingVelocity = ContactRegistry->contacts[0].calculateClosingVelocity();
 		RBContact* contactApplyImpulse = &ContactRegistry->contacts[0];
 
@@ -101,16 +104,18 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			//shouldStop = true;
 		}
 
-		if(contactApplyImpulse != nullptr) 
+		if(contactApplyImpulse != nullptr)
 		{
 			//contactApplyImpulse->AddImpulse(duration);
 			// TODO : Remove Contact
 			//ContactRegistry->RemoveContact(contactApplyImpulse);
-		}
+		}*/
 
-		iterationsUsed++;
+			//contactToResolveInterpenatration->AddImpulse(duration);
 
-		//shouldStop |= iterationsUsed >= maxIteration;
+			iterationsUsed++;
+
+			//shouldStop |= iterationsUsed >= maxIteration;
+		//}
 	}
-	
 }

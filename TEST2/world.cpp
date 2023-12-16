@@ -98,7 +98,7 @@ void World::ContactSphereSphere()
 	AddRigidBody(RB_1);
 
 	Sphere* RB_2 = new Sphere(
-		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(0.5, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -109,10 +109,10 @@ void World::ContactSphereSphere()
 	);
 	AddRigidBody(RB_2);
 
-	rigidBodiesTEST.clear();
+	rigidBodies.clear();
 
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
+	rigidBodies.push_back(RB_1);
+	rigidBodies.push_back(RB_2);
 }
 
 void World::GenerateContactSphereBox()

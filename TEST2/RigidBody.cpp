@@ -20,6 +20,7 @@ RigidBody::RigidBody()
 
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
+	CalculateTransformMatrix();
 	primitive = new PBox(this, this->transformMatrix, dimension);
 
 	ClearAccumulators();
@@ -65,12 +66,15 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 	this->dimension = dimensions;
 	switch (shape) {
 	case cuboide:
+		CalculateTransformMatrix();
 		primitive = new PBox(this, this->transformMatrix, dimension / 2);
 		break;
 	case sphere:
+		CalculateTransformMatrix();
 		primitive = new PSphere(this, this->transformMatrix, dimension.x);
 		break;
 	case plane:
+		CalculateTransformMatrix();
 		//*primitive = (Primitive)PPlane(this, this->transformMatrix);
 		//TO DO PLANE CONSTRUCTOR
 		break;

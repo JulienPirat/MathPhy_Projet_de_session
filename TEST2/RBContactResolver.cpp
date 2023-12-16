@@ -101,7 +101,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					}
 				}
 			}
-			resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
+			//resolveContacts(ContactRegistry, numContact, duration, potentialCollision);
 
 		}
 			/*

@@ -10,5 +10,5 @@ public:
 	//Suppression du registre des contacts pour la prochaine frame
 	void ClearContactRegistry();
 
-	bool RemoveContact(RBContact* rbc);
+	void RemoveContact(RBContact rbc);
 };

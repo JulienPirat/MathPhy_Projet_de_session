@@ -293,19 +293,29 @@ void ImGuiEngine::Update()
         ImGui::Text("Collision RB:");
         ImGui::Spacing();
 
-        if (ImGui::Button("Contact 2 Box RigidBody")) {
+        if (ImGui::Button("Contact Box/Box RigidBody")) {
             World& w = World::GetInstance();
             w.ContactBoxBox();
         }
 
-        if (ImGui::Button("Contact Sphere and Box RigidBody")) {
+        if (ImGui::Button("Contact Box/Sphere RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereBox();
         }
 
-        if (ImGui::Button("Contact Sphere and sphere RigidBody")) {
+        if (ImGui::Button("Contact Sphere/Sphere RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereSphere();
+        }
+
+        if (ImGui::Button("Contact Box/Plane RigidBody")) {
+            World& w = World::GetInstance();
+            w.ContactBoxPlane();
+        }
+
+        if (ImGui::Button("Contact Sphere/Plane RigidBody")) {
+            World& w = World::GetInstance();
+            w.ContactSpherePlane();
         }
 
         ImGui::End();

@@ -44,11 +44,62 @@ void World::ContactBoxBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
+}
 
-	rigidBodiesTEST.clear();
+void World::ContactBoxPlane()
+{
+	Box* RB_1 = new Box(
+		Vector3D(1, 0, 0), //Position
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		Vector3D(1, 1, 1)
+	);
+	AddRigidBody(RB_1);
 
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
+	Plane* RB_2 = new Plane(
+		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		1,
+		1
+	);
+	AddRigidBody(RB_2);
+}
+
+void World::ContactSpherePlane()
+{
+	Sphere* RB_1 = new Sphere(
+		Vector3D(1, 0, 0), //Position
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		1
+	);
+	AddRigidBody(RB_1);
+
+	Plane* RB_2 = new Plane(
+		Vector3D(-0.5, 0, 0), //Position
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
+		0.999f, //Damping Linéaire
+		0.999f, //Damping Angulaire
+		1, // Masse
+		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Couleur
+		1,
+		1
+	);
+	AddRigidBody(RB_2);
 }
 
 void World::ContactSphereBox()
@@ -76,11 +127,6 @@ void World::ContactSphereBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
-
-	rigidBodiesTEST.clear();
-
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
 }
 
 void World::ContactSphereSphere()
@@ -98,7 +144,7 @@ void World::ContactSphereSphere()
 	AddRigidBody(RB_1);
 
 	Sphere* RB_2 = new Sphere(
-		Vector3D(0.5, 0, 0), //Position
+		Vector3D(-0.5, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
@@ -108,11 +154,6 @@ void World::ContactSphereSphere()
 		.5f
 	);
 	AddRigidBody(RB_2);
-
-	rigidBodies.clear();
-
-	rigidBodies.push_back(RB_1);
-	rigidBodies.push_back(RB_2);
 }
 
 void World::GenerateContactSphereBox()
@@ -391,17 +432,17 @@ void World::AddAnchoredSpringForRigidBody()
 
 void World::GenerateContactBoxBox()
 {
-	physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
+	//physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 void World::GenerateContactBoxSphere()
 {
-	physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
+	//physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
 }
 
 void World::GenerateContactSphereSphere()
 {
-	physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
+	//physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

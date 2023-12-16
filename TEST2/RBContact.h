@@ -31,4 +31,6 @@ public:
 
 	//Return the closing velocity
 	float calculateClosingVelocity();
+
+	bool operator==(const RBContact& rbc) const;
 };

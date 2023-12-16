@@ -4,8 +4,6 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 {
 	iterationsUsed = 0;
 
-	//bool shouldStop = iterationsUsed < maxIteration;
-
 	while (iterationsUsed < maxIteration)
 	{
 		//Résoudre en premier le contact qui a l'interpénétration la plus grande
@@ -16,7 +14,6 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 
 		/// Résoudre l'interpénétration
 		float maxInterpenetration = 0;
-		RBContact* contactToResolveInterpenatration = nullptr;
 		int indexContactToResolve = 0;
 		int indexI = 0;
 		if (!ContactRegistry->contacts.empty())
@@ -26,25 +23,17 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 				if (contact.penetration > maxInterpenetration)
 				{
 					maxInterpenetration = contact.penetration;
-					contactToResolveInterpenatration = &contact;
 					indexContactToResolve = indexI;
 				}
 				indexI++;
 			}
-		}
-		else
-		{
-			//shouldStop = true;
-		}
-
-		if (contactToResolveInterpenatration != nullptr)
-		{
+		
 			Vector3D cp = Vector3D(0, 0, 0);
-			//contactToResolveInterpenatration->resolveInterpenetration(duration);
-			//contactToResolveInterpenatration->AddImpulse(duration);
 			ContactRegistry->contacts[indexContactToResolve].resolveInterpenetration(duration);
 			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
+			//ContactRegistry->contacts.erase(indexContactToResolve);
 			ContactRegistry->RemoveContact(ContactRegistry->contacts[indexContactToResolve]);
+		}
 			/*
 			for (auto c : ContactRegistry->contacts)
 			{
@@ -78,19 +67,9 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			}
 			ContactRegistry->RemoveContact(contactToResolveInterpenatration);
 			*/
-		}
-
-		//iterationsUsed++;
-
-		//shouldStop |= iterationsUsed >= maxIteration;
-	//}
 
 	// Updater les contacts
 
-	//iterationsUsed = 0;
-
-	//while (!shouldStop)
-	//{
 		/// Ajouter l'impulsion
 			/*
 		float maxClosingVelocity = ContactRegistry->contacts[0].calculateClosingVelocity();
@@ -107,9 +86,6 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 				}
 			}
 		}
-		else {
-			//shouldStop = true;
-		}
 
 		if(contactApplyImpulse != nullptr)
 		{
@@ -117,12 +93,6 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 			// TODO : Remove Contact
 			//ContactRegistry->RemoveContact(contactApplyImpulse);
 		}*/
-
-			
-
 			iterationsUsed++;
-
-			//shouldStop |= iterationsUsed >= maxIteration;
-		
 	}
 }

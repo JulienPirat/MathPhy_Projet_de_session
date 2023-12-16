@@ -16,7 +16,7 @@ void RBSpringForceGenerator::UpdateForce(RigidBody* rigidBody)
 	force *= -magnitude;
 	if (!(force == (Vector3D(0, 0, 0)))) {
 
-		if (m_bodyAnchor.operator==(Vector3D(0, 0, 0))) {
+		if (m_bodyAnchor == Vector3D(0, 0, 0)) {
 			rigidBody->AddForce(force);
 		}
 		else {
@@ -27,7 +27,7 @@ void RBSpringForceGenerator::UpdateForce(RigidBody* rigidBody)
 		force.y *= -1;
 		force.z *= -1;
 
-		if (m_otherBodyAnchor.operator==(Vector3D(0, 0, 0))) {
+		if (m_otherBodyAnchor == Vector3D(0, 0, 0)) {
 			m_otherRigidBody->AddForce(force);
 		}
 		else {

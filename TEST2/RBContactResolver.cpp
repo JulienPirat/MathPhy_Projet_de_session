@@ -46,26 +46,26 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 					cp = c.RigidBodies[0]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[0]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration -= cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if (c.RigidBodies[0] == contactToResolveInterpenatration->RigidBodies[1]) {
 					cp = c.RigidBodies[1]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[1]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration -= cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if(c.RigidBodies[1] == contactToResolveInterpenatration->RigidBodies[0])
 				{
 					cp = c.RigidBodies[0]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[0]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration += cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 				else if (c.RigidBodies[1] == contactToResolveInterpenatration->RigidBodies[1]) {
 					cp = c.RigidBodies[1]->rotation.produitVectoriel(c.contactPoint);
 					cp += c.RigidBodies[1]->velocity; // PAs sur car pas encore faire l'impulsion
 					c.penetration += cp.produitScalaire(c.contactNormal);
-					ContactRegistry->RemoveContact(&c);
+					ContactRegistry->RemoveContact(c);
 				}
 			}
 		//	ContactRegistry->RemoveContact(contactToResolveInterpenatration);

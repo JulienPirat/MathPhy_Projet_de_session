@@ -7,5 +7,6 @@ void RBContactRegistry::ClearContactRegistry()
 
 void RBContactRegistry::RemoveContact(RBContact rbc)
 {
-	std::remove_if(contacts.begin(), contacts.end(), [&](RBContact rbOther) { return std::addressof(rbc) == std::addressof(rbOther); });
+	auto it = std::remove_if(contacts.begin(), contacts.end(), [&rbc](RBContact rbOther) { return rbc == rbOther; });
+	contacts.erase(it);
 }

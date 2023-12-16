@@ -120,13 +120,3 @@ void Vector3D::normalize()
 		(*this) *= ((float)1) / l;
 	}
 }
-
-bool Vector3D::operator==(Vector3D other)
-{
-	if (this->x == other.x && this->y == other.y && this->z == other.z) {
-		return true;
-	}
-	else {
-		return false;
-	}
-}

@@ -78,6 +78,10 @@ public:
 	//Called each frame to reset 
 	void ClearAccumulators();
 
+	friend bool operator==(const RigidBody& l, const RigidBody& r) {
+		return l.position == r.position && l.velocity == r.velocity && l.orientation == r.orientation && l.rotation == r.rotation;
+	}
+
 private:
 
 	//Call each frame to calculate the TransformMatrix and normalize the orientation

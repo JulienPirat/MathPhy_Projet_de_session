@@ -63,6 +63,8 @@ public:
     //Normalize vector
     void normalize();
 
-    bool operator==(Vector3D other);
+    friend bool operator==(const Vector3D& l, const Vector3D& r) {
+        return l.x == r.x && l.y == r.y && l.z == r.z;
+    }
 };
 

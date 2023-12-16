@@ -61,5 +61,9 @@ public:
 	//Apply the quaternion update the angular velocity
 	void UpdateByAngularVelocity(Vector3D& rotation, float duration);
 
+	friend bool operator==(const Quaternion& l, const Quaternion& r) {
+		return l.r == r.r && l.i == r.i && l.j == r.j && l.k == r.k;
+	}
+
 };
 

@@ -133,7 +133,7 @@ void World::ContactSphereSphere()
 {
 	Sphere* RB_1 = new Sphere(
 		Vector3D(2, 0, 0), //Position
-		Vector3D(-1, 0, 1.5),//Velocité
+		Vector3D(-1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
@@ -145,7 +145,7 @@ void World::ContactSphereSphere()
 
 	Sphere* RB_2 = new Sphere(
 		Vector3D(-2, 0, 0), //Position
-		Vector3D(1, 0, 1.5),//Velocité
+		Vector3D(1, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire

@@ -165,13 +165,13 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
 {
     std::vector<Vector3D> Axes;
 
-    Vector3D bOneX = one->offset * Vector3D(1, 0, 0);   // boite 1 : X 
-    Vector3D bOneY = one->offset * Vector3D(0, 1, 0);   // boite 1 : Y
-    Vector3D bOneZ = one->offset * Vector3D(0, 0, 1);   // boite 1 : Z
+    Vector3D bOneX = (one->offset * Vector3D(1, 0, 0));   // boite 1 : X 
+    Vector3D bOneY = (one->offset * Vector3D(0, 1, 0));   // boite 1 : Y
+    Vector3D bOneZ = (one->offset * Vector3D(0, 0, 1));   // boite 1 : Z
 
-    Vector3D bTwoX = two->offset * Vector3D(1, 0, 0);   // boite 2 : X
-    Vector3D bTwoY = two->offset * Vector3D(0, 1, 0);   // boite 2 : Y
-    Vector3D bTwoZ = two->offset * Vector3D(0, 0, 1);   // boite 2 : Z
+    Vector3D bTwoX = (two->offset * Vector3D(1, 0, 0));   // boite 2 : X
+    Vector3D bTwoY = (two->offset * Vector3D(0, 1, 0));   // boite 2 : Y
+    Vector3D bTwoZ = (two->offset * Vector3D(0, 0, 1));   // boite 2 : Z
 
     // On récupère les axes principaux des boites
     Axes.push_back(bOneX);

@@ -37,7 +37,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		if (contactToResolveInterpenatration != nullptr)
 		{
 			contactToResolveInterpenatration->resolveInterpenetration(duration);
-			ContactRegistry->RemoveContact(contactToResolveInterpenatration);
+		//	ContactRegistry->RemoveContact(contactToResolveInterpenatration);
 		}
 
 		//iterationsUsed++;
@@ -73,7 +73,7 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, unsi
 		if(contactApplyImpulse != nullptr) 
 		{
 			contactApplyImpulse->AddImpulse(duration);
-			ContactRegistry->RemoveContact(contactApplyImpulse);
+			//ContactRegistry->RemoveContact(contactApplyImpulse);
 		}
 
 		iterationsUsed++;

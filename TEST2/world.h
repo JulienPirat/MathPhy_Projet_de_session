@@ -28,6 +28,10 @@ public:
 
 	void ContactBoxBox();
 
+	void ContactBoxPlane();
+
+	void ContactSpherePlane();
+
 	//Ajoute des rigidbody et test les collisions Sphere a Box
 	void ContactSphereBox();
 

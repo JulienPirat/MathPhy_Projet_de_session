@@ -21,6 +21,7 @@ RigidBody::RigidBody()
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
 	CalculateTransformMatrix();
+	CreatePrimitive();
 	primitive = new PBox(this, this->transformMatrix, dimension);
 
 	ClearAccumulators();
@@ -53,17 +54,42 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 	shape = cuboide;
 	dimension = Vector3D(1, 1, 1);
 	CalculateTransformMatrix();
-	primitive = new PBox(this, this->transformMatrix, dimension / 2);
+	CreatePrimitive();
+	//primitive = new PBox(this, this->transformMatrix, dimension / 2);
 
 	color = col;
 
 	ClearAccumulators();
 }
 
-RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions): RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, inverseInertia)
+RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, Matrix3 inverseInertia, shapeRB shape, Vector3D dimensions)
 {
 	this->shape = shape;
 	this->dimension = dimensions;
+	inverseMasse = (1 / mass);
+	inverseI = inverseInertia;
+	linearDamping = linDamp;
+	position = pos;
+	velocity = vel;
+
+	orientation = Quaternion();
+	rotation = rotat;
+
+	transformMatrix = Matrix4();
+
+	m_angularDamping = angDamp;
+
+	dimension = Vector3D(1, 1, 1);
+	CalculateTransformMatrix();
+	CreatePrimitive();
+	//primitive = new PBox(this, this->transformMatrix, dimension / 2);
+
+	color = col;
+
+	ClearAccumulators();
+}
+
+void RigidBody::CreatePrimitive() {
 	switch (shape) {
 	case cuboide:
 		CalculateTransformMatrix();
@@ -75,8 +101,7 @@ RigidBody::RigidBody(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, 
 		break;
 	case plane:
 		CalculateTransformMatrix();
-		//*primitive = (Primitive)PPlane(this, this->transformMatrix);
-		//TO DO PLANE CONSTRUCTOR
+		//*primitive = (Primitive)PPlane(this, this->transformMatrix, dimension.x, dimension.y);
 		break;
 	default:
 		break;

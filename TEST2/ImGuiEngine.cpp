@@ -298,29 +298,14 @@ void ImGuiEngine::Update()
             w.ContactBoxBox();
         }
 
-        if (ImGui::Button("GenerateContactBoxBox")) {
-            World& w = World::GetInstance();
-            w.GenerateContactBoxBox();
-        }
-
         if (ImGui::Button("Contact Sphere and Box RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereBox();
         }
 
-        if (ImGui::Button("GenerateContactBoxSphere")) {
-			World& w = World::GetInstance();
-			w.GenerateContactBoxSphere();
-		}
-
         if (ImGui::Button("Contact Sphere and sphere RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereSphere();
-        }
-
-        if (ImGui::Button("GenerateContactSphereSphere")) {
-            World& w = World::GetInstance();
-            w.GenerateContactSphereSphere();
         }
 
         ImGui::End();

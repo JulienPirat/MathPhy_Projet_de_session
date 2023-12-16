@@ -45,10 +45,10 @@ void World::ContactBoxBox()
 	);
 	AddRigidBody(RB_2);
 
-	rigidBodiesTEST.clear();
+	rigidBodies.clear();
 
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
+	rigidBodies.push_back(RB_1);
+	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactSphereBox()
@@ -77,10 +77,10 @@ void World::ContactSphereBox()
 	);
 	AddRigidBody(RB_2);
 
-	rigidBodiesTEST.clear();
+	rigidBodies.clear();
 
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
+	rigidBodies.push_back(RB_1);
+	rigidBodies.push_back(RB_2);
 }
 
 void World::ContactSphereSphere()
@@ -109,10 +109,10 @@ void World::ContactSphereSphere()
 	);
 	AddRigidBody(RB_2);
 
-	rigidBodiesTEST.clear();
+	rigidBodies.clear();
 
-	rigidBodiesTEST.push_back(RB_1);
-	rigidBodiesTEST.push_back(RB_2);
+	rigidBodies.push_back(RB_1);
+	rigidBodies.push_back(RB_2);
 }
 
 void World::GenerateContactSphereBox()
@@ -391,17 +391,17 @@ void World::AddAnchoredSpringForRigidBody()
 
 void World::GenerateContactBoxBox()
 {
-	physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
+	//physics.AddContactBoxBox(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 void World::GenerateContactBoxSphere()
 {
-	physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
+	//physics.AddContactBoxSphere(rigidBodiesTEST[1], rigidBodiesTEST[0]);
 }
 
 void World::GenerateContactSphereSphere()
 {
-	physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
+	//physics.AddContactSphereSphere(rigidBodiesTEST[0], rigidBodiesTEST[1]);
 }
 
 int World::Run()

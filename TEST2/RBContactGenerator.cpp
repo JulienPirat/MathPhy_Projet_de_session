@@ -135,7 +135,7 @@ unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactR
 
     auto penetration = sphere->radius - (contactPoint - SpherePositionInBoxSpace).norme(); // Pas sur
 
-    if (penetration < 0) 
+    if (penetration <= 0) 
     {
         // We don't have collision
         return 0;

@@ -15,7 +15,8 @@ Particle randomGenerateParticle() {
 		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)), //Accélération
 		((double)rand() / (double)RAND_MAX), //Damping
 		((double)rand() / (double)RAND_MAX), //Inverse Masse
-		Vector3D(((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX), ((double)rand() / (double)RAND_MAX)) //Couleur
+		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
+
 	);
 }
 
@@ -40,6 +41,7 @@ int main(int, char**)
 		w.AddParticle(&p);
 	}
 	*/
+
 	/*
 	//Créer trois particules
 	Particle p1 = Particle(

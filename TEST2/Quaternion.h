@@ -14,24 +14,24 @@ public:
 			/**
 			* Holds the real component of the quaternion.
 			*/
-			float r;
+			double r;
 			/**
 			* Holds the first complex component of the quaternion.
 			*/
-			float i;
+			double i;
 			/**
 			* Holds the second complex component of the quaternion.
 			*/
-			float j;
+			double j;
 			/**
 			* Holds the third complex component of the quaternion.
 			*/
-			float k;
+			double k;
 		};
 			/**
 			* Holds the quaternion data in array form.
 			*/
-			float data[4];
+			double data[4];
 	};
 
 	///Constructeur
@@ -42,7 +42,7 @@ public:
 		data[2] = 0;
 		data[3] = 0;
 	}
-	Quaternion(float qr, float qi, float qj, float qk) {
+	Quaternion(double qr, double qi, double qj, double qk) {
 		data[0] = qr;
 		data[1] = qi;
 		data[2] = qj;
@@ -56,7 +56,7 @@ public:
 	void operator *=(const Quaternion& multiplier);
 
 	//Rotate the quaternion by a vector - multiply this by q = (0, dx, dy, dz)
-	void rotateByVector(Vector3D& vector, float scale);
+	void rotateByVector(Vector3D& vector, double scale);
 
 	//Apply the quaternion update the angular velocity
 	void UpdateByAngularVelocity(Vector3D& rotation, float duration);

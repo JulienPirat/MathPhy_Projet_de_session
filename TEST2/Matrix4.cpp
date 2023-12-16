@@ -27,13 +27,6 @@ Matrix4 Matrix4::operator*(const Matrix4& matrix) const
 	return result;
 }
 
-Matrix4 Matrix4::Inverse()
-{
-	Matrix4 inverseMatrix;
-	inverseMatrix.MakeInverse(*this);
-	return inverseMatrix;
-}
-
 void Matrix4::SetOrientationAndPosition(const Quaternion& q, const Vector3D& p)
 {
 	data[0] = 1 - (2 * q.j * q.j + 2 * q.k * q.k);
@@ -91,7 +84,7 @@ Matrix3 Matrix4::ToMatrix3()
 	);
 }
 
-float Matrix4::getDeterminant() const
+double Matrix4::getDeterminant() const
 {
 	//BENJ NTK
 	return data[8] * data[5] * data[2] +
@@ -100,40 +93,4 @@ float Matrix4::getDeterminant() const
 		data[0] * data[9] * data[6] -
 		data[4] * data[1] * data[10] +
 		data[0] * data[5] * data[10];
-}
-
-void Matrix4::MakeInverse(const Matrix4& m)
-{
-	//BENJ NTK
-	// Make sure the determinant is non-zero.
-	float det = getDeterminant();
-	if (det == 0) return;
-	det = ((float)1.0) / det;
-	data[0] = (-m.data[9] * m.data[6] + m.data[5] * m.data[10]) * det;
-	data[4] = (m.data[8] * m.data[6] - m.data[4] * m.data[10]) * det;
-	data[8] = (-m.data[8] * m.data[5] + m.data[4] * m.data[9] * m.data[15]) * det;
-	data[1] = (m.data[9] * m.data[2] - m.data[1] * m.data[10]) * det;
-	data[5] = (-m.data[8] * m.data[2] + m.data[0] * m.data[10]) * det;
-	data[9] = (m.data[8] * m.data[1] - m.data[0] * m.data[9] * m.data[15]) * det;
-	data[2] = (-m.data[5] * m.data[2] + m.data[1] * m.data[6] * m.data[15]) * det;
-	data[6] = (+m.data[4] * m.data[2] - m.data[0] * m.data[6] * m.data[15]) * det;
-	data[10] = (-m.data[4] * m.data[1] + m.data[0] * m.data[5] * m.data[15]) * det;
-	data[3] = (m.data[9] * m.data[6] * m.data[3]
-		- m.data[5] * m.data[10] * m.data[3]
-		- m.data[9] * m.data[2] * m.data[7]
-		+ m.data[1] * m.data[10] * m.data[7]
-		+ m.data[5] * m.data[2] * m.data[11]
-		- m.data[1] * m.data[6] * m.data[11]) * det;
-	data[7] = (-m.data[8] * m.data[6] * m.data[3]
-		+ m.data[4] * m.data[10] * m.data[3]
-		+ m.data[8] * m.data[2] * m.data[7]
-		- m.data[0] * m.data[10] * m.data[7]
-		- m.data[4] * m.data[2] * m.data[11]
-		+ m.data[0] * m.data[6] * m.data[11]) * det;
-	data[11] = (m.data[8] * m.data[5] * m.data[3]
-		- m.data[4] * m.data[9] * m.data[3]
-		- m.data[8] * m.data[1] * m.data[7]
-		+ m.data[0] * m.data[9] * m.data[7]
-		+ m.data[4] * m.data[1] * m.data[11]
-		- m.data[0] * m.data[5] * m.data[11]) * det;
 }

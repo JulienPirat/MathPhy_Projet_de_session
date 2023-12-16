@@ -6,7 +6,7 @@ Sphere::Sphere():RigidBody(MakeInverseInertiaSphere(1,1))
 	dimension = Vector3D(1, 0, 0);
 }
 
-Sphere::Sphere(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Vector3D col, float radius) : RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, MakeInverseInertiaSphere(radius,mass), sphere, Vector3D(radius, 0, 0))
+Sphere::Sphere(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float angDamp, float mass, Color col, float radius) : RigidBody(pos, vel, rotat, linDamp, angDamp, mass, col, MakeInverseInertiaSphere(radius,mass), sphere, Vector3D(radius, 0, 0))
 {
 }
 

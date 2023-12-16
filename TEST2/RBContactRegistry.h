@@ -11,4 +11,5 @@ public:
 	void ClearContactRegistry();
 
 	void RemoveContact(RBContact rbc);
+	void RemoveAllContactsFromTwoRigidBodies(RigidBody* rb1, RigidBody* rb2);
 };

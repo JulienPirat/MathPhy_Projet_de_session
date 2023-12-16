@@ -1,8 +1,8 @@
 #include "ParticleBuoyancy.h"
 
-void ParticleBuoyancy::UpdateForce(Particle* particle, float duration)
+void ParticleBuoyancy::UpdateForce(Particle* particle, double duration)
 {
-	float depth = particle->getPosition().y;
+	double depth = particle->getPosition().y;
 	if (depth >= m_waterHeight + m_maxDepth)
 		return;
 	Vector3D force(0, 0, 0);

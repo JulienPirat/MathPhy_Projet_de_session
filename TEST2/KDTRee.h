@@ -13,14 +13,14 @@ enum Axis
 struct PlaneDiv
 {
 	Axis axis;
-	float coordinate;
+	double coordinate;
 
 	PlaneDiv() {
 		axis = Axis::X;
 		coordinate = 0;
 	}
 
-	PlaneDiv(Axis ax, float coord) {
+	PlaneDiv(Axis ax, double coord) {
 		axis = ax;
 		coordinate = coord;
 	}
@@ -53,7 +53,7 @@ public:
 
 	static std::vector<std::pair<RigidBody*, RigidBody*>> getPotentialCollisions(std::vector<RigidBody*> RBList, Node* root);
 	static Node* generateTree(int currentDepth, std::vector<RigidBody*> RBList, Axis axis);
-	static RigidBody* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, float* currentDistanceBtw);
+	static RigidBody* getNearestPoint(RigidBody* actualpoint, Node* currentNode, RigidBody* refpoint, double* currentDistanceBtw);
 
 	static void deleteTree(Node* base);
 };

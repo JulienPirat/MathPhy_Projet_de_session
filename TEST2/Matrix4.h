@@ -22,7 +22,7 @@ public:
 
 	///Attributes
 
-	float data[12];
+	double data[12];
 
 	///Operators
 
@@ -33,9 +33,6 @@ public:
 	Vector3D operator*(const Vector3D& vector) const;
 
 	///Methodes
-
-	//Get the Inverse matrix
-	Matrix4 Inverse();
 
 	//Set the matrix base on a quaternion and a position
 	void SetOrientationAndPosition(const Quaternion& q, const Vector3D& p);
@@ -51,7 +48,6 @@ public:
 
 private: 
 
-	float getDeterminant() const;
-	void MakeInverse(const Matrix4& m);
+	double getDeterminant() const;
 };
 

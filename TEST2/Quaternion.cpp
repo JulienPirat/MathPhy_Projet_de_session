@@ -2,13 +2,13 @@
 
 void Quaternion::Normalized()
 {
-	float d = r * r + i * i + j * j + k * k;
+	double d = r * r + i * i + j * j + k * k;
 	// Check for zero length quaternion, and use the no-rotation
 	// quaternion in that case.
 	if (d == 0) {
 		r = 1;
 		return;
-	}d = ((float)1.0) / sqrtf(d);
+	}d = (1.0) / sqrt(d);
 	r *= d;
 	i *= d;
 	j *= d;
@@ -28,7 +28,7 @@ void Quaternion::operator*=(const Quaternion& multiplier)
 		q.i * multiplier.j - q.j * multiplier.i;
 }
 
-void Quaternion::rotateByVector(Vector3D& vector, float scale)
+void Quaternion::rotateByVector(Vector3D& vector, double scale)
 {
 	Quaternion q(0,
 		vector.x * scale,
@@ -45,9 +45,9 @@ void Quaternion::UpdateByAngularVelocity(Vector3D& rotation, float duration)
 		rotation.y * duration,
 		rotation.z * duration);
 	q *= *this;
-	r += q.r * ((float)0.5);
-	i += q.i * ((float)0.5);
-	j += q.j * ((float)0.5);
-	k += q.k * ((float)0.5);
+	r += q.r * 0.5;
+	i += q.i * 0.5;
+	j += q.j * 0.5;
+	k += q.k * 0.5;
 }
 

@@ -35,9 +35,9 @@ void RBContact::AddImpulse(float duration)
 	Vector3D r1 = RigidBodies[0]->position - contactPoint;
 	Vector3D r2 = RigidBodies[1]->position - contactPoint;
 
-	float k = restitution + 1;
+	double k = restitution + 1;
 	k = contactNormal.produitScalaire(relativeVelocity * k);
-	float denominateur = contactNormal.produitScalaire((contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
+	double denominateur = contactNormal.produitScalaire((contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
 		+ ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1
 		+ ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2));
 	k = k / denominateur;
@@ -47,7 +47,7 @@ void RBContact::AddImpulse(float duration)
 	RigidBodies[1]->velocity = RigidBodies[1]->velocity + contactNormal * k * RigidBodies[1]->inverseMasse + k * ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2;
 }
 
-float RBContact::calculateClosingVelocity()
+double RBContact::calculateClosingVelocity()
 {
 	Vector3D relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity;
 	return relativeVelocity * contactNormal;

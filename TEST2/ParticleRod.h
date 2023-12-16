@@ -8,11 +8,11 @@ public:
 	///Attributs
 
 	//a contact will be generated if the distance between particles is not equals to length
-	float length;
+	double length;
 
 	///Constructeur
 
-	ParticleRod(float len, Particle* part1, Particle* part2) {
+	ParticleRod(double len, Particle* part1, Particle* part2) {
 		length = len;
 		particle[0] = part1;
 		particle[1] = part2;
@@ -21,7 +21,7 @@ public:
 	///Methodes
 
 	//Returns the current length of the cable.
-	float currentLength() const;
+	double currentLength() const;
 
 	//Fill ParticleContact with information from particles and contact generator
 	//Contact is different wether the distance is shorter or greater than the length

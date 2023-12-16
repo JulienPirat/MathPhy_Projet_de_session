@@ -36,7 +36,7 @@ private:
     Shader* ourShader = nullptr;
 
 	void RenderCube(Vector3D topPosition, Vector3D bottomPosition, RigidBody* b);
-	void RenderSphere(Vector3D position, float rad = 0.1f);
+	void RenderSphere(Vector3D position, double rad = 0);
 
-	unsigned int VBO, VAO;
+	unsigned int VBO = 0, VAO = 0;
 };

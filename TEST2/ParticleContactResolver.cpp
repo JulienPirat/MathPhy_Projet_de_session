@@ -6,11 +6,11 @@ void ParticleContactResolver::resolveContacts(ParticleContactRegistry* ContactRe
 	while (iterationsUsed < iteration)
 	{
 		//Find the contact with the largest closing velocity
-		float max = 0;
+		double max = 0;
 		unsigned int maxIndex = 0;
 		for (unsigned int i = 0; i < numContact; i++)
 		{
-			float sepVel = ContactRegistry->Contacts[i].calculateSeparatingVelocity();
+			double sepVel = ContactRegistry->Contacts[i].calculateSeparatingVelocity();
 			if (sepVel < max && (sepVel < 0 || ContactRegistry->Contacts[i].penetration > 0))
 			{
 				max = sepVel;

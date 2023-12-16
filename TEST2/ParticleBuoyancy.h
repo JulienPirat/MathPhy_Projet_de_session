@@ -9,18 +9,18 @@ private:
 	///Attributes
 
 	//Particle properties
-	float m_maxDepth;
-	float m_volume;
+	double m_maxDepth;
+	double m_volume;
 
 	//Effect properties
-	float m_waterHeight;
-	float liquidDensity;
+	double m_waterHeight;
+	double liquidDensity;
 
 public:
 
 	///Constructeur
 
-	ParticleBuoyancy(float maxDepth, float volume, float waterHeight, float liquidDens) {
+	ParticleBuoyancy(double maxDepth, double volume, double waterHeight, double liquidDens) {
 		m_maxDepth = maxDepth;
 		m_volume = volume;
 		m_waterHeight = waterHeight;
@@ -30,6 +30,6 @@ public:
 	///Methodes
 
 	//apply simplified drag based on particle velocity
-	void UpdateForce(Particle* particle, float duration);
+	void UpdateForce(Particle* particle, double duration);
 };
 

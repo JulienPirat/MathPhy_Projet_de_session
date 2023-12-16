@@ -10,7 +10,7 @@ Particle::Particle() {
 	clearAccumulator();
 }
 
-Particle::Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Vector3D color) {
+Particle::Particle(Vector3D pos, Vector3D vel, Vector3D acc, double damp, double mass, Color color) {
 	position = pos;
 	velocity = vel;
 	acceleration = acc;
@@ -48,7 +48,7 @@ void Particle::Integrate(double duration)
 	velocity.addScaledVector(resultingAcc, duration);
 
 	// Résistance Imposée
-	velocity = velocity * powf(damping, duration);
+	velocity = velocity * pow(damping, duration);
 
 	//Remise à 0 des forces pour la prochaine frame
 	clearAccumulator();
@@ -80,7 +80,7 @@ double Particle::getInverseMass() const
 	return inverseMass;
 }
 
-Vector3D Particle::getColor() const
+Color Particle::getColor() const
 {
 	return color;
 }
@@ -110,7 +110,7 @@ void Particle::setInverseMass(double mass)
 	inverseMass = 1 / mass;
 }
 
-void Particle::setColor(Vector3D col)
+void Particle::setColor(Color col)
 {
 	color = col;
 }

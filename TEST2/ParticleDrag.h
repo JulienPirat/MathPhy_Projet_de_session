@@ -8,14 +8,14 @@ private:
 	///Attributes
 
 	//drag coefficient
-	float m_k1;
-	float m_k2;
+	double m_k1;
+	double m_k2;
 
 public:
 
 	///Constructeur
 
-	ParticleDrag(float k1, float k2) {
+	ParticleDrag(double k1, double k2) {
 		m_k1 = k1;
 		m_k2 = k2;
 	}
@@ -23,6 +23,6 @@ public:
 	///Methodes
 
 	//apply Hooke's law based on particles positions
-	void UpdateForce(Particle* particle, float duration);
+	void UpdateForce(Particle* particle, double duration);
 };
 

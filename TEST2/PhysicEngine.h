@@ -28,7 +28,7 @@ class PhysicEngine
 
 		void Init();
 
-		void Update(float deltaTime);
+		void Update(double deltaTime);
 
 		void Shutdown();
 
@@ -100,7 +100,7 @@ class PhysicEngine
 		ParticleContact* contacts;
 
 		//max number of contacts
-		unsigned maxContacts;
+		unsigned maxContacts = 50;
 
 		//contact resolver
 		ParticleContactResolver resolver;

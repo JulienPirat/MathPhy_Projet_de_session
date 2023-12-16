@@ -7,6 +7,6 @@ public:
 
 	///Methodes
 
-	virtual void UpdateForce(Particle* particle, float duration) = 0;
+	virtual void UpdateForce(Particle* particle, double duration) = 0;
 };
 

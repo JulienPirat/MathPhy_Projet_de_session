@@ -75,21 +75,31 @@ void RBContact::AddImpulse(float duration)
 	// v = vitesse lin�aire; w = vitesse angulaire; r = le vecteur entre le centre de masse et point de contact
 	//auto VitessePointContact = RigidBodies[0]->velocity + RigidBodies[0]->rotation;
 
-	auto relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity;
-
 	Vector3D r1 = contactPoint - RigidBodies[0]->position;
 	Vector3D r2 = contactPoint - RigidBodies[1]->position;
 
-	double e = restitution + 1;
-	double numerateur = contactNormal.produitScalaire(relativeVelocity * e);
+	auto velocityAtContactPointRb1 = RigidBodies[0]->velocity + RigidBodies[0]->rotation.produitVectoriel(r1);
+	auto velocityAtContactPointRb2 = RigidBodies[1]->velocity + RigidBodies[1]->rotation.produitVectoriel(r2);
+
+	auto relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity
+		+ RigidBodies[0]->rotation.produitVectoriel(r1)
+		- RigidBodies[1]->rotation.produitVectoriel(r2);
+
+	double numerateur = contactNormal.produitScalaire(relativeVelocity * (restitution + 1));
 	double denominateur = contactNormal.produitScalaire((contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
 		+ ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1
 		+ ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2));
 	double k = numerateur / denominateur;
 
-	// Velocite apres impulsion
-	RigidBodies[0]->velocity = RigidBodies[0]->velocity - contactNormal * k * RigidBodies[0]->inverseMasse - k * ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1;
-	RigidBodies[1]->velocity = RigidBodies[1]->velocity + contactNormal * k * RigidBodies[1]->inverseMasse + k * ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2;
+	// Velocite lineaire apres impulsion
+	RigidBodies[0]->velocity = RigidBodies[0]->velocity
+		- (contactNormal * k * RigidBodies[0]->inverseMasse);
+	RigidBodies[1]->velocity = RigidBodies[1]->velocity
+		+ (contactNormal * k * RigidBodies[1]->inverseMasse);
+
+	// Velocite angulaire apres impulsion
+	RigidBodies[0]->rotation = RigidBodies[0]->rotation - ((r1.produitVectoriel(contactNormal * k)) * RigidBodies[0]->inverseI);
+	RigidBodies[1]->rotation = RigidBodies[1]->rotation + ((r2.produitVectoriel(contactNormal * k)) * RigidBodies[1]->inverseI);
 
 	/////////////////////////////
 	//auto v1 = RigidBodies[0]->velocity - (contactNormal * k * RigidBodies[0]->inverseMasse);

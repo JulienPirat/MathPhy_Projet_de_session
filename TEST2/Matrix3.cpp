@@ -117,3 +117,12 @@ Matrix3 operator*(const double& a, const Matrix3& m)
 		a * m.data[6], a * m.data[7], a * m.data[8]
 	);
 }
+
+Vector3D operator*(const Vector3D& v, const Matrix3& m)
+{
+	return Vector3D(
+		v.x * m.data[0] + v.y * m.data[1] + v.z * m.data[2],
+		v.x * m.data[3] + v.y * m.data[4] + v.z * m.data[5],
+		v.x * m.data[6] + v.y * m.data[7] + v.z * m.data[8]
+	);
+}

@@ -135,13 +135,18 @@ unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactR
 
     auto contactPoint = Vector3D(distanceX, distanceY, distanceZ);
 
-    auto penetration = (SpherePositionInBoxSpace - contactPoint).norme() - sphere->radius;
-
-    if (penetration > 0) 
+    auto penetration = (SpherePositionInBoxSpace - contactPoint).magnitude();
+    /*
+    if (penetration < 0 || penetration >= 1) 
     {
         // We don't have collision
         return 0;
-    }
+    }*/
+
+    if (penetration > sphere->radius * sphere->radius)
+    {
+		return 0;
+	}
 
     float restitution = (box->RB->linearDamping + sphere->RB->linearDamping) / 2;
     float friction = (box->RB->m_angularDamping + sphere->RB->m_angularDamping) / 2;
@@ -156,8 +161,11 @@ unsigned RBContactGenerator::boxAndSphere(PBox* box, PSphere* sphere, RBContactR
     newContact.penetration = penetration;
     newContact.restitution = restitution;
     newContact.friction = friction;
-    newContact.RigidBodies[0] = box->RB;
-    newContact.RigidBodies[1] = sphere->RB;
+    newContact.RigidBodies[1] = box->RB;
+    newContact.RigidBodies[0] = sphere->RB;
+
+    //if(penetration <= 0)
+    //    return 0;
     contactRegistry->contacts.push_back(newContact);
 
     return 1;

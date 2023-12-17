@@ -48,6 +48,11 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, floa
 
 			ContactRegistry->RemoveAllContactsFromTwoRigidBodies(TempRB1, TempRB2);
 
+			if (ContactRegistry->contacts.size() <= 0)
+			{
+				return;
+			}
+
 			shapeRB SRB1 = TempRB1->shape; //Shape Rigidbody 1
 			shapeRB SRB2 = TempRB2->shape; //Shape Rigidbody 2
 

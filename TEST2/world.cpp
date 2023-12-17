@@ -22,9 +22,9 @@ void World::DeleteAllRigidBody() {
 void World::ContactBoxBox()
 {
 	Box* RB_1 = new Box(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Rotation
+		Vector3D(1, 1, 0), //Position
+		Vector3D(-0.5, -0.5, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -34,9 +34,9 @@ void World::ContactBoxBox()
 	AddRigidBody(RB_1);
 
 	Box* RB_2 = new Box(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Rotation
+		Vector3D(-1, -1, 0), //Position
+		Vector3D(0.5, 0.5, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -135,8 +135,8 @@ void World::ContactSphereSphere()
 {
 	Sphere* RB_1 = new Sphere(
 		Vector3D(2, 0, 0), //Position
-		Vector3D(-1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Rotation
+		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -147,8 +147,8 @@ void World::ContactSphereSphere()
 
 	Sphere* RB_2 = new Sphere(
 		Vector3D(-2, 0, 0), //Position
-		Vector3D(1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Rotation
+		Vector3D(1, 0, 0),//Velocité
+		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		10, // Masse

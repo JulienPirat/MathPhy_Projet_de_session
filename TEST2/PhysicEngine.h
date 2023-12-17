@@ -94,7 +94,7 @@ class PhysicEngine
 		unsigned int limitIterContactGenerator = 100;
 		unsigned int limitIterContactResolver = 10;
 
-		unsigned int RBlimitIterContactResolver = 10;
+		unsigned int RBlimitIterContactResolver = 100;
 		
 		//Holds the list of contacts.
 		ParticleContact* contacts;

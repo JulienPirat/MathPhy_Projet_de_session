@@ -8,7 +8,7 @@ protected:
 	///Attributes
 
 	//number of allowed iterations
-	unsigned int maxIteration;
+	const unsigned int maxIteration = 100;
 
 	
 
@@ -21,10 +21,8 @@ public:
 
 
 	//Creates a new contact resolver with the number of max iterations
-	RBContactResolver() { maxIteration = 50; iterationsUsed = 0; };
-	RBContactResolver(unsigned iterations) : maxIteration(iterations) { iterationsUsed = 0; };
+	RBContactResolver() { iterationsUsed = 0; };
+	RBContactResolver(unsigned iterations) { iterationsUsed = 0; };
 
-	void resolveContacts(RBContactRegistry* ContactRegistry, unsigned int numContact, float duration);
-
-	void setIterations(unsigned iterations) { maxIteration = iterations; };
+	void resolveContacts(RBContactRegistry* ContactRegistry, float duration);
 };

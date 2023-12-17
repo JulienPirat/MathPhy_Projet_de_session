@@ -44,4 +44,6 @@ public:
 
 private:
 	static Interval ProjectBoxOnAxis(PBox* box, Vector3D* axis);
+
+	static unsigned BoxAndPoint(PBox* box, PBox* box2 , Vector3D* point, RBContactRegistry* contactRegistry);
 };

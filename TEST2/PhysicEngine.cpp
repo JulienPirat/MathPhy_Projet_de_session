@@ -66,23 +66,11 @@ void PhysicEngine::Update(double deltaTime)
 
 	//Resolve RB Contacts
 	if (contactRegistry_RigidBody->contacts.size() > 0) {
-		if (RBlimitIterContactResolver < contactRegistry_RigidBody->contacts.size() - 1) {
-			//If we have more than "limitIterContactResolver" contacts to resolve we only solve "limitIterContactResolver" of them
-			RBresolver.setIterations(RBlimitIterContactResolver);
-			RBresolver.resolveContacts(contactRegistry_RigidBody, RBlimitIterContactResolver, deltaTime);
+			RBresolver.resolveContacts(contactRegistry_RigidBody, deltaTime);
 			RBresolver.iterationsUsed = 0;
-		}
-		else {
-			//We can resolve all contact this frame
-			RBresolver.setIterations(contactRegistry_RigidBody->contacts.size());
-			RBresolver.resolveContacts(contactRegistry_RigidBody, contactRegistry_RigidBody->contacts.size(), deltaTime);
-			RBresolver.iterationsUsed = 0;
-		}
 		// Check RigidBodies collisions
 		CallRBContactGenerator();
 	}
-
-
 	KDTRee::deleteTree(root);
 }
 

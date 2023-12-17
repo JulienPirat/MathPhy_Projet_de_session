@@ -86,9 +86,12 @@ void RBContact::AddImpulse(float duration)
 		- RigidBodies[1]->rotation.produitVectoriel(r2);
 
 	double numerateur = contactNormal.produitScalaire(relativeVelocity * (restitution + 1));
-	double denominateur = contactNormal.produitScalaire((contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
-		+ ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1
-		+ ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2));
+	double denominateur = contactNormal.produitScalaire(
+		(contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
+		+ ((r1.produitVectoriel(contactNormal)) * RigidBodies[0]->inverseI).produitVectoriel(r1)
+		+ ((r2.produitVectoriel(contactNormal)) * RigidBodies[1]->inverseI).produitVectoriel(r2))
+	);
+
 	double k = numerateur / denominateur;
 
 	// Velocite lineaire apres impulsion

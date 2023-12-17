@@ -265,6 +265,15 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             RenderSphere(p->position, p->dimension.x);
         }
     }
+
+    for (auto b : particles)
+    {
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::scale(model, glm::vec3(1, 1, 1));
+        ourShader->setVec3("objectColor", b->getColor().r, b->getColor().g, b->getColor().b);
+        RenderSphere(b->getPosition());
+    }
+
     for (auto p : bodies)
     {
         if (p->shape == plane) {
@@ -288,11 +297,7 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
         }
     }
 
-    for (auto b : particles)
-    {
-        ourShader->setVec3("objectColor", b->getColor().r, b->getColor().g, b->getColor().b);
-		RenderSphere(b->getPosition());
-    }
+    
 }
 
 void GraphicEngine::SwapBuffers()

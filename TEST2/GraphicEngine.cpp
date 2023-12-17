@@ -238,6 +238,16 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
     int i = 0;
     for (auto p : bodies)
     {
+        if (p->shape == sphere) {
+            ///DrawSphere
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::scale(model, glm::vec3(1, 1, 1));
+            ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
+            RenderSphere(p->position, p->dimension.x);
+        }
+    }
+    for (auto p : bodies)
+    {
         if (p->shape == cuboide) {
             ///DrawCuboide
             // calculate the model matrix for each object and pass it to shader before drawing
@@ -256,13 +266,6 @@ void GraphicEngine::Render(std::vector<Particle*> const &particles, std::vector<
             ourShader->setMat4("model", model);
             //Draw
             glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-        else if (p->shape == sphere) {
-            ///DrawSphere
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::scale(model, glm::vec3(1, 1, 1));
-            ourShader->setVec3("objectColor", p->color.r, p->color.g, p->color.b);
-            RenderSphere(p->position, p->dimension.x);
         }
     }
 

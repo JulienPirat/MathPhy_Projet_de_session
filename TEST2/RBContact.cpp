@@ -86,6 +86,14 @@ void RBContact::AddImpulse(float duration)
 	RigidBodies[0]->velocity = RigidBodies[0]->velocity - contactNormal * k * RigidBodies[0]->inverseMasse - k * ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1;
 	RigidBodies[1]->velocity = RigidBodies[1]->velocity + contactNormal * k * RigidBodies[1]->inverseMasse + k * ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2;
 
+	/////////////////////////////
+	//auto v1 = RigidBodies[0]->velocity - (contactNormal * k * RigidBodies[0]->inverseMasse);
+	//auto v2 = RigidBodies[1]->velocity + (contactNormal * k * RigidBodies[1]->inverseMasse);
+
+	//RigidBodies[0]->velocity = RigidBodies[0]->velocity.addScaledVector(RigidBodies[0]->velocity,(((v1-v2) * e).produitScalaire(contactNormal))/((1*RigidBodies[0]->inverseMasse + 1 * RigidBodies[1]->inverseMasse)*contactNormal.produitScalaire(contactNormal)));
+	//RigidBodies[1]->velocity = RigidBodies[0]->velocity.addScaledVector(RigidBodies[0]->velocity, (((v1 - v2) * e).produitScalaire(contactNormal)) / ((1 * RigidBodies[0]->inverseMasse + 1 * RigidBodies[1]->inverseMasse) * contactNormal.produitScalaire(contactNormal)));
+	/////////////////////////////
+
 	Vector3D inverseInertiaTensor;
 	//inverseInertiaTensor * 
 	/*

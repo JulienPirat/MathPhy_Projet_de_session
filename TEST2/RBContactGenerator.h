@@ -45,5 +45,5 @@ public:
 private:
 	static Interval ProjectBoxOnAxis(PBox* box, Vector3D* axis);
 
-	static unsigned BoxAndPoint(PBox* box, PBox* box2 , Vector3D* point, RBContactRegistry* contactRegistry);
+	static Vector3D findEdgeEdgeContact(Vector3D& P1, Vector3D& Q1, Vector3D& P2, Vector3D& Q2);
 };

@@ -35,12 +35,23 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, floa
 			Vector3D cp = Vector3D(0, 0, 0);
 			ContactRegistry->contacts[indexContactToResolve].resolveInterpenetration(duration);
 			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
+			
+			for (RigidBody* RB : ContactRegistry->contacts[indexContactToResolve].RigidBodies)
+			{
+				RB->CalculateTransformMatrix();
+			}
+
 			iterationsUsed++;
 
 			RigidBody* TempRB1 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[0];
 			RigidBody* TempRB2 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[1];
 
 			ContactRegistry->RemoveAllContactsFromTwoRigidBodies(TempRB1, TempRB2);
+
+			if (ContactRegistry->contacts.size() <= 0)
+			{
+				return;
+			}
 
 			shapeRB SRB1 = TempRB1->shape; //Shape Rigidbody 1
 			shapeRB SRB2 = TempRB2->shape; //Shape Rigidbody 2

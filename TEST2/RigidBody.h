@@ -93,13 +93,16 @@ public:
 		return l.position == r.position && l.velocity == r.velocity && l.orientation == r.orientation && l.rotation == r.rotation;
 	}
 
+	//Calculate the transform Matrix
+	void CalculateTransformMatrix();
+
 private:
 
 	//Call each frame to calculate the TransformMatrix and normalize the orientation
 	void CalculateDerivedData();
 
 	//Calculate the transform Matrix
-	void CalculateTransformMatrix();
+	//void CalculateTransformMatrix();
 
 };
 

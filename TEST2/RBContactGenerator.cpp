@@ -184,6 +184,46 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Axes.push_back(bTwoY);
     Axes.push_back(bTwoZ);
 
+    for (Vector3D axe : Axes)
+    {
+        //axe.normalize();
+        Interval intervalOne = ProjectBoxOnAxis(one, &axe);
+        Interval intervalTwo = ProjectBoxOnAxis(two, &axe);
+
+        if (intervalOne.min > intervalTwo.max || intervalTwo.min > intervalOne.max)
+        {
+            // We don't have collision
+            return 0;
+        }
+
+        double restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
+        double friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
+
+
+        if (axe == bOneX || axe == bOneY || axe == bOneZ ||
+            axe == bTwoX || axe == bTwoY || axe == bTwoZ)
+        {
+            // Collision Face-Point
+            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            Vector3D contactPoint = two->offset * intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+            axe.normalize();
+
+            RBContact newContact;
+            newContact.contactNormal = axe;
+            newContact.contactPoint = contactPoint;
+            newContact.penetration = penetration;
+            newContact.restitution = restitution;
+            newContact.friction = friction;
+            newContact.RigidBodies[0] = one->RB;
+            newContact.RigidBodies[1] = two->RB;
+            if (penetration >= 1)    // ASupprimer
+                return 0;
+            if (penetration > 0)
+                contactRegistry->contacts.push_back(newContact);
+        }
+    }
+
+    Axes.clear();
     // On récupère les 9 autres axes
 
     Vector3D axeXX = bOneX.produitVectoriel(bTwoX);
@@ -240,7 +280,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
         {
             // Collision Face-Point
             double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-            Vector3D contactPoint = intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+            Vector3D contactPoint = two->offset * intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
             axe.normalize();
             
             RBContact newContact;
@@ -267,7 +307,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             RBContact newContact;
             newContact.contactNormal = axe;
             newContact.contactPoint = contactPoint;
-            newContact.penetration = 1 - penetration;
+            newContact.penetration = penetration;
             newContact.restitution = restitution;
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;

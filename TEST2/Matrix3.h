@@ -52,6 +52,10 @@ public:
 	//Transform of a Vector 
 	Vector3D operator*(const Vector3D& vector) const;
 
+	Matrix3 operator*(const double scalaire) const;
+
+	Matrix3 operator+(const Matrix3& matrix) const;
+
 	///Methodes
 
 	//Get the Inverse Matrix

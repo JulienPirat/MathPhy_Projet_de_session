@@ -307,14 +307,27 @@ void ImGuiEngine::Update()
             w.ContactBoxBox();
         }
 
-        if (ImGui::Button("Contact Box/Sphere RigidBody")) {
-            World& w = World::GetInstance();
-            w.ContactSphereBox();
-        }
-
         if (ImGui::Button("Contact Sphere/Sphere RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereSphere();
+        }
+
+        ImGui::Text("Sphere/Box:");
+        ImGui::Spacing();
+
+        if (ImGui::Button("Contact Face/Face Sphere/Box ")) {
+            World& w = World::GetInstance();
+            w.ContactSphereBox(Vector3D(5, 0, 0), Vector3D(-1000, 0, 0), Vector3D(-5, 0, 0), Vector3D(1000, 0, 0));
+        }
+
+        if (ImGui::Button("Contact Face/Edge Sphere/Box ")) {
+            World& w = World::GetInstance();
+            w.ContactSphereBox(Vector3D(5, .5f, 0), Vector3D(-1000, 0, 0), Vector3D(-5, 0, 0), Vector3D(1000, 0, 0));
+        }
+
+        if (ImGui::Button("Contact Face/Point Sphere/Box ")) {
+            World& w = World::GetInstance();
+            w.ContactSphereBox(Vector3D(5, .5f, 1), Vector3D(-1000, 0, 0), Vector3D(-5, 0, 0), Vector3D(1000, 0, 0));
         }
 
         if (ImGui::Button("Contact Box/Plane RigidBody")) {

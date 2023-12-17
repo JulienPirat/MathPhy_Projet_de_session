@@ -35,7 +35,7 @@ public:
 
 	void ContactSpherePlane();
 
-	void ContactSphereBox();
+	void ContactSphereBox(Vector3D SPos, Vector3D SVel, Vector3D BPos, Vector3D BVel);
 
 	void ContactSphereSphere();
 

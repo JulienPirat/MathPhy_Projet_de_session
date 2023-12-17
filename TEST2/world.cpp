@@ -24,7 +24,7 @@ void World::ContactBoxBox()
 	Box* RB_1 = new Box(
 		Vector3D(1, 0, 0), //Position
 		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -36,7 +36,7 @@ void World::ContactBoxBox()
 	Box* RB_2 = new Box(
 		Vector3D(-0.5, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -51,7 +51,7 @@ void World::ContactBoxPlane()
 	Box* RB_1 = new Box(
 		Vector3D(0, 2, 0), //Position
 		Vector3D(0, -1, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -63,7 +63,7 @@ void World::ContactBoxPlane()
 	Plane* RB_2 = new Plane(
 		Vector3D(0, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -79,7 +79,7 @@ void World::ContactSpherePlane()
 	Sphere* RB_1 = new Sphere(
 		Vector3D(0, 2, 0), //Position
 		Vector3D(0, -1, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -91,7 +91,7 @@ void World::ContactSpherePlane()
 	Plane* RB_2 = new Plane(
 		Vector3D(0, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -102,12 +102,12 @@ void World::ContactSpherePlane()
 	AddRigidBody(RB_2);
 }
 
-void World::ContactSphereBox()
+void World::ContactSphereBox(Vector3D SPos, Vector3D SVel, Vector3D BPos, Vector3D BVel)
 {
 	Sphere* RB_1 = new Sphere(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		SPos, //Position
+		Vector3D(0, 0, 0),
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -115,11 +115,12 @@ void World::ContactSphereBox()
 		.5f //Rayon
 	);
 	AddRigidBody(RB_1);
+	RB_1->AddForce(SVel);
 
 	Box* RB_2 = new Box(
-		Vector3D(-10, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		BPos, //Position
+		Vector3D(0, 0, 0),
+		Vector3D(0, 45.5f, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -127,6 +128,7 @@ void World::ContactSphereBox()
 		Vector3D(1, 1, 1)
 	);
 	AddRigidBody(RB_2);
+	RB_2->AddForce(BVel);
 }
 
 void World::ContactSphereSphere()
@@ -134,7 +136,7 @@ void World::ContactSphereSphere()
 	Sphere* RB_1 = new Sphere(
 		Vector3D(2, 0, 0), //Position
 		Vector3D(-1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse
@@ -146,7 +148,7 @@ void World::ContactSphereSphere()
 	Sphere* RB_2 = new Sphere(
 		Vector3D(-2, 0, 0), //Position
 		Vector3D(1, 0, 1.5),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		10, // Masse
@@ -162,7 +164,7 @@ void World::GenBasicCollision() {
 	Particle* p1 = new Particle(
 		Vector3D(10, 0, 0), //Position
 		Vector3D(-1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -172,7 +174,7 @@ void World::GenBasicCollision() {
 	Particle* p2 = new Particle(
 		Vector3D(-10, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -185,7 +187,7 @@ void  World::GenBasicParticule(float x, float y, float z, float vx, float vy, fl
 	Particle* p3 = new Particle(
 		Vector3D(x, y, z), //Position
 		Vector3D(vx, vy, vz),//Velocité
-		Vector3D(ax, ay, az), //Accélération
+		Vector3D(ax, ay, az), //Rotation
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -198,7 +200,7 @@ void World::GenContactResting() {
 	Particle* p1 = new Particle(
 		Vector3D(0, 100, 0), //Position
 		Vector3D(0, -10, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		1, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -208,7 +210,7 @@ void World::GenContactResting() {
 	Particle* p2 = new Particle(
 		Vector3D(0, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -221,7 +223,7 @@ void World::GenWallCollision() {
 	Particle* p1 = new Particle(
 		Vector3D(10, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -231,7 +233,7 @@ void World::GenWallCollision() {
 	Particle* p2 = new Particle(
 		Vector3D(-10, 0, 0), //Position
 		Vector3D(0, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping
 		-1000, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur
@@ -241,7 +243,7 @@ void World::GenWallCollision() {
 	Particle* p3 = new Particle(
 		Vector3D(5, 0, 0), //Position
 		Vector3D(1, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		Vector3D(0, 0, 0), //Rotation
 		1, //Damping
 		0.2, //Inverse Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)) //Couleur

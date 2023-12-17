@@ -24,6 +24,24 @@ Vector3D Matrix3::operator*(const Vector3D& vector) const
 	);
 }
 
+Matrix3 Matrix3::operator*(const double scalaire) const
+{
+	return Matrix3(
+		scalaire * data[0], scalaire * data[3], scalaire * data[6],
+		scalaire * data[1], scalaire * data[4], scalaire * data[7],
+		scalaire * data[2], scalaire * data[5], scalaire * data[8]
+	);
+}
+
+Matrix3 Matrix3::operator+(const Matrix3& matrix) const
+{
+	return Matrix3(
+		data[0] + matrix.data[0], data[1] + matrix.data[1], data[2] + matrix.data[2],
+		data[3] + matrix.data[3], data[4] + matrix.data[4], data[5] + matrix.data[5],
+		data[6] + matrix.data[6], data[7] + matrix.data[7], data[8] + matrix.data[8]
+	);
+}
+
 Matrix3 Matrix3::Inverse()
 {
 	Matrix3 inverseMatrix;

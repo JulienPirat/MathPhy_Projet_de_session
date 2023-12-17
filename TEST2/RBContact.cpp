@@ -15,10 +15,50 @@ void RBContact::resolveInterpenetration(float duration)
 
 	//	TODO :	Resolve the interpenetration problems with the contacts.
 	
-	auto LinearMoveRB0 = penetration * RigidBodies[0]->inverseMasse * (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
-	auto LinearMoveRB1 = -penetration * RigidBodies[1]->inverseMasse * (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
+
+	Matrix3 inverseInertiaTensor = RigidBodies[0]->inverseI;
+	Vector3D r = contactPoint - RigidBodies[0]->position;
+	Vector3D angularInertiaWorld = r.produitVectoriel(contactNormal);
+	angularInertiaWorld = inverseInertiaTensor * (angularInertiaWorld);
+	angularInertiaWorld = angularInertiaWorld.produitVectoriel(r);
+	float angularInertia = angularInertiaWorld.produitScalaire(contactNormal);
+
+	Matrix3 inverseInertiaTensor1 = RigidBodies[1]->inverseI;
+	Vector3D r1 = contactPoint - RigidBodies[1]->position;
+	Vector3D angularInertiaWorld1 = r1.produitVectoriel(contactNormal);
+	angularInertiaWorld1 = inverseInertiaTensor1 * (angularInertiaWorld1);
+	angularInertiaWorld1 = angularInertiaWorld1.produitVectoriel(r1);
+	float angularInertia1 = angularInertiaWorld1.produitScalaire(contactNormal);
+
+	//auto inverseInertia = (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
+	//auto inverseInertiaAng = ((RigidBodies[0]->inverseI.Inverse() + RigidBodies[1]->inverseI.Inverse()).Inverse()).Inverse();
+	auto inverseInertia = (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
+	auto inverseInertiaAng = angularInertia + angularInertia1;
+	auto inverseTotal = inverseInertia + inverseInertiaAng;
+
+	auto LinearMoveRB0 = penetration * RigidBodies[0]->inverseMasse * inverseInertia;
+	auto LinearMoveRB1 = -penetration * RigidBodies[1]->inverseMasse * inverseInertia;
+	auto AngularMoveRB0 = penetration * angularInertia * inverseInertiaAng;
+	auto AngularMoveRB1 = -penetration * angularInertia1 * inverseInertiaAng;
+
 	RigidBodies[0]->position = RigidBodies[0]->position + contactNormal * LinearMoveRB0;
 	RigidBodies[1]->position = RigidBodies[1]->position + contactNormal * LinearMoveRB1;
+	//RigidBodies[0]->rotation = RigidBodies[0]->rotation + AngularMoveRB0 * contactNormal;
+	//RigidBodies[1]->rotation = RigidBodies[1]->rotation + AngularMoveRB1 * contactNormal;
+
+	Vector3D rotationPerMove = inverseInertiaTensor * angularInertiaWorld;
+	Vector3D rotationPerMove1 = inverseInertiaTensor1 * angularInertiaWorld1;
+
+	Vector3D rotation = rotationPerMove * AngularMoveRB0;
+	Vector3D rotation1 = rotationPerMove1 * AngularMoveRB1;
+
+	//std::cout << "Rotate amount : " << rotation << "\n";
+
+	//RigidBodies[0]->orientation.rotateByVector(rotationPerMove, 1);
+	//RigidBodies[1]->orientation.rotateByVector(rotationPerMove1, 1);
+
+	RigidBodies[0]->rotation += rotation;
+	RigidBodies[1]->rotation += rotation1;
 }
 
 void RBContact::AddImpulse(float duration)
@@ -45,6 +85,17 @@ void RBContact::AddImpulse(float duration)
 	// V�locit� apr�s impulsion
 	RigidBodies[0]->velocity = RigidBodies[0]->velocity - contactNormal * k * RigidBodies[0]->inverseMasse - k * ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1;
 	RigidBodies[1]->velocity = RigidBodies[1]->velocity + contactNormal * k * RigidBodies[1]->inverseMasse + k * ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2;
+
+	Vector3D inverseInertiaTensor;
+	//inverseInertiaTensor * 
+	/*
+	Vector3D impulsiveTorque = relativeContactPosition % contactNormal;
+	Vector3D impulsePerMove = inverseInertiaTensor.produitVectoriel(impulsiveTorque);
+
+	Vector3D rotationPerMove = impulsePerMove * (1/ RigidBodies[1]->inverseI.Inverse())
+
+	RigidBodies[0]->orientation.rotateByVector(RigidBodies[0]->rotation, 1);
+	RigidBodies[1]->orientation.rotateByVector(RigidBodies[1]->rotation, 1);*/
 }
 
 double RBContact::calculateClosingVelocity()

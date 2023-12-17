@@ -16,14 +16,16 @@ void RBContact::resolveInterpenetration(float duration)
 	//	TODO :	Resolve the interpenetration problems with the contacts.
 	
 
-	Matrix3 inverseInertiaTensor = RigidBodies[0]->inverseI;
+	//Matrix3 inverseInertiaTensor = RigidBodies[0]->inverseI;
+	Matrix3 inverseInertiaTensor = (RigidBodies[0]->transformMatrix.ToMatrix3()) * RigidBodies[0]->inverseI * (RigidBodies[0]->transformMatrix.ToMatrix3().Inverse());
 	Vector3D r = contactPoint - RigidBodies[0]->position;
 	Vector3D angularInertiaWorld = r.produitVectoriel(contactNormal);
 	angularInertiaWorld = inverseInertiaTensor * (angularInertiaWorld);
 	angularInertiaWorld = angularInertiaWorld.produitVectoriel(r);
 	float angularInertia = angularInertiaWorld.produitScalaire(contactNormal);
 
-	Matrix3 inverseInertiaTensor1 = RigidBodies[1]->inverseI;
+	//Matrix3 inverseInertiaTensor1 = RigidBodies[1]->inverseI;
+	Matrix3 inverseInertiaTensor1 = (RigidBodies[1]->transformMatrix.ToMatrix3()) * RigidBodies[1]->inverseI * (RigidBodies[1]->transformMatrix.ToMatrix3().Inverse());
 	Vector3D r1 = contactPoint - RigidBodies[1]->position;
 	Vector3D angularInertiaWorld1 = r1.produitVectoriel(contactNormal);
 	angularInertiaWorld1 = inverseInertiaTensor1 * (angularInertiaWorld1);
@@ -54,11 +56,14 @@ void RBContact::resolveInterpenetration(float duration)
 
 	//std::cout << "Rotate amount : " << rotation << "\n";
 
-	//RigidBodies[0]->orientation.rotateByVector(rotationPerMove, 1);
-	//RigidBodies[1]->orientation.rotateByVector(rotationPerMove1, 1);
-
-	RigidBodies[0]->rotation += rotation;
-	RigidBodies[1]->rotation += rotation1;
+	//if () {
+		RigidBodies[0]->orientation.rotateByVector(rotation, 50);
+		RigidBodies[1]->orientation.rotateByVector(rotation1, 50);
+		RigidBodies[0]->rotation += rotation * 20;
+		RigidBodies[1]->rotation += rotation1 * 20;
+		//std::cout << "Quat 1 " << RigidBodies[0]->orientation.i << "/" << RigidBodies[0]->orientation.j << "/" << RigidBodies[0]->orientation.k << "/" << std::endl;
+		//std::cout << "Quat 2 " << RigidBodies[1]->orientation.i << "/" << RigidBodies[1]->orientation.j << "/" << RigidBodies[1]->orientation.k << "/" << std::endl;
+	//}
 }
 
 void RBContact::AddImpulse(float duration)

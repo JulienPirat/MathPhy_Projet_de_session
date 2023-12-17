@@ -17,7 +17,7 @@ Matrix3 Plane::MakeInverseInertiaPlane(double x, double y, double mass)
 	Matrix3 I = Matrix3(
 		(0.3333) * (mass) * (y * y), 0, 0, //Y = centre a un bord
 		0, (0.3333) * (mass) * (x * x), 0, //X = centre a un bord
-		0, 0, (0.333) * (mass) * (x * x + y * y)
+		0, 0, (0.3333) * (mass) * (x * x + y * y)
 	);
 	return I.Inverse();
 }

@@ -77,8 +77,8 @@ void RBContact::AddImpulse(float duration)
 
 	auto relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity;
 
-	Vector3D r1 = RigidBodies[0]->position - contactPoint;
-	Vector3D r2 = RigidBodies[1]->position - contactPoint;
+	Vector3D r1 = contactPoint - RigidBodies[0]->position;
+	Vector3D r2 = contactPoint - RigidBodies[1]->position;
 
 	double e = restitution + 1;
 	double numerateur = contactNormal.produitScalaire(relativeVelocity * e);
@@ -87,7 +87,7 @@ void RBContact::AddImpulse(float duration)
 		+ ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2));
 	double k = numerateur / denominateur;
 
-	// V�locit� apr�s impulsion
+	// Velocite apres impulsion
 	RigidBodies[0]->velocity = RigidBodies[0]->velocity - contactNormal * k * RigidBodies[0]->inverseMasse - k * ((r1 * contactNormal) * RigidBodies[0]->inverseI) * r1;
 	RigidBodies[1]->velocity = RigidBodies[1]->velocity + contactNormal * k * RigidBodies[1]->inverseMasse + k * ((r2 * contactNormal) * RigidBodies[1]->inverseI) * r2;
 

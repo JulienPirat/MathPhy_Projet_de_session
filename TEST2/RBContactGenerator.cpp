@@ -210,8 +210,18 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Axes.push_back(axeZY);
     Axes.push_back(axeZZ);
 
+    /*
+    auto Vertices = two->GetVertices();
+
+    for (auto& vertice : Vertices)
+    {
+		BoxAndPoint(one, two, &vertice, contactRegistry);
+	}
+    */
+
     for (Vector3D axe : Axes)
     {
+        //axe.normalize();
 		Interval intervalOne = ProjectBoxOnAxis(one, &axe);
         Interval intervalTwo = ProjectBoxOnAxis(two, &axe);
 
@@ -230,7 +240,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
         {
             // Collision Face-Point
             double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-            Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+            Vector3D contactPoint = intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
             axe.normalize();
             
             RBContact newContact;
@@ -241,13 +251,15 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
+            if(penetration >= 1)    // ASupprimer
+                return 0;
             if(penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
         }
         else 
         {
             // Collision Edge-Edge
-
+            
             double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
             Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
             axe.normalize();
@@ -255,17 +267,19 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             RBContact newContact;
             newContact.contactNormal = axe;
             newContact.contactPoint = contactPoint;
-            newContact.penetration = penetration;
+            newContact.penetration = 1 - penetration;
             newContact.restitution = restitution;
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
             if (penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
+                
         }
+        
 	}
 
-
+    
     // Si fait partie des 6 axe principaux c'est un Point-Face sinon c'est un Edge-Edge
     // 6 Axes Principaux = X,Y,Z de chaque boite et les 9 autres axes = X*y, X*z,X*X ; Y*Y, Y*X,Y*Z ; ect...
     // En enlevant les doublons on obtient 15 axes
@@ -288,13 +302,54 @@ Interval RBContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)
     for (int i = 1; i < vertices.size(); i++)
     {
 		dotProduct = axis->produitScalaire(vertices[i]);
+
         if (dotProduct < interval.min)
         {
             interval.Vertice = vertices[i];
         }
         interval.min = std::min(interval.min, dotProduct);
         interval.max = std::max(interval.max, dotProduct);
+        
 	}
 
     return interval;
+}
+
+unsigned RBContactGenerator::BoxAndPoint(PBox* box, PBox* box2, Vector3D* point, RBContactRegistry* contactRegistry)
+{
+    Vector3D normal;
+    double min_depth = box->halfSize.x - abs(point->x);
+    if (min_depth < 0) return 0;
+    normal = box->GetVertices()[0] * ((point->x < 0) ? -1 : 1);
+
+    double depth = box->halfSize.y - abs(point->y);
+    if (depth < 0) return 0;
+    else if (depth < min_depth)
+    {
+		min_depth = depth;
+		normal = box->GetVertices()[1] * ((point->y < 0) ? -1 : 1);
+	}
+
+    depth = box->halfSize.z - abs(point->z);
+	if (depth < 0) return 0;
+    else if (depth < min_depth)
+    {
+		min_depth = depth;
+		normal = box->GetVertices()[2] * ((point->z < 0) ? -1 : 1);
+	}
+
+    double restitution = (box->RB->linearDamping + box2->RB->linearDamping) / 2;
+    double friction = (box->RB->m_angularDamping + box2->RB->m_angularDamping) / 2;
+
+	RBContact newContact;
+	newContact.contactNormal = normal;
+	newContact.contactPoint = *point;
+	newContact.penetration = min_depth;
+	newContact.restitution = friction;
+	newContact.friction = box->RB->m_angularDamping;
+	newContact.RigidBodies[0] = box->RB;
+	newContact.RigidBodies[1] = box2->RB;
+	contactRegistry->contacts.push_back(newContact);
+
+	return 1;
 }

@@ -22,8 +22,8 @@ void World::DeleteAllRigidBody() {
 void World::ContactBoxBox()
 {
 	Box* RB_1 = new Box(
-		Vector3D(1, 0, 0), //Position
-		Vector3D(-1, 0, 0),//Velocité
+		Vector3D(1, 1, 0), //Position
+		Vector3D(-0.5, -0.5, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
@@ -34,8 +34,8 @@ void World::ContactBoxBox()
 	AddRigidBody(RB_1);
 
 	Box* RB_2 = new Box(
-		Vector3D(-0.5, 0, 0), //Position
-		Vector3D(1, 0, 0),//Velocité
+		Vector3D(-1, -1, 0), //Position
+		Vector3D(0.5, 0.5, 0),//Velocité
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire

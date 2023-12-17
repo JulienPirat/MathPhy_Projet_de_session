@@ -151,7 +151,7 @@ void World::ContactSphereSphere()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		10, // Masse
+		2, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		.5f
 	);

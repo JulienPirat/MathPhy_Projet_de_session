@@ -70,6 +70,9 @@ public:
 	//Overload the operator * between double and Matrix3
 	friend Matrix3 operator*(const double& a, const Matrix3& m);
 
+	//Overload the operator * between Vector3D and Matrix3
+	friend Vector3D operator*(const Vector3D& v, const Matrix3& m);
+
 private :
 
 	void MakeInverse(const Matrix3& m);

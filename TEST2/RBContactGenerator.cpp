@@ -184,46 +184,6 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Axes.push_back(bTwoY);
     Axes.push_back(bTwoZ);
 
-    for (Vector3D axe : Axes)
-    {
-        //axe.normalize();
-        Interval intervalOne = ProjectBoxOnAxis(one, &axe);
-        Interval intervalTwo = ProjectBoxOnAxis(two, &axe);
-
-        if (intervalOne.min > intervalTwo.max || intervalTwo.min > intervalOne.max)
-        {
-            // We don't have collision
-            return 0;
-        }
-
-        double restitution = (one->RB->linearDamping + two->RB->linearDamping) / 2;
-        double friction = (one->RB->m_angularDamping + two->RB->m_angularDamping) / 2;
-
-
-        if (axe == bOneX || axe == bOneY || axe == bOneZ ||
-            axe == bTwoX || axe == bTwoY || axe == bTwoZ)
-        {
-            // Collision Face-Point
-            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-            Vector3D contactPoint = two->offset * intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
-            axe.normalize();
-
-            RBContact newContact;
-            newContact.contactNormal = axe;
-            newContact.contactPoint = contactPoint;
-            newContact.penetration = penetration;
-            newContact.restitution = restitution;
-            newContact.friction = friction;
-            newContact.RigidBodies[0] = one->RB;
-            newContact.RigidBodies[1] = two->RB;
-            if (penetration >= 1)    // ASupprimer
-                return 0;
-            if (penetration > 0)
-                contactRegistry->contacts.push_back(newContact);
-        }
-    }
-
-    Axes.clear();
     // On récupère les 9 autres axes
 
     Vector3D axeXX = bOneX.produitVectoriel(bTwoX);
@@ -250,15 +210,6 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
     Axes.push_back(axeZY);
     Axes.push_back(axeZZ);
 
-    /*
-    auto Vertices = two->GetVertices();
-
-    for (auto& vertice : Vertices)
-    {
-		BoxAndPoint(one, two, &vertice, contactRegistry);
-	}
-    */
-
     for (Vector3D axe : Axes)
     {
         //axe.normalize();
@@ -280,10 +231,21 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
         {
             // Collision Face-Point
             double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-            Vector3D contactPoint = two->offset * intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
-            axe.normalize();
+            
+            Vector3D contactPoint;
+
+            if (intervalOne.min < intervalTwo.min) {
+                contactPoint = two->RB->position + (axe * intervalTwo.min);
+            }
+            else {
+                contactPoint = one->RB->position + (axe * intervalOne.min);
+            }
+            
+            //Vector3D contactPoint = intervalTwo.Vertice; //intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
+           // axe.normalize();
             
             RBContact newContact;
+            axe.normalize();
             newContact.contactNormal = axe;
             newContact.contactPoint = contactPoint;
             newContact.penetration = penetration;
@@ -299,11 +261,17 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
         else 
         {
             // Collision Edge-Edge
-            
             double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
-            Vector3D contactPoint = intervalOne.Vertice + (intervalTwo.Vertice - intervalOne.Vertice) / 2; // Ne marche pas
-            axe.normalize();
 
+            // Les extrémités des segments de droite
+            Vector3D P1 = one->RB->position + (bOneX * one->halfSize.x) - (bOneY * one->halfSize.y) - (bOneZ * one->halfSize.z);
+            Vector3D Q1 = one->RB->position - (bOneX * one->halfSize.x) - (bOneY * one->halfSize.y) - (bOneZ * one->halfSize.z);
+            Vector3D P2 = two->RB->position + (bTwoX * two->halfSize.x) - (bTwoY * two->halfSize.y) - (bTwoY * two->halfSize.z);
+            Vector3D Q2 = two->RB->position - (bTwoX * two->halfSize.x) - (bTwoY * two->halfSize.y) - (bTwoY * two->halfSize.z);
+
+            Vector3D contactPoint = findEdgeEdgeContact(P1, Q1, P2, Q2);
+
+            axe.normalize();
             RBContact newContact;
             newContact.contactNormal = axe;
             newContact.contactPoint = contactPoint;
@@ -312,9 +280,11 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
+            if (penetration >= 1)    // ASupprimer
+                return 0;
             if (penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
-                
+               
         }
         
 	}
@@ -353,4 +323,23 @@ Interval RBContactGenerator::ProjectBoxOnAxis(PBox* box, Vector3D* axis)
 	}
 
     return interval;
+}
+
+Vector3D RBContactGenerator::findEdgeEdgeContact(Vector3D& P1, Vector3D& Q1, Vector3D& P2, Vector3D& Q2)
+{
+    Vector3D edge1 = Q1 - P1;
+    Vector3D edge2 = Q2 - P2;
+    Vector3D d = P2 - P1;
+
+    // Calcul du dénominateur
+    double denom = edge1.produitVectoriel(edge2).magnitude() * edge1.produitVectoriel(edge2).magnitude();
+
+    // Calcul des coefficients
+    double t1 = (d.produitVectoriel(edge2).produitScalaire(edge2.produitVectoriel(edge1))) / denom;
+    double t2 = (d.produitVectoriel(edge1).produitScalaire(edge1.produitVectoriel(edge2))) / denom;
+
+    // Calcul du point de contact
+    Vector3D contactPoint = P1 + edge1 * t1;
+
+    return contactPoint;
 }

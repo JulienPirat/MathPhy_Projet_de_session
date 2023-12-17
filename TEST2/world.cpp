@@ -27,7 +27,7 @@ void World::ContactBoxBox()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, // Masse
+		10, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);
@@ -39,7 +39,7 @@ void World::ContactBoxBox()
 		Vector3D(0, 0, 0), //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
-		1, // Masse
+		10, // Masse
 		Color(((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX), ((float)rand() / (float)RAND_MAX)), //Couleur
 		Vector3D(1, 1, 1)
 	);

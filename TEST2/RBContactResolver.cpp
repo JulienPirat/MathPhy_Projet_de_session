@@ -35,6 +35,12 @@ void RBContactResolver::resolveContacts(RBContactRegistry* ContactRegistry, floa
 			Vector3D cp = Vector3D(0, 0, 0);
 			ContactRegistry->contacts[indexContactToResolve].resolveInterpenetration(duration);
 			ContactRegistry->contacts[indexContactToResolve].AddImpulse(duration);
+			
+			for (RigidBody* RB : ContactRegistry->contacts[indexContactToResolve].RigidBodies)
+			{
+				RB->CalculateTransformMatrix();
+			}
+
 			iterationsUsed++;
 
 			RigidBody* TempRB1 = ContactRegistry->contacts[indexContactToResolve].RigidBodies[0];

@@ -120,7 +120,7 @@ void World::ContactSphereBox(Vector3D SPos, Vector3D SVel, Vector3D BPos, Vector
 	Box* RB_2 = new Box(
 		BPos, //Position
 		Vector3D(0, 0, 0),
-		Vector3D(0, 45.5f, 0), //Rotation
+		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		1, // Masse

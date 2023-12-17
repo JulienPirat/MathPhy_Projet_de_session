@@ -100,6 +100,11 @@ double Vector3D::magnitude() const
 	return std::sqrt(x * x + y * y + z * z);
 }
 
+std::string Vector3D::ToStr()
+{
+	return "("+ std::to_string(x) + "; " + std::to_string(y) + "; " + std::to_string(z) + ")";
+}
+
 void Vector3D::normalize()
 {
 	double l = magnitude();

@@ -499,3 +499,60 @@ int World::GetNBRB()
 {
 	return physics.GetNBRB();
 }
+
+void World::ToggleRunningPhysics() {
+	physics.isRunning = !physics.isRunning;
+}
+
+bool World::GetRunningPhysics()
+{
+	return physics.isRunning;
+}
+
+void World::EnableCollisionControl()
+{
+	physics.isControlledColData = true;
+}
+
+void World::DisableCollisionControl()
+{
+	physics.isControlledColData = false;
+}
+
+bool World::GetCollisionControl()
+{
+	return physics.isControlledColData;
+}
+
+std::string World::GetContactData() {
+
+	if (physics.ControlledContact == nullptr) {
+		return "NONE";
+	}
+
+	std::string title = "Contact : ";
+	std::string brkline = "\n";
+	std::string contactN = "Contact normal : " + physics.ControlledContact->contactNormal.ToStr();
+	std::string contactP = "Contact point : " + physics.ControlledContact->contactPoint.ToStr();
+	std::string contactFriction = "Friction : " + std::to_string(physics.ControlledContact->friction);
+	std::string contactPenetration = "Penetration : " + std::to_string(physics.ControlledContact->penetration);
+	std::string contactRestitution = "Restitution : " + std::to_string(physics.ControlledContact->restitution);
+	std::string RB1P = "RB1 Position : " + physics.ControlledContact->RigidBodies[0]->position.ToStr();
+	std::string RB1S = "RB1 Shape : " + std::to_string(physics.ControlledContact->RigidBodies[0]->shape);
+	std::string RB2P = "RB2 Position : " + physics.ControlledContact->RigidBodies[1]->position.ToStr();
+	std::string RB2S = "RB2 Shape : " + std::to_string(physics.ControlledContact->RigidBodies[1]->shape);
+
+	return title + brkline + 
+		brkline +
+		contactN + brkline + 
+		contactP + brkline + 
+		brkline +
+		contactFriction + brkline + 
+		contactPenetration + brkline + 
+		contactRestitution + brkline + 
+		brkline +
+		RB1S + brkline + 
+		RB1P + brkline + 
+		RB2S + brkline + 
+		RB2P + brkline;
+}

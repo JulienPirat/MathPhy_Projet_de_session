@@ -69,6 +69,9 @@ class PhysicEngine
 		//Sharable
 		int NBCollision = 0;
 		int GetNBRB();
+		bool isRunning = true;
+		bool isControlledColData = false;
+		RBContact* ControlledContact = nullptr;
 
 	private:
 

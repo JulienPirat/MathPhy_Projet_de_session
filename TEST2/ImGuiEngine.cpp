@@ -139,6 +139,18 @@ void ImGuiEngine::Update()
         ImGui::End();
     }
 
+    if (World::GetInstance().GetCollisionControl()) {
+
+        ImGui::Begin("DEBUG");
+        ImGui::SetWindowPos(ImVec2(380, 370), 0);
+        ImGui::SetWindowSize(ImVec2(400, 330), 0);
+
+        std::string lu = World::GetInstance().GetContactData();
+        ImGui::Text("%s", lu.c_str());
+
+        ImGui::End();
+    }
+
     if (window_to_show == 1)
     {
         ImGui::Begin("Part 1");
@@ -288,6 +300,37 @@ void ImGuiEngine::Update()
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
         }
+        ImGui::Spacing();
+
+        ImGui::Text("Debug:");
+        ImGui::Spacing();
+
+        if (!World::GetInstance().GetCollisionControl()) {
+            if (ImGui::Button("Enable Collision Data")) {
+                World& w = World::GetInstance();
+                w.EnableCollisionControl();
+            }
+        }
+        else {
+            if (ImGui::Button("Disable Collision Data")) {
+                World& w = World::GetInstance();
+                w.DisableCollisionControl();
+            }
+        }
+
+        if (World::GetInstance().GetRunningPhysics()) {
+            if (ImGui::Button("Disable Physics")) {
+                World& w = World::GetInstance();
+                w.ToggleRunningPhysics();
+            }
+        }
+        else {
+            if (ImGui::Button("Enable Physics")) {
+                World& w = World::GetInstance();
+                w.ToggleRunningPhysics();
+            }
+        }
+
         ImGui::Spacing();
 
         ImGui::Text("RigidBody General:");

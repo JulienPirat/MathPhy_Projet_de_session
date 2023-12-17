@@ -18,6 +18,11 @@ void PhysicEngine::Init()
 
 void PhysicEngine::Update(double deltaTime)
 {
+	//Stop Physics
+	if (isRunning == false) {
+		return;
+	}
+
 	//Narrow Phase
 	Node* root = KDTRee::generateTree(0, rigidbodies, Axis::X);
 	std::vector<std::pair<RigidBody*,RigidBody*>> potentialCollision = KDTRee::getPotentialCollisions(rigidbodies, root);
@@ -136,6 +141,13 @@ void PhysicEngine::BroadPhase(std::vector<std::pair<RigidBody*, RigidBody*>> pot
 			default:
 				break;
 			}
+		}
+
+		//Stop to the first collision
+		if (isControlledColData && contactRegistry_RigidBody->contacts.size() > 0) {
+			isRunning = false;
+			ControlledContact = &contactRegistry_RigidBody->contacts.at(0);
+			return;
 		}
 	}
 }

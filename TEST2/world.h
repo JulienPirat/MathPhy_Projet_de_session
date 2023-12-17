@@ -82,6 +82,15 @@ public:
 	int GetNBCollisionKDTree();
 	int GetNBRB();
 
+	void ToggleRunningPhysics();
+	bool GetRunningPhysics();
+
+	void EnableCollisionControl();
+	void DisableCollisionControl();
+	bool GetCollisionControl();
+
+	std::string GetContactData();
+
 private :
 
 	///Contructeur / Destructeur / Opérateurs

@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Vector3D
 {
@@ -55,6 +56,9 @@ public:
 
     // Calcul de la magnitude du vecteur
     double magnitude() const;
+
+    //To string
+    std::string ToStr();
 
     //Normalize vector
     void normalize();

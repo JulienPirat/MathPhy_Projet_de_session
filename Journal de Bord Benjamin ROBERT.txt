@@ -39,5 +39,21 @@ Nous avons du totalement revoir notre manière d'afficher les cubes afin de pouv
 Nous avons aussi eu des problèmes liés au paramétrage de nos ressorts physiques, notre moteur étant limité il arrive parfois qu'un ressort diverge
 Nous avons de nouveau eu des problèmes de fuite mémoire que nous avons du résoudre
 
+Phase 4 :
+
+Ajout du KDTree avec Bastien
+Ajout de tous les tests dans IMGUI
+Réagencement d'IMGUI
+Ajout d'un débug pour les test de collision dans IMGUI
+Ajout des différentes formes dans Graphic Engine
+Ajout de l'appel de la broad Phase et de la Narrow Phase dans l'update
+Aide au débug des collision
+Ajout de l'interpénétration angulaire et impulse angulaire
+
+Problèmes rencontrées:
+Problème de structure du KDTree
+Interpénétration angulaire peu claire au niveau des calculs
+Valeurs non expliquées pour les différents calculs dans le cours ainsi que dans livre. (InverseInertiaTensorWorld)
+
 Sources :
 Ian Millington, Game Physics Engine Development, https://uqac.on.worldcat.org/oclc/706803531

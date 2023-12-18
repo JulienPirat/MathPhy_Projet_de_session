@@ -39,7 +39,7 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
 
 unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
-    double distance = plane->normal * sphere->RB->position - plane->offsetP - sphere->radius;
+    double distance = abs(plane->normal * sphere->RB->position - plane->offsetP) - sphere->radius;
     
     if (distance > 0) 
     {
@@ -74,7 +74,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
     for (auto& vertice : vertices)
     {
         auto distance = vertice * plane->normal - plane->offsetP;
-        if (distance > 0)
+        if (distance > 0 || distance > 1)
         {
 			// We don't have collision
 			return 0;

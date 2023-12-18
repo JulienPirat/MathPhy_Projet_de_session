@@ -170,6 +170,7 @@
     <ClCompile Include="PBox.cpp" />
     <ClCompile Include="PhysicEngine.cpp" />
     <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PPlane.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="RBAnchoredSpringForceGenerator.cpp" />
     <ClCompile Include="RBContact.cpp" />

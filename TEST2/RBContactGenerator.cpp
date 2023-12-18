@@ -39,7 +39,7 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
 
 unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
-    double distance = abs(plane->normal * sphere->RB->position - plane->offsetP) - sphere->radius;
+    double distance = plane->normal * sphere->RB->position - plane->offsetP - sphere->radius;
     
     if (distance > 0) 
     {
@@ -88,7 +88,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
         RBContact newContact;
         newContact.contactNormal = plane->normal;
         newContact.contactPoint = contactPoint;
-        newContact.penetration = distance;
+        newContact.penetration = abs(distance);
         newContact.restitution = restitution;
         newContact.friction = friction;
         newContact.RigidBodies[0] = box->RB;

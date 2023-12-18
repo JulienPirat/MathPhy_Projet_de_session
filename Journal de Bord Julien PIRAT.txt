@@ -32,3 +32,19 @@ Aide Benjamin pour le bug de la fuite mémoire.
 Problèmes rencontrés:
 Bug sur les ressorts
 Bug de fuite mémoire
+
+Phase 4 :
+
+Actuellement le projet est incomplet tous ce qui utilise un plane ne fonctionne pas.
+La résolution de collision angulaire a quelques bug.
+
+Création des primitives pour la narrow Phase.
+Création de toutes les classes demandé pour la narrow Phase.
+Réalisation du contact Resolver.
+Réalisation du Générateur de contact avec chaques collisions.
+
+Grosse sessions de débug ou j'ai du retoucher à tout sauf au KDTree que je n'ai pas codé.
+
+Problèmes rencontrés:
+Problème sur KDTree ce qui engendré un petit retard.
+Beaucoup de temps à été utilisé pour la compréhension des algorithmes du cours ainsi que du livre pour avoir un résultat "passable".

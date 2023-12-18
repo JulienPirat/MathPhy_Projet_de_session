@@ -102,7 +102,7 @@ void ImGuiEngine::Update()
         static int counter = 0;
 
         ImGui::Begin("Math Phys Tests !");                          // Create a window called "Hello, world!" and append into it.
-        ImGui::SetWindowSize(ImVec2(300, 300), 0);
+        ImGui::SetWindowSize(ImVec2(300, 270), 0);
 
 
         ImGui::Text("DashBoard:");
@@ -142,8 +142,8 @@ void ImGuiEngine::Update()
     if (World::GetInstance().GetCollisionControl()) {
 
         ImGui::Begin("DEBUG");
-        ImGui::SetWindowPos(ImVec2(380, 370), 0);
-        ImGui::SetWindowSize(ImVec2(400, 330), 0);
+        ImGui::SetWindowPos(ImVec2(380, 340), 0);
+        ImGui::SetWindowSize(ImVec2(400, 360), 0);
 
         std::string lu = World::GetInstance().GetContactData();
         ImGui::Text("%s", lu.c_str());
@@ -154,8 +154,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 1)
     {
         ImGui::Begin("Part 1");
-        ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+        ImGui::SetWindowPos(ImVec2(60, 340), 0);
+        ImGui::SetWindowSize(ImVec2(300, 360), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -220,8 +220,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 2)
     {
         ImGui::Begin("Part 2");
-        ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+        ImGui::SetWindowPos(ImVec2(60, 340), 0);
+        ImGui::SetWindowSize(ImVec2(300, 360), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -253,8 +253,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 3)
     {
         ImGui::Begin("Part 3");
-        ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+        ImGui::SetWindowPos(ImVec2(60, 340), 0);
+        ImGui::SetWindowSize(ImVec2(300, 360), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -294,8 +294,8 @@ void ImGuiEngine::Update()
     if (window_to_show == 4)
     {
         ImGui::Begin("Part 4");
-        ImGui::SetWindowPos(ImVec2(60, 370), 0);
-        ImGui::SetWindowSize(ImVec2(300, 330), 0);
+        ImGui::SetWindowPos(ImVec2(60, 340), 0);
+        ImGui::SetWindowSize(ImVec2(300, 360), 0);
 
         if (ImGui::Button("Menu")) {
             window_to_show = 0;
@@ -342,17 +342,27 @@ void ImGuiEngine::Update()
         }
         ImGui::Spacing();
 
-        ImGui::Text("Collision RB:");
+        ImGui::Text("Sphere/Sphere:");
         ImGui::Spacing();
-
-        if (ImGui::Button("Contact Box/Box RigidBody")) {
-            World& w = World::GetInstance();
-            w.ContactBoxBox();
-        }
 
         if (ImGui::Button("Contact Sphere/Sphere RigidBody")) {
             World& w = World::GetInstance();
             w.ContactSphereSphere();
+        }
+
+        ImGui::Text("Box/Box:");
+        ImGui::Spacing();
+
+
+        if (ImGui::Button("Contact Face/Face Box/Box")) {
+            World& w = World::GetInstance();
+            w.ContactBoxBox(Vector3D(0,0,0), Vector3D(0, 0, 0));
+        }
+
+
+        if (ImGui::Button("Contact Edge/Edge Box/Box")) {
+            World& w = World::GetInstance();
+            w.ContactBoxBox(Vector3D(0, 45, 0), Vector3D(0, 0, 45));
         }
 
         ImGui::Text("Sphere/Box:");

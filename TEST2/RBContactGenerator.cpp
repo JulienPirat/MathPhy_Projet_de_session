@@ -74,7 +74,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
     for (auto& vertice : vertices)
     {
         auto distance = vertice * plane->normal - plane->offsetP;
-        if (distance > 0)
+        if (distance > 0 || distance > 1)
         {
 			// We don't have collision
 			return 0;
@@ -88,7 +88,7 @@ unsigned RBContactGenerator::boxAndPlane(PBox* box, PPlane* plane, RBContactRegi
         RBContact newContact;
         newContact.contactNormal = plane->normal;
         newContact.contactPoint = contactPoint;
-        newContact.penetration = distance;
+        newContact.penetration = abs(distance);
         newContact.restitution = restitution;
         newContact.friction = friction;
         newContact.RigidBodies[0] = box->RB;

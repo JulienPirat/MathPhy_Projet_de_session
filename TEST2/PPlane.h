@@ -16,4 +16,7 @@ public:
 
 	// décalage du plan par rapport à l'origine
 	double offsetP = 0; // Déjà dans Primitive ?
+
+	//std::vector<Vector3D> getVertices();
+
 };

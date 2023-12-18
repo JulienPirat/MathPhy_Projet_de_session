@@ -19,12 +19,12 @@ void World::DeleteAllRigidBody() {
 	physics.ClearRigidBodies();
 }
 
-void World::ContactBoxBox()
+void World::ContactBoxBox(Vector3D rot, Vector3D rot2)
 {
 	Box* RB_1 = new Box(
 		Vector3D(1, 0, 0), //Position
 		Vector3D(-0.5, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		rot, //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		10, // Masse
@@ -36,7 +36,7 @@ void World::ContactBoxBox()
 	Box* RB_2 = new Box(
 		Vector3D(-1, 0, 0), //Position
 		Vector3D(0.5, 0, 0),//Velocité
-		Vector3D(0, 0, 0), //Accélération
+		rot2, //Accélération
 		0.999f, //Damping Linéaire
 		0.999f, //Damping Angulaire
 		10, // Masse

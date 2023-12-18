@@ -29,7 +29,7 @@ public:
 
 	//Generation Contact RB
 
-	void ContactBoxBox();
+	void ContactBoxBox(Vector3D rot, Vector3D rot2);
 
 	void ContactBoxPlane();
 

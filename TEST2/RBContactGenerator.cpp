@@ -238,7 +238,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             axe == bTwoX || axe == bTwoY || axe == bTwoZ)
         {
             // Collision Face-Point
-            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min);
             
             Vector3D contactPoint;
 
@@ -261,7 +261,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            if(penetration >= 1)    // ASupprimer
+            if(penetration >= 1)  
                 return 0;
             if(penetration > 0)
                 contactRegistry->contacts.push_back(newContact);
@@ -269,7 +269,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
         else 
         {
             // Collision Edge-Edge
-            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min); // Pas sur
+            double penetration = std::min(intervalOne.max - intervalTwo.min, intervalTwo.max - intervalOne.min);
 
             // Les extrémités des segments de droite
             Vector3D P1 = one->RB->position + (bOneX * one->halfSize.x) - (bOneY * one->halfSize.y) - (bOneZ * one->halfSize.z);
@@ -288,7 +288,7 @@ unsigned RBContactGenerator::boxAndBox(PBox* one, PBox* two, RBContactRegistry* 
             newContact.friction = friction;
             newContact.RigidBodies[0] = one->RB;
             newContact.RigidBodies[1] = two->RB;
-            if (penetration >= 1)    // ASupprimer
+            if (penetration >= 1)    
                 return 0;
             if (penetration > 0)
                 contactRegistry->contacts.push_back(newContact);

@@ -39,7 +39,7 @@ unsigned RBContactGenerator::sphereAndSphere(PSphere* one, PSphere* two, RBConta
 
 unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBContactRegistry* contactRegistry)
 {
-    double distance = plane->normal * sphere->RB->position - plane->offsetP;
+    double distance = abs(plane->normal * sphere->RB->position - plane->offsetP) - sphere->radius;
     
     if (distance > 0) 
     {
@@ -49,7 +49,7 @@ unsigned RBContactGenerator::sphereAndPlane(PSphere* sphere, PPlane* plane, RBCo
 
     Vector3D normalContact = plane->normal;
     double interpenatration = -distance; // car la distance est négative
-    Vector3D contactPoint = sphere->RB->position - plane->normal * (distance + sphere->radius);
+    Vector3D contactPoint = sphere->RB->position - plane->normal * distance;
     double restitution = (sphere->RB->linearDamping + plane->RB->linearDamping) / 2;
     double friction = (sphere->RB->m_angularDamping + plane->RB->m_angularDamping) / 2;
 

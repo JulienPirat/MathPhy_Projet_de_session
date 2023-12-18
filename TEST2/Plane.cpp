@@ -10,6 +10,26 @@ Plane::Plane(Vector3D pos, Vector3D vel, Vector3D rotat, float linDamp, float an
 {
 	shape = plane;
 	dimension = Vector3D(x, y, 0);
+
+	double halfX = x / 2;
+	double halfY = y / 2;
+
+	Vector3D pointA = Vector3D(halfX, halfY, 0);
+	Vector3D pointB = Vector3D(-halfX, halfY, 0);
+	Vector3D pointC = Vector3D(-halfX, -halfY, 0);
+
+	Vector3D normal;
+
+	normal = ((pointB - pointA).produitVectoriel(pointC - pointA));
+	normal.normalize();
+
+	primitive = new PPlane(
+		normal,
+		this,
+		Matrix4(),
+		halfX,
+		halfY
+	);
 }
 
 Matrix3 Plane::MakeInverseInertiaPlane(double x, double y, double mass)

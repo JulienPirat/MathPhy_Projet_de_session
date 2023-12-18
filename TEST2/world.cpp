@@ -89,7 +89,7 @@ void World::ContactSpherePlane()
 	AddRigidBody(RB_1);
 
 	Plane* RB_2 = new Plane(
-		Vector3D(0, 0, 0), //Position
+		Vector3D(0, 0, 2), //Position
 		Vector3D(0, 0, 0),//Velocité
 		Vector3D(0, 0, 0), //Rotation
 		0.999f, //Damping Linéaire

@@ -35,16 +35,16 @@ Bug de fuite mémoire
 
 Phase 4 :
 
-Actuellement le projet est incomplet tous ce qui utilise un plane ne fonctionne pas.
-La résolution de collision angulaire a quelques bug.
+Actuellement, le projet est incomplet. Tout ce qui utilise un plan ne fonctionne pas.
+La résolution de collision angulaire a quelques bugs.
 
-Création des primitives pour la narrow Phase.
-Création de toutes les classes demandé pour la narrow Phase.
+Création des primitives pour la Narrow phase.
+Création de toutes les classes demandées pour la Narrow phase.
 Réalisation du contact Resolver.
-Réalisation du Générateur de contact avec chaques collisions.
+Réalisation du Générateur de contact avec chaque collision.
 
-Grosse sessions de débug ou j'ai du retoucher à tout sauf au KDTree que je n'ai pas codé.
+Grosse session de débogage où j'ai dû retoucher à tout, sauf au KDTree que je n'ai pas codé.
 
-Problèmes rencontrés:
-Problème sur KDTree ce qui engendré un petit retard.
-Beaucoup de temps à été utilisé pour la compréhension des algorithmes du cours ainsi que du livre pour avoir un résultat "passable".
+Problèmes rencontrés :
+Problème sur le KDTree, ce qui a engendré un petit retard.
+Beaucoup de temps a été utilisé pour la compréhension des algorithmes du cours ainsi que du livre pour obtenir un résultat "passable".

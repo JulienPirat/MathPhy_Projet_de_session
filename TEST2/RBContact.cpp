@@ -18,18 +18,18 @@ void RBContact::resolveInterpenetration(float duration)
 
 	//Matrix3 inverseInertiaTensor = RigidBodies[0]->inverseI;
 	Matrix3 inverseInertiaTensor = (RigidBodies[0]->transformMatrix.ToMatrix3()) * RigidBodies[0]->inverseI * (RigidBodies[0]->transformMatrix.ToMatrix3().Inverse());
-	Vector3D r = contactPoint - RigidBodies[0]->position;
-	Vector3D angularInertiaWorld = r.produitVectoriel(contactNormal);
+	Vector3D localPoint = contactPoint - RigidBodies[0]->position;
+	Vector3D angularInertiaWorld = localPoint.produitVectoriel(contactNormal);
 	angularInertiaWorld = inverseInertiaTensor * (angularInertiaWorld);
-	angularInertiaWorld = angularInertiaWorld.produitVectoriel(r);
+	angularInertiaWorld = angularInertiaWorld.produitVectoriel(localPoint);
 	float angularInertia = angularInertiaWorld.produitScalaire(contactNormal);
 
 	//Matrix3 inverseInertiaTensor1 = RigidBodies[1]->inverseI;
 	Matrix3 inverseInertiaTensor1 = (RigidBodies[1]->transformMatrix.ToMatrix3()) * RigidBodies[1]->inverseI * (RigidBodies[1]->transformMatrix.ToMatrix3().Inverse());
-	Vector3D r1 = contactPoint - RigidBodies[1]->position;
-	Vector3D angularInertiaWorld1 = r1.produitVectoriel(contactNormal);
+	Vector3D localPoint1 = contactPoint - RigidBodies[1]->position;
+	Vector3D angularInertiaWorld1 = localPoint1.produitVectoriel(contactNormal);
 	angularInertiaWorld1 = inverseInertiaTensor1 * (angularInertiaWorld1);
-	angularInertiaWorld1 = angularInertiaWorld1.produitVectoriel(r1);
+	angularInertiaWorld1 = angularInertiaWorld1.produitVectoriel(localPoint1);
 	float angularInertia1 = angularInertiaWorld1.produitScalaire(contactNormal);
 
 	//auto inverseInertia = (1 / (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse));
@@ -75,24 +75,24 @@ void RBContact::AddImpulse(float duration)
 	// v = vitesse lineaire; w = vitesse angulaire; r = le vecteur entre le centre de masse et point de contact
 
 	// Calcul de la distance entre le point de contact et le centre de masse pour chaque objet
-	Vector3D r1 = contactPoint - RigidBodies[0]->position;
-	Vector3D r2 = contactPoint - RigidBodies[1]->position;
+	Vector3D localPoint1 = contactPoint - RigidBodies[0]->position;
+	Vector3D localPoint2 = contactPoint - RigidBodies[1]->position;
 
 	// Calcul de la vitesse au point de contact pour chaque objet
-	auto velocityAtContactPointRb1 = RigidBodies[0]->velocity + RigidBodies[0]->rotation.produitVectoriel(r1);
-	auto velocityAtContactPointRb2 = RigidBodies[1]->velocity + RigidBodies[1]->rotation.produitVectoriel(r2);
+	auto velocityAtContactPointRb1 = RigidBodies[0]->velocity + RigidBodies[0]->rotation.produitVectoriel(localPoint1);
+	auto velocityAtContactPointRb2 = RigidBodies[1]->velocity + RigidBodies[1]->rotation.produitVectoriel(localPoint2);
 
 	// Calcul de la vitesse relative
 	auto relativeVelocity = RigidBodies[0]->velocity - RigidBodies[1]->velocity
-		+ RigidBodies[0]->rotation.produitVectoriel(r1)
-		- RigidBodies[1]->rotation.produitVectoriel(r2);
+		+ RigidBodies[0]->rotation.produitVectoriel(localPoint1)
+		- RigidBodies[1]->rotation.produitVectoriel(localPoint2);
 
 	// Calcul de l'impulsion k
 	double numerateur = contactNormal.produitScalaire(relativeVelocity * (restitution + 1));
 	double denominateur = contactNormal.produitScalaire(
 		(contactNormal * (RigidBodies[0]->inverseMasse + RigidBodies[1]->inverseMasse)
-		+ ((r1.produitVectoriel(contactNormal)) * RigidBodies[0]->inverseI).produitVectoriel(r1)
-		+ ((r2.produitVectoriel(contactNormal)) * RigidBodies[1]->inverseI).produitVectoriel(r2))
+		+ ((localPoint1.produitVectoriel(contactNormal)) * RigidBodies[0]->inverseI).produitVectoriel(localPoint1)
+		+ ((localPoint2.produitVectoriel(contactNormal)) * RigidBodies[1]->inverseI).produitVectoriel(localPoint2))
 	);
 	double k = numerateur / denominateur;
 
@@ -103,8 +103,8 @@ void RBContact::AddImpulse(float duration)
 		+ (contactNormal * k * RigidBodies[1]->inverseMasse);
 
 	// Velocite angulaire apres impulsion
-	RigidBodies[0]->rotation = RigidBodies[0]->rotation - ((r1.produitVectoriel(contactNormal * k)) * RigidBodies[0]->inverseI);
-	RigidBodies[1]->rotation = RigidBodies[1]->rotation + ((r2.produitVectoriel(contactNormal * k)) * RigidBodies[1]->inverseI);
+	RigidBodies[0]->rotation = RigidBodies[0]->rotation - ((localPoint1.produitVectoriel(contactNormal * k)) * RigidBodies[0]->inverseI);
+	RigidBodies[1]->rotation = RigidBodies[1]->rotation + ((localPoint2.produitVectoriel(contactNormal * k)) * RigidBodies[1]->inverseI);
 }
 
 double RBContact::calculateClosingVelocity()
